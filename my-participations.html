@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gavel — Իմ մասնակցությունները</title>
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/my-participations.css">
+</head>
+<body>
+
+  <!-- Utility Bar -->
+  <div class="util">
+    <div class="w">
+      <div><span>Հայաստանի առաջատար առցանց աճուրդների հարթակ</span></div>
+      <div class="util-links">
+        <a href="login.html" class="util-highlight">Վաճառել Gavel-ում</a>
+        <a href="auctions.html">Օգնություն</a>
+        <a href="profile.html">Հայերեն ▾</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="w">
+      <a class="logo" href="index.html">
+        <img src="images/logo.png" alt="Gavel Logo">
+      </a>
+      <form class="srch" action="auctions.html" method="get">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+        <input type="search" name="q" placeholder="Որոնել Gavel-ում..." aria-label="Որոնել">
+      </form>
+      <nav>
+        <a class="nav-link" href="index.html">Գլխավոր</a>
+        <a class="nav-link" href="auctions.html">Աճուրդներ</a>
+        <a class="nav-link active" href="my-participations.html">Իմ մասնակցությունները</a>
+        <a class="nav-link" href="my-lots.html">Իմ լոտերը</a>
+        <a class="nav-link" href="profile.html">Անձնական էջ</a>
+        <a class="nav-link" href="admin-dashboard.html">Ադմին</a>
+      </nav>
+      <div class="header-actions">
+        <a href="profile.html" class="user-menu-btn">
+          <span class="user-avatar">Գ</span>
+          <span>Գարիկ Հ.</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="w">
+      <div class="breadcrumb">
+        <a href="index.html">Գլխավոր</a>
+        <span>›</span>
+        <span>Իմ մասնակցությունները</span>
+      </div>
+
+      <div class="page-title-row">
+        <div>
+          <h1>Իմ մասնակցությունները</h1>
+          <p>Հետևեք ձեր բոլոր ակտիվ և ավարտված գնային առաջարկներին</p>
+        </div>
+        <a href="auctions.html" class="btn pri sm">+ Գտնել նոր աճուրդներ</a>
+      </div>
+
+      <!-- KPI metrics -->
+      <div class="part-kpi-grid">
+        <div class="kpi-card">
+          <small class="part-lot-lbl">Ընդհանուր հայտեր</small>
+          <div class="kpi-num">3</div>
+        </div>
+        <div class="kpi-card lead-accent">
+          <small class="part-lot-lbl">Առաջատար եք</small>
+          <div class="kpi-num lead">2</div>
+        </div>
+        <div class="kpi-card out-accent">
+          <small class="part-lot-lbl">Գերազանցված հայտեր</small>
+          <div class="kpi-num out">1</div>
+        </div>
+        <div class="kpi-card">
+          <small class="part-lot-lbl">Շահած լոտեր</small>
+          <div class="kpi-num won">0</div>
+        </div>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="part-tabs-bar">
+        <a href="my-participations.html" class="btn sm pri">Բոլորը</a>
+        <a href="my-participations.html" class="btn sm">Առաջատար (Lead)</a>
+        <a href="my-participations.html" class="btn sm">Գերազանցված (Outbid)</a>
+      </div>
+
+      <!-- List of Participations -->
+      <div>
+        <!-- Card 1 -->
+        <div class="part-card">
+          <div class="part-thumb t1"><img src="images/lot-watch.jpg" alt="Հին ժամացույց"></div>
+          <div class="part-info">
+            <div class="part-status-badge-row">
+              <span class="chip lead">✓ Առաջատար</span>
+              <small class="part-lot-lbl">Լոտ #128</small>
+            </div>
+            <h3 class="part-card-title"><a href="auction-detail.html">Հին ժամացույց</a></h3>
+            <p class="part-card-desc">Արծաթե գրպանի ժամացույց, 1910 թ., Շվեյցարիա</p>
+          </div>
+          <div class="part-meta">
+            <div class="meta-col">
+              <small>Ձեր հայտը</small>
+              <span>$1,250</span>
+            </div>
+            <div class="meta-col">
+              <small>Ընթացիկ գին</small>
+              <span class="price-highlight">$1,250</span>
+            </div>
+            <div class="meta-col">
+              <small>Մնացել է</small>
+              <span class="tm">02:41:08</span>
+            </div>
+          </div>
+          <div class="part-action-btns">
+            <a href="auction-detail.html" class="btn sm">Դիտել</a>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="part-card">
+          <div class="part-thumb t2"><img src="images/lot-carpet.jpg" alt="Ձեռագործ գորգ"></div>
+          <div class="part-info">
+            <div class="part-status-badge-row">
+              <span class="chip lead">✓ Առաջատար</span>
+              <small class="part-lot-lbl">Լոտ #211</small>
+            </div>
+            <h3 class="part-card-title"><a href="auction-detail.html">Ձեռագործ գորգ</a></h3>
+            <p class="part-card-desc">Ղազախի դպրոց, բնական ներկեր, 1920-ականներ</p>
+          </div>
+          <div class="part-meta">
+            <div class="meta-col">
+              <small>Ձեր հայտը</small>
+              <span>$900</span>
+            </div>
+            <div class="meta-col">
+              <small>Ընթացիկ գին</small>
+              <span class="price-highlight">$900</span>
+            </div>
+            <div class="meta-col">
+              <small>Մնացել է</small>
+              <span class="tm hot">00:08:30</span>
+            </div>
+          </div>
+          <div class="part-action-btns">
+            <a href="auction-detail.html" class="btn sm">Դիտել</a>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="part-card">
+          <div class="part-thumb t3"><img src="images/lot-samovar.jpg" alt="Արծաթե սամովար"></div>
+          <div class="part-info">
+            <div class="part-status-badge-row">
+              <span class="chip out">✕ Գերազանցված</span>
+              <small class="part-lot-lbl">Լոտ #94</small>
+            </div>
+            <h3 class="part-card-title"><a href="auction-detail.html">Արծաթե սամովար</a></h3>
+            <p class="part-card-desc">Բատաշևների ֆաբրիկա, Տուլա, 1898 թ.</p>
+          </div>
+          <div class="part-meta">
+            <div class="meta-col">
+              <small>Ձեր հայտը</small>
+              <span>$450</span>
+            </div>
+            <div class="meta-col">
+              <small>Ընթացիկ գին</small>
+              <span class="price-highlight">$480</span>
+            </div>
+            <div class="meta-col">
+              <small>Մնացել է</small>
+              <span class="tm">05:12:40</span>
+            </div>
+          </div>
+          <div class="part-action-btns">
+            <a href="place-bid.html" class="btn pri sm">Բարձրացնել գինը</a>
+            <a href="auction-detail.html" class="btn sm">Դիտել</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="w">
+      <div>
+        <a class="logo" href="index.html">
+          <span class="logo-fallback">GAVEL</span>
+        </a>
+        <p class="footer-desc">
+          Առցանց աճուրդների կառավարման հարթակ: Արվեստի գործերի, հնաոճ իրերի և հազվագյուտ նմուշների վստահելի շուկա:
+        </p>
+      </div>
+      <div>
+        <h4>Մոդուլներ</h4>
+        <ul>
+          <li><a href="auctions.html">Աճուրդների ցանկ</a></li>
+          <li><a href="my-participations.html">Իմ մասնակցությունները</a></li>
+          <li><a href="my-lots.html">Իմ լոտերը</a></li>
+          <li><a href="add-lot.html">Ավելացնել լոտ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Կառավարում</h4>
+        <ul>
+          <li><a href="profile.html">Անձնական էջ</a></li>
+          <li><a href="admin-dashboard.html">Ադմինի վահանակ</a></li>
+          <li><a href="admin-users.html">Օգտատերերի ցուցակ</a></li>
+          <li><a href="admin-reports.html">Հաշվետվություններ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Համակարգ</h4>
+        <ul>
+          <li><a href="login.html">Մուտք գործել</a></li>
+          <li><a href="register.html">Գրանցվել</a></li>
+          <li><a href="404.html">404 Error էջ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="w footer-bottom">
+      <div>© 2026 Gavel Auction Platform. Բոլոր իրավունքները պաշտպանված են:</div>
+      <div>Կուրսային աշխատանք · Առցանց աճուրդների հարթակ</div>
+    </div>
+  </footer>
+
+</body>
+</html>

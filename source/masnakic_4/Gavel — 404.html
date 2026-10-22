@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gavel — 404</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@800&family=Noto+Sans+Armenian:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff;--soft:#faf5ef;--ink:#2a1d14;--mute:#7c6a5c;--line:#eaddd0;--b:#8b5a2b;--b-d:#5c3a1e;--b-l:#f1e4d6;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17110c;--soft:#261c15;--ink:#f6ece2;--mute:#bfa994;--line:#3a2b20;--b-l:#3a281a}}
+:root[data-theme="dark"]{--bg:#17110c;--soft:#261c15;--ink:#f6ece2;--mute:#bfa994;--line:#3a2b20;--b-l:#3a281a}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{background:var(--bg);color:var(--ink);font-family:'Noto Sans Armenian','Segoe UI',sans-serif;font-size:17px;line-height:1.6;min-height:100vh;display:flex;flex-direction:column}
+header{padding:22px 28px}
+.logo{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:26px;display:inline-flex;align-items:center;gap:10px;color:var(--ink);text-decoration:none}
+.logo i{width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,#6f4e37,#c68e5a);display:grid;place-items:center}
+.logo i::after{content:"";width:15px;height:6px;background:#fff;border-radius:2px;transform:rotate(-30deg)}
+main{flex:1;display:grid;place-items:center;padding:20px 22px 60px;text-align:center}
+.box{max-width:560px}
+.num{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(96px,22vw,200px);line-height:.95;letter-spacing:-.04em;display:flex;justify-content:center;align-items:center;gap:.04em;background:linear-gradient(135deg,#5c3a1e,#a0522d 55%,#c68e5a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.num .z{width:.62em;height:.62em;border-radius:50%;border:.16em solid #8b5a2b;display:inline-grid;place-items:center;position:relative;flex:none;margin:0 .02em}
+.num .z::after{content:"";width:.34em;height:.12em;background:#a0522d;border-radius:.04em;transform:rotate(-30deg)}
+.num .z{transform-origin:50% 80%;animation:hit 2.8s ease-in-out 1}
+@keyframes hit{0%{transform:rotate(0)}20%{transform:rotate(-24deg)}34%{transform:rotate(6deg)}100%{transform:rotate(0)}}
+h1{font-family:'Bricolage Grotesque','Noto Sans Armenian',sans-serif;font-size:clamp(26px,4.4vw,36px);margin:22px 0 8px;letter-spacing:-.02em}
+p{color:var(--mute);margin:0 auto 28px;max-width:44ch}
+.btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-block;text-decoration:none;font-weight:700;border-radius:999px;padding:13px 26px}
+.pri{background:linear-gradient(135deg,#6f4e37,#a0522d);color:#fff}
+.pri:hover{background:var(--b-d)}
+.sec{border:1px solid var(--line);color:var(--ink);background:var(--soft)}
+.sec:hover{background:var(--b-l)}
+a:focus-visible{outline:3px solid var(--b);outline-offset:3px}
+.links{margin-top:34px;padding-top:22px;border-top:1px solid var(--line);color:var(--mute);font-size:15px}
+.links a{color:var(--b-d);font-weight:700;text-decoration:none;margin:0 10px}
+@media (prefers-color-scheme:dark){.links a{color:#e0b48a}}
+.links a:hover{text-decoration:underline}
+footer{text-align:center;color:var(--mute);padding:0 20px 26px;font-size:14px}
+@media (prefers-reduced-motion:reduce){.num .z{animation:none}}
+</style>
+</head>
+<body>
+<header><a class="logo" href="#"><i></i>Gavel</a></header>
+<main><div class="box">
+<div class="num" aria-hidden="true">4<span class="z"></span>4</div>
+<h1>Էջը չի գտնվել</h1>
+<p>Հղումը սխալ է, կամ էջը հեռացվել է։ Վերադարձեք գլխավոր էջ կամ անցեք աճուրդների ցանկին։</p>
+<div class="btns"><a class="btn pri" href="#">Վերադառնալ գլխավոր էջ</a><a class="btn sec" href="#">Դիտել աճուրդները</a></div>
+<div class="links">Հաճախ փնտրվող՝ <a href="#">Ուղիղ աճուրդներ</a><a href="#">Իմ հայտերը</a><a href="#">Օգնություն</a></div>
+</div></main>
+<footer>Hear the Bid. Feel the Win.</footer>
+</body>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gavel — Աճուրդների կառավարում</title>
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/admin-auctions.css">
+</head>
+<body>
+
+  <!-- Utility Bar -->
+  <div class="util">
+    <div class="w">
+      <div><span>Հայաստանի առաջատար առցանց աճուրդների հարթակ</span></div>
+      <div class="util-links">
+        <a href="admin-dashboard.html" class="util-highlight">Ադմին համակարգ</a>
+        <a href="auctions.html">Օգնություն</a>
+        <a href="profile.html">Հայերեն ▾</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="w">
+      <a class="logo" href="index.html">
+        <img src="images/logo.png" alt="Gavel Logo">
+      </a>
+      <form class="srch" action="auctions.html" method="get">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+        <input type="search" name="q" placeholder="Որոնել Gavel-ում..." aria-label="Որոնել">
+      </form>
+      <nav>
+        <a class="nav-link" href="index.html">Գլխավոր</a>
+        <a class="nav-link" href="auctions.html">Աճուրդներ</a>
+        <a class="nav-link" href="my-participations.html">Իմ մասնակցությունները</a>
+        <a class="nav-link" href="my-lots.html">Իմ լոտերը</a>
+        <a class="nav-link" href="profile.html">Անձնական էջ</a>
+        <a class="nav-link active" href="admin-dashboard.html">Ադմին</a>
+      </nav>
+      <div class="header-actions">
+        <a href="profile.html" class="user-menu-btn">
+          <span class="user-avatar">Ա</span>
+          <span>Ադմին</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="w">
+      <div class="breadcrumb">
+        <a href="index.html">Գլխավոր</a>
+        <span>›</span>
+        <a href="admin-dashboard.html">Ադմինիստրացիա</a>
+        <span>›</span>
+        <span>Աճուրդների կառավարում</span>
+      </div>
+
+      <div class="page-title-row">
+        <div>
+          <h1>Աճուրդների մոդերացիա և հսկողություն</h1>
+          <p>Հաստատեք նոր լոտերը, երկարաձգեք կամ դադարեցրեք ընթացիկ աճուրդները</p>
+        </div>
+      </div>
+
+      <!-- Subnavigation -->
+      <div class="admin-subnav">
+        <a href="admin-dashboard.html">Վահանակ</a>
+        <a href="admin-auctions.html" class="active">Աճուրդների կառավարում</a>
+        <a href="admin-users.html">Օգտատերերի կառավարում</a>
+        <a href="admin-reports.html">Հաշվետվություններ</a>
+      </div>
+
+      <!-- Status Tabs -->
+      <div class="admin-auctions-tabs-bar">
+        <a href="admin-auctions.html" class="btn sm pri">Բոլորը</a>
+        <a href="admin-auctions.html" class="btn sm">Ստուգման մեջ (Հայտեր)</a>
+        <a href="admin-auctions.html" class="btn sm">Ուղիղ եթերում</a>
+        <a href="admin-auctions.html" class="btn sm">Ավարտված</a>
+      </div>
+
+      <!-- Table -->
+      <div class="table-card">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Լոտ</th>
+              <th>Վաճառող</th>
+              <th>Գին / Քայլ</th>
+              <th>Հայտեր</th>
+              <th>Կարգավիճակ</th>
+              <th>Մնացել է</th>
+              <th>Գործողություն (Մոդերացիա)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <a href="auction-detail.html"><b>Հին ժամացույց</b></a>
+                <small class="table-lot-sub">#128</small>
+              </td>
+              <td>Արմեն Սարգսյան</td>
+              <td>
+                <b>$1,250</b>
+                <small class="table-lot-sub">+$50</small>
+              </td>
+              <td>14</td>
+              <td><span class="chip live">Ուղիղ</span></td>
+              <td><span class="tm">02:41:08</span></td>
+              <td>
+                <div class="table-btn-flex">
+                  <a href="admin-auctions.html" class="btn sm bad table-sm-action-btn">Ավարտել</a>
+                  <a href="auction-detail.html" class="btn sm table-sm-action-btn">Դիտել</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="auction-detail.html"><b>Ձեռագործ գորգ</b></a>
+                <small class="table-lot-sub">#211</small>
+              </td>
+              <td>Կարինե Մարտիրոսյան</td>
+              <td>
+                <b>$900</b>
+                <small class="table-lot-sub">+$50</small>
+              </td>
+              <td>9</td>
+              <td><span class="chip live">Ուղիղ</span></td>
+              <td><span class="tm hot">00:08:30</span></td>
+              <td>
+                <div class="table-btn-flex">
+                  <a href="admin-auctions.html" class="btn sm bad table-sm-action-btn">Ավարտել</a>
+                  <a href="auction-detail.html" class="btn sm table-sm-action-btn">Դիտել</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="auction-detail.html"><b>Հնաոճ բրոնզե արձանիկ</b></a>
+                <small class="table-lot-sub">#220</small>
+              </td>
+              <td>Արմեն Սարգսյան</td>
+              <td>
+                <b>$950</b>
+                <small class="table-lot-sub">+$50</small>
+              </td>
+              <td>0</td>
+              <td><span class="chip rv">Ստուգման մեջ</span></td>
+              <td>—</td>
+              <td>
+                <div class="table-btn-flex">
+                  <a href="admin-auctions.html" class="btn sm ok table-sm-action-btn">✓ Հաստատել</a>
+                  <a href="admin-auctions.html" class="btn sm bad table-sm-action-btn">✕ Մերժել</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="auction-detail.html"><b>Պարսկական մետաքսե գորգ</b></a>
+                <small class="table-lot-sub">#203</small>
+              </td>
+              <td>Արտո Դ.</td>
+              <td>
+                <b>$1,400</b>
+                <small class="table-lot-sub">+$100</small>
+              </td>
+              <td>13</td>
+              <td><span class="chip end">Ավարտվեց</span></td>
+              <td>—</td>
+              <td>
+                <div class="table-btn-flex">
+                  <a href="auction-detail.html" class="btn sm table-sm-action-btn">Արդյունքներ</a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="w">
+      <div>
+        <a class="logo" href="index.html">
+          <span class="logo-fallback">GAVEL</span>
+        </a>
+        <p class="footer-desc">
+          Առցանց աճուրդների կառավարման հարթակ: Արվեստի գործերի, հնաոճ իրերի և հազվագյուտ նմուշների վստահելի շուկա:
+        </p>
+      </div>
+      <div>
+        <h4>Մոդուլներ</h4>
+        <ul>
+          <li><a href="auctions.html">Աճուրդների ցանկ</a></li>
+          <li><a href="my-participations.html">Իմ մասնակցությունները</a></li>
+          <li><a href="my-lots.html">Իմ լոտերը</a></li>
+          <li><a href="add-lot.html">Ավելացնել լոտ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Կառավարում</h4>
+        <ul>
+          <li><a href="profile.html">Անձնական էջ</a></li>
+          <li><a href="admin-dashboard.html">Ադմինի վահանակ</a></li>
+          <li><a href="admin-users.html">Օգտատերերի ցուցակ</a></li>
+          <li><a href="admin-reports.html">Հաշվետվություններ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Համակարգ</h4>
+        <ul>
+          <li><a href="login.html">Մուտք գործել</a></li>
+          <li><a href="register.html">Գրանցվել</a></li>
+          <li><a href="404.html">404 Error էջ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="w footer-bottom">
+      <div>© 2026 Gavel Auction Platform. Բոլոր իրավունքները պաշտպանված են:</div>
+      <div>Կուրսային աշխատանք · Առցանց աճուրդների հարթակ</div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gavel — Առցանց աճուրդների հարթակ</title>
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+
+  <!-- Utility Bar -->
+  <div class="util">
+    <div class="w">
+      <div><span>Հայաստանի առաջատար առցանց աճուրդների հարթակ</span></div>
+      <div class="util-links">
+        <a href="login.html" class="util-highlight">Վաճառել Gavel-ում</a>
+        <a href="auctions.html">Օգնություն</a>
+        <a href="profile.html">Հայերեն ▾</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="w">
+      <a class="logo" href="index.html">
+        <img src="images/logo.png" alt="Gavel Logo">
+      </a>
+      <form class="srch" action="auctions.html" method="get">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+        <input type="search" name="q" placeholder="Որոնել Gavel-ում..." aria-label="Որոնել">
+      </form>
+      <nav>
+        <a class="nav-link active" href="index.html">Գլխավոր</a>
+        <a class="nav-link" href="auctions.html">Աճուրդներ</a>
+        <a class="nav-link" href="my-participations.html">Իմ մասնակցությունները</a>
+        <a class="nav-link" href="my-lots.html">Իմ լոտերը</a>
+        <a class="nav-link" href="profile.html">Անձնական էջ</a>
+        <a class="nav-link" href="admin-dashboard.html">Ադմին</a>
+      </nav>
+      <div class="header-actions">
+        <a href="login.html" class="btn sm">Մուտք</a>
+        <a href="register.html" class="btn pri sm">Գրանցվել</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="w">
+      <div class="hero-content">
+        <div>
+          <h1>Բացառիկ արվեստ և հնաոճ իրեր՝ <span class="hero-highlight">ուղիղ աճուրդով</span></h1>
+          <p class="hero-desc">Մասնակցեք Հայաստանի գլխավոր առցանց աճուրդներին: Ներկայացրեք ձեր առաջարկը իրական ժամանակում կամ վաճառեք ձեր հավաքածուն բարձրագույն արժեքով:</p>
+          <div class="hero-actions">
+            <a href="auctions.html" class="btn pri lg">Դիտել բոլոր աճուրդները</a>
+            <a href="add-lot.html" class="btn sec lg hero-sell-btn">Վաճառել ապրանք</a>
+          </div>
+        </div>
+        <div>
+          <!-- Featured Live Lot Widget -->
+          <div class="hero-card">
+            <div class="hero-card-img-wrap">
+              <img src="images/lot-watch.jpg" alt="Հին շվեյցարական ժամացույց" class="hero-card-img">
+              <span class="hero-card-badge">● Ուղիղ եթերում</span>
+            </div>
+            <h3>Հին շվեյցարական ժամացույց</h3>
+            <p class="hero-card-meta">Լոտ #128 · 875 հարգի արծաթ, 1910 թ.</p>
+            <div class="hero-card-price">$1,250</div>
+            <div class="hero-timer-box">
+              <span class="hero-timer-label">Ավարտին մնացել է՝</span>
+              <span class="tm hero-timer-val">02:41:08</span>
+            </div>
+            <div class="hero-card-actions">
+              <a href="auction-detail.html" class="btn pri full">Մասնակցել աճուրդին</a>
+              <a href="place-bid.html" class="btn sec" title="Արագ առաջարկ">⚡</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <div class="w">
+      <!-- Categories -->
+      <div class="section-head">
+        <div>
+          <h2>Գնումներ ըստ կատեգորիայի</h2>
+          <p>Բացահայտեք հազվագյուտ իրեր ձեր նախընտրած բաժնում</p>
+        </div>
+        <a href="auctions.html" class="btn sm">Բոլոր կատեգորիաները →</a>
+      </div>
+
+      <div class="cat-grid">
+        <a href="auctions.html" class="cat-card">
+          <div class="cat-icon">⏱️</div>
+          <div class="cat-title">Ժամացույցներ</div>
+          <div class="cat-count">12 ակտիվ լոտ</div>
+        </a>
+        <a href="auctions.html" class="cat-card">
+          <div class="cat-icon">🎨</div>
+          <div class="cat-title">Արվեստ</div>
+          <div class="cat-count">24 ակտիվ լոտ</div>
+        </a>
+        <a href="auctions.html" class="cat-card">
+          <div class="cat-icon">🧶</div>
+          <div class="cat-title">Գորգեր</div>
+          <div class="cat-count">8 ակտիվ լոտ</div>
+        </a>
+        <a href="auctions.html" class="cat-card">
+          <div class="cat-icon">🏺</div>
+          <div class="cat-title">Կերամիկա</div>
+          <div class="cat-count">15 ակտիվ լոտ</div>
+        </a>
+        <a href="auctions.html" class="cat-card">
+          <div class="cat-icon">🪑</div>
+          <div class="cat-title">Կահույք</div>
+          <div class="cat-count">6 ակտիվ լոտ</div>
+        </a>
+        <a href="auctions.html" class="cat-card">
+          <div class="cat-icon">📚</div>
+          <div class="cat-title">Գրքեր</div>
+          <div class="cat-count">11 ակտիվ լոտ</div>
+        </a>
+        <a href="auctions.html" class="cat-card">
+          <div class="cat-icon">💍</div>
+          <div class="cat-title">Զարդեր</div>
+          <div class="cat-count">19 ակտիվ լոտ</div>
+        </a>
+        <a href="auctions.html" class="cat-card">
+          <div class="cat-icon">🪙</div>
+          <div class="cat-title">Հավաքածուներ</div>
+          <div class="cat-count">14 ակտիվ լոտ</div>
+        </a>
+      </div>
+
+      <!-- Ending Soon Lots -->
+      <div class="section-head">
+        <div>
+          <h2>Շուտով ավարտվող լոտեր</h2>
+          <p>Շտապեք ներկայացնել ձեր առաջարկը նախքան մուրճի վերջին հարվածը</p>
+        </div>
+        <a href="auctions.html" class="btn sm">Դիտել բոլորը</a>
+      </div>
+
+      <div class="grid grid-3">
+        <!-- Lot 1 -->
+        <article class="card lot">
+          <div class="im t1"><img src="images/lot-watch.jpg" alt="Հին ժամացույց">
+            <span class="chip live">Ուղիղ</span>
+            <button type="button" class="hb" aria-label="Հավանել">
+              <svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.6-7 10-7 10z"/></svg>
+            </button>
+          </div>
+          <div class="card-body">
+            <small class="lot-card-cat">Լոտ #128 · Ժամացույցներ</small>
+            <h3 class="lot-card-title"><a href="auction-detail.html">Հին ժամացույց</a></h3>
+            <div class="lot-card-pricing">
+              <div>
+                <small class="lot-card-lbl">Ընթացիկ գին</small>
+                <span class="price">$1,250</span>
+              </div>
+              <div class="lot-card-timing">
+                <small class="lot-card-lbl">Մնացել է</small>
+                <span class="tm">02:41:08</span>
+              </div>
+            </div>
+            <div class="lot-card-btns">
+              <a href="auction-detail.html" class="btn pri sm full">Մանրամասն</a>
+              <a href="place-bid.html" class="btn sec sm">Առաջարկ</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Lot 2 -->
+        <article class="card lot">
+          <div class="im t2"><img src="images/lot-carpet.jpg" alt="Ձեռագործ գորգ">
+            <span class="chip live">Ուղիղ</span>
+            <button type="button" class="hb" aria-label="Հավանել">
+              <svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.6-7 10-7 10z"/></svg>
+            </button>
+          </div>
+          <div class="card-body">
+            <small class="lot-card-cat">Լոտ #211 · Գորգեր</small>
+            <h3 class="lot-card-title"><a href="auction-detail.html">Ձեռագործ գորգ</a></h3>
+            <div class="lot-card-pricing">
+              <div>
+                <small class="lot-card-lbl">Ընթացիկ գին</small>
+                <span class="price">$900</span>
+              </div>
+              <div class="lot-card-timing">
+                <small class="lot-card-lbl">Մնացել է</small>
+                <span class="tm hot">00:08:30</span>
+              </div>
+            </div>
+            <div class="lot-card-btns">
+              <a href="auction-detail.html" class="btn pri sm full">Մանրամասն</a>
+              <a href="place-bid.html" class="btn sec sm">Առաջարկ</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Lot 3 -->
+        <article class="card lot">
+          <div class="im t3"><img src="images/lot-samovar.jpg" alt="Արծաթե սամովար">
+            <span class="chip live">Ուղիղ</span>
+            <button type="button" class="hb" aria-label="Հավանել">
+              <svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.6-7 10-7 10z"/></svg>
+            </button>
+          </div>
+          <div class="card-body">
+            <small class="lot-card-cat">Լոտ #94 · Հավաքածուներ</small>
+            <h3 class="lot-card-title"><a href="auction-detail.html">Արծաթե սամովար</a></h3>
+            <div class="lot-card-pricing">
+              <div>
+                <small class="lot-card-lbl">Ընթացիկ գին</small>
+                <span class="price">$480</span>
+              </div>
+              <div class="lot-card-timing">
+                <small class="lot-card-lbl">Մնացել է</small>
+                <span class="tm">05:12:40</span>
+              </div>
+            </div>
+            <div class="lot-card-btns">
+              <a href="auction-detail.html" class="btn pri sm full">Մանրամասն</a>
+              <a href="place-bid.html" class="btn sec sm">Առաջարկ</a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+    </div>
+
+    <!-- How it Works -->
+    <section class="steps-section">
+      <div class="w">
+        <div class="steps-header">
+          <h2>Ինչպես է աշխատում Gavel-ը</h2>
+          <p>Պարզ, թափանցիկ և ապահով գործընթաց գնորդների և վաճառողների համար</p>
+        </div>
+        <div class="grid grid-4">
+          <div class="step-card">
+            <div class="step-num">1</div>
+            <h3>Գրանցում</h3>
+            <p>Ստեղծեք անվճար հաշիվ մի քանի րոպեում՝ որպես գնորդ կամ վաճառող:</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">2</div>
+            <h3>Ընտրեք լոտը</h3>
+            <p>Ուսումնասիրեք մանրամասն լուսանկարները, նկարագրությունն ու պատմությունը:</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">3</div>
+            <h3>Ներկայացրեք առաջարկ</h3>
+            <p>Ավելացրեք ձեր գինը քայլ առ քայլ: Համակարգը ձեզ կտեղեկացնի արդյունքների մասին:</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">4</div>
+            <h3>Հաղթանակ և առաքում</h3>
+            <p>Աճուրդի ավարտից հետո ամրագրեք վաճառքն ու ստացեք ապրանքն ապահով առաքմամբ:</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="w">
+      <!-- Seller Banner CTA -->
+      <div class="banner-cta">
+        <div>
+          <h2>Ունե՞ք արժեքավոր իրեր վաճառելու</h2>
+          <p>Տեղադրեք ձեր լոտը Gavel-ում: Մեր մասնագետները կստուգեն այն և հասանելի կդարձնեն հազարավոր հավաքորդների:</p>
+        </div>
+        <a href="add-lot.html" class="btn lg banner-cta-btn">Ավելացնել նոր լոտ</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="w">
+      <div>
+        <a class="logo" href="index.html">
+          <span class="logo-fallback">GAVEL</span>
+        </a>
+        <p class="footer-desc">
+          Առցանց աճուրդների կառավարման հարթակ: Արվեստի գործերի, հնաոճ իրերի և հազվագյուտ նմուշների վստահելի շուկա:
+        </p>
+      </div>
+      <div>
+        <h4>Մոդուլներ</h4>
+        <ul>
+          <li><a href="auctions.html">Աճուրդների ցանկ</a></li>
+          <li><a href="my-participations.html">Իմ մասնակցությունները</a></li>
+          <li><a href="my-lots.html">Իմ լոտերը</a></li>
+          <li><a href="add-lot.html">Ավելացնել լոտ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Կառավարում</h4>
+        <ul>
+          <li><a href="profile.html">Անձնական էջ</a></li>
+          <li><a href="admin-dashboard.html">Ադմինի վահանակ</a></li>
+          <li><a href="admin-users.html">Օգտատերերի ցուցակ</a></li>
+          <li><a href="admin-reports.html">Հաշվետվություններ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Համակարգ</h4>
+        <ul>
+          <li><a href="login.html">Մուտք գործել</a></li>
+          <li><a href="register.html">Գրանցվել</a></li>
+          <li><a href="404.html">404 Error էջ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="w footer-bottom">
+      <div>© 2026 Gavel Auction Platform. Բոլոր իրավունքները պաշտպանված են:</div>
+      <div>Կուրսային աշխատանք · Առցանց աճուրդների հարթակ</div>
+    </div>
+  </footer>
+
+</body>
+</html>

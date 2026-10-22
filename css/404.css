@@ -1,0 +1,33 @@
+/* ==========================================================================
+   PAGE: 404 NOT FOUND STYLES
+   ========================================================================== */
+
+.not-found-wrap {
+  text-align: center;
+  padding: 80px 20px;
+  max-width: 580px;
+  margin: 0 auto;
+}
+.big-num {
+  font-size: 110px;
+  font-family: var(--font-h);
+  font-weight: 800;
+  color: var(--b);
+  line-height: 1;
+  letter-spacing: -4px;
+  margin-bottom: 8px;
+}
+.not-found-title {
+  font-size: 26px;
+  margin-bottom: 8px;
+}
+.not-found-desc {
+  font-size: 15px;
+  margin-bottom: 28px;
+}
+.not-found-btns {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}

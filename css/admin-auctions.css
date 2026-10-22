@@ -1,0 +1,23 @@
+/* ==========================================================================
+   PAGE: ADMIN AUCTIONS STYLES
+   ========================================================================== */
+
+.admin-auctions-tabs-bar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 12px;
+}
+.table-lot-sub {
+  display: block;
+  color: var(--mute);
+}
+.table-btn-flex {
+  display: flex;
+  gap: 6px;
+}
+.table-sm-action-btn {
+  padding: 4px 8px;
+  font-size: 11px;
+}

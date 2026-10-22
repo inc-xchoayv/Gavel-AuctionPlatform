@@ -1,0 +1,89 @@
+/* ==========================================================================
+   PAGE: LOGIN STYLES
+   ========================================================================== */
+
+.auth-container {
+  max-width: 440px;
+  margin: 40px auto;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 36px 32px;
+  box-shadow: var(--shadow-md);
+  text-align: center;
+}
+.auth-logo-center {
+  justify-content: center;
+  margin-bottom: 16px;
+}
+.auth-title {
+  font-size: 24px;
+  margin-bottom: 6px;
+}
+.auth-subtitle {
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+.auth-form {
+  text-align: left;
+}
+.auth-pass-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.auth-pass-label {
+  margin-bottom: 0;
+}
+.auth-forgot-link {
+  font-size: 12px;
+  color: var(--b);
+}
+.auth-submit-btn {
+  margin-top: 12px;
+}
+.auth-footer-prompt {
+  font-size: 13px;
+  margin-top: 20px;
+}
+.auth-footer-prompt a {
+  color: var(--b);
+  font-weight: 700;
+}
+.demo-login-box {
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 24px;
+  text-align: left;
+}
+.demo-login-title {
+  display: block;
+  font-weight: 700;
+  color: var(--ink);
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+.demo-pill-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 8px 12px;
+  margin-top: 6px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--trans);
+  color: var(--ink);
+  text-decoration: none;
+}
+.demo-pill-btn:hover {
+  background: var(--b-l);
+  border-color: var(--b);
+  color: var(--b-d);
+}

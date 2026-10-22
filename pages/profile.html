@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gavel — Անձնական էջ</title>
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/profile.css">
+</head>
+<body>
+
+  <!-- Utility Bar -->
+  <div class="util">
+    <div class="w">
+      <div><span>Հայաստանի առաջատար առցանց աճուրդների հարթակ</span></div>
+      <div class="util-links">
+        <a href="login.html" class="util-highlight">Վաճառել Gavel-ում</a>
+        <a href="auctions.html">Օգնություն</a>
+        <a href="profile.html">Հայերեն ▾</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="w">
+      <a class="logo" href="../index.html">
+        <img src="../images/logo.png" alt="Gavel Logo">
+      </a>
+      <form class="srch" action="auctions.html" method="get">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+        <input type="search" name="q" placeholder="Որոնել Gavel-ում..." aria-label="Որոնել">
+      </form>
+      <nav>
+        <a class="nav-link" href="../index.html">Գլխավոր</a>
+        <a class="nav-link" href="auctions.html">Աճուրդներ</a>
+        <a class="nav-link" href="my-participations.html">Իմ մասնակցությունները</a>
+        <a class="nav-link" href="my-lots.html">Իմ լոտերը</a>
+        <a class="nav-link active" href="profile.html">Անձնական էջ</a>
+        <a class="nav-link" href="admin-dashboard.html">Ադմին</a>
+      </nav>
+      <div class="header-actions">
+        <a href="profile.html" class="user-menu-btn">
+          <span class="user-avatar">Գ</span>
+          <span>Գարիկ Հ.</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="w">
+      <div class="breadcrumb">
+        <a href="../index.html">Գլխավոր</a>
+        <span>›</span>
+        <span>Անձնական էջ</span>
+      </div>
+
+      <div class="profile-layout">
+        <!-- Pure CSS Tab Switchers (no JS required) -->
+        <input type="radio" name="profile-tab" id="tab-info" class="tab-radio" checked>
+        <input type="radio" name="profile-tab" id="tab-security" class="tab-radio">
+        <input type="radio" name="profile-tab" id="tab-payment" class="tab-radio">
+        <input type="radio" name="profile-tab" id="tab-notifications" class="tab-radio">
+
+        <!-- Sidebar -->
+        <aside>
+          <div class="user-profile-card">
+            <div class="big-avatar"><img src="../images/avatar-user.jpg" alt="Գարիկ Հարությունյան"></div>
+            <h3 class="profile-user-name">Գարիկ Հարությունյան</h3>
+            <p class="profile-user-email">garik@example.com</p>
+            <span class="chip profile-role-badge">Գնորդ / Մասնակից</span>
+
+            <div class="profile-nav">
+              <label for="tab-info" class="profile-nav-btn tab-btn-info">
+                <span class="tab-btn-icon">👤</span> Անձնական տվյալներ
+              </label>
+              <label for="tab-security" class="profile-nav-btn tab-btn-security">
+                <span class="tab-btn-icon">🔒</span> Անվտանգություն
+              </label>
+              <label for="tab-payment" class="profile-nav-btn tab-btn-payment">
+                <span class="tab-btn-icon">💳</span> Վճարման եղանակներ
+              </label>
+              <label for="tab-notifications" class="profile-nav-btn tab-btn-notifications">
+                <span class="tab-btn-icon">🔔</span> Ծանուցումներ
+              </label>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <section class="profile-content-card">
+
+          <!-- Pane 1: Personal Info -->
+          <div id="pane-info" class="profile-tab-pane">
+            <h2 class="profile-section-title">Անձնական տվյալներ</h2>
+            <p class="profile-section-desc">Կառավարեք ձեր անձնական տվյալները, կոնտակտները և առաքման հասցեն:</p>
+
+            <form action="profile.html" method="get">
+              <div class="grid grid-2">
+                <div class="form-group">
+                  <label class="form-label">Անուն *</label>
+                  <input type="text" class="form-input" value="Գարիկ" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Ազգանուն *</label>
+                  <input type="text" class="form-input" value="Հարությունյան" required>
+                </div>
+              </div>
+
+              <div class="grid grid-2">
+                <div class="form-group">
+                  <label class="form-label">Էլ. հասցե *</label>
+                  <input type="email" class="form-input" value="garik@example.com" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Հեռախոսահամար *</label>
+                  <input type="tel" class="form-input" value="+374 98 765432" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Առաքման հիմնական հասցե *</label>
+                <input type="text" class="form-input" value="ք. Երևան, Տերյան 105, բն. 24" required>
+              </div>
+
+              <div class="grid grid-2">
+                <div class="form-group">
+                  <label class="form-label">Քաղաք / Մարզ</label>
+                  <input type="text" class="form-input" value="Երևան, Կենտրոն">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Փոստային դասիչ</label>
+                  <input type="text" class="form-input" value="0009">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Համառոտ տեղեկություն (Bio)</label>
+                <textarea class="form-textarea" placeholder="Կարճ նշեք ձեր հավաքորդական նախասիրությունները...">Անտիկվարիատի, շվեյցարական ժամացույցների և հայկական արվեստի գործերի սիրահար ու հավաքորդ:</textarea>
+              </div>
+
+              <button type="submit" class="btn pri profile-save-btn">Պահպանել փոփոխությունները</button>
+            </form>
+          </div>
+
+          <!-- Pane 2: Security & Password -->
+          <div id="pane-security" class="profile-tab-pane">
+            <h2 class="profile-section-title">Անվտանգություն և մուտք</h2>
+            <p class="profile-section-desc">Կառավարեք ձեր գաղտնաբառը, երկփուլ նույնականացումը և ակտիվ սեսիաները:</p>
+
+            <form action="profile.html" method="get">
+              <div class="form-group">
+                <label class="form-label">Ընթացիկ գաղտնաբառ</label>
+                <input type="password" class="form-input" placeholder="••••••••••••">
+              </div>
+
+              <div class="grid grid-2">
+                <div class="form-group">
+                  <label class="form-label">Նոր գաղտնաբառ</label>
+                  <input type="password" class="form-input" placeholder="Նվազագույնը 8 նիշ">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Կրկնել նոր գաղտնաբառը</label>
+                  <input type="password" class="form-input" placeholder="Կրկնեք նոր գաղտնաբառը">
+                </div>
+              </div>
+
+              <button type="submit" class="btn pri profile-save-btn">Թարմացնել գաղտնաբառը</button>
+            </form>
+
+            <div class="security-group-card">
+              <div class="security-card-title">🔐 Երկփուլ նույնականացում (2FA)</div>
+              <p class="security-card-desc">Երկփուլ նույնականացումն ապահովում է լրացուցիչ անվտանգություն յուրաքանչյուր մուտքի ժամանակ:</p>
+              <div class="session-item">
+                <div>
+                  <div class="session-title">SMS կոդով հաստատում</div>
+                  <div class="session-meta">Միացված է համարին՝ +374 98 ••••32</div>
+                </div>
+                <span class="chip ok">Միացված է</span>
+              </div>
+            </div>
+
+            <div class="security-group-card">
+              <div class="security-card-title">💻 Ակտիվ սեսիաներ</div>
+              <p class="security-card-desc">Սարքեր, որոնցից ներկայումս մուտք եք գործել ձեր Gavel հաշիվ:</p>
+              <div class="session-item">
+                <div>
+                  <div class="session-title">Chrome 122 (Windows 11)</div>
+                  <div class="session-meta">Երևան, Հայաստան · Ընթացիկ սարք (Ակտիվ)</div>
+                </div>
+                <span class="chip ok">Այս սարքը</span>
+              </div>
+              <div class="session-item">
+                <div>
+                  <div class="session-title">Mobile Safari (Apple iPhone 15)</div>
+                  <div class="session-meta">Երևան, Հայաստան · Վերջին ակտիվությունը՝ 2 ժամ առաջ</div>
+                </div>
+                <button type="button" class="btn sm bad">Ավարտել</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pane 3: Payment & Balance -->
+          <div id="pane-payment" class="profile-tab-pane">
+            <h2 class="profile-section-title">Վճարման եղանակներ և հաշվեկշիռ</h2>
+            <p class="profile-section-desc">Կառավարեք ձեր կցված բանկային քարտերը և երաշխիքային ավանդի հաշվեկշիռը:</p>
+
+            <!-- Balance Box -->
+            <div class="balance-overview-box">
+              <div>
+                <span class="balance-label">Աճուրդային երաշխիքային հաշվեկշիռ</span>
+                <div class="balance-amount">$4,200</div>
+                <small class="balance-meta">Ազատ միջոցներ՝ <b>$2,950</b> · Արգելափակված հայտերում՝ <b>$1,250</b></small>
+              </div>
+              <button type="button" class="btn pri sm">+ Համալրել հաշիվը</button>
+            </div>
+
+            <h3 class="security-card-title">Կցված բանկային քարտեր</h3>
+
+            <!-- Card 1 -->
+            <div class="payment-card-box">
+              <div class="payment-card-left">
+                <span class="payment-card-icon">💳</span>
+                <div>
+                  <b class="payment-card-num">Mastercard •••• 4242</b>
+                  <small class="payment-card-sub">Ժամկետ՝ 12/28 · Հիմնական վճարման քարտ</small>
+                </div>
+              </div>
+              <div class="payment-card-actions">
+                <span class="chip ok">Հիմնական</span>
+                <button type="button" class="btn sm bad">✕ Հեռացնել</button>
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="payment-card-box">
+              <div class="payment-card-left">
+                <span class="payment-card-icon">💳</span>
+                <div>
+                  <b class="payment-card-num">Visa Gold •••• 8819</b>
+                  <small class="payment-card-sub">Ժամկետ՝ 09/27 · Պահուստային քարտ</small>
+                </div>
+              </div>
+              <div class="payment-card-actions">
+                <button type="button" class="btn sm">Դարձնել հիմնական</button>
+                <button type="button" class="btn sm bad">✕ Հեռացնել</button>
+              </div>
+            </div>
+
+            <!-- Add New Card Form -->
+            <div class="add-card-section">
+              <h4 class="add-card-title">+ Կցել նոր վճարային քարտ</h4>
+              <form action="profile.html" method="get">
+                <div class="form-group">
+                  <label class="form-label">Քարտի համար</label>
+                  <input type="text" class="form-input" placeholder="0000 0000 0000 0000">
+                </div>
+                <div class="grid grid-2">
+                  <div class="form-group">
+                    <label class="form-label">Ժամկետ (MM/YY)</label>
+                    <input type="text" class="form-input" placeholder="MM/YY">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">CVV / CVC</label>
+                    <input type="password" class="form-input" placeholder="•••" maxlength="4">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Քարտապանի անուն ազգանուն</label>
+                  <input type="text" class="form-input" placeholder="GARIK HARUTYUNYAN">
+                </div>
+                <button type="submit" class="btn pri sm">Պահպանել քարտը</button>
+              </form>
+            </div>
+          </div>
+
+          <!-- Pane 4: Notification Settings -->
+          <div id="pane-notifications" class="profile-tab-pane">
+            <h2 class="profile-section-title">Ծանուցումների կարգավորումներ</h2>
+            <p class="profile-section-desc">Ընտրեք, թե ինչ իրադարձությունների դեպքում և որ ալիքներով եք ցանկանում ստանալ ծանուցումներ:</p>
+
+            <form action="profile.html" method="get">
+              <div class="notification-group">
+                <div class="notification-group-title">Աճուրդային իրադարձություններ</div>
+
+                <label class="notification-row">
+                  <input type="checkbox" checked class="notification-checkbox">
+                  <div class="notification-text-wrap">
+                    <b class="notification-name">⚡ Գերազանցված հայտ (Outbid alert)</b>
+                    <small class="notification-sub">Ծանուցել անմիջապես, երբ մեկ այլ մասնակից ձեզնից ավելի բարձր գին է առաջարկում</small>
+                  </div>
+                </label>
+
+                <label class="notification-row">
+                  <input type="checkbox" checked class="notification-checkbox">
+                  <div class="notification-text-wrap">
+                    <b class="notification-name">⏱️ Աճուրդի ավարտի հիշեցում</b>
+                    <small class="notification-sub">Հիշեցնել ձեր հավանած կամ մասնակցած աճուրդի ավարտից 1 ժամ առաջ</small>
+                  </div>
+                </label>
+
+                <label class="notification-row">
+                  <input type="checkbox" checked class="notification-checkbox">
+                  <div class="notification-text-wrap">
+                    <b class="notification-name">🏆 Հաղթանակի ծանուցում</b>
+                    <small class="notification-sub">Ծանուցել, երբ աճուրդն ավարտվում է ձեր հաղթանակով և պատրաստ է վճարման</small>
+                  </div>
+                </label>
+
+                <label class="notification-row">
+                  <input type="checkbox" checked class="notification-checkbox">
+                  <div class="notification-text-wrap">
+                    <b class="notification-name">🎨 Նոր լոտեր իմ նախընտրած բաժիններում</b>
+                    <small class="notification-sub">Տեղեկացնել նոր ավելացված ժամացույցների, գորգերի կամ արվեստի գործերի մասին</small>
+                  </div>
+                </label>
+
+                <label class="notification-row">
+                  <input type="checkbox" class="notification-checkbox">
+                  <div class="notification-text-wrap">
+                    <b class="notification-name">📰 Gavel-ի շաբաթական ամփոփագիր</b>
+                    <small class="notification-sub">Ստանալ շաբաթվա գլխավոր աճուրդների և բացառիկ լոտերի ընտրանին</small>
+                  </div>
+                </label>
+              </div>
+
+              <div class="notification-group">
+                <div class="notification-group-title">Ծանուցման ալիքներ</div>
+
+                <label class="notification-row">
+                  <input type="checkbox" checked class="notification-checkbox">
+                  <div class="notification-text-wrap">
+                    <b class="notification-name">✉️ Էլ. փոստ (garik@example.com)</b>
+                    <small class="notification-sub">Ստանալ մանրամասն նամակներ հաշիվ-ապրանքագրերով և հաղթանակի փաստաթղթերով</small>
+                  </div>
+                </label>
+
+                <label class="notification-row">
+                  <input type="checkbox" checked class="notification-checkbox">
+                  <div class="notification-text-wrap">
+                    <b class="notification-name">📱 SMS հաղորդագրություն (+374 98 765432)</b>
+                    <small class="notification-sub">Ստանալ շտապ կարճ հաղորդագրություններ (գերազանցված հայտերի դեպքում)</small>
+                  </div>
+                </label>
+
+                <label class="notification-row">
+                  <input type="checkbox" checked class="notification-checkbox">
+                  <div class="notification-text-wrap">
+                    <b class="notification-name">🔔 Բրաուզերի Push ծանուցումներ</b>
+                    <small class="notification-sub">Ակնթարթային ծանուցումներ համակարգչի կամ հեռախոսի էկրանին</small>
+                  </div>
+                </label>
+              </div>
+
+              <button type="submit" class="btn pri profile-save-btn">Պահպանել կարգավորումները</button>
+            </form>
+          </div>
+
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="w">
+      <div>
+        <a class="logo" href="../index.html">
+          <span class="logo-fallback">GAVEL</span>
+        </a>
+        <p class="footer-desc">
+          Առցանց աճուրդների կառավարման հարթակ: Արվեստի գործերի, հնաոճ իրերի և հազվագյուտ նմուշների վստահելի շուկա:
+        </p>
+      </div>
+      <div>
+        <h4>Մոդուլներ</h4>
+        <ul>
+          <li><a href="auctions.html">Աճուրդների ցանկ</a></li>
+          <li><a href="my-participations.html">Իմ մասնակցությունները</a></li>
+          <li><a href="my-lots.html">Իմ լոտերը</a></li>
+          <li><a href="add-lot.html">Ավելացնել լոտ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Կառավարում</h4>
+        <ul>
+          <li><a href="profile.html">Անձնական էջ</a></li>
+          <li><a href="admin-dashboard.html">Ադմինի վահանակ</a></li>
+          <li><a href="admin-users.html">Օգտատերերի ցուցակ</a></li>
+          <li><a href="admin-reports.html">Հաշվետվություններ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Համակարգ</h4>
+        <ul>
+          <li><a href="login.html">Մուտք գործել</a></li>
+          <li><a href="register.html">Գրանցվել</a></li>
+          <li><a href="404.html">404 Error էջ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="w footer-bottom">
+      <div>© 2026 Gavel Auction Platform. Բոլոր իրավունքները պաշտպանված են:</div>
+      <div>Կուրսային աշխատանք · Առցանց աճուրդների հարթակ</div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gavel — Հաշվետվություններ</title>
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/admin-reports.css">
+</head>
+<body>
+
+  <!-- Utility Bar -->
+  <div class="util">
+    <div class="w">
+      <div><span>Հայաստանի առաջատար առցանց աճուրդների հարթակ</span></div>
+      <div class="util-links">
+        <a href="admin-dashboard.html" class="util-highlight">Ադմին համակարգ</a>
+        <a href="auctions.html">Օգնություն</a>
+        <a href="profile.html">Հայերեն ▾</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="w">
+      <a class="logo" href="../index.html">
+        <img src="../images/logo.png" alt="Gavel Logo">
+      </a>
+      <form class="srch" action="auctions.html" method="get">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+        <input type="search" name="q" placeholder="Որոնել Gavel-ում..." aria-label="Որոնել">
+      </form>
+      <nav>
+        <a class="nav-link" href="../index.html">Գլխավոր</a>
+        <a class="nav-link" href="auctions.html">Աճուրդներ</a>
+        <a class="nav-link" href="my-participations.html">Իմ մասնակցությունները</a>
+        <a class="nav-link" href="my-lots.html">Իմ լոտերը</a>
+        <a class="nav-link" href="profile.html">Անձնական էջ</a>
+        <a class="nav-link active" href="admin-dashboard.html">Ադմին</a>
+      </nav>
+      <div class="header-actions">
+        <a href="profile.html" class="user-menu-btn">
+          <span class="user-avatar">Ա</span>
+          <span>Ադմին</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="w">
+      <div class="breadcrumb">
+        <a href="../index.html">Գլխավոր</a>
+        <span>›</span>
+        <a href="admin-dashboard.html">Ադմինիստրացիա</a>
+        <span>›</span>
+        <span>Հաշվետվություններ</span>
+      </div>
+
+      <div class="page-title-row">
+        <div>
+          <h1>Ֆինանսական և գործառնական հաշվետվություններ</h1>
+          <p>Շրջանառության, վաճառքների և կատեգորիաների վերլուծություն</p>
+        </div>
+        <a href="admin-reports.html" class="btn pri sm">📥 Արտահանել CSV</a>
+      </div>
+
+      <!-- Subnavigation -->
+      <div class="admin-subnav">
+        <a href="admin-dashboard.html">Վահանակ</a>
+        <a href="admin-auctions.html">Աճուրդների կառավարում</a>
+        <a href="admin-users.html">Օգտատերերի կառավարում</a>
+        <a href="admin-reports.html" class="active">Հաշվետվություններ</a>
+      </div>
+
+      <div class="grid grid-2">
+        <!-- Category Sales Share -->
+        <div class="report-card">
+          <h3 class="report-card-title">Վաճառք ըստ կատեգորիայի</h3>
+          <p class="report-card-desc">Ընդհանուր շրջանառության տոկոսային բաշխվածությունը</p>
+
+          <div class="cat-bar-row">
+            <div class="cat-bar-header">
+              <span><b>Արվեստ</b> (գեղանկարչություն)</span>
+              <span>$38,400 (45%)</span>
+            </div>
+            <div class="progress-track"><div class="progress-fill fill-art"></div></div>
+          </div>
+
+          <div class="cat-bar-row">
+            <div class="cat-bar-header">
+              <span><b>Ժամացույցներ</b></span>
+              <span>$21,200 (25%)</span>
+            </div>
+            <div class="progress-track"><div class="progress-fill fill-watch"></div></div>
+          </div>
+
+          <div class="cat-bar-row">
+            <div class="cat-bar-header">
+              <span><b>Զարդեր և ոսկերչություն</b></span>
+              <span>$12,800 (15%)</span>
+            </div>
+            <div class="progress-track"><div class="progress-fill fill-jewel"></div></div>
+          </div>
+
+          <div class="cat-bar-row">
+            <div class="cat-bar-header">
+              <span><b>Գորգեր և տեքստիլ</b></span>
+              <span>$8,500 (10%)</span>
+            </div>
+            <div class="progress-track"><div class="progress-fill fill-rug"></div></div>
+          </div>
+
+          <div class="cat-bar-row">
+            <div class="cat-bar-header">
+              <span><b>Այլ (կերամիկա, գրքեր, կահույք)</b></span>
+              <span>$4,250 (5%)</span>
+            </div>
+            <div class="progress-track"><div class="progress-fill fill-other"></div></div>
+          </div>
+        </div>
+
+        <!-- Monthly Metrics Box -->
+        <div class="report-card">
+          <h3 class="report-card-title">Ամսական ամփոփում</h3>
+          <p class="report-card-desc">Հիմնական գործառնական ցուցանիշներ</p>
+
+          <div class="monthly-stats-grid">
+            <div class="monthly-stat-box">
+              <small class="kpi-stat-lbl">Հաջող աճուրդներ</small>
+              <div class="monthly-stat-num ok">94.2%</div>
+            </div>
+            <div class="monthly-stat-box">
+              <small class="kpi-stat-lbl">Միջին քայլերի քանակ</small>
+              <div class="monthly-stat-num ink">11.4 հայտ</div>
+            </div>
+            <div class="monthly-stat-box">
+              <small class="kpi-stat-lbl">Միջնորդավճար (5%)</small>
+              <div class="monthly-stat-num b">$4,212</div>
+            </div>
+            <div class="monthly-stat-box">
+              <small class="kpi-stat-lbl">Նոր վաճառողներ</small>
+              <div class="monthly-stat-num ink">+18</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Top Lots Table -->
+      <div class="table-card">
+        <div class="table-card-head">
+          <h3>Ամենաբարձր գնով վաճառված լոտերը</h3>
+        </div>
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Լոտի անվանում</th>
+              <th>Կատեգորիա</th>
+              <th>Մեկնարկային գին</th>
+              <th>Վերջնական գին</th>
+              <th>Աճ</th>
+              <th>Գնորդ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Յուղաներկ նկար «Աշունը Լոռիում»</b></td>
+              <td>Արվեստ</td>
+              <td>$1,500</td>
+              <td><b class="report-final-price">$2,300</b></td>
+              <td><span class="chip ok">+53.3%</span></td>
+              <td>Գարիկ Հ.</td>
+            </tr>
+            <tr>
+              <td><b>Ոսկե մատանի բնական նռնաքարով</b></td>
+              <td>Զարդեր</td>
+              <td>$1,200</td>
+              <td><b class="report-final-price">$1,750</b></td>
+              <td><span class="chip ok">+45.8%</span></td>
+              <td>Աննա Գ.</td>
+            </tr>
+            <tr>
+              <td><b>Պարսկական մետաքսե գորգ Իսֆահան</b></td>
+              <td>Գորգեր</td>
+              <td>$1,000</td>
+              <td><b class="report-final-price">$1,400</b></td>
+              <td><span class="chip ok">+40.0%</span></td>
+              <td>Դավիթ Մ.</td>
+            </tr>
+            <tr>
+              <td><b>Հին շվեյցարական ժամացույց</b></td>
+              <td>Ժամացույցներ</td>
+              <td>$800</td>
+              <td><b class="report-final-price">$1,250</b></td>
+              <td><span class="chip ok">+56.2%</span></td>
+              <td>Գարիկ Հ.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="w">
+      <div>
+        <a class="logo" href="../index.html">
+          <span class="logo-fallback">GAVEL</span>
+        </a>
+        <p class="footer-desc">
+          Առցանց աճուրդների կառավարման հարթակ: Արվեստի գործերի, հնաոճ իրերի և հազվագյուտ նմուշների վստահելի շուկա:
+        </p>
+      </div>
+      <div>
+        <h4>Մոդուլներ</h4>
+        <ul>
+          <li><a href="auctions.html">Աճուրդների ցանկ</a></li>
+          <li><a href="my-participations.html">Իմ մասնակցությունները</a></li>
+          <li><a href="my-lots.html">Իմ լոտերը</a></li>
+          <li><a href="add-lot.html">Ավելացնել լոտ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Կառավարում</h4>
+        <ul>
+          <li><a href="profile.html">Անձնական էջ</a></li>
+          <li><a href="admin-dashboard.html">Ադմինի վահանակ</a></li>
+          <li><a href="admin-users.html">Օգտատերերի ցուցակ</a></li>
+          <li><a href="admin-reports.html">Հաշվետվություններ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Համակարգ</h4>
+        <ul>
+          <li><a href="login.html">Մուտք գործել</a></li>
+          <li><a href="register.html">Գրանցվել</a></li>
+          <li><a href="404.html">404 Error էջ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="w footer-bottom">
+      <div>© 2026 Gavel Auction Platform. Բոլոր իրավունքները պաշտպանված են:</div>
+      <div>Կուրսային աշխատանք · Առցանց աճուրդների հարթակ</div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gavel — Մուտք</title>
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+
+  <!-- Utility Bar -->
+  <div class="util">
+    <div class="w">
+      <div><span>Հայաստանի առաջատար առցանց աճուրդների հարթակ</span></div>
+      <div class="util-links">
+        <a href="login.html" class="util-highlight">Վաճառել Gavel-ում</a>
+        <a href="auctions.html">Օգնություն</a>
+        <a href="profile.html">Հայերեն ▾</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="w">
+      <a class="logo" href="index.html">
+        <img src="images/logo.png" alt="Gavel Logo">
+      </a>
+      <form class="srch" action="auctions.html" method="get">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+        <input type="search" name="q" placeholder="Որոնել Gavel-ում..." aria-label="Որոնել">
+      </form>
+      <nav>
+        <a class="nav-link" href="index.html">Գլխավոր</a>
+        <a class="nav-link" href="auctions.html">Աճուրդներ</a>
+        <a class="nav-link" href="my-participations.html">Իմ մասնակցությունները</a>
+        <a class="nav-link" href="my-lots.html">Իմ լոտերը</a>
+        <a class="nav-link" href="profile.html">Անձնական էջ</a>
+        <a class="nav-link" href="admin-dashboard.html">Ադմին</a>
+      </nav>
+      <div class="header-actions">
+        <a href="login.html" class="btn sm pri">Մուտք</a>
+        <a href="register.html" class="btn sm">Գրանցվել</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="w">
+      <div class="auth-container">
+        <a class="logo auth-logo-center" href="index.html">
+          <img src="images/logo.png" alt="Gavel">
+        </a>
+        <h1 class="auth-title">Բարի գալուստ</h1>
+        <p class="auth-subtitle">Մուտք գործեք ձեր Gavel հաշիվ</p>
+
+        <form class="auth-form" action="profile.html" method="get">
+          <div class="form-group">
+            <label class="form-label">Էլ. հասցե</label>
+            <input type="email" class="form-input" placeholder="name@example.com" value="garik@example.com" required>
+          </div>
+
+          <div class="form-group">
+            <div class="auth-pass-row">
+              <label class="form-label auth-pass-label">Գաղտնաբառ</label>
+              <a href="login.html" class="auth-forgot-link">Մոռացե՞լ եք</a>
+            </div>
+            <input type="password" class="form-input" placeholder="••••••••" value="password123" required>
+          </div>
+
+          <button type="submit" class="btn pri full lg auth-submit-btn">Մուտք գործել</button>
+        </form>
+
+        <p class="auth-footer-prompt">
+          Չունե՞ք հաշիվ: <a href="register.html">Գրանցվել հիմա</a>
+        </p>
+
+        <!-- Demo links -->
+        <div class="demo-login-box">
+          <span class="demo-login-title">⚡ Դերերի արագ անցում դասախոսի համար՝</span>
+          <a href="my-participations.html" class="demo-pill-btn">👤 Մուտք որպես Գնորդ (Գարիկ Հ.)</a>
+          <a href="my-lots.html" class="demo-pill-btn">🏷️ Մուտք որպես Վաճառող (Արմեն Ս.)</a>
+          <a href="admin-dashboard.html" class="demo-pill-btn">🛡️ Մուտք որպես Ադմին (Gavel Admin)</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="w">
+      <div>
+        <a class="logo" href="index.html">
+          <span class="logo-fallback">GAVEL</span>
+        </a>
+        <p class="footer-desc">
+          Առցանց աճուրդների կառավարման հարթակ: Արվեստի գործերի, հնաոճ իրերի և հազվագյուտ նմուշների վստահելի շուկա:
+        </p>
+      </div>
+      <div>
+        <h4>Մոդուլներ</h4>
+        <ul>
+          <li><a href="auctions.html">Աճուրդների ցանկ</a></li>
+          <li><a href="my-participations.html">Իմ մասնակցությունները</a></li>
+          <li><a href="my-lots.html">Իմ լոտերը</a></li>
+          <li><a href="add-lot.html">Ավելացնել լոտ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Կառավարում</h4>
+        <ul>
+          <li><a href="profile.html">Անձնական էջ</a></li>
+          <li><a href="admin-dashboard.html">Ադմինի վահանակ</a></li>
+          <li><a href="admin-users.html">Օգտատերերի ցուցակ</a></li>
+          <li><a href="admin-reports.html">Հաշվետվություններ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Համակարգ</h4>
+        <ul>
+          <li><a href="login.html">Մուտք գործել</a></li>
+          <li><a href="register.html">Գրանցվել</a></li>
+          <li><a href="404.html">404 Error էջ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="w footer-bottom">
+      <div>© 2026 Gavel Auction Platform. Բոլոր իրավունքները պաշտպանված են:</div>
+      <div>Կուրսային աշխատանք · Առցանց աճուրդների հարթակ</div>
+    </div>
+  </footer>
+
+</body>
+</html>

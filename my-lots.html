@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gavel — Իմ լոտերը</title>
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/my-lots.css">
+</head>
+<body>
+
+  <!-- Utility Bar -->
+  <div class="util">
+    <div class="w">
+      <div><span>Հայաստանի առաջատար առցանց աճուրդների հարթակ</span></div>
+      <div class="util-links">
+        <a href="add-lot.html" class="util-highlight">+ Ավելացնել լոտ</a>
+        <a href="auctions.html">Օգնություն</a>
+        <a href="profile.html">Հայերեն ▾</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="w">
+      <a class="logo" href="index.html">
+        <img src="images/logo.png" alt="Gavel Logo">
+      </a>
+      <form class="srch" action="auctions.html" method="get">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+        <input type="search" name="q" placeholder="Որոնել Gavel-ում..." aria-label="Որոնել">
+      </form>
+      <nav>
+        <a class="nav-link" href="index.html">Գլխավոր</a>
+        <a class="nav-link" href="auctions.html">Աճուրդներ</a>
+        <a class="nav-link" href="my-participations.html">Իմ մասնակցությունները</a>
+        <a class="nav-link active" href="my-lots.html">Իմ լոտերը</a>
+        <a class="nav-link" href="profile.html">Անձնական էջ</a>
+        <a class="nav-link" href="admin-dashboard.html">Ադմին</a>
+      </nav>
+      <div class="header-actions">
+        <a href="profile.html" class="user-menu-btn">
+          <span class="user-avatar">Ա</span>
+          <span>Արմեն Ս.</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="w">
+      <div class="breadcrumb">
+        <a href="index.html">Գլխավոր</a>
+        <span>›</span>
+        <span>Իմ լոտերը</span>
+      </div>
+
+      <div class="page-title-row">
+        <div>
+          <h1>Իմ լոտերը</h1>
+          <p>Կառավարեք ձեր տեղադրած աճուրդները, հետևեք գներին և հայտերին</p>
+        </div>
+        <a href="add-lot.html" class="btn pri">+ Ավելացնել նոր լոտ</a>
+      </div>
+
+      <!-- KPI metrics -->
+      <div class="seller-kpi-grid">
+        <div class="card kpi-card-content">
+          <small class="seller-stat-lbl">Ընդհանուր լոտեր</small>
+          <div class="seller-stat-num">5</div>
+        </div>
+        <div class="card kpi-card-content live-border">
+          <small class="seller-stat-lbl">Ուղիղ եթերում</small>
+          <div class="seller-stat-num live">3</div>
+        </div>
+        <div class="card kpi-card-content rv-border">
+          <small class="seller-stat-lbl">Ստուգման մեջ</small>
+          <div class="seller-stat-num rv">1</div>
+        </div>
+        <div class="card kpi-card-content sales-border">
+          <small class="seller-stat-lbl">Ընդհանուր վաճառք</small>
+          <div class="seller-stat-num sales">$18,450</div>
+        </div>
+      </div>
+
+      <!-- Status tabs -->
+      <div class="seller-tabs-bar">
+        <a href="my-lots.html" class="btn sm pri">Բոլորը</a>
+        <a href="my-lots.html" class="btn sm">Ուղիղ</a>
+        <a href="my-lots.html" class="btn sm">Ստուգման մեջ</a>
+        <a href="my-lots.html" class="btn sm">Ավարտված / Վաճառված</a>
+      </div>
+
+      <!-- Lots list -->
+      <div>
+        <!-- Lot 1 -->
+        <div class="lot-manage-row">
+          <div class="lot-manage-thumb t1"><img src="images/lot-watch.jpg" alt="Հին ժամացույց"></div>
+          <div class="lot-manage-info">
+            <div class="lot-manage-status-row">
+              <span class="chip live">Ուղիղ</span>
+              <small class="lot-manage-id-lbl">Լոտ #128</small>
+            </div>
+            <h3 class="lot-manage-title"><a href="auction-detail.html">Արծաթե գրպանի ժամացույց</a></h3>
+            <p class="lot-manage-desc">875 հարգի արծաթ, 1910 թ., Շվեյցարիա</p>
+          </div>
+          <div class="lot-manage-data">
+            <div>
+              <small class="lot-manage-lbl">Ընթացիկ գին</small>
+              <span class="lot-manage-val">$1,250</span>
+            </div>
+            <div>
+              <small class="lot-manage-lbl">Հայտեր</small>
+              <span class="lot-manage-val sm">14</span>
+            </div>
+            <div>
+              <small class="lot-manage-lbl">Մնացել է</small>
+              <span class="tm">02:41:08</span>
+            </div>
+          </div>
+          <div class="lot-manage-actions">
+            <a href="auction-detail.html" class="btn sm">Դիտել</a>
+            <a href="add-lot.html" class="btn sm">Խմբագրել</a>
+          </div>
+        </div>
+
+        <!-- Lot 2 -->
+        <div class="lot-manage-row">
+          <div class="lot-manage-thumb t5"><img src="images/lot-desk.jpg" alt="Փայտե գրասեղան"></div>
+          <div class="lot-manage-info">
+            <div class="lot-manage-status-row">
+              <span class="chip live">Ուղիղ</span>
+              <small class="lot-manage-id-lbl">Լոտ #168</small>
+            </div>
+            <h3 class="lot-manage-title"><a href="auction-detail.html">Փայտե գրասեղան</a></h3>
+            <p class="lot-manage-desc">Ընկուզենու փայտ, փորագրազարդ, 1930 թ.</p>
+          </div>
+          <div class="lot-manage-data">
+            <div>
+              <small class="lot-manage-lbl">Ընթացիկ գին</small>
+              <span class="lot-manage-val">$650</span>
+            </div>
+            <div>
+              <small class="lot-manage-lbl">Հայտեր</small>
+              <span class="lot-manage-val sm">7</span>
+            </div>
+            <div>
+              <small class="lot-manage-lbl">Մնացել է</small>
+              <span class="tm">12:30:00</span>
+            </div>
+          </div>
+          <div class="lot-manage-actions">
+            <a href="auction-detail.html" class="btn sm">Դիտել</a>
+            <a href="add-lot.html" class="btn sm">Խմբագրել</a>
+          </div>
+        </div>
+
+        <!-- Lot 3 -->
+        <div class="lot-manage-row">
+          <div class="lot-manage-thumb t6"><img src="images/lot-ring.jpg" alt="Ոսկե մատանի"></div>
+          <div class="lot-manage-info">
+            <div class="lot-manage-status-row">
+              <span class="chip live">Ուղիղ</span>
+              <small class="lot-manage-id-lbl">Լոտ #189</small>
+            </div>
+            <h3 class="lot-manage-title"><a href="auction-detail.html">Ոսկե մատանի</a></h3>
+            <p class="lot-manage-desc">585 հարգ, բնական նռնաքարով (գրանատ), 1950-ականներ</p>
+          </div>
+          <div class="lot-manage-data">
+            <div>
+              <small class="lot-manage-lbl">Ընթացիկ գին</small>
+              <span class="lot-manage-val">$1,750</span>
+            </div>
+            <div>
+              <small class="lot-manage-lbl">Հայտեր</small>
+              <span class="lot-manage-val sm">18</span>
+            </div>
+            <div>
+              <small class="lot-manage-lbl">Մնացել է</small>
+              <span class="tm">00:55:00</span>
+            </div>
+          </div>
+          <div class="lot-manage-actions">
+            <a href="auction-detail.html" class="btn sm">Դիտել</a>
+            <a href="add-lot.html" class="btn sm">Խմբագրել</a>
+          </div>
+        </div>
+
+        <!-- Lot 4 (Review) -->
+        <div class="lot-manage-row">
+          <div class="lot-manage-thumb t4"><img src="images/lot-samovar.jpg" alt="Հնաոճ բրոնզե արձանիկ"></div>
+          <div class="lot-manage-info">
+            <div class="lot-manage-status-row">
+              <span class="chip rv">Ստուգման մեջ</span>
+              <small class="lot-manage-id-lbl">Լոտ #220</small>
+            </div>
+            <h3 class="lot-manage-title"><a href="auction-detail.html">Հնաոճ բրոնզե արձանիկ</a></h3>
+            <p class="lot-manage-desc">«Հեծյալը», Ֆրանսիա, 19-րդ դարի վերջ</p>
+          </div>
+          <div class="lot-manage-data">
+            <div>
+              <small class="lot-manage-lbl">Մեկնարկային գին</small>
+              <span class="lot-manage-val">$950</span>
+            </div>
+            <div>
+              <small class="lot-manage-lbl">Հայտեր</small>
+              <span class="lot-manage-val sm">0</span>
+            </div>
+            <div>
+              <small class="lot-manage-lbl">Կարգավիճակ</small>
+              <span class="lot-manage-lbl">Սպասում է ադմինին</span>
+            </div>
+          </div>
+          <div class="lot-manage-actions">
+            <a href="auction-detail.html" class="btn sm">Դիտել</a>
+            <a href="add-lot.html" class="btn sm">Խմբագրել</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="w">
+      <div>
+        <a class="logo" href="index.html">
+          <span class="logo-fallback">GAVEL</span>
+        </a>
+        <p class="footer-desc">
+          Առցանց աճուրդների կառավարման հարթակ: Արվեստի գործերի, հնաոճ իրերի և հազվագյուտ նմուշների վստահելի շուկա:
+        </p>
+      </div>
+      <div>
+        <h4>Մոդուլներ</h4>
+        <ul>
+          <li><a href="auctions.html">Աճուրդների ցանկ</a></li>
+          <li><a href="my-participations.html">Իմ մասնակցությունները</a></li>
+          <li><a href="my-lots.html">Իմ լոտերը</a></li>
+          <li><a href="add-lot.html">Ավելացնել լոտ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Կառավարում</h4>
+        <ul>
+          <li><a href="profile.html">Անձնական էջ</a></li>
+          <li><a href="admin-dashboard.html">Ադմինի վահանակ</a></li>
+          <li><a href="admin-users.html">Օգտատերերի ցուցակ</a></li>
+          <li><a href="admin-reports.html">Հաշվետվություններ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Համակարգ</h4>
+        <ul>
+          <li><a href="login.html">Մուտք գործել</a></li>
+          <li><a href="register.html">Գրանցվել</a></li>
+          <li><a href="404.html">404 Error էջ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="w footer-bottom">
+      <div>© 2026 Gavel Auction Platform. Բոլոր իրավունքները պաշտպանված են:</div>
+      <div>Կուրսային աշխատանք · Առցանց աճուրդների հարթակ</div>
+    </div>
+  </footer>
+
+</body>
+</html>

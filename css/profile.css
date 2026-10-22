@@ -1,0 +1,345 @@
+/* ==========================================================================
+   PAGE: PROFILE STYLES
+   Pure CSS Tab switching (no JS required)
+   ========================================================================== */
+
+.profile-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 32px;
+  position: relative;
+}
+
+/* Radio Tab Switchers (visually hidden) */
+.tab-radio {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+  margin: 0;
+}
+
+/* User Profile Sidebar Card */
+.user-profile-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 90px;
+}
+.big-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--b);
+  color: #fff;
+  font-size: 28px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px auto;
+  overflow: hidden;
+  border: 3px solid var(--b-l);
+  box-shadow: 0 2px 8px rgba(42, 29, 20, 0.1);
+}
+.big-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+.profile-user-name {
+  margin-bottom: 4px;
+  font-size: 18px;
+}
+.profile-user-email {
+  font-size: 13px;
+  color: var(--mute);
+  margin-bottom: 12px;
+}
+.profile-role-badge {
+  background: var(--b-l);
+  color: var(--b-d);
+  font-weight: 600;
+}
+
+/* Sidebar Navigation Tabs */
+.profile-nav {
+  margin-top: 24px;
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.profile-nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: none;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--mute);
+  cursor: pointer;
+  transition: var(--trans);
+  text-decoration: none;
+  user-select: none;
+}
+.profile-nav-btn:hover {
+  background: var(--soft);
+  color: var(--ink);
+}
+.tab-btn-icon {
+  font-size: 16px;
+  display: inline-block;
+}
+
+/* ACTIVE TAB BUTTON STYLES (Pure CSS via :checked) */
+#tab-info:checked ~ aside .tab-btn-info,
+#tab-security:checked ~ aside .tab-btn-security,
+#tab-payment:checked ~ aside .tab-btn-payment,
+#tab-notifications:checked ~ aside .tab-btn-notifications {
+  background: var(--b-l);
+  color: var(--b-d);
+  font-weight: 700;
+  border-color: #d8c3b0;
+  box-shadow: 0 2px 6px rgba(139, 90, 43, 0.08);
+}
+
+/* Profile Content Card */
+.profile-content-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: var(--shadow-sm);
+  min-height: 480px;
+}
+
+/* Tab Panes (hidden by default, shown when radio checked) */
+.profile-tab-pane {
+  display: none;
+  animation: profileTabFade 0.25s ease-in-out;
+}
+@keyframes profileTabFade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Switch Active Pane */
+#tab-info:checked ~ .profile-content-card #pane-info,
+#tab-security:checked ~ .profile-content-card #pane-security,
+#tab-payment:checked ~ .profile-content-card #pane-payment,
+#tab-notifications:checked ~ .profile-content-card #pane-notifications {
+  display: block;
+}
+
+/* Section Header */
+.profile-section-title {
+  font-size: 22px;
+  margin-bottom: 6px;
+  color: var(--ink);
+}
+.profile-section-desc {
+  font-size: 14px;
+  color: var(--mute);
+  margin-bottom: 24px;
+}
+.profile-save-btn {
+  margin-top: 16px;
+}
+
+/* Security Tab Elements */
+.security-group-card {
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+.security-card-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--ink);
+}
+.security-card-desc {
+  font-size: 13px;
+  color: var(--mute);
+  margin-bottom: 16px;
+}
+.session-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line-light);
+}
+.session-item:last-child {
+  border-bottom: none;
+}
+.session-title {
+  font-weight: 600;
+  font-size: 14px;
+}
+.session-meta {
+  font-size: 12px;
+  color: var(--mute);
+  margin-top: 2px;
+}
+
+/* Payment Tab Elements */
+.balance-overview-box {
+  background: linear-gradient(135deg, #fdf8f3 0%, #f4ece1 100%);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+.balance-label {
+  font-size: 12px;
+  color: var(--mute);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.balance-amount {
+  font-size: 28px;
+  font-family: var(--font-h);
+  font-weight: 800;
+  color: var(--ink);
+  margin-top: 4px;
+}
+.balance-meta {
+  font-size: 13px;
+  color: var(--mute);
+}
+
+.payment-card-box {
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: var(--trans);
+}
+.payment-card-box:hover {
+  border-color: #d8c3b0;
+}
+.payment-card-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.payment-card-icon {
+  font-size: 28px;
+}
+.payment-card-num {
+  font-size: 15px;
+  font-weight: 700;
+}
+.payment-card-sub {
+  display: block;
+  color: var(--mute);
+  font-size: 12px;
+  margin-top: 2px;
+}
+.payment-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.add-card-section {
+  background: #fff;
+  border: 1px dashed var(--line);
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+}
+.add-card-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+/* Notification Tab Elements */
+.notification-group {
+  margin-bottom: 24px;
+}
+.notification-group-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--ink);
+  border-bottom: 1px solid var(--line-light);
+  padding-bottom: 8px;
+}
+.notification-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line-light);
+  cursor: pointer;
+}
+.notification-row:last-child {
+  border-bottom: none;
+}
+.notification-checkbox {
+  accent-color: var(--b);
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  cursor: pointer;
+}
+.notification-text-wrap {
+  flex: 1;
+}
+.notification-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--ink);
+}
+.notification-sub {
+  display: block;
+  color: var(--mute);
+  font-size: 13px;
+  margin-top: 2px;
+}
+
+/* Responsive */
+@media (max-width: 850px) {
+  .profile-layout {
+    grid-template-columns: 1fr;
+  }
+  .user-profile-card {
+    position: static;
+  }
+  .balance-overview-box {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+}

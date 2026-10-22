@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gavel — Ավելացնել լոտ</title>
+  <link rel="stylesheet" href="../css/common.css">
+  <link rel="stylesheet" href="../css/add-lot.css">
+</head>
+<body>
+
+  <!-- Utility Bar -->
+  <div class="util">
+    <div class="w">
+      <div><span>Հայաստանի առաջատար առցանց աճուրդների հարթակ</span></div>
+      <div class="util-links">
+        <a href="add-lot.html" class="util-highlight">+ Ավելացնել լոտ</a>
+        <a href="auctions.html">Օգնություն</a>
+        <a href="profile.html">Հայերեն ▾</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="w">
+      <a class="logo" href="../index.html">
+        <img src="../images/logo.png" alt="Gavel Logo">
+      </a>
+      <form class="srch" action="auctions.html" method="get">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+        <input type="search" name="q" placeholder="Որոնել Gavel-ում..." aria-label="Որոնել">
+      </form>
+      <nav>
+        <a class="nav-link" href="../index.html">Գլխավոր</a>
+        <a class="nav-link" href="auctions.html">Աճուրդներ</a>
+        <a class="nav-link" href="my-participations.html">Իմ մասնակցությունները</a>
+        <a class="nav-link" href="my-lots.html">Իմ լոտերը</a>
+        <a class="nav-link" href="profile.html">Անձնական էջ</a>
+        <a class="nav-link" href="admin-dashboard.html">Ադմին</a>
+      </nav>
+      <div class="header-actions">
+        <a href="profile.html" class="user-menu-btn">
+          <span class="user-avatar">Ա</span>
+          <span>Արմեն Ս.</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="w">
+      <div class="breadcrumb">
+        <a href="../index.html">Գլխավոր</a>
+        <span>›</span>
+        <a href="my-lots.html">Իմ լոտերը</a>
+        <span>›</span>
+        <span>Ավելացնել նոր լոտ</span>
+      </div>
+
+      <div class="wizard-box">
+        <!-- Steps Header -->
+        <div class="wizard-steps">
+          <div class="step-item active"><span class="step-badge">1</span> Տվյալներ</div>
+          <div class="step-item"><span class="step-badge">2</span> Լուսանկարներ</div>
+          <div class="step-item"><span class="step-badge">3</span> Գին և չափսեր</div>
+          <div class="step-item"><span class="step-badge">4</span> Աճուրդ</div>
+        </div>
+
+        <form class="wizard-body" action="my-lots.html" method="get">
+          <!-- Step 1: Info -->
+          <div>
+            <h2 class="wizard-pane-title">1. Լոտի հիմնական տվյալները</h2>
+            <p class="wizard-pane-desc">Նշեք ապրանքի ճշգրիտ անվանումը և կատեգորիան:</p>
+
+            <div class="form-group">
+              <label class="form-label">Լոտի անվանումը *</label>
+              <input type="text" class="form-input" placeholder="օր.՝ Հնաոճ արծաթե մոմակալ, 19-րդ դար" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Կատեգորիա *</label>
+              <select class="form-select">
+                <option value="0">Ժամացույցներ</option>
+                <option value="1">Արվեստ</option>
+                <option value="2">Գորգեր</option>
+                <option value="3">Կերամիկա</option>
+                <option value="4">Կահույք</option>
+                <option value="5">Գրքեր</option>
+                <option value="6">Զարդեր</option>
+                <option value="7">Հավաքածուներ</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Վիճակը</label>
+              <select class="form-select">
+                <option value="excellent">Գերազանց (Բնօրինակ)</option>
+                <option value="good">Լավ (Կան թեթև հետքեր)</option>
+                <option value="restored">Վերականգնված (Restored)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Մանրամասն նկարագրություն *</label>
+              <textarea class="form-textarea" placeholder="Նկարագրեք ապրանքի առանձնահատկությունները, նյութը, պատմությունը..." required></textarea>
+            </div>
+          </div>
+
+          <!-- Step 2: Photos -->
+          <div>
+            <h2 class="wizard-pane-title">2. Լուսանկարներ</h2>
+            <p class="wizard-pane-desc">Ավելացրեք առնվազն 1 որակյալ լուսանկար բնական լուսավորությամբ:</p>
+
+            <div class="dropzone">
+              <div class="dropzone-icon">📷</div>
+              <b>Սեղմեք այստեղ լուսանկար ավելացնելու համար</b>
+              <p class="dropzone-hint">JPG, PNG մինչև 10MB</p>
+            </div>
+
+            <div class="photo-previews">
+              <div class="preview-card">
+                <img src="../images/lot-watch.jpg" alt="Գլխավոր նկար">
+                <span>Գլխավոր նկար</span>
+                <button type="button" class="preview-remove-btn">✕</button>
+              </div>
+              <div class="preview-card">
+                <img src="../images/lot-desk.jpg" alt="Դետալ 1">
+                <span>Դետալ 1</span>
+                <button type="button" class="preview-remove-btn">✕</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3: Pricing -->
+          <div>
+            <h2 class="wizard-pane-title">3. Գին և չափսեր</h2>
+            <p class="wizard-pane-desc">Սահմանեք մեկնարկային արժեքը և ֆիզիկական պարամետրերը:</p>
+
+            <div class="grid grid-2">
+              <div class="form-group">
+                <label class="form-label">Մեկնարկային գին ($) *</label>
+                <input type="number" class="form-input" value="500" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Քայլի չափսը ($)</label>
+                <input type="number" class="form-input" value="50">
+              </div>
+            </div>
+
+            <div class="grid grid-2">
+              <div class="form-group">
+                <label class="form-label">Չափսեր</label>
+                <input type="text" class="form-input" placeholder="օր.՝ 45 x 30 x 15 սմ">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Ծագման երկիր / Քաղաք</label>
+                <input type="text" class="form-input" placeholder="օր.՝ Երևան, Հայաստան">
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 4: Duration -->
+          <div>
+            <h2 class="wizard-pane-title">4. Աճուրդի պայմաններ</h2>
+            <p class="wizard-pane-desc">Ընտրեք աճուրդի տևողությունը և հաստատեք հայտը:</p>
+
+            <div class="form-group">
+              <label class="form-label">Աճուրդի տևողությունը</label>
+              <select class="form-select">
+                <option value="3">3 օր (Արագ աճուրդ)</option>
+                <option value="7" selected>7 օր (Ստանդարտ)</option>
+                <option value="14">14 օր (Երկարաժամկետ)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Կոնտակտային հեռախոսահամար *</label>
+              <input type="tel" class="form-input" value="+374 91 123456" required>
+            </div>
+
+            <div class="moderation-note-box">
+              <h4 class="moderation-note-title">ℹ️ Մոդերացիայի կանոններ</h4>
+              <p class="moderation-note-desc">
+                Տեղադրելուց հետո ձեր լոտն անցնում է ադմինիստրատորի ստուգում (սովորաբար 1-2 ժամվա ընթացքում): Հաստատվելուն պես այն կդառնա հասանելի հարթակի բոլոր գնորդներին:
+              </p>
+            </div>
+          </div>
+
+          <!-- Footer Buttons -->
+          <div class="wizard-footer-btns">
+            <a href="my-lots.html" class="btn">‹ Չեղարկել</a>
+            <div class="wizard-footer-right">
+              <button type="submit" class="btn pri">Տեղադրել աճուրդի ✓</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="w">
+      <div>
+        <a class="logo" href="../index.html">
+          <span class="logo-fallback">GAVEL</span>
+        </a>
+        <p class="footer-desc">
+          Առցանց աճուրդների կառավարման հարթակ: Արվեստի գործերի, հնաոճ իրերի և հազվագյուտ նմուշների վստահելի շուկա:
+        </p>
+      </div>
+      <div>
+        <h4>Մոդուլներ</h4>
+        <ul>
+          <li><a href="auctions.html">Աճուրդների ցանկ</a></li>
+          <li><a href="my-participations.html">Իմ մասնակցությունները</a></li>
+          <li><a href="my-lots.html">Իմ լոտերը</a></li>
+          <li><a href="add-lot.html">Ավելացնել լոտ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Կառավարում</h4>
+        <ul>
+          <li><a href="profile.html">Անձնական էջ</a></li>
+          <li><a href="admin-dashboard.html">Ադմինի վահանակ</a></li>
+          <li><a href="admin-users.html">Օգտատերերի ցուցակ</a></li>
+          <li><a href="admin-reports.html">Հաշվետվություններ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Համակարգ</h4>
+        <ul>
+          <li><a href="login.html">Մուտք գործել</a></li>
+          <li><a href="register.html">Գրանցվել</a></li>
+          <li><a href="404.html">404 Error էջ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="w footer-bottom">
+      <div>© 2026 Gavel Auction Platform. Բոլոր իրավունքները պաշտպանված են:</div>
+      <div>Կուրսային աշխատանք · Առցանց աճուրդների հարթակ</div>
+    </div>
+  </footer>
+
+</body>
+</html>

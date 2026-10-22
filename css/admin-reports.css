@@ -1,0 +1,74 @@
+/* ==========================================================================
+   PAGE: ADMIN REPORTS STYLES
+   ========================================================================== */
+
+.report-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+.report-card-title {
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+.report-card-desc {
+  font-size: 12px;
+  margin-bottom: 20px;
+}
+.cat-bar-row {
+  margin-bottom: 16px;
+}
+.cat-bar-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+.progress-track {
+  height: 8px;
+  background: var(--soft);
+  border-radius: 99px;
+  overflow: hidden;
+  border: 1px solid var(--line-light);
+}
+.progress-fill {
+  height: 100%;
+  border-radius: 99px;
+}
+.fill-art { width: 45%; background: #8b5a2b; }
+.fill-watch { width: 25%; background: #5c3a1e; }
+.fill-jewel { width: 15%; background: #d19a66; }
+.fill-rug { width: 10%; background: #7c6a5c; }
+.fill-other { width: 5%; background: #a0522d; }
+
+.monthly-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.monthly-stat-box {
+  background: var(--soft);
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+}
+.monthly-stat-num {
+  font-size: 24px;
+  font-weight: 800;
+  margin-top: 2px;
+}
+.monthly-stat-num.ok {
+  color: var(--ok);
+}
+.monthly-stat-num.ink {
+  color: var(--ink);
+}
+.monthly-stat-num.b {
+  color: var(--b);
+}
+.report-final-price {
+  color: var(--b);
+  font-size: 15px;
+}
