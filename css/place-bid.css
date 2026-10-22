@@ -1,160 +1,523 @@
 /* ==========================================================================
-   PAGE: PLACE BID STYLES
+   PAGE: PLACE BID / COPART LIVE AUCTION ARENA STYLES
+   Pure CSS dynamic auction layout, animations, countdown, and live feed
    ========================================================================== */
 
-.bid-flow-box {
-  max-width: 620px;
-  margin: 0 auto;
+/* Arena Wrapper */
+.copart-arena {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 28px;
   background: var(--card);
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: 14px;
   overflow: hidden;
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 8px 30px rgba(42, 29, 20, 0.08);
 }
-.bid-flow-header {
-  background: var(--soft);
-  padding: 20px 24px;
-  border-bottom: 1px solid var(--line);
-  display: flex;
-  gap: 16px;
-  align-items: center;
-}
-.bid-flow-thumb {
-  width: 72px;
-  height: 72px;
-  border-radius: 8px;
-  background: linear-gradient(135deg, #6f4e37, #c68e5a);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
+/* Arena Top Live Broadcast Banner */
+.arena-live-banner {
+  grid-column: 1 / -1;
+  background: #1a120c;
   color: #fff;
-  font-size: 20px;
-  flex-shrink: 0;
-  position: relative;
-  overflow: hidden;
+  padding: 12px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--b);
 }
-.bid-flow-thumb img {
-  position: absolute;
-  inset: 0;
+.arena-live-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.copart-live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #dc2626;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  animation: copartPulse 1.5s infinite;
+}
+@keyframes copartPulse {
+  0% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.02); }
+  100% { opacity: 1; transform: scale(1); }
+}
+.live-pulse-dot {
+  width: 7px;
+  height: 7px;
+  background: #fff;
+  border-radius: 50%;
+  display: inline-block;
+}
+.arena-lane-name {
+  font-size: 13px;
+  color: #e5d8cb;
+  font-weight: 600;
+}
+.arena-live-right {
+  font-size: 12px;
+  color: #a89485;
+}
+.arena-participants-count {
+  color: #4ade80;
+  font-weight: 700;
+}
+
+/* Left Column: Vehicle Showcase */
+.arena-left-col {
+  padding: 24px;
+  border-right: 1px solid var(--line);
+}
+.vehicle-main-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #000;
+  margin-bottom: 12px;
+}
+.vehicle-main-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-.bid-flow-meta {
-  flex: 1;
-}
-.bid-flow-subtitle {
+.vehicle-img-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(26, 18, 12, 0.85);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
   font-size: 12px;
-  color: var(--mute);
+  font-weight: 600;
 }
-.bid-flow-title {
-  margin: 2px 0;
-}
-.bid-flow-curr-price {
-  font-size: 13px;
-  color: var(--ink);
-}
-.bid-price-highlight {
-  color: var(--b);
-}
-.bid-flow-timer-col {
-  text-align: right;
-}
-.bid-flow-timer-lbl {
-  font-size: 11px;
-  color: var(--mute);
-}
-.bid-flow-body {
-  padding: 28px 24px;
-}
-.bid-flow-body-title {
-  font-size: 20px;
-  margin-bottom: 8px;
-}
-.bid-flow-body-desc {
-  font-size: 14px;
-  margin-bottom: 20px;
-}
-.bid-large-input {
-  font-size: 24px;
-  font-weight: 800;
-  color: var(--ink);
-  padding: 12px 16px;
-}
-.quick-pill-group {
+.vehicle-copart-tags {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
   display: flex;
   gap: 8px;
-  margin-top: 10px;
   flex-wrap: wrap;
 }
-.quick-pill-label {
-  font-size: 12px;
-  color: var(--mute);
-  align-self: center;
+.copart-tag {
+  background: rgba(16, 185, 129, 0.9);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
 }
-.quick-pill {
-  background: var(--soft);
-  border: 1px solid var(--line);
-  padding: 6px 14px;
-  border-radius: 99px;
-  font-size: 13px;
-  font-weight: 600;
+.copart-tag.blue {
+  background: rgba(37, 99, 235, 0.9);
+}
+
+.vehicle-thumbs-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 24px;
+}
+.vehicle-thumb-box {
+  height: 70px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 2px solid transparent;
   cursor: pointer;
-  transition: var(--trans);
+  background: var(--soft);
+}
+.vehicle-thumb-box.active {
+  border-color: var(--b);
+}
+.vehicle-thumb-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Vehicle Title & Key Info */
+.vehicle-title-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+.vehicle-headline {
+  font-size: 24px;
+  font-family: var(--font-h);
+  font-weight: 800;
   color: var(--ink);
 }
-.quick-pill:hover {
+.vehicle-lot-pill {
+  font-size: 12px;
+  color: var(--mute);
+}
+
+/* Copart Specification Table */
+.copart-specs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+.copart-spec-cell {
+  display: flex;
+  flex-direction: column;
+}
+.spec-label {
+  font-size: 11px;
+  color: var(--mute);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.spec-val {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-top: 2px;
+}
+
+/* Live Bid Feed Stream */
+.live-stream-box {
+  background: #1a120c;
+  color: #fff;
+  border-radius: 10px;
+  padding: 18px 20px;
+}
+.live-stream-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #332418;
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+}
+.stream-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #e5d8cb;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.stream-title-dot {
+  width: 8px;
+  height: 8px;
+  background: #22c55e;
+  border-radius: 50%;
+  display: inline-block;
+  animation: copartPulse 1.2s infinite;
+}
+.live-stream-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.stream-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.04);
+}
+.stream-row.leader {
+  background: rgba(34, 197, 94, 0.15);
+  border: 1px solid rgba(34, 197, 94, 0.4);
+}
+.stream-buyer {
+  color: #d1c1b2;
+}
+.stream-row.leader .stream-buyer {
+  color: #4ade80;
+  font-weight: 700;
+}
+.stream-amount {
+  font-family: var(--font-h);
+  font-weight: 800;
+  font-size: 15px;
+  color: #fff;
+}
+.stream-row.leader .stream-amount {
+  color: #4ade80;
+  font-size: 16px;
+}
+.stream-badge {
+  font-size: 10px;
+  background: #22c55e;
+  color: #052e16;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 3px;
+  margin-left: 6px;
+}
+
+/* Right Column: Live Bidding Engine */
+.arena-right-col {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hammer Countdown Clock Bar (Copart Style) */
+.copart-hammer-card {
+  background: #fdf5ec;
+  border: 2px solid var(--b);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.hammer-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--b-d);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.hammer-clock {
+  font-size: 40px;
+  font-family: var(--font-h);
+  font-weight: 900;
+  color: #dc2626;
+  margin: 4px 0;
+  letter-spacing: 1px;
+}
+.hammer-bar-wrap {
+  width: 100%;
+  height: 8px;
+  background: #eaddd0;
+  border-radius: 99px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+.hammer-bar-fill {
+  height: 100%;
+  width: 40%;
+  background: linear-gradient(90deg, #16a34a, #eab308, #dc2626);
+  border-radius: 99px;
+  animation: hammerCountdown 15s linear infinite;
+}
+@keyframes hammerCountdown {
+  0% { width: 100%; background: #16a34a; }
+  60% { background: #eab308; }
+  100% { width: 5%; background: #dc2626; }
+}
+.hammer-callout {
+  font-size: 12px;
+  color: var(--mute);
+  margin-top: 6px;
+  font-weight: 600;
+}
+
+/* Big Price Box */
+.live-price-box {
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.price-row-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 12px;
+}
+.current-bid-lbl {
+  font-size: 12px;
+  color: var(--mute);
+  text-transform: uppercase;
+}
+.current-bid-val {
+  font-size: 36px;
+  font-family: var(--font-h);
+  font-weight: 900;
+  color: var(--ink);
+  line-height: 1;
+  margin-top: 4px;
+}
+.current-leader-tag {
+  font-size: 12px;
+  color: var(--ok);
+  font-weight: 700;
+  background: var(--ok-bg);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+.next-bid-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--line-light);
+  padding-top: 10px;
+  font-size: 14px;
+}
+.next-bid-val {
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--b);
+}
+
+/* MONSTER Copart One-Click Bid Button */
+.copart-bid-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 18px 24px;
+  font-size: 20px;
+  font-weight: 800;
+  font-family: var(--font-h);
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(22, 163, 74, 0.35);
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  text-decoration: none;
+}
+.copart-bid-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(22, 163, 74, 0.45);
+  background: linear-gradient(135deg, #15803d 0%, #166534 100%);
+}
+.copart-btn-sub {
+  font-size: 12px;
+  font-weight: 500;
+  opacity: 0.9;
+  letter-spacing: 0.5px;
+  margin-top: 2px;
+}
+
+/* Quick Increments Grid */
+.quick-bid-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--mute);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.quick-bid-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.quick-bid-btn {
+  background: var(--soft);
+  border: 1px solid var(--line);
+  padding: 10px 4px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink);
+  cursor: pointer;
+  transition: var(--trans);
+  text-align: center;
+}
+.quick-bid-btn:hover {
   background: var(--b-l);
   border-color: var(--b);
   color: var(--b-d);
 }
-.cost-summary {
-  background: var(--soft);
-  border: 1px solid var(--line);
+
+/* Monster Auto-Bid (Proxy Bidding) */
+.proxy-bid-box {
+  background: #fff;
+  border: 1px dashed var(--line);
   border-radius: 8px;
-  padding: 16px;
-  margin: 20px 0;
+  padding: 14px;
+  margin-bottom: 20px;
 }
-.cost-row {
+.proxy-bid-title {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--ink);
+}
+.proxy-bid-desc {
+  font-size: 12px;
+  color: var(--mute);
+  margin-bottom: 10px;
+}
+.proxy-input-group {
+  display: flex;
+  gap: 8px;
+}
+
+/* Fee Summary */
+.copart-fee-card {
+  background: var(--soft);
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+  font-size: 13px;
+}
+.copart-fee-row {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 8px;
-  font-size: 14px;
+  margin-bottom: 6px;
   color: var(--mute);
 }
-.cost-free {
+.copart-fee-row.total {
+  border-top: 1px solid var(--line);
+  padding-top: 8px;
+  margin-top: 8px;
+  font-weight: 800;
+  font-size: 15px;
+  color: var(--ink);
+}
+.copart-fee-total-num {
+  color: var(--b);
+}
+
+/* Security Trust Pill */
+.copart-trust-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 12px;
   color: var(--ok);
   font-weight: 600;
-}
-.cost-row.total {
-  margin-top: 12px;
+  margin-top: auto;
   padding-top: 12px;
-  border-top: 1px solid var(--line);
-  font-weight: 700;
-  font-size: 16px;
-  color: var(--ink);
 }
-.cost-total-num {
-  color: var(--b);
-  font-size: 20px;
-}
-.bid-agree-checkbox {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  font-size: 13px;
-  color: var(--ink);
-  cursor: pointer;
-  margin-bottom: 24px;
-}
-.bid-agree-checkbox input {
-  accent-color: var(--b);
-  margin-top: 3px;
-}
-.bid-btn-group {
-  display: flex;
-  gap: 12px;
-}
-.bid-cancel-btn {
-  padding: 0 24px;
+
+/* Responsive */
+@media (max-width: 992px) {
+  .copart-arena {
+    grid-template-columns: 1fr;
+  }
+  .arena-left-col {
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+  }
+  .vehicle-main-img-wrap {
+    height: 280px;
+  }
 }

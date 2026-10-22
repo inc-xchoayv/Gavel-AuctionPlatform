@@ -46,7 +46,9 @@ Gavel_auction_course_work/
 │   ├── lot-vase.jpg             # Հնաոճ սկահակի լուսանկար
 │   ├── lot-sculpture.jpg        # Բրոնզե քանդակի լուսանկար
 │   ├── lot-book.jpg             # Հնատիպ գրքի լուսանկար
-│   └── lot-coins.jpg            # Անտիկ մետաղադրամների լուսանկար
+│   ├── lot-coins.jpg            # Անտիկ մետաղադրամների լուսանկար
+│   ├── lot-car.jpg              # Porsche 911 Carrera 4S (Copart Live լոտ)
+│   └── lot-classic-car.jpg      # 1968 Ford Mustang Fastback լուսանկար
 │
 ├── pages/                       # Էջերի պատճենները ենթապանակում
 ├── source/                      # Սկզբնական նյութեր և Word փաստաթուղթ

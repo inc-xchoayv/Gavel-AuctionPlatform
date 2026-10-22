@@ -138,6 +138,29 @@
   font-weight: 700;
 }
 
+/* Copart Live Pulsing Chip */
+.chip.copart-live {
+  background: #dc2626;
+  color: #fff;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  animation: copartChipPulse 1.5s infinite;
+}
+@keyframes copartChipPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+  100% { transform: scale(1); }
+}
+.copart-dot {
+  width: 6px;
+  height: 6px;
+  background: #fff;
+  border-radius: 50%;
+  display: inline-block;
+}
+
 /* Card inner layout */
 .lot-card-cat {
   color: var(--mute);
