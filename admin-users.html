@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gavel — Օգտատերերի կառավարում</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="shortcut icon" href="favicon.ico">
   <link rel="stylesheet" href="css/common.css">
   <link rel="stylesheet" href="css/admin-users.css">
 </head>
@@ -74,13 +76,21 @@
         <a href="admin-reports.html">Հաշվետվություններ</a>
       </div>
 
+      <!-- Pure CSS Role Filter Radios -->
+      <input type="radio" name="admin-user-filter" id="ufilter-all" class="admin-user-filter-radio" checked>
+      <input type="radio" name="admin-user-filter" id="ufilter-buyers" class="admin-user-filter-radio">
+      <input type="radio" name="admin-user-filter" id="ufilter-sellers" class="admin-user-filter-radio">
+
       <!-- Filter Controls -->
       <div class="admin-users-filter-bar">
-        <input type="text" class="form-input admin-users-search-inp" placeholder="Փնտրել ըստ անվան կամ էլ. հասցեի...">
+        <form action="admin-users.html" method="get" class="search-box">
+          <input type="text" name="q" class="form-input admin-users-search-inp" placeholder="Փնտրել ըստ անվան կամ էլ. հասցեի...">
+          <button type="submit" class="btn sm pri">Որոնել</button>
+        </form>
         <div class="admin-users-btn-group">
-          <a href="admin-users.html" class="btn sm pri">Բոլորը</a>
-          <a href="admin-users.html" class="btn sm">Գնորդներ</a>
-          <a href="admin-users.html" class="btn sm">Վաճառողներ</a>
+          <label for="ufilter-all" class="btn sm ubtn-all">Բոլորը</label>
+          <label for="ufilter-buyers" class="btn sm ubtn-buyers">Գնորդներ</label>
+          <label for="ufilter-sellers" class="btn sm ubtn-sellers">Վաճառողներ</label>
         </div>
       </div>
 
@@ -100,65 +110,110 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr class="role-buyer">
               <td>#1</td>
               <td><b>Գարիկ Հարությունյան</b></td>
               <td>garik@example.com</td>
               <td><span class="chip user-role-badge">buyer</span></td>
               <td>28 հայտ</td>
               <td><b>$4,200</b></td>
-              <td><span class="chip ok user-status-badge">Ակտիվ</span></td>
-              <td><button type="button" class="btn sm bad user-toggle-btn">Արգելափակել</button></td>
+              <td>
+                <span class="chip ok status-badge-active">Ակտիվ</span>
+                <span class="chip bad status-badge-blocked">Արգելափակված</span>
+              </td>
+              <td>
+                <label class="user-block-toggle-lbl" title="Սեղմեք կարգավիճակը փոխելու համար">
+                  <input type="checkbox" class="user-block-cb">
+                  <span class="btn sm bad btn-block-action">Արգելափակել</span>
+                  <span class="btn sm ok btn-unblock-action">Ակտիվացնել</span>
+                </label>
+              </td>
             </tr>
-            <tr>
+            <tr class="role-seller">
               <td>#2</td>
               <td><b>Արմեն Սարգսյան</b></td>
               <td>armen.seller@example.com</td>
               <td><span class="chip user-role-badge">seller</span></td>
               <td>12 լոտ</td>
               <td><b>$18,450</b></td>
-              <td><span class="chip ok user-status-badge">Ակտիվ</span></td>
-              <td><button type="button" class="btn sm bad user-toggle-btn">Արգելափակել</button></td>
+              <td>
+                <span class="chip ok status-badge-active">Ակտիվ</span>
+                <span class="chip bad status-badge-blocked">Արգելափակված</span>
+              </td>
+              <td>
+                <label class="user-block-toggle-lbl" title="Սեղմեք կարգավիճակը փոխելու համար">
+                  <input type="checkbox" class="user-block-cb">
+                  <span class="btn sm bad btn-block-action">Արգելափակել</span>
+                  <span class="btn sm ok btn-unblock-action">Ակտիվացնել</span>
+                </label>
+              </td>
             </tr>
-            <tr>
+            <tr class="role-admin">
               <td>#3</td>
               <td><b>Ադմին Gavel</b></td>
               <td>admin@gavel.am</td>
               <td><span class="chip user-role-badge">admin</span></td>
               <td>Գլխավոր ադմին</td>
               <td><b>—</b></td>
-              <td><span class="chip ok user-status-badge">Ակտիվ</span></td>
-              <td><button type="button" class="btn sm user-toggle-btn">Դիտել</button></td>
+              <td><span class="chip ok status-badge-active">Ակտիվ</span></td>
+              <td><a href="profile.html" class="btn sm">Դիտել</a></td>
             </tr>
-            <tr>
+            <tr class="role-buyer">
               <td>#4</td>
               <td><b>Աննա Գրիգորյան</b></td>
               <td>anna@example.com</td>
               <td><span class="chip user-role-badge">buyer</span></td>
               <td>7 հայտ</td>
               <td><b>$850</b></td>
-              <td><span class="chip ok user-status-badge">Ակտիվ</span></td>
-              <td><button type="button" class="btn sm bad user-toggle-btn">Արգելափակել</button></td>
+              <td>
+                <span class="chip ok status-badge-active">Ակտիվ</span>
+                <span class="chip bad status-badge-blocked">Արգելափակված</span>
+              </td>
+              <td>
+                <label class="user-block-toggle-lbl" title="Սեղմեք կարգավիճակը փոխելու համար">
+                  <input type="checkbox" class="user-block-cb">
+                  <span class="btn sm bad btn-block-action">Արգելափակել</span>
+                  <span class="btn sm ok btn-unblock-action">Ակտիվացնել</span>
+                </label>
+              </td>
             </tr>
-            <tr>
+            <tr class="role-seller">
               <td>#5</td>
               <td><b>Կարեն Պետրոսյան</b></td>
               <td>karen@example.com</td>
               <td><span class="chip user-role-badge">seller</span></td>
               <td>3 լոտ</td>
               <td><b>$0</b></td>
-              <td><span class="chip bad user-status-badge">Արգելափակված</span></td>
-              <td><button type="button" class="btn sm ok user-toggle-btn">Ակտիվացնել</button></td>
+              <td>
+                <span class="chip ok status-badge-active">Ակտիվ</span>
+                <span class="chip bad status-badge-blocked">Արգելափակված</span>
+              </td>
+              <td>
+                <label class="user-block-toggle-lbl" title="Սեղմեք կարգավիճակը փոխելու համար">
+                  <input type="checkbox" class="user-block-cb" checked>
+                  <span class="btn sm bad btn-block-action">Արգելափակել</span>
+                  <span class="btn sm ok btn-unblock-action">Ակտիվացնել</span>
+                </label>
+              </td>
             </tr>
-            <tr>
+            <tr class="role-buyer">
               <td>#6</td>
               <td><b>Դավիթ Մանուկյան</b></td>
               <td>david@example.com</td>
               <td><span class="chip user-role-badge">buyer</span></td>
               <td>15 հայտ</td>
               <td><b>$2,100</b></td>
-              <td><span class="chip ok user-status-badge">Ակտիվ</span></td>
-              <td><button type="button" class="btn sm bad user-toggle-btn">Արգելափակել</button></td>
+              <td>
+                <span class="chip ok status-badge-active">Ակտիվ</span>
+                <span class="chip bad status-badge-blocked">Արգելափակված</span>
+              </td>
+              <td>
+                <label class="user-block-toggle-lbl" title="Սեղմեք կարգավիճակը փոխելու համար">
+                  <input type="checkbox" class="user-block-cb">
+                  <span class="btn sm bad btn-block-action">Արգելափակել</span>
+                  <span class="btn sm ok btn-unblock-action">Ակտիվացնել</span>
+                </label>
+              </td>
             </tr>
           </tbody>
         </table>

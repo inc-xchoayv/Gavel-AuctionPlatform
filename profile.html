@@ -43,7 +43,7 @@
       </nav>
       <div class="header-actions">
         <a href="profile.html" class="user-menu-btn">
-          <span class="user-avatar">Գ</span>
+          <span class="user-avatar"><img src="images/avatar-user.jpg" alt="Գարիկ Հ."></span>
           <span>Գարիկ Հ.</span>
         </a>
       </div>
@@ -198,7 +198,11 @@
                   <div class="session-title">Mobile Safari (Apple iPhone 15)</div>
                   <div class="session-meta">Երևան, Հայաստան · Վերջին ակտիվությունը՝ 2 ժամ առաջ</div>
                 </div>
-                <button type="button" class="btn sm bad">Ավարտել</button>
+                <label class="session-term-toggle" title="Սեղմեք սեսիան ավարտելու համար">
+                  <input type="checkbox" class="session-term-cb">
+                  <span class="btn sm bad btn-term-act">Ավարտել</span>
+                  <span class="chip btn-term-done">Ավարտված</span>
+                </label>
               </div>
             </div>
           </div>
@@ -215,7 +219,7 @@
                 <div class="balance-amount">$4,200</div>
                 <small class="balance-meta">Ազատ միջոցներ՝ <b>$2,950</b> · Արգելափակված հայտերում՝ <b>$1,250</b></small>
               </div>
-              <button type="button" class="btn pri sm">+ Համալրել հաշիվը</button>
+              <a href="#new-card-form" class="btn pri sm">+ Համալրել հաշիվը</a>
             </div>
 
             <h3 class="security-card-title">Կցված բանկային քարտեր</h3>
@@ -231,7 +235,10 @@
               </div>
               <div class="payment-card-actions">
                 <span class="chip ok">Հիմնական</span>
-                <button type="button" class="btn sm bad">✕ Հեռացնել</button>
+                <label class="card-del-toggle" title="Հեռացնել քարտը">
+                  <input type="checkbox" class="card-del-cb">
+                  <span class="btn sm bad">✕ Հեռացնել</span>
+                </label>
               </div>
             </div>
 
@@ -245,13 +252,20 @@
                 </div>
               </div>
               <div class="payment-card-actions">
-                <button type="button" class="btn sm">Դարձնել հիմնական</button>
-                <button type="button" class="btn sm bad">✕ Հեռացնել</button>
+                <label class="card-primary-toggle" title="Դարձնել հիմնական">
+                  <input type="checkbox" class="card-primary-cb">
+                  <span class="btn sm btn-make-primary">Դարձնել հիմնական</span>
+                  <span class="chip ok chip-primary-now">✓ Հիմնական</span>
+                </label>
+                <label class="card-del-toggle" title="Հեռացնել քարտը">
+                  <input type="checkbox" class="card-del-cb">
+                  <span class="btn sm bad">✕ Հեռացնել</span>
+                </label>
               </div>
             </div>
 
             <!-- Add New Card Form -->
-            <div class="add-card-section">
+            <div class="add-card-section" id="new-card-form">
               <h4 class="add-card-title">+ Կցել նոր վճարային քարտ</h4>
               <form action="profile.html" method="get">
                 <div class="form-group">

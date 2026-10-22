@@ -86,18 +86,24 @@
         </div>
       </div>
 
-      <!-- Status tabs -->
+      <!-- Pure CSS Status Filter Radios -->
+      <input type="radio" name="lot-status-filter" id="lsfilter-all" class="lot-status-filter-radio" checked>
+      <input type="radio" name="lot-status-filter" id="lsfilter-live" class="lot-status-filter-radio">
+      <input type="radio" name="lot-status-filter" id="lsfilter-review" class="lot-status-filter-radio">
+      <input type="radio" name="lot-status-filter" id="lsfilter-ended" class="lot-status-filter-radio">
+
+      <!-- Status tabs (Clickable Pure CSS Filters) -->
       <div class="seller-tabs-bar">
-        <a href="my-lots.html" class="btn sm pri">Բոլորը</a>
-        <a href="my-lots.html" class="btn sm">Ուղիղ</a>
-        <a href="my-lots.html" class="btn sm">Ստուգման մեջ</a>
-        <a href="my-lots.html" class="btn sm">Ավարտված / Վաճառված</a>
+        <label for="lsfilter-all" class="btn sm lsbtn-all">Բոլորը</label>
+        <label for="lsfilter-live" class="btn sm lsbtn-live">Ուղիղ</label>
+        <label for="lsfilter-review" class="btn sm lsbtn-review">Ստուգման մեջ</label>
+        <label for="lsfilter-ended" class="btn sm lsbtn-ended">Ավարտված / Վաճառված</label>
       </div>
 
       <!-- Lots list -->
-      <div>
-        <!-- Lot 1 -->
-        <div class="lot-manage-row">
+      <div class="my-lots-list">
+        <!-- Lot 1: Live -->
+        <div class="lot-manage-row lot-live">
           <div class="lot-manage-thumb t1"><img src="images/lot-watch.jpg" alt="Հին ժամացույց"></div>
           <div class="lot-manage-info">
             <div class="lot-manage-status-row">
@@ -127,8 +133,8 @@
           </div>
         </div>
 
-        <!-- Lot 2 -->
-        <div class="lot-manage-row">
+        <!-- Lot 2: Live -->
+        <div class="lot-manage-row lot-live">
           <div class="lot-manage-thumb t5"><img src="images/lot-desk.jpg" alt="Փայտե գրասեղան"></div>
           <div class="lot-manage-info">
             <div class="lot-manage-status-row">
@@ -158,8 +164,8 @@
           </div>
         </div>
 
-        <!-- Lot 3 -->
-        <div class="lot-manage-row">
+        <!-- Lot 3: Live -->
+        <div class="lot-manage-row lot-live">
           <div class="lot-manage-thumb t6"><img src="images/lot-ring.jpg" alt="Ոսկե մատանի"></div>
           <div class="lot-manage-info">
             <div class="lot-manage-status-row">
@@ -189,8 +195,8 @@
           </div>
         </div>
 
-        <!-- Lot 4 (Review) -->
-        <div class="lot-manage-row">
+        <!-- Lot 4: Review -->
+        <div class="lot-manage-row lot-review">
           <div class="lot-manage-thumb t4"><img src="images/lot-samovar.jpg" alt="Հնաոճ բրոնզե արձանիկ"></div>
           <div class="lot-manage-info">
             <div class="lot-manage-status-row">
@@ -217,6 +223,36 @@
           <div class="lot-manage-actions">
             <a href="auction-detail.html" class="btn sm">Դիտել</a>
             <a href="add-lot.html" class="btn sm">Խմբագրել</a>
+          </div>
+        </div>
+
+        <!-- Lot 5: Ended / Sold -->
+        <div class="lot-manage-row lot-ended">
+          <div class="lot-manage-thumb t2"><img src="images/lot-carpet.jpg" alt="Ղազախ ձեռագործ գորգ"></div>
+          <div class="lot-manage-info">
+            <div class="lot-manage-status-row">
+              <span class="chip ok">✓ Վաճառված</span>
+              <small class="lot-manage-id-lbl">Լոտ #094</small>
+            </div>
+            <h3 class="lot-manage-title"><a href="auction-detail.html">Ղազախ ձեռագործ գորգ</a></h3>
+            <p class="lot-manage-desc">Բնական ներկեր, 19-րդ դար, բուրդ</p>
+          </div>
+          <div class="lot-manage-data">
+            <div>
+              <small class="lot-manage-lbl">Վերջնական գին</small>
+              <span class="lot-manage-val val-green">$2,800</span>
+            </div>
+            <div>
+              <small class="lot-manage-lbl">Հայտեր</small>
+              <span class="lot-manage-val sm">23</span>
+            </div>
+            <div>
+              <small class="lot-manage-lbl">Կարգավիճակ</small>
+              <span class="lot-manage-lbl">Վճարված է</span>
+            </div>
+          </div>
+          <div class="lot-manage-actions">
+            <a href="auction-detail.html" class="btn sm">Արխիվ</a>
           </div>
         </div>
       </div>

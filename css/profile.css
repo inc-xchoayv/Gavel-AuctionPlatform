@@ -343,3 +343,50 @@
     gap: 16px;
   }
 }
+
+/* Pure CSS Interactive Actions */
+.session-term-toggle,
+.card-del-toggle,
+.card-primary-toggle {
+  display: inline-flex;
+  cursor: pointer;
+  user-select: none;
+  margin: 0;
+}
+.session-term-cb,
+.card-del-cb,
+.card-primary-cb {
+  display: none;
+}
+.btn-term-done,
+.chip-primary-now {
+  display: none;
+}
+
+/* Session Terminated */
+.session-item:has(.session-term-cb:checked) {
+  opacity: 0.5;
+  background: var(--soft);
+}
+.session-item:has(.session-term-cb:checked) .btn-term-act {
+  display: none;
+}
+.session-item:has(.session-term-cb:checked) .btn-term-done {
+  display: inline-flex;
+}
+.session-item:has(.session-term-cb:checked) .session-title {
+  text-decoration: line-through;
+}
+
+/* Payment Card Deleted */
+.payment-card-box:has(.card-del-cb:checked) {
+  display: none;
+}
+
+/* Payment Card Made Primary */
+.payment-card-box:has(.card-primary-cb:checked) .btn-make-primary {
+  display: none;
+}
+.payment-card-box:has(.card-primary-cb:checked) .chip-primary-now {
+  display: inline-flex;
+}

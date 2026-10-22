@@ -74,21 +74,41 @@
 
         <!-- Left Column: Vehicle Showcase & Copart Specs -->
         <div class="arena-left-col">
-          <div class="vehicle-main-img-wrap">
-            <img src="images/car-front.jpg" alt="2021 Porsche 911 Carrera 4S" class="vehicle-main-img">
-            <span class="vehicle-img-badge">Լոտ #405 · Դահլիճ A</span>
-            <div class="vehicle-copart-tags">
-              <span class="copart-tag">✓ Run &amp; Drive</span>
-              <span class="copart-tag blue">Clean Title</span>
-              <span class="copart-tag">Բանալիներ՝ Առկա են</span>
-            </div>
-          </div>
+          <!-- Pure CSS Vehicle Gallery -->
+          <div class="vehicle-gallery-wrapper">
+            <input type="radio" name="car-view" id="cview-1" class="vehicle-gallery-radio" checked>
+            <input type="radio" name="car-view" id="cview-2" class="vehicle-gallery-radio">
+            <input type="radio" name="car-view" id="cview-3" class="vehicle-gallery-radio">
+            <input type="radio" name="car-view" id="cview-4" class="vehicle-gallery-radio">
 
-          <div class="vehicle-thumbs-row">
-            <div class="vehicle-thumb-box active"><img src="images/car-front.jpg" alt="Առջևից"></div>
-            <div class="vehicle-thumb-box"><img src="images/car-side.jpg" alt="Կողքից"></div>
-            <div class="vehicle-thumb-box"><img src="images/car-interior.jpg" alt="Սրահ և ղեկ"></div>
-            <div class="vehicle-thumb-box"><img src="images/car-rear.jpg" alt="Հետևից"></div>
+            <div class="vehicle-main-img-wrap">
+              <div class="car-slide cslide-1"><img src="images/car-front.jpg" alt="2021 Porsche 911 Carrera 4S · Առջևից"></div>
+              <div class="car-slide cslide-2"><img src="images/car-side.jpg" alt="2021 Porsche 911 Carrera 4S · Կողքից"></div>
+              <div class="car-slide cslide-3"><img src="images/car-interior.jpg" alt="2021 Porsche 911 Carrera 4S · Սրահ և ղեկ"></div>
+              <div class="car-slide cslide-4"><img src="images/car-rear.jpg" alt="2021 Porsche 911 Carrera 4S · Հետևից"></div>
+
+              <span class="vehicle-img-badge">Լոտ #405 · Դահլիճ A</span>
+              <div class="vehicle-copart-tags">
+                <span class="copart-tag">✓ Run &amp; Drive</span>
+                <span class="copart-tag blue">Clean Title</span>
+                <span class="copart-tag">Բանալիներ՝ Առկա են</span>
+              </div>
+            </div>
+
+            <div class="vehicle-thumbs-row">
+              <label for="cview-1" class="vehicle-thumb-box cthumb-1" title="Տեսք 1 · Առջևից">
+                <img src="images/car-front.jpg" alt="Առջևից">
+              </label>
+              <label for="cview-2" class="vehicle-thumb-box cthumb-2" title="Տեսք 2 · Կողքից">
+                <img src="images/car-side.jpg" alt="Կողքից">
+              </label>
+              <label for="cview-3" class="vehicle-thumb-box cthumb-3" title="Տեսք 3 · Սրահ և ղեկ">
+                <img src="images/car-interior.jpg" alt="Սրահ և ղեկ">
+              </label>
+              <label for="cview-4" class="vehicle-thumb-box cthumb-4" title="Տեսք 4 · Հետևից">
+                <img src="images/car-rear.jpg" alt="Հետևից">
+              </label>
+            </div>
           </div>
 
           <div class="vehicle-title-head">
@@ -189,10 +209,10 @@
             <!-- Quick Increments -->
             <div class="quick-bid-title">Արագ քայլեր (Quick Bid)</div>
             <div class="quick-bid-grid">
-              <button type="button" class="quick-bid-btn">+$500<br><small>$49,000</small></button>
-              <button type="button" class="quick-bid-btn">+$1,000<br><small>$49,500</small></button>
-              <button type="button" class="quick-bid-btn">+$2,500<br><small>$51,000</small></button>
-              <button type="button" class="quick-bid-btn">+$5,000<br><small>$53,500</small></button>
+              <button type="submit" name="quick_bid" value="49000" class="quick-bid-btn">+$500<br><small>$49,000</small></button>
+              <button type="submit" name="quick_bid" value="49500" class="quick-bid-btn">+$1,000<br><small>$49,500</small></button>
+              <button type="submit" name="quick_bid" value="51000" class="quick-bid-btn">+$2,500<br><small>$51,000</small></button>
+              <button type="submit" name="quick_bid" value="53500" class="quick-bid-btn">+$5,000<br><small>$53,500</small></button>
             </div>
 
             <!-- Proxy Bidding Box -->

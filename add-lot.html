@@ -61,43 +61,50 @@
       </div>
 
       <div class="wizard-box">
-        <!-- Steps Header -->
+        <!-- Pure CSS Multi-Step Wizard Radio Selectors -->
+        <input type="radio" name="wizard-step" id="wstep-1" class="wizard-tab-radio" checked>
+        <input type="radio" name="wizard-step" id="wstep-2" class="wizard-tab-radio">
+        <input type="radio" name="wizard-step" id="wstep-3" class="wizard-tab-radio">
+        <input type="radio" name="wizard-step" id="wstep-4" class="wizard-tab-radio">
+
+        <!-- Steps Header Navigation (Clickable Tabs) -->
         <div class="wizard-steps">
-          <div class="step-item active"><span class="step-badge">1</span> Տվյալներ</div>
-          <div class="step-item"><span class="step-badge">2</span> Լուսանկարներ</div>
-          <div class="step-item"><span class="step-badge">3</span> Գին և չափսեր</div>
-          <div class="step-item"><span class="step-badge">4</span> Աճուրդ</div>
+          <label for="wstep-1" class="step-item step-nav-1"><span class="step-badge">1</span> Տվյալներ</label>
+          <label for="wstep-2" class="step-item step-nav-2"><span class="step-badge">2</span> Լուսանկարներ</label>
+          <label for="wstep-3" class="step-item step-nav-3"><span class="step-badge">3</span> Գին և չափսեր</label>
+          <label for="wstep-4" class="step-item step-nav-4"><span class="step-badge">4</span> Աճուրդ</label>
         </div>
 
         <form class="wizard-body" action="my-lots.html" method="get">
-          <!-- Step 1: Info -->
-          <div>
+          <!-- Step 1: Info Pane -->
+          <div class="wizard-pane wizard-pane-1">
             <h2 class="wizard-pane-title">1. Լոտի հիմնական տվյալները</h2>
             <p class="wizard-pane-desc">Նշեք ապրանքի ճշգրիտ անվանումը և կատեգորիան:</p>
 
             <div class="form-group">
               <label class="form-label">Լոտի անվանումը *</label>
-              <input type="text" class="form-input" placeholder="օր.՝ Հնաոճ արծաթե մոմակալ, 19-րդ դար" required>
+              <input type="text" class="form-input" placeholder="օր.՝ Հին շվեյցարական գրպանի ժամացույց (1910 թ.)" value="Հին շվեյցարական գրպանի ժամացույց" required>
             </div>
 
             <div class="form-group">
               <label class="form-label">Կատեգորիա *</label>
               <select class="form-select">
-                <option value="0">Ժամացույցներ</option>
+                <option value="0" selected>Ժամացույցներ</option>
                 <option value="1">Արվեստ</option>
                 <option value="2">Գորգեր</option>
                 <option value="3">Կերամիկա</option>
                 <option value="4">Կահույք</option>
                 <option value="5">Գրքեր</option>
                 <option value="6">Զարդեր</option>
-                <option value="7">Հավաքածուներ</option>
+                <option value="7">Ավտոմեքենաներ</option>
+                <option value="8">Հավաքածուներ</option>
               </select>
             </div>
 
             <div class="form-group">
               <label class="form-label">Վիճակը</label>
               <select class="form-select">
-                <option value="excellent">Գերազանց (Բնօրինակ)</option>
+                <option value="excellent" selected>Գերազանց (Բնօրինակ)</option>
                 <option value="good">Լավ (Կան թեթև հետքեր)</option>
                 <option value="restored">Վերականգնված (Restored)</option>
               </select>
@@ -105,12 +112,17 @@
 
             <div class="form-group">
               <label class="form-label">Մանրամասն նկարագրություն *</label>
-              <textarea class="form-textarea" placeholder="Նկարագրեք ապրանքի առանձնահատկությունները, նյութը, պատմությունը..." required></textarea>
+              <textarea class="form-textarea" placeholder="Նկարագրեք ապրանքի առանձնահատկությունները, նյութը, պատմությունը..." required>Բացառիկ պահպանվածությամբ շվեյցարական գրպանի ժամացույց: Պատրաստված է 875 հարգի արծաթից, մեխանիկական լարով, աշխատող վիճակում:</textarea>
+            </div>
+
+            <div class="wizard-pane-nav">
+              <a href="my-lots.html" class="btn">‹ Չեղարկել</a>
+              <label for="wstep-2" class="btn pri">Հաջորդ քայլը (Լուսանկարներ) ›</label>
             </div>
           </div>
 
-          <!-- Step 2: Photos -->
-          <div>
+          <!-- Step 2: Photos Pane -->
+          <div class="wizard-pane wizard-pane-2">
             <h2 class="wizard-pane-title">2. Լուսանկարներ</h2>
             <p class="wizard-pane-desc">Ավելացրեք առնվազն 1 որակյալ լուսանկար բնական լուսավորությամբ:</p>
 
@@ -122,27 +134,40 @@
 
             <div class="photo-previews">
               <div class="preview-card">
-                <img src="images/lot-watch.jpg" alt="Գլխավոր նկար">
+                <input type="checkbox" id="del-p1" class="photo-del-cb">
+                <img src="images/lot-watch.jpg" alt="Գլխավոր նկար (Դիմացից)">
                 <span>Գլխավոր նկար</span>
-                <button type="button" class="preview-remove-btn">✕</button>
+                <label for="del-p1" class="preview-remove-btn" title="Հեռացնել">✕</label>
               </div>
               <div class="preview-card">
-                <img src="images/lot-desk.jpg" alt="Դետալ 1">
-                <span>Դետալ 1</span>
-                <button type="button" class="preview-remove-btn">✕</button>
+                <input type="checkbox" id="del-p2" class="photo-del-cb">
+                <img src="images/watch-side.jpg" alt="Դետալ 1 (Կողքից)">
+                <span>Դետալ 1 (Կողքից)</span>
+                <label for="del-p2" class="preview-remove-btn" title="Հեռացնել">✕</label>
               </div>
+              <div class="preview-card">
+                <input type="checkbox" id="del-p3" class="photo-del-cb">
+                <img src="images/watch-mech.jpg" alt="Մեխանիզմ">
+                <span>Մեխանիզմ</span>
+                <label for="del-p3" class="preview-remove-btn" title="Հեռացնել">✕</label>
+              </div>
+            </div>
+
+            <div class="wizard-pane-nav">
+              <label for="wstep-1" class="btn">‹ Նախորդը</label>
+              <label for="wstep-3" class="btn pri">Հաջորդ քայլը (Գին և չափսեր) ›</label>
             </div>
           </div>
 
-          <!-- Step 3: Pricing -->
-          <div>
+          <!-- Step 3: Pricing Pane -->
+          <div class="wizard-pane wizard-pane-3">
             <h2 class="wizard-pane-title">3. Գին և չափսեր</h2>
             <p class="wizard-pane-desc">Սահմանեք մեկնարկային արժեքը և ֆիզիկական պարամետրերը:</p>
 
             <div class="grid grid-2">
               <div class="form-group">
                 <label class="form-label">Մեկնարկային գին ($) *</label>
-                <input type="number" class="form-input" value="500" required>
+                <input type="number" class="form-input" value="1200" required>
               </div>
               <div class="form-group">
                 <label class="form-label">Քայլի չափսը ($)</label>
@@ -152,18 +177,23 @@
 
             <div class="grid grid-2">
               <div class="form-group">
-                <label class="form-label">Չափսեր</label>
-                <input type="text" class="form-input" placeholder="օր.՝ 45 x 30 x 15 սմ">
+                <label class="form-label">Չափսեր / Քաշ</label>
+                <input type="text" class="form-input" placeholder="օր.՝ 52 մմ տրամագիծ, 85 գրամ" value="52 մմ տրամագիծ, 85 գրամ">
               </div>
               <div class="form-group">
                 <label class="form-label">Ծագման երկիր / Քաղաք</label>
-                <input type="text" class="form-input" placeholder="օր.՝ Երևան, Հայաստան">
+                <input type="text" class="form-input" placeholder="օր.՝ Ժնև, Շվեյցարիա" value="Ժնև, Շվեյցարիա">
               </div>
+            </div>
+
+            <div class="wizard-pane-nav">
+              <label for="wstep-2" class="btn">‹ Նախորդը</label>
+              <label for="wstep-4" class="btn pri">Հաջորդ քայլը (Աճուրդ) ›</label>
             </div>
           </div>
 
-          <!-- Step 4: Duration -->
-          <div>
+          <!-- Step 4: Auction Setting Pane -->
+          <div class="wizard-pane wizard-pane-4">
             <h2 class="wizard-pane-title">4. Աճուրդի պայմաններ</h2>
             <p class="wizard-pane-desc">Ընտրեք աճուրդի տևողությունը և հաստատեք հայտը:</p>
 
@@ -187,13 +217,12 @@
                 Տեղադրելուց հետո ձեր լոտն անցնում է ադմինիստրատորի ստուգում (սովորաբար 1-2 ժամվա ընթացքում): Հաստատվելուն պես այն կդառնա հասանելի հարթակի բոլոր գնորդներին:
               </p>
             </div>
-          </div>
 
-          <!-- Footer Buttons -->
-          <div class="wizard-footer-btns">
-            <a href="my-lots.html" class="btn">‹ Չեղարկել</a>
-            <div class="wizard-footer-right">
-              <button type="submit" class="btn pri">Տեղադրել աճուրդի ✓</button>
+            <div class="wizard-pane-nav">
+              <label for="wstep-3" class="btn">‹ Նախորդը</label>
+              <div class="wizard-nav-right">
+                <button type="submit" class="btn pri">Տեղադրել աճուրդի ✓</button>
+              </div>
             </div>
           </div>
         </form>

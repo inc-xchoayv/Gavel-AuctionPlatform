@@ -48,6 +48,39 @@
   padding-bottom: 12px;
   overflow-x: auto;
 }
+.seller-tabs-bar label.btn {
+  cursor: pointer;
+  user-select: none;
+  transition: var(--trans);
+}
+
+/* Pure CSS Lot Filter Radios */
+.lot-status-filter-radio {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+  margin: 0;
+}
+#lsfilter-all:checked ~ * .lsbtn-all,
+#lsfilter-live:checked ~ * .lsbtn-live,
+#lsfilter-review:checked ~ * .lsbtn-review,
+#lsfilter-ended:checked ~ * .lsbtn-ended {
+  background: var(--b);
+  color: #fff;
+  border-color: var(--b);
+  font-weight: 700;
+}
+#lsfilter-live:checked ~ .my-lots-list .lot-manage-row:not(.lot-live) {
+  display: none;
+}
+#lsfilter-review:checked ~ .my-lots-list .lot-manage-row:not(.lot-review) {
+  display: none;
+}
+#lsfilter-ended:checked ~ .my-lots-list .lot-manage-row:not(.lot-ended) {
+  display: none;
+}
 
 .lot-manage-row {
   background: var(--card);
@@ -119,6 +152,9 @@
   font-weight: 700;
   font-size: 16px;
   color: var(--ink);
+}
+.lot-manage-val.val-green {
+  color: var(--ok);
 }
 .lot-manage-val.sm {
   font-size: 14px;

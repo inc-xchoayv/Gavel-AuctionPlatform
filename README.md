@@ -34,7 +34,10 @@ Gavel_auction_course_work/
 │   ├── admin-reports.css        # Հաշվետվությունների ոճեր
 │   └── 404.css                  # 404 էջի ոճեր
 │
+├── favicon.ico                  # Բրաուզերի պիտակ (Favicon) արմատային պանակում
 ├── images/                      # Բոլոր պատկերները մեկ պանակում
+│   ├── favicon.png              # Gavel ոսկե մուրճով Favicon պատկերակ
+│   ├── favicon.ico              # Favicon ICO ֆորմատ
 │   ├── logo.png                 # Gavel բրենդի լոգո
 │   ├── avatar-user.jpg          # Օգտատիրոջ պրոֆիլի լուսանկար
 │   ├── lot-watch.jpg            # Հին ժամացույցի լուսանկար

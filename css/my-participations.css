@@ -43,6 +43,35 @@
   border-bottom: 1px solid var(--line);
   padding-bottom: 12px;
 }
+.part-tabs-bar label.btn {
+  cursor: pointer;
+  user-select: none;
+  transition: var(--trans);
+}
+
+/* Pure CSS Participations Filter Radios */
+.part-filter-radio {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+  margin: 0;
+}
+#pfilter-all:checked ~ * .pbtn-all,
+#pfilter-lead:checked ~ * .pbtn-lead,
+#pfilter-out:checked ~ * .pbtn-out {
+  background: var(--b);
+  color: #fff;
+  border-color: var(--b);
+  font-weight: 700;
+}
+#pfilter-lead:checked ~ .my-parts-list .part-card:not(.part-lead) {
+  display: none;
+}
+#pfilter-out:checked ~ .my-parts-list .part-card:not(.part-out) {
+  display: none;
+}
 .part-card {
   background: var(--card);
   border: 1px solid var(--line);

@@ -1,5 +1,6 @@
 /* ==========================================================================
    PAGE: AUCTION DETAIL STYLES
+   Interactive Pure CSS Gallery + Interactive Pure CSS Tabs (0 JS files)
    ========================================================================== */
 
 .detail-layout {
@@ -9,36 +10,69 @@
   margin-bottom: 48px;
 }
 
-/* Gallery */
-.gallery-main {
-  height: 420px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #6f4e37, #c68e5a);
+/* ==========================================================================
+   PURE CSS INTERACTIVE GALLERY (Click thumbnail -> updates main image)
+   ========================================================================== */
+.gallery-wrapper {
   position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-size: 24px;
-  font-weight: 700;
-  border: 1px solid var(--line);
-  margin-bottom: 12px;
+  margin-bottom: 24px;
 }
-.gallery-main img {
+
+/* Hidden gallery radios */
+.gallery-radio {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+  margin: 0;
+}
+
+.gallery-main-viewport {
+  position: relative;
+  width: 100%;
+  height: 440px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fdf8f3;
+  margin-bottom: 12px;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+}
+
+.gallery-slide {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.25s ease-in-out;
+  pointer-events: none;
 }
+.gallery-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Show active slide when corresponding radio is checked */
+#gview-1:checked ~ .gallery-main-viewport .slide-1,
+#gview-2:checked ~ .gallery-main-viewport .slide-2,
+#gview-3:checked ~ .gallery-main-viewport .slide-3,
+#gview-4:checked ~ .gallery-main-viewport .slide-4 {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Gallery Thumbnails */
 .gallery-thumbs {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 12px;
 }
 .thumb-item {
-  height: 80px;
+  height: 84px;
   border-radius: 8px;
   background: var(--soft);
   border: 2px solid transparent;
@@ -46,17 +80,182 @@
   overflow: hidden;
   position: relative;
   transition: var(--trans);
+  display: block;
 }
 .thumb-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
-.thumb-item:hover, .thumb-item.active {
-  border-color: var(--b);
+.thumb-item:hover {
+  border-color: #c9ab8f;
 }
 
-/* Bidding Card */
+/* Active Thumbnail Gold-Leather Border Highlight */
+#gview-1:checked ~ .gallery-thumbs .thumb-btn-1,
+#gview-2:checked ~ .gallery-thumbs .thumb-btn-2,
+#gview-3:checked ~ .gallery-thumbs .thumb-btn-3,
+#gview-4:checked ~ .gallery-thumbs .thumb-btn-4 {
+  border-color: var(--b);
+  box-shadow: 0 0 0 2px rgba(139, 90, 43, 0.25);
+}
+
+/* ==========================================================================
+   PURE CSS INTERACTIVE TABS (Նկարագրություն / Բնութագիր / Առաքում և վճարում)
+   ========================================================================== */
+.tabs-container {
+  position: relative;
+  margin-top: 10px;
+}
+
+/* Hidden tab radios */
+.detail-tab-radio {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+  margin: 0;
+}
+
+/* Tab Navigation Bar */
+.tab-nav {
+  display: flex;
+  gap: 8px;
+  border-bottom: 2px solid var(--line-light);
+  margin-bottom: 20px;
+}
+.tab-btn {
+  padding: 10px 18px;
+  border: none;
+  background: none;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--mute);
+  cursor: pointer;
+  position: relative;
+  transition: var(--trans);
+  user-select: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  text-decoration: none;
+}
+.tab-btn:hover {
+  color: var(--ink);
+}
+
+/* Active Tab Button Highlight (Underline & Bold) */
+#dtab-desc:checked ~ .tab-nav .dtab-btn-desc,
+#dtab-spec:checked ~ .tab-nav .dtab-btn-spec,
+#dtab-ship:checked ~ .tab-nav .dtab-btn-ship {
+  color: var(--b);
+  font-weight: 700;
+  border-bottom: 2px solid var(--b);
+}
+
+/* Tab Content Area */
+.tab-content-area {
+  min-height: 240px;
+}
+.detail-tab-pane {
+  display: none;
+  animation: detailTabFade 0.25s ease-in-out;
+}
+@keyframes detailTabFade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Switch Active Pane */
+#dtab-desc:checked ~ .tab-content-area #pane-desc,
+#dtab-spec:checked ~ .tab-content-area #pane-spec,
+#dtab-ship:checked ~ .tab-content-area #pane-ship {
+  display: block;
+}
+
+/* Description Pane */
+.desc-text {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ink);
+  margin-bottom: 20px;
+}
+.provenance-card {
+  background: var(--soft);
+  padding: 18px 20px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+}
+.provenance-card h4 {
+  font-size: 15px;
+  margin-bottom: 6px;
+  color: var(--ink);
+}
+.provenance-text {
+  font-size: 13px;
+  color: var(--mute);
+  line-height: 1.6;
+}
+
+/* Specs Table */
+.spec-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.spec-table tr {
+  border-bottom: 1px solid var(--line-light);
+}
+.spec-table td {
+  padding: 12px 6px;
+}
+.spec-table td:first-child {
+  color: var(--mute);
+  width: 42%;
+}
+.spec-table td:last-child {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+/* Shipping & Payment Pane */
+.shipping-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.shipping-box {
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 16px;
+}
+.shipping-box-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.shipping-box-desc {
+  font-size: 13px;
+  color: var(--mute);
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   RIGHT COLUMN: BIDDING CARD
+   ========================================================================== */
 .bid-card {
   background: var(--card);
   border: 1px solid var(--line);
@@ -75,7 +274,7 @@
   margin-bottom: 16px;
 }
 .bid-card-lot-id {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--mute);
 }
 .bid-card-title {
@@ -125,33 +324,18 @@
   border-top: 1px solid var(--line-light);
   padding-top: 10px;
 }
-.bid-input-group {
+.quick-bids {
   display: flex;
   gap: 8px;
-}
-.bid-input-field {
-  font-size: 18px;
-  font-weight: 700;
-}
-.bid-submit-btn {
-  white-space: nowrap;
-  padding: 0 24px;
-}
-
-/* Quick Presets */
-.quick-bids {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  margin-bottom: 16px;
+  margin-top: 6px;
 }
 .quick-btn {
-  padding: 10px;
-  border: 1px solid var(--line);
-  border-radius: 6px;
   background: var(--soft);
-  font-weight: 700;
-  font-size: 13px;
+  border: 1px solid var(--line);
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
   cursor: pointer;
   transition: var(--trans);
   color: var(--ink);
@@ -161,8 +345,21 @@
   border-color: var(--b);
   color: var(--b-d);
 }
+.bid-input-group {
+  display: flex;
+  gap: 8px;
+}
+.bid-input-field {
+  font-size: 18px;
+  font-weight: 700;
+  max-width: 140px;
+}
+.bid-submit-btn {
+  flex: 1;
+  text-align: center;
+}
 
-/* Seller Info */
+/* Seller Box */
 .seller-box {
   display: flex;
   align-items: center;
@@ -188,76 +385,6 @@
   color: var(--mute);
 }
 
-/* Tabs */
-.tab-nav {
-  display: flex;
-  gap: 16px;
-  border-bottom: 1px solid var(--line);
-  margin: 32px 0 20px 0;
-}
-.tab-btn {
-  padding: 10px 4px;
-  border: none;
-  background: none;
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--mute);
-  cursor: pointer;
-  position: relative;
-}
-.tab-btn.active {
-  color: var(--b);
-}
-.tab-btn.active::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: var(--b);
-}
-
-.desc-text {
-  font-size: 15px;
-  line-height: 1.7;
-  margin-bottom: 20px;
-}
-.provenance-card {
-  background: var(--soft);
-  padding: 16px;
-  border-radius: 8px;
-  border: 1px solid var(--line);
-}
-.provenance-card h4 {
-  margin-bottom: 6px;
-}
-.provenance-text {
-  font-size: 13px;
-  color: var(--mute);
-}
-
-/* Table Specs */
-.spec-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 14px;
-}
-.spec-table tr {
-  border-bottom: 1px solid var(--line-light);
-}
-.spec-table td {
-  padding: 10px 0;
-}
-.spec-table td:first-child {
-  color: var(--mute);
-  width: 40%;
-}
-.spec-table td:last-child {
-  font-weight: 600;
-  color: var(--ink);
-}
-
 /* Bid History */
 .bid-history-section {
   margin-top: 24px;
@@ -275,7 +402,8 @@
 }
 .bid-history-live-pill {
   font-size: 11px;
-  color: var(--mute);
+  color: var(--ok);
+  font-weight: 600;
 }
 .bid-history-list {
   max-height: 220px;
@@ -292,30 +420,23 @@
   background: var(--soft);
   font-size: 13px;
 }
-.bid-history-row.is-me {
-  background: #eef3e2;
+.bid-history-row.highlight {
+  background: var(--ok-bg);
   border: 1px solid #c9deb0;
 }
-.bid-me-tag {
-  color: var(--ok);
-  font-weight: 700;
-}
-.bid-time-tag {
-  display: block;
-  color: var(--mute);
-  font-size: 11px;
-}
-.bid-amount-tag {
-  font-weight: 700;
-  font-size: 14px;
-  color: var(--ink);
-}
 
+/* Responsive */
 @media (max-width: 850px) {
   .detail-layout {
     grid-template-columns: 1fr;
   }
   .bid-card {
     position: static;
+  }
+  .gallery-main-viewport {
+    height: 320px;
+  }
+  .shipping-info-grid {
+    grid-template-columns: 1fr;
   }
 }

@@ -1,10 +1,12 @@
 /* ==========================================================================
    PAGE: ADMIN USERS STYLES
+   Pure CSS Filtering & Dynamic User Status Toggling (0 JS files)
    ========================================================================== */
 
 .admin-users-filter-bar {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 16px;
   margin-bottom: 20px;
   flex-wrap: wrap;
@@ -26,11 +28,65 @@
   padding: 2px 8px;
   text-transform: capitalize;
 }
-.user-status-badge {
-  font-size: 11px;
-  padding: 2px 8px;
+
+/* Hidden Filter Radios */
+.admin-user-filter-radio {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+  margin: 0;
 }
-.user-toggle-btn {
-  font-size: 11px;
-  padding: 4px 8px;
+.admin-users-btn-group label.btn {
+  cursor: pointer;
+  user-select: none;
+  transition: var(--trans);
+}
+
+/* Active Filter Button Style */
+#ufilter-all:checked ~ * .ubtn-all,
+#ufilter-buyers:checked ~ * .ubtn-buyers,
+#ufilter-sellers:checked ~ * .ubtn-sellers {
+  background: var(--b);
+  color: #fff;
+  border-color: var(--b);
+  font-weight: 700;
+}
+
+/* Filter Table Rows by Role (Pure CSS) */
+#ufilter-buyers:checked ~ .table-card .admin-table tbody tr:not(.role-buyer) {
+  display: none;
+}
+#ufilter-sellers:checked ~ .table-card .admin-table tbody tr:not(.role-seller) {
+  display: none;
+}
+
+/* Pure CSS User Block/Unblock Toggle Button */
+.user-block-toggle-lbl {
+  display: inline-flex;
+  cursor: pointer;
+  user-select: none;
+  margin: 0;
+}
+.user-block-cb {
+  display: none;
+}
+.status-badge-blocked,
+.btn-unblock-action {
+  display: none;
+}
+.status-badge-active,
+.btn-block-action {
+  display: inline-flex;
+}
+
+/* When blocked (checkbox is checked) */
+tr:has(.user-block-cb:checked) .status-badge-active,
+tr:has(.user-block-cb:checked) .btn-block-action {
+  display: none;
+}
+tr:has(.user-block-cb:checked) .status-badge-blocked,
+tr:has(.user-block-cb:checked) .btn-unblock-action {
+  display: inline-flex;
 }

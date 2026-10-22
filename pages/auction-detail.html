@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gavel — Աճուրդի մանրամասն էջ</title>
+  <link rel="icon" type="image/png" href="../images/favicon.png">
+  <link rel="shortcut icon" href="../favicon.ico">
   <link rel="stylesheet" href="../css/common.css">
   <link rel="stylesheet" href="../css/auction-detail.css">
 </head>
@@ -53,111 +55,165 @@
         <span>›</span>
         <a href="auctions.html">Աճուրդներ</a>
         <span>›</span>
-        <span>2021 Porsche 911 Carrera 4S</span>
+        <span>Հին ժամացույց</span>
       </div>
 
       <div class="detail-layout">
-        <!-- Left: Gallery & Details -->
+        <!-- Left: Gallery & Interactive Details -->
         <div>
-          <div class="gallery-main">
-            <img src="../images/car-front.jpg" alt="2021 Porsche 911 Carrera 4S">
-          </div>
+          <!-- Pure CSS Interactive Gallery -->
+          <div class="gallery-wrapper">
+            <input type="radio" name="gallery-view" id="gview-1" class="gallery-radio" checked>
+            <input type="radio" name="gallery-view" id="gview-2" class="gallery-radio">
+            <input type="radio" name="gallery-view" id="gview-3" class="gallery-radio">
+            <input type="radio" name="gallery-view" id="gview-4" class="gallery-radio">
 
-          <div class="gallery-thumbs">
-            <div class="thumb-item active"><img src="../images/car-front.jpg" alt="Առջևից"></div>
-            <div class="thumb-item"><img src="../images/car-side.jpg" alt="Կողքից"></div>
-            <div class="thumb-item"><img src="../images/car-interior.jpg" alt="Սրահ և ղեկ"></div>
-            <div class="thumb-item"><img src="../images/car-rear.jpg" alt="Հետևից"></div>
-          </div>
+            <div class="gallery-main-viewport">
+              <div class="gallery-slide slide-1"><img src="../images/lot-watch.jpg" alt="Հին շվեյցարական ժամացույց · Դիմացից"></div>
+              <div class="gallery-slide slide-2"><img src="../images/watch-side.jpg" alt="Հին շվեյցարական ժամացույց · Կողքից"></div>
+              <div class="gallery-slide slide-3"><img src="../images/watch-mech.jpg" alt="Հին շվեյցարական ժամացույց · Մեխանիզմ"></div>
+              <div class="gallery-slide slide-4"><img src="../images/watch-case.jpg" alt="Հին շվեյցարական ժամացույց · Արծաթե կափարիչ"></div>
+            </div>
 
-          <!-- Description and Tabs -->
-          <div class="tab-nav">
-            <button type="button" class="tab-btn active">Նկարագրություն</button>
-            <button type="button" class="tab-btn">Տեխնիկական բնութագիր</button>
-            <button type="button" class="tab-btn">Առաքում և երաշխիք</button>
-          </div>
-
-          <div>
-            <p class="desc-text">
-              2021 թ. Porsche 911 Carrera 4S (992 սերունդ): Հագեցած է 3.0L Twin-Turbo Flat-6 443 ձիաուժ հզորությամբ շարժիչով և 8-աստիճան PDK փոխանցման տուփով: Մեքենան ունի լիաքարշակ (AWD) համակարգ, Sport Chrono փաթեթ, բնօրինակ վազք (18,420 մղոն) և գտնվում է իդեալական վիճակում (Run &amp; Drive Verified, Clean Title):
-            </p>
-            <div class="provenance-card">
-              <h4>Ծագում և ստուգման պատմություն</h4>
-              <p class="provenance-text">Պաշտոնական Porsche սպասարկման պատմություն, 1 սեփականատեր, ԱՄՆ / Կալիֆորնիա: 100% մաքուր պատմություն:</p>
+            <div class="gallery-thumbs">
+              <label for="gview-1" class="thumb-item thumb-btn-1" title="Տեսք 1 · Դիմացից">
+                <img src="../images/lot-watch.jpg" alt="Տեսք 1">
+              </label>
+              <label for="gview-2" class="thumb-item thumb-btn-2" title="Տեսք 2 · Կողքից">
+                <img src="../images/watch-side.jpg" alt="Տեսք 2">
+              </label>
+              <label for="gview-3" class="thumb-item thumb-btn-3" title="Տեսք 3 · Մեխանիզմ">
+                <img src="../images/watch-mech.jpg" alt="Տեսք 3">
+              </label>
+              <label for="gview-4" class="thumb-item thumb-btn-4" title="Տեսք 4 · Կափարիչ">
+                <img src="../images/watch-case.jpg" alt="Տեսք 4">
+              </label>
             </div>
           </div>
 
-          <table class="spec-table">
-            <tr><td>Լոտի համար</td><td>#405</td></tr>
-            <tr><td>Կատեգորիա</td><td>Ավտոմեքենաներ (Cars)</td></tr>
-            <tr><td>Վազքը (Odometer)</td><td>18,420 mi (29,644 կմ) · Actual</td></tr>
-            <tr><td>VIN կոդ</td><td>WP0AB2A99MS128941</td></tr>
-            <tr><td>Շարժիչ / Տուփ</td><td>3.0L Twin-Turbo (443 hp) / 8-Speed PDK</td></tr>
-            <tr><td>Քարշակ</td><td>AWD (Լիաքարշակ)</td></tr>
-            <tr><td>Վիճակ</td><td>Run &amp; Drive Verified · Clean Title ✓</td></tr>
-            <tr><td>Շուկայական գին</td><td>$115,000</td></tr>
-          </table>
+          <!-- Pure CSS Interactive Tabs (Նկարագրություն / Բնութագիր / Առաքում) -->
+          <div class="tabs-container">
+            <input type="radio" name="detail-tab" id="dtab-desc" class="detail-tab-radio" checked>
+            <input type="radio" name="detail-tab" id="dtab-spec" class="detail-tab-radio">
+            <input type="radio" name="detail-tab" id="dtab-ship" class="detail-tab-radio">
+
+            <div class="tab-nav">
+              <label for="dtab-desc" class="tab-btn dtab-btn-desc">Նկարագրություն</label>
+              <label for="dtab-spec" class="tab-btn dtab-btn-spec">Բնութագիր</label>
+              <label for="dtab-ship" class="tab-btn dtab-btn-ship">Առաքում և վճարում</label>
+            </div>
+
+            <div class="tab-content-area">
+              <!-- Pane 1: Description -->
+              <div id="pane-desc" class="detail-tab-pane">
+                <p class="desc-text">
+                  Բացառիկ պահպանվածությամբ շվեյցարական գրպանի ժամացույց: Պատրաստված է 875 հարգի արծաթից, մեխանիկական լարով, աշխատող վիճակում: Իդեալական նմուշ հավաքորդների համար:
+                </p>
+                <div class="provenance-card">
+                  <h4>Ծագում և պատմություն</h4>
+                  <p class="provenance-text">Մասնավոր հավաքածու, Ժնև, Շվեյցարիա (1910 թ.): 100% բնօրինակ մասեր, երբևէ չի ենթարկվել ոչ գործարանային միջամտության: Պատմական իսկության փաստաթուղթը տրամադրվում է:</p>
+                </div>
+              </div>
+
+              <!-- Pane 2: Specs -->
+              <div id="pane-spec" class="detail-tab-pane">
+                <table class="spec-table">
+                  <tr><td>Լոտի համար</td><td>#128</td></tr>
+                  <tr><td>Կատեգորիա</td><td>Ժամացույցներ (Watches)</td></tr>
+                  <tr><td>Արտադրող / Դպրոց</td><td>Patek Philippe &amp; Co., Ժնև, Շվեյցարիա</td></tr>
+                  <tr><td>Տարեթիվ</td><td>1910 թ.</td></tr>
+                  <tr><td>Կորպուսի նյութ</td><td>875 հարգի արծաթ (0.875 Silver)</td></tr>
+                  <tr><td>Չափսեր / Քաշ</td><td>52 մմ տրամագիծ, 85 գրամ</td></tr>
+                  <tr><td>Լարման մեխանիզմ</td><td>Մեխանիկական, 18 քարով (18 Jewels)</td></tr>
+                  <tr><td>Պահպանվածություն</td><td>Գերազանց (Բնօրինակ, աշխատող)</td></tr>
+                  <tr><td>Վերապահված գին (Reserve)</td><td>Բավարարված է ✓</td></tr>
+                </table>
+              </div>
+
+              <!-- Pane 3: Shipping & Payment -->
+              <div id="pane-ship" class="detail-tab-pane">
+                <div class="shipping-info-grid">
+                  <div class="shipping-box">
+                    <div class="shipping-box-title">📦 Առաքման պայմաններ</div>
+                    <div class="shipping-box-desc">Անվճար ապահովագրված առաքում Երևանի տարածքում 24 ժամում: ՀՀ մարզեր և Արցախ՝ 1-2 աշխատանքային օր:</div>
+                  </div>
+                  <div class="shipping-box">
+                    <div class="shipping-box-title">🛡️ Իսկության երաշխիք</div>
+                    <div class="shipping-box-desc">Ամեն լոտ անցնում է Gavel-ի անկախ հավաստագրում: Կեղծիքի դեպքում՝ 100% գումարի վերադարձ:</div>
+                  </div>
+                  <div class="shipping-box">
+                    <div class="shipping-box-title">💳 Վճարման եղանակներ</div>
+                    <div class="shipping-box-desc">Բանկային քարտեր (ArCa, Visa, Mastercard), Idram, Telcell, ինչպես նաև անկանխիկ փոխանցում:</div>
+                  </div>
+                  <div class="shipping-box">
+                    <div class="shipping-box-title">🔒 Escrow ապահով գործարք</div>
+                    <div class="shipping-box-desc">Վճարված գումարը պահվում է հարթակում և վաճառողին է փոխանցվում միայն ձեր հաստատումից հետո:</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- Right: Bidding Card -->
         <div>
           <div class="bid-card">
             <div class="bid-card-head">
-              <span class="chip live">🔴 Ուղիղ եթեր (Copart Live)</span>
-              <span class="bid-card-lot-id">Լոտ <b>#405</b></span>
+              <span class="chip live">Ուղիղ եթերում</span>
+              <span class="bid-card-lot-id">Լոտ <b>#128</b></span>
             </div>
 
-            <h1 class="bid-card-title">2021 Porsche 911 Carrera 4S</h1>
-            <p class="bid-card-subtitle">AWD · 18,420 mi · Run &amp; Drive · Clean Title</p>
+            <h1 class="bid-card-title">Հին ժամացույց</h1>
+            <p class="bid-card-subtitle">Արծաթե գրպանի ժամացույց, 1910 թ., Շվեյցարիա</p>
 
             <!-- Price and Timer block -->
             <div class="bid-price-box">
               <div class="bid-price-row">
                 <div>
-                  <small class="bid-price-lbl">Ընթացիկ առավելագույն հայտ</small>
-                  <div class="big-price">$48,500</div>
+                  <small class="bid-price-lbl">Ընթացիկ առավելագույն գին</small>
+                  <div class="big-price">$1,250</div>
                 </div>
                 <div class="bid-timer-col">
-                  <small class="bid-price-lbl">Մուրճի հետհաշվարկ</small>
-                  <div class="tm bid-timer-val">00:14 վրկ</div>
+                  <small class="bid-price-lbl">Մնացել է</small>
+                  <div class="tm bid-timer-val">02:41:08</div>
                 </div>
               </div>
 
               <div class="bid-price-meta">
-                <span>Հաջորդ պարտադիր քայլը՝ <b>$49,000</b></span>
-                <span>Առցանց մասնակիցներ՝ <b>48</b></span>
+                <span>Մեկնարկային գին՝ <b>$800</b></span>
+                <span>Հայտերի քանակ՝ <b>14</b></span>
               </div>
             </div>
 
             <!-- Bidding Action Form -->
-            <div>
+            <form action="place-bid.html" method="get">
               <div class="form-group">
                 <label class="form-label">Առաջարկվող նվազագույն քայլեր</label>
                 <div class="quick-bids">
-                  <button type="button" class="quick-btn">+$500</button>
-                  <button type="button" class="quick-btn">+$1,000</button>
-                  <button type="button" class="quick-btn">+$2,500</button>
+                  <button type="submit" name="quick_bid" value="1300" class="quick-btn" title="Առաջարկել $1,300">+$50 ($1,300)</button>
+                  <button type="submit" name="quick_bid" value="1350" class="quick-btn" title="Առաջարկել $1,350">+$100 ($1,350)</button>
+                  <button type="submit" name="quick_bid" value="1500" class="quick-btn" title="Առաջարկել $1,500">+$250 ($1,500)</button>
                 </div>
               </div>
 
               <div class="form-group">
-                <label class="form-label">Հաջորդ առաջարկը ($)</label>
+                <label class="form-label">Ձեր գնային առաջարկը ($)</label>
                 <div class="bid-input-group">
-                  <input type="number" class="form-input bid-input-field" value="49000" min="49000" step="500">
-                  <a href="place-bid.html" class="btn pri bid-submit-btn">Առաջարկել</a>
+                  <input type="number" name="bid" class="form-input bid-input-field" value="1300" min="1300" step="50">
+                  <button type="submit" class="btn pri bid-submit-btn">Առաջարկել</button>
                 </div>
-                <small class="form-hint">Նվազագույն թույլատրելի գին՝ $49,000 (քայլը՝ +$500)</small>
+                <small class="form-hint">Նվազագույն թույլատրելի գին՝ $1,300 (քայլը՝ +$50)</small>
               </div>
 
-              <a href="place-bid.html" class="btn pri lg full">⚡ Միանալ Copart Live աճուրդին</a>
-            </div>
+              <a href="place-bid.html" class="btn pri lg full">⚡ Միանալ ուղիղ աճուրդին</a>
+            </form>
 
             <!-- Seller Info -->
             <div class="seller-box">
-              <div class="user-avatar seller-avatar-big">G</div>
+              <div class="user-avatar seller-avatar-big">Ա</div>
               <div class="seller-meta-col">
-                <div class="seller-name">Gavel Auto Auction</div>
-                <div class="seller-rating-txt">Պաշտոնական ավտոդիլեր · 5.0 ★</div>
+                <div class="seller-name">Արմեն Սարգսյան</div>
+                <div class="seller-rating-txt">Վաճառող · 4.9 ★ (12 լոտ)</div>
               </div>
               <a href="place-bid.html" class="btn sm">Կապ</a>
             </div>
@@ -170,30 +226,8 @@
               </div>
               <div class="bid-history-list">
                 <div class="bid-history-row highlight">
-                  <span>Գնորդ #8412 (Երևան, AM)</span>
-                  <b>$48,500</b>
-                </div>
-                <div class="bid-history-row">
-                  <span>Գնորդ #2104 (Գլենդել, US)</span>
-                  <span>$48,000</span>
-                </div>
-                <div class="bid-history-row">
-                  <span>Գնորդ #1198 (Գյումրի, AM)</span>
-                  <span>$47,500</span>
-                </div>
-                <div class="bid-history-row">
-                  <span>Գնորդ #552 (Թբիլիսի, GE)</span>
-                  <span>$47,000</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-              <div class="bid-history-list">
-                <div class="bid-history-row is-me">
                   <div>
-                    <b>Գարիկ Հ.</b> <small class="bid-me-tag">(Դուք)</small>
+                    <b>Գարիկ Հ.</b> <small class="bid-me-tag">(Դուք · Առաջատար)</small>
                     <small class="bid-time-tag">2 րոպե առաջ</small>
                   </div>
                   <div class="bid-amount-tag">$1,250</div>
@@ -214,7 +248,6 @@
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </div>

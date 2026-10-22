@@ -57,95 +57,104 @@
       </div>
 
       <div class="catalog-layout">
-        <!-- Sidebar Filters -->
+        <!-- Sidebar Filters Form -->
         <aside class="filters-card">
-          <div class="filters-header">
-            <h3>Զտիչներ</h3>
-            <a href="auctions.html" class="btn sm clear-btn">Մաքրել</a>
-          </div>
+          <form action="auctions.html" method="get">
+            <div class="filters-header">
+              <h3>Զտիչներ</h3>
+              <a href="auctions.html" class="btn sm clear-btn">Մաքրել</a>
+            </div>
 
-          <!-- Status Filter -->
-          <div class="filter-sec">
-            <div class="filter-title">Կարգավիճակ</div>
-            <label class="ck-item">
-              <span><input type="radio" name="f-status" value="all" checked> Բոլորը</span>
-              <small>15</small>
-            </label>
-            <label class="ck-item">
-              <span><input type="radio" name="f-status" value="live"> Ուղիղ (Live)</span>
-              <small>9</small>
-            </label>
-            <label class="ck-item">
-              <span><input type="radio" name="f-status" value="soon"> Շուտով ավարտվող</span>
-              <small>3</small>
-            </label>
-            <label class="ck-item">
-              <span><input type="radio" name="f-status" value="end"> Ավարտված</span>
-              <small>3</small>
-            </label>
-          </div>
-
-          <!-- Categories Filter -->
-          <div class="filter-sec">
-            <div class="filter-title">Կատեգորիաներ</div>
-            <div>
+            <!-- Status Filter -->
+            <div class="filter-sec">
+              <div class="filter-title">Կարգավիճակ</div>
               <label class="ck-item">
-                <span><input type="checkbox" checked> 🚗 Ավտոմեքենաներ</span>
-                <small>2</small>
+                <span><input type="radio" name="f-status" value="all" checked> Բոլորը</span>
+                <small>15</small>
               </label>
               <label class="ck-item">
-                <span><input type="checkbox" checked> Ժամացույցներ</span>
+                <span><input type="radio" name="f-status" value="live"> Ուղիղ (Live)</span>
+                <small>9</small>
+              </label>
+              <label class="ck-item">
+                <span><input type="radio" name="f-status" value="soon"> Շուտով ավարտվող</span>
                 <small>3</small>
               </label>
               <label class="ck-item">
-                <span><input type="checkbox" checked> Արվեստ</span>
-                <small>4</small>
-              </label>
-              <label class="ck-item">
-                <span><input type="checkbox" checked> Գորգեր</span>
-                <small>2</small>
-              </label>
-              <label class="ck-item">
-                <span><input type="checkbox" checked> Կերամիկա</span>
-                <small>2</small>
-              </label>
-              <label class="ck-item">
-                <span><input type="checkbox" checked> Կահույք</span>
-                <small>1</small>
-              </label>
-              <label class="ck-item">
-                <span><input type="checkbox" checked> Գրքեր</span>
-                <small>1</small>
-              </label>
-              <label class="ck-item">
-                <span><input type="checkbox" checked> Զարդեր</span>
-                <small>1</small>
-              </label>
-              <label class="ck-item">
-                <span><input type="checkbox" checked> Հավաքածուներ</span>
-                <small>1</small>
+                <span><input type="radio" name="f-status" value="end"> Ավարտված</span>
+                <small>3</small>
               </label>
             </div>
-          </div>
 
-          <!-- Price Filter -->
-          <div class="filter-sec">
-            <div class="filter-title">Գնային միջակայք ($)</div>
-            <div class="price-range-inputs">
-              <input type="number" class="form-input price-input-field" placeholder="Սկսած">
-              <span>—</span>
-              <input type="number" class="form-input price-input-field" placeholder="Մինչև">
+            <!-- Categories Filter -->
+            <div class="filter-sec">
+              <div class="filter-title">Կատեգորիաներ</div>
+              <div>
+                <label class="ck-item">
+                  <span><input type="checkbox" name="cat_auto" value="1" checked> 🚗 Ավտոմեքենաներ</span>
+                  <small>2</small>
+                </label>
+                <label class="ck-item">
+                  <span><input type="checkbox" name="cat_watches" value="1" checked> Ժամացույցներ</span>
+                  <small>3</small>
+                </label>
+                <label class="ck-item">
+                  <span><input type="checkbox" name="cat_art" value="1" checked> Արվեստ</span>
+                  <small>4</small>
+                </label>
+                <label class="ck-item">
+                  <span><input type="checkbox" name="cat_rugs" value="1" checked> Գորգեր</span>
+                  <small>2</small>
+                </label>
+                <label class="ck-item">
+                  <span><input type="checkbox" name="cat_ceramics" value="1" checked> Կերամիկա</span>
+                  <small>2</small>
+                </label>
+                <label class="ck-item">
+                  <span><input type="checkbox" name="cat_furniture" value="1" checked> Կահույք</span>
+                  <small>1</small>
+                </label>
+                <label class="ck-item">
+                  <span><input type="checkbox" name="cat_books" value="1" checked> Գրքեր</span>
+                  <small>1</small>
+                </label>
+                <label class="ck-item">
+                  <span><input type="checkbox" name="cat_jewelry" value="1" checked> Զարդեր</span>
+                  <small>1</small>
+                </label>
+                <label class="ck-item">
+                  <span><input type="checkbox" name="cat_collections" value="1" checked> Հավաքածուներ</span>
+                  <small>1</small>
+                </label>
+              </div>
             </div>
-          </div>
+
+            <!-- Price Filter -->
+            <div class="filter-sec">
+              <div class="filter-title">Գնային միջակայք ($)</div>
+              <div class="price-range-inputs">
+                <input type="number" name="min_price" class="form-input price-input-field" placeholder="Սկսած">
+                <span>—</span>
+                <input type="number" name="max_price" class="form-input price-input-field" placeholder="Մինչև">
+              </div>
+            </div>
+
+            <button type="submit" class="btn pri sm full filter-apply-btn">Կիրառել զտիչները</button>
+          </form>
         </aside>
 
         <!-- Catalog Area -->
         <section>
+          <!-- Pure CSS Grid / List View Radios -->
+          <input type="radio" name="catalog-view" id="cview-grid" class="catalog-view-radio" checked>
+          <input type="radio" name="catalog-view" id="cview-list" class="catalog-view-radio">
+
           <div class="catalog-top">
-            <div class="search-box">
+            <form action="auctions.html" method="get" class="search-box">
               <span class="search-icon">🔍</span>
-              <input type="text" class="form-input search-input-inner" placeholder="Փնտրել ըստ անվանման...">
-            </div>
+              <input type="text" name="q" class="form-input search-input-inner" placeholder="Փնտրել ըստ անվանման...">
+              <button type="submit" class="btn sm pri search-submit-btn">Որոնել</button>
+            </form>
 
             <div class="catalog-right-controls">
               <span class="catalog-counter">Գտնվել է <b>15</b> լոտ</span>
@@ -156,13 +165,13 @@
                 <option value="bids">Հայտերի քանակով</option>
               </select>
               <div class="view-toggle">
-                <button type="button" class="view-btn active" title="Ցանց">⊞</button>
-                <button type="button" class="view-btn" title="Ցուցակ">☰</button>
+                <label for="cview-grid" class="view-btn view-btn-grid" title="Ցանց (Grid)">⊞</label>
+                <label for="cview-list" class="view-btn view-btn-list" title="Ցուցակ (List)">☰</label>
               </div>
             </div>
           </div>
 
-          <div class="grid grid-3">
+          <div class="grid grid-3 lot-items-grid">
             <!-- Car Lot 1: Copart Live Feature -->
             <article class="card lot">
               <div class="im"><img src="images/car-front.jpg" alt="2021 Porsche 911 Carrera 4S">

@@ -43,7 +43,7 @@
       </nav>
       <div class="header-actions">
         <a href="profile.html" class="user-menu-btn">
-          <span class="user-avatar">Գ</span>
+          <span class="user-avatar"><img src="images/avatar-user.jpg" alt="Գարիկ Հ."></span>
           <span>Գարիկ Հ.</span>
         </a>
       </div>
@@ -86,17 +86,22 @@
         </div>
       </div>
 
+      <!-- Pure CSS Participations Filter Radios -->
+      <input type="radio" name="part-filter" id="pfilter-all" class="part-filter-radio" checked>
+      <input type="radio" name="part-filter" id="pfilter-lead" class="part-filter-radio">
+      <input type="radio" name="part-filter" id="pfilter-out" class="part-filter-radio">
+
       <!-- Filter Tabs -->
       <div class="part-tabs-bar">
-        <a href="my-participations.html" class="btn sm pri">Բոլորը</a>
-        <a href="my-participations.html" class="btn sm">Առաջատար (Lead)</a>
-        <a href="my-participations.html" class="btn sm">Գերազանցված (Outbid)</a>
+        <label for="pfilter-all" class="btn sm pbtn-all">Բոլորը</label>
+        <label for="pfilter-lead" class="btn sm pbtn-lead">Առաջատար (Lead)</label>
+        <label for="pfilter-out" class="btn sm pbtn-out">Գերազանցված (Outbid)</label>
       </div>
 
       <!-- List of Participations -->
-      <div>
-        <!-- Card 1: Copart Porsche Live Bid -->
-        <div class="part-card">
+      <div class="my-parts-list">
+        <!-- Card 1: Copart Porsche Live Bid (Lead) -->
+        <div class="part-card part-lead">
           <div class="part-thumb"><img src="images/car-front.jpg" alt="2021 Porsche 911 Carrera 4S"></div>
           <div class="part-info">
             <div class="part-status-badge-row">
@@ -125,8 +130,8 @@
           </div>
         </div>
 
-        <!-- Card 2 -->
-        <div class="part-card">
+        <!-- Card 2 (Lead) -->
+        <div class="part-card part-lead">
           <div class="part-thumb t2"><img src="images/lot-carpet.jpg" alt="Ձեռագործ գորգ"></div>
           <div class="part-info">
             <div class="part-status-badge-row">
@@ -155,8 +160,8 @@
           </div>
         </div>
 
-        <!-- Card 3 -->
-        <div class="part-card">
+        <!-- Card 3 (Outbid) -->
+        <div class="part-card part-out">
           <div class="part-thumb t3"><img src="images/lot-samovar.jpg" alt="Արծաթե սամովար"></div>
           <div class="part-info">
             <div class="part-status-badge-row">

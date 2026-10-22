@@ -1,5 +1,6 @@
 /* ==========================================================================
    PAGE: ADD LOT STYLES
+   Interactive Pure CSS Multi-Step Wizard (0 JS files)
    ========================================================================== */
 
 .wizard-box {
@@ -10,7 +11,20 @@
   border-radius: 12px;
   box-shadow: var(--shadow-sm);
   overflow: hidden;
+  position: relative;
 }
+
+/* Hidden Radio Inputs for Pure CSS Step Switching */
+.wizard-tab-radio {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+  margin: 0;
+}
+
+/* Steps Header Navigation */
 .wizard-steps {
   display: flex;
   background: var(--soft);
@@ -18,7 +32,7 @@
 }
 .step-item {
   flex: 1;
-  padding: 14px 12px;
+  padding: 16px 12px;
   text-align: center;
   font-size: 13px;
   font-weight: 600;
@@ -27,39 +41,90 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 8px;
+  cursor: pointer;
+  transition: var(--trans);
+  user-select: none;
+  text-decoration: none;
 }
-.step-item.active {
-  color: var(--b);
-  border-bottom-color: var(--b);
-  background: #fff;
+.step-item:hover {
+  color: var(--ink);
+  background: rgba(139, 90, 43, 0.05);
 }
+
 .step-badge {
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   background: var(--line);
   color: var(--ink);
-  font-size: 11px;
+  font-size: 12px;
+  font-weight: 700;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  transition: var(--trans);
 }
-.step-item.active .step-badge {
+
+/* Active Step Highlight (Pure CSS) */
+#wstep-1:checked ~ .wizard-steps .step-nav-1,
+#wstep-2:checked ~ .wizard-steps .step-nav-2,
+#wstep-3:checked ~ .wizard-steps .step-nav-3,
+#wstep-4:checked ~ .wizard-steps .step-nav-4 {
+  color: var(--b);
+  border-bottom-color: var(--b);
+  background: #fff;
+  font-weight: 700;
+}
+#wstep-1:checked ~ .wizard-steps .step-nav-1 .step-badge,
+#wstep-2:checked ~ .wizard-steps .step-nav-2 .step-badge,
+#wstep-3:checked ~ .wizard-steps .step-nav-3 .step-badge,
+#wstep-4:checked ~ .wizard-steps .step-nav-4 .step-badge {
   background: var(--b);
   color: #fff;
 }
+
+/* Wizard Form Body */
 .wizard-body {
-  padding: 32px 28px;
+  padding: 32px 30px;
 }
+
+/* Step Panes: Hide inactive, display active */
+.wizard-pane {
+  display: none;
+  animation: wizardPaneFade 0.25s ease-in-out;
+}
+@keyframes wizardPaneFade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Show only the active pane */
+#wstep-1:checked ~ .wizard-body .wizard-pane-1,
+#wstep-2:checked ~ .wizard-body .wizard-pane-2,
+#wstep-3:checked ~ .wizard-body .wizard-pane-3,
+#wstep-4:checked ~ .wizard-body .wizard-pane-4 {
+  display: block;
+}
+
 .wizard-pane-title {
-  font-size: 20px;
-  margin-bottom: 4px;
+  font-size: 22px;
+  margin-bottom: 6px;
+  color: var(--ink);
 }
 .wizard-pane-desc {
-  font-size: 13px;
-  margin-bottom: 20px;
+  font-size: 14px;
+  color: var(--mute);
+  margin-bottom: 24px;
 }
+
+/* Step 2: Photo Dropzone & Previews */
 .dropzone {
   border: 2px dashed var(--line);
   border-radius: 10px;
@@ -68,7 +133,7 @@
   background: var(--soft);
   cursor: pointer;
   transition: var(--trans);
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 .dropzone:hover {
   border-color: var(--b);
@@ -81,22 +146,27 @@
 .dropzone-hint {
   font-size: 12px;
   margin-top: 4px;
+  color: var(--mute);
 }
+
 .photo-previews {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
 }
 .preview-card {
-  height: 90px;
-  border-radius: 6px;
+  height: 110px;
+  border-radius: 8px;
   position: relative;
   display: flex;
   align-items: flex-end;
-  padding: 6px;
+  padding: 8px;
   color: #fff;
   font-size: 11px;
+  font-weight: 600;
   overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
 }
 .preview-card img {
   position: absolute;
@@ -108,24 +178,40 @@
 .preview-card span {
   position: relative;
   z-index: 2;
-  background: rgba(0,0,0,0.65);
-  padding: 2px 6px;
+  background: rgba(0, 0, 0, 0.72);
+  padding: 3px 8px;
   border-radius: 4px;
 }
 .preview-remove-btn {
   position: absolute;
-  top: 4px;
-  right: 4px;
-  background: rgba(0,0,0,0.7);
+  top: 6px;
+  right: 6px;
+  background: rgba(0, 0, 0, 0.7);
   border: none;
   color: #fff;
   border-radius: 50%;
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   cursor: pointer;
-  font-size: 10px;
+  font-size: 11px;
   z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--trans);
+  user-select: none;
 }
+.preview-remove-btn:hover {
+  background: #dc2626;
+}
+.photo-del-cb {
+  display: none;
+}
+.preview-card:has(.photo-del-cb:checked) {
+  display: none;
+}
+
+/* Moderation Note */
 .moderation-note-box {
   background: var(--soft);
   border: 1px solid var(--line);
@@ -136,19 +222,24 @@
 .moderation-note-title {
   font-size: 14px;
   margin-bottom: 6px;
+  color: var(--ink);
 }
 .moderation-note-desc {
   font-size: 13px;
   line-height: 1.5;
+  color: var(--ink-soft);
 }
-.wizard-footer-btns {
+
+/* Step Navigation Footer */
+.wizard-pane-nav {
   display: flex;
   justify-content: space-between;
-  margin-top: 28px;
+  align-items: center;
+  margin-top: 32px;
   padding-top: 20px;
   border-top: 1px solid var(--line);
 }
-.wizard-footer-right {
+.wizard-nav-right {
   margin-left: auto;
   display: flex;
   gap: 12px;

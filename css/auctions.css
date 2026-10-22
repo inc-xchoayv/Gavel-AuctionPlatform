@@ -125,17 +125,67 @@
   overflow: hidden;
   background: #fff;
 }
+.catalog-view-radio {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+  margin: 0;
+}
 .view-btn {
   padding: 6px 12px;
   border: none;
   background: transparent;
   cursor: pointer;
   color: var(--mute);
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--trans);
 }
-.view-btn.active {
-  background: var(--b-l);
-  color: var(--b-d);
+.view-btn:hover {
+  color: var(--ink);
+  background: rgba(139, 90, 43, 0.05);
+}
+#cview-grid:checked ~ .catalog-top .view-btn-grid,
+#cview-list:checked ~ .catalog-top .view-btn-list {
+  background: var(--b);
+  color: #fff;
   font-weight: 700;
+}
+
+/* List Mode Transformation (Pure CSS) */
+#cview-list:checked ~ .lot-items-grid {
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+#cview-list:checked ~ .lot-items-grid .lot-card {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  align-items: stretch;
+}
+#cview-list:checked ~ .lot-items-grid .lot-card .card-img-wrap {
+  height: 100%;
+}
+#cview-list:checked ~ .lot-items-grid .lot-card .card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Search form submit inside search-box */
+.search-box {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.search-submit-btn {
+  white-space: nowrap;
+}
+.filter-apply-btn {
+  margin-top: 14px;
 }
 
 /* Copart Live Pulsing Chip */
