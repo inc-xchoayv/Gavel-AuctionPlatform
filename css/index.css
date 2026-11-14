@@ -336,29 +336,29 @@
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-/* 16s total cycle for 4 slides (4 seconds per slide) */
+/* 12s total cycle for 4 slides (3 seconds per slide) */
 .rcard-1 {
-  animation: autoSlide1 16s infinite;
+  animation: autoSlide1 12s infinite;
 }
 .rcard-2 {
-  animation: autoSlide2 16s infinite;
+  animation: autoSlide2 12s infinite;
 }
 .rcard-3 {
-  animation: autoSlide3 16s infinite;
+  animation: autoSlide3 12s infinite;
 }
 .rcard-4 {
-  animation: autoSlide4 16s infinite;
+  animation: autoSlide4 12s infinite;
 }
 
 @keyframes autoSlide1 {
-  0%, 20% {
+  0%, 21% {
     opacity: 1;
     visibility: visible;
     transform: translateY(0) scale(1);
     pointer-events: auto;
     z-index: 3;
   }
-  24%, 96% {
+  25%, 96% {
     opacity: 0;
     visibility: hidden;
     transform: translateY(-8px) scale(0.98);
@@ -375,21 +375,21 @@
 }
 
 @keyframes autoSlide2 {
-  0%, 20% {
+  0%, 21% {
     opacity: 0;
     visibility: hidden;
     transform: translateY(8px) scale(0.98);
     pointer-events: none;
     z-index: 1;
   }
-  25%, 45% {
+  25%, 46% {
     opacity: 1;
     visibility: visible;
     transform: translateY(0) scale(1);
     pointer-events: auto;
     z-index: 3;
   }
-  49%, 100% {
+  50%, 100% {
     opacity: 0;
     visibility: hidden;
     transform: translateY(-8px) scale(0.98);
@@ -399,21 +399,21 @@
 }
 
 @keyframes autoSlide3 {
-  0%, 45% {
+  0%, 46% {
     opacity: 0;
     visibility: hidden;
     transform: translateY(8px) scale(0.98);
     pointer-events: none;
     z-index: 1;
   }
-  50%, 70% {
+  50%, 71% {
     opacity: 1;
     visibility: visible;
     transform: translateY(0) scale(1);
     pointer-events: auto;
     z-index: 3;
   }
-  74%, 100% {
+  75%, 100% {
     opacity: 0;
     visibility: hidden;
     transform: translateY(-8px) scale(0.98);
@@ -423,21 +423,21 @@
 }
 
 @keyframes autoSlide4 {
-  0%, 70% {
+  0%, 71% {
     opacity: 0;
     visibility: hidden;
     transform: translateY(8px) scale(0.98);
     pointer-events: none;
     z-index: 1;
   }
-  75%, 95% {
+  75%, 96% {
     opacity: 1;
     visibility: visible;
     transform: translateY(0) scale(1);
     pointer-events: auto;
     z-index: 3;
   }
-  99%, 100% {
+  100% {
     opacity: 0;
     visibility: hidden;
     transform: translateY(-8px) scale(0.98);
@@ -450,6 +450,53 @@
 .recommended-carousel:hover .rcard-1,
 .recommended-carousel:hover .rcard-2,
 .recommended-carousel:hover .rcard-3,
-.recommended-carousel:hover .rcard-4 {
+.recommended-carousel:hover .rcard-4,
+.recommended-carousel:hover .rdot-1,
+.recommended-carousel:hover .rdot-2,
+.recommended-carousel:hover .rdot-3,
+.recommended-carousel:hover .rdot-4 {
   animation-play-state: paused;
+}
+
+/* Indicator dots synchronized with 12s cycle (3s per slide) */
+.recommended-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.rec-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.rdot-1 { animation: autoDot1 12s infinite; }
+.rdot-2 { animation: autoDot2 12s infinite; }
+.rdot-3 { animation: autoDot3 12s infinite; }
+.rdot-4 { animation: autoDot4 12s infinite; }
+
+@keyframes autoDot1 {
+  0%, 21% { background: #d19a66; width: 22px; border-radius: 99px; }
+  25%, 100% { background: rgba(255, 255, 255, 0.3); width: 8px; border-radius: 50%; }
+}
+@keyframes autoDot2 {
+  0%, 21% { background: rgba(255, 255, 255, 0.3); width: 8px; border-radius: 50%; }
+  25%, 46% { background: #d19a66; width: 22px; border-radius: 99px; }
+  50%, 100% { background: rgba(255, 255, 255, 0.3); width: 8px; border-radius: 50%; }
+}
+@keyframes autoDot3 {
+  0%, 46% { background: rgba(255, 255, 255, 0.3); width: 8px; border-radius: 50%; }
+  50%, 71% { background: #d19a66; width: 22px; border-radius: 99px; }
+  75%, 100% { background: rgba(255, 255, 255, 0.3); width: 8px; border-radius: 50%; }
+}
+@keyframes autoDot4 {
+  0%, 71% { background: rgba(255, 255, 255, 0.3); width: 8px; border-radius: 50%; }
+  75%, 96% { background: #d19a66; width: 22px; border-radius: 99px; }
+  100% { background: rgba(255, 255, 255, 0.3); width: 8px; border-radius: 50%; }
 }
