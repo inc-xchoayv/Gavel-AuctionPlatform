@@ -18,7 +18,40 @@
       <div class="util-links">
         <a href="add-lot.html" class="util-highlight">+ Ավելացնել լոտ</a>
         <a href="auctions.html">Օգնություն</a>
-        <a href="profile.html">Հայերեն ▾</a>
+        <!-- Pure CSS Interactive Language Switcher -->
+        <div class="lang-dropdown">
+          <input type="radio" name="site-lang" id="lang-hy" class="lang-radio" checked>
+          <input type="radio" name="site-lang" id="lang-en" class="lang-radio">
+          <input type="radio" name="site-lang" id="lang-ru" class="lang-radio">
+
+          <button type="button" class="lang-btn" aria-label="Ընտրել լեզուն">
+            <span class="lang-flag flag-hy">🇦🇲</span>
+            <span class="lang-flag flag-en">🇬🇧</span>
+            <span class="lang-flag flag-ru">🇷🇺</span>
+            <span class="lang-text text-hy">Հայերեն</span>
+            <span class="lang-text text-en">English</span>
+            <span class="lang-text text-ru">Русский</span>
+            <span class="lang-arrow">▾</span>
+          </button>
+
+          <div class="lang-menu" role="menu">
+            <label for="lang-hy" class="lang-item item-hy">
+              <span class="lang-flag">🇦🇲</span>
+              <span class="lang-name">Հայերեն</span>
+              <span class="lang-check">✓</span>
+            </label>
+            <label for="lang-en" class="lang-item item-en">
+              <span class="lang-flag">🇬🇧</span>
+              <span class="lang-name">English</span>
+              <span class="lang-check">✓</span>
+            </label>
+            <label for="lang-ru" class="lang-item item-ru">
+              <span class="lang-flag">🇷🇺</span>
+              <span class="lang-name">Русский</span>
+              <span class="lang-check">✓</span>
+            </label>
+          </div>
+        </div>
       </div>
     </div>
   </div>
