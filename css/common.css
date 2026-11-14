@@ -1490,6 +1490,9 @@ footer a:hover { color: #fff; }
 
 .remind-icon .remind-on {
   display: none;
+  stroke: #fff;
+  fill: none;
+  stroke-width: 2.8;
 }
 
 /* Active / Checked State */
