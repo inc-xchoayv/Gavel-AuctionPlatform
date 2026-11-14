@@ -4,7 +4,7 @@
 
 .seller-kpi-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 16px;
   margin-bottom: 32px;
 }
@@ -19,6 +19,9 @@
 }
 .kpi-card-content.sales-border {
   border-left: 4px solid var(--b);
+}
+.kpi-card-content.remind-border {
+  border-left: 4px solid #b8860b;
 }
 .seller-stat-lbl {
   color: var(--mute);
@@ -38,6 +41,9 @@
 }
 .seller-stat-num.sales {
   color: var(--b);
+}
+.seller-stat-num.remind {
+  color: #b8860b;
 }
 
 .seller-tabs-bar {
@@ -66,11 +72,15 @@
 #lsfilter-all:checked ~ * .lsbtn-all,
 #lsfilter-live:checked ~ * .lsbtn-live,
 #lsfilter-review:checked ~ * .lsbtn-review,
-#lsfilter-ended:checked ~ * .lsbtn-ended {
+#lsfilter-ended:checked ~ * .lsbtn-ended,
+#lsfilter-remind:checked ~ * .lsbtn-remind {
   background: var(--b);
   color: #fff;
   border-color: var(--b);
   font-weight: 700;
+}
+#lsfilter-all:checked ~ .my-lots-list .lot-manage-row {
+  display: flex;
 }
 #lsfilter-live:checked ~ .my-lots-list .lot-manage-row:not(.lot-live) {
   display: none;
@@ -79,6 +89,9 @@
   display: none;
 }
 #lsfilter-ended:checked ~ .my-lots-list .lot-manage-row:not(.lot-ended) {
+  display: none;
+}
+#lsfilter-remind:checked ~ .my-lots-list .lot-manage-row:not(.lot-remind) {
   display: none;
 }
 
@@ -163,6 +176,31 @@
   display: flex;
   gap: 8px;
   margin-left: auto;
+}
+
+/* Pure CSS Remind Cancellation Toggle in My Lots */
+.remind-del-btn {
+  position: relative;
+  display: inline-flex;
+  cursor: pointer;
+  user-select: none;
+}
+.remind-del-cb {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+  margin: 0;
+}
+.remind-del-btn .btn-del-done {
+  display: none;
+}
+.remind-del-cb:checked ~ .btn {
+  display: none;
+}
+.remind-del-cb:checked ~ .btn-del-done {
+  display: inline-flex;
 }
 
 @media (max-width: 900px) {

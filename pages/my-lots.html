@@ -117,6 +117,10 @@
           <small class="seller-stat-lbl">Ընդհանուր վաճառք</small>
           <div class="seller-stat-num sales">$18,450</div>
         </div>
+        <div class="card kpi-card-content remind-border">
+          <small class="seller-stat-lbl">Ակտիվ հիշեցումներ</small>
+          <div class="seller-stat-num remind">3</div>
+        </div>
       </div>
 
       <!-- Pure CSS Status Filter Radios -->
@@ -124,6 +128,7 @@
       <input type="radio" name="lot-status-filter" id="lsfilter-live" class="lot-status-filter-radio">
       <input type="radio" name="lot-status-filter" id="lsfilter-review" class="lot-status-filter-radio">
       <input type="radio" name="lot-status-filter" id="lsfilter-ended" class="lot-status-filter-radio">
+      <input type="radio" name="lot-status-filter" id="lsfilter-remind" class="lot-status-filter-radio">
 
       <!-- Status tabs (Clickable Pure CSS Filters) -->
       <div class="seller-tabs-bar">
@@ -131,10 +136,116 @@
         <label for="lsfilter-live" class="btn sm lsbtn-live">Ուղիղ</label>
         <label for="lsfilter-review" class="btn sm lsbtn-review">Ստուգման մեջ</label>
         <label for="lsfilter-ended" class="btn sm lsbtn-ended">Ավարտված / Վաճառված</label>
+        <label for="lsfilter-remind" class="btn sm lsbtn-remind">🔔 Հիշեցումներ (3)</label>
       </div>
 
       <!-- Lots list -->
       <div class="my-lots-list">
+        <!-- Reminded Lot 1 -->
+        <div class="lot-manage-row lot-remind">
+          <div class="lot-manage-thumb"><img src="../images/car-front.jpg" alt="2021 Porsche 911 Carrera 4S"></div>
+          <div class="lot-manage-info">
+            <div class="lot-manage-status-row">
+              <span class="chip lead">🔔 Հիշեցում՝ 15 րոպե առաջ</span>
+              <small class="lot-manage-id-lbl">Լոտ #405 · Live Arena</small>
+            </div>
+            <h3 class="lot-manage-title"><a href="place-bid.html">2021 Porsche 911 Carrera 4S</a></h3>
+            <p class="lot-manage-desc">3.0L Twin-Turbo (443 hp) · Ծանուցումը սահմանված է SMS-ով և Push-ով</p>
+          </div>
+          <div class="lot-manage-data">
+            <div>
+              <small class="lot-manage-lbl">Ընթացիկ գին</small>
+              <span class="lot-manage-val">$48,500</span>
+            </div>
+            <div>
+              <small class="lot-manage-lbl">Հայտեր</small>
+              <span class="lot-manage-val sm">38</span>
+            </div>
+            <div>
+              <small class="lot-manage-lbl">Մնացել է</small>
+              <span class="tm hot">00:14</span>
+            </div>
+          </div>
+          <div class="lot-manage-actions">
+            <a href="place-bid.html" class="btn pri sm">Մասնակցել</a>
+            <label class="remind-del-btn" title="Չեղարկել հիշեցումը">
+              <input type="checkbox" class="remind-del-cb">
+              <span class="btn sm bad">✕ Չեղարկել</span>
+              <span class="chip btn-del-done">Չեղարկված</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Reminded Lot 2 -->
+        <div class="lot-manage-row lot-remind">
+          <div class="lot-manage-thumb t1"><img src="../images/lot-watch.jpg" alt="Արծաթե գրպանի ժամացույց"></div>
+          <div class="lot-manage-info">
+            <div class="lot-manage-status-row">
+              <span class="chip lead">🔔 Հիշեցում՝ 1 ժամ առաջ</span>
+              <small class="lot-manage-id-lbl">Լոտ #128 · Շվեյցարիա</small>
+            </div>
+            <h3 class="lot-manage-title"><a href="auction-detail.html">Արծաթե գրպանի ժամացույց</a></h3>
+            <p class="lot-manage-desc">875 հարգի արծաթ, 1910 թ. · Ծանուցումը սահմանված է էլ. փոստով</p>
+          </div>
+          <div class="lot-manage-data">
+            <div>
+              <small class="lot-manage-lbl">Ընթացիկ գին</small>
+              <span class="lot-manage-val">$1,250</span>
+            </div>
+            <div>
+              <small class="lot-manage-lbl">Հայտեր</small>
+              <span class="lot-manage-val sm">14</span>
+            </div>
+            <div>
+              <small class="lot-manage-lbl">Մնացել է</small>
+              <span class="tm">02:41:08</span>
+            </div>
+          </div>
+          <div class="lot-manage-actions">
+            <a href="auction-detail.html" class="btn pri sm">Առաջարկել</a>
+            <label class="remind-del-btn" title="Չեղարկել հիշեցումը">
+              <input type="checkbox" class="remind-del-cb">
+              <span class="btn sm bad">✕ Չեղարկել</span>
+              <span class="chip btn-del-done">Չեղարկված</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Reminded Lot 3 -->
+        <div class="lot-manage-row lot-remind">
+          <div class="lot-manage-thumb t4"><img src="../images/lot-samovar.jpg" alt="Արծաթապատ սամովար"></div>
+          <div class="lot-manage-info">
+            <div class="lot-manage-status-row">
+              <span class="chip lead">🔔 Հիշեցում՝ մեկնարկից առաջ</span>
+              <small class="lot-manage-id-lbl">Լոտ #219 · Անտիկվարիատ</small>
+            </div>
+            <h3 class="lot-manage-title"><a href="auction-detail.html">19-րդ դարի արծաթապատ սամովար</a></h3>
+            <p class="lot-manage-desc">Տուլայի արտադրություն, 1882 թ. · Ծանուցումը սահմանված է էլ. փոստով</p>
+          </div>
+          <div class="lot-manage-data">
+            <div>
+              <small class="lot-manage-lbl">Մեկնարկային գին</small>
+              <span class="lot-manage-val">$800</span>
+            </div>
+            <div>
+              <small class="lot-manage-lbl">Կարգավիճակ</small>
+              <span class="lot-manage-lbl">Սպասվող</span>
+            </div>
+            <div>
+              <small class="lot-manage-lbl">Մնացել է</small>
+              <span class="tm">1 օր 4 ժամ</span>
+            </div>
+          </div>
+          <div class="lot-manage-actions">
+            <a href="auction-detail.html" class="btn pri sm">Դիտել</a>
+            <label class="remind-del-btn" title="Չեղարկել հիշեցումը">
+              <input type="checkbox" class="remind-del-cb">
+              <span class="btn sm bad">✕ Չեղարկել</span>
+              <span class="chip btn-del-done">Չեղարկված</span>
+            </label>
+          </div>
+        </div>
+
         <!-- Lot 1: Live -->
         <div class="lot-manage-row lot-live">
           <div class="lot-manage-thumb t1"><img src="../images/lot-watch.jpg" alt="Հին ժամացույց"></div>
