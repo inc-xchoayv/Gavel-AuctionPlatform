@@ -318,16 +318,6 @@
   color: #f1e4d6;
 }
 
-.rec-badge {
-  font-size: 11px;
-  background: rgba(209, 154, 102, 0.15);
-  border: 1px solid rgba(209, 154, 102, 0.3);
-  color: #d19a66;
-  padding: 3px 8px;
-  border-radius: 99px;
-  font-weight: 600;
-}
-
 /* Slides container */
 .recommended-slides-wrap {
   position: relative;
@@ -460,77 +450,6 @@
 .recommended-carousel:hover .rcard-1,
 .recommended-carousel:hover .rcard-2,
 .recommended-carousel:hover .rcard-3,
-.recommended-carousel:hover .rcard-4,
-.recommended-carousel:hover .rec-progress-fill,
-.recommended-carousel:hover .rdot-1,
-.recommended-carousel:hover .rdot-2,
-.recommended-carousel:hover .rdot-3,
-.recommended-carousel:hover .rdot-4 {
+.recommended-carousel:hover .rcard-4 {
   animation-play-state: paused;
-}
-
-/* Progress Bar (fills every 4 seconds) */
-.rec-progress-bar {
-  width: 100%;
-  height: 3px;
-  background: rgba(255, 255, 255, 0.12);
-  border-radius: 3px;
-  overflow: hidden;
-  margin-top: 14px;
-  position: relative;
-}
-
-.rec-progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, #d19a66, #f5b041);
-  border-radius: 3px;
-  animation: recProgress 4s linear infinite;
-}
-
-@keyframes recProgress {
-  0% { width: 0%; }
-  100% { width: 100%; }
-}
-
-/* Indicator dots synchronized with 16s cycle */
-.recommended-dots {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  margin-top: 10px;
-}
-
-.rec-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
-  transition: all 0.3s ease;
-  display: inline-block;
-}
-
-.rdot-1 { animation: autoDot1 16s infinite; }
-.rdot-2 { animation: autoDot2 16s infinite; }
-.rdot-3 { animation: autoDot3 16s infinite; }
-.rdot-4 { animation: autoDot4 16s infinite; }
-
-@keyframes autoDot1 {
-  0%, 20% { background: #d19a66; width: 22px; border-radius: 99px; }
-  25%, 100% { background: rgba(255, 255, 255, 0.3); width: 8px; border-radius: 50%; }
-}
-@keyframes autoDot2 {
-  0%, 20% { background: rgba(255, 255, 255, 0.3); width: 8px; border-radius: 50%; }
-  25%, 45% { background: #d19a66; width: 22px; border-radius: 99px; }
-  50%, 100% { background: rgba(255, 255, 255, 0.3); width: 8px; border-radius: 50%; }
-}
-@keyframes autoDot3 {
-  0%, 45% { background: rgba(255, 255, 255, 0.3); width: 8px; border-radius: 50%; }
-  50%, 70% { background: #d19a66; width: 22px; border-radius: 99px; }
-  75%, 100% { background: rgba(255, 255, 255, 0.3); width: 8px; border-radius: 50%; }
-}
-@keyframes autoDot4 {
-  0%, 70% { background: rgba(255, 255, 255, 0.3); width: 8px; border-radius: 50%; }
-  75%, 95% { background: #d19a66; width: 22px; border-radius: 99px; }
-  100% { background: rgba(255, 255, 255, 0.3); width: 8px; border-radius: 50%; }
 }
