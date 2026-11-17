@@ -46,8 +46,8 @@
 
 /* Active Filter Button Style */
 #ufilter-all:checked ~ * .ubtn-all,
-#ufilter-buyers:checked ~ * .ubtn-buyers,
-#ufilter-sellers:checked ~ * .ubtn-sellers {
+#ufilter-users:checked ~ * .ubtn-users,
+#ufilter-admins:checked ~ * .ubtn-admins {
   background: var(--b);
   color: #fff;
   border-color: var(--b);
@@ -55,10 +55,10 @@
 }
 
 /* Filter Table Rows by Role (Pure CSS) */
-#ufilter-buyers:checked ~ .table-card .admin-table tbody tr:not(.role-buyer) {
+#ufilter-users:checked ~ .table-card .admin-table tbody tr:not(.role-user) {
   display: none;
 }
-#ufilter-sellers:checked ~ .table-card .admin-table tbody tr:not(.role-seller) {
+#ufilter-admins:checked ~ .table-card .admin-table tbody tr:not(.role-admin) {
   display: none;
 }
 
@@ -89,4 +89,15 @@ tr:has(.user-block-cb:checked) .btn-block-action {
 tr:has(.user-block-cb:checked) .status-badge-blocked,
 tr:has(.user-block-cb:checked) .btn-unblock-action {
   display: inline-flex;
+}
+
+.role-user-badge {
+  background: rgba(209, 154, 102, 0.15);
+  color: #d19a66;
+  border: 1px solid rgba(209, 154, 102, 0.35);
+}
+.role-admin-badge {
+  background: rgba(46, 213, 115, 0.15);
+  color: #2ed573;
+  border: 1px solid rgba(46, 213, 115, 0.35);
 }
