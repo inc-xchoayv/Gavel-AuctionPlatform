@@ -26,39 +26,7 @@
 .reg-subtitle {
   font-size: 14px;
 }
-.role-selector {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-bottom: 24px;
-}
-.role-option {
-  border: 2px solid var(--line);
-  border-radius: 8px;
-  padding: 14px;
-  text-align: center;
-  cursor: pointer;
-  transition: var(--trans);
-}
-.role-option:hover {
-  border-color: var(--b);
-}
-.role-option.active {
-  border-color: var(--b);
-  background: var(--b-l);
-}
-.role-option input {
-  display: none;
-}
-.role-opt-icon {
-  font-size: 22px;
-  margin-bottom: 4px;
-}
-.role-opt-desc {
-  display: block;
-  color: var(--mute);
-  font-size: 11px;
-}
+
 .reg-terms-row {
   display: flex;
   align-items: flex-start;
