@@ -9,6 +9,9 @@
   <link rel="shortcut icon" href="favicon.ico">
   <link rel="stylesheet" href="css/common.css">
   <link rel="stylesheet" href="css/register.css">
+  <script src="js/auth.js"></script>
+  <script src="js/form-helpers.js" defer></script>
+  <script src="js/register.js" defer></script>
 </head>
 
 <body>
@@ -80,41 +83,41 @@
           <p class="reg-subtitle">Միացեք Հայաստանի գլխավոր աճուրդային հարթակին</p>
         </div>
 
-        <form action="profile.html" method="get">
+        <form id="register-form">
           <div class="grid grid-2">
             <div class="form-group">
               <label class="form-label">Անուն *</label>
-              <input type="text" class="form-input" placeholder="օր.՝ Արման" required>
+              <input type="text" name="firstName" class="form-input" placeholder="օր.՝ Արման" required>
             </div>
             <div class="form-group">
               <label class="form-label">Ազգանուն *</label>
-              <input type="text" class="form-input" placeholder="օր.՝ Հակոբյան" required>
+              <input type="text" name="lastName" class="form-input" placeholder="օր.՝ Հակոբյան" required>
             </div>
           </div>
 
           <div class="form-group">
             <label class="form-label">Էլ. հասցե *</label>
-            <input type="email" class="form-input" placeholder="arman@example.com" required>
+            <input type="email" name="email" class="form-input" placeholder="arman@example.com" autocomplete="email" required>
           </div>
 
           <div class="form-group">
             <label class="form-label">Հեռախոսահամար</label>
-            <input type="tel" class="form-input" placeholder="+374 91 000000">
+            <input type="tel" name="phone" class="form-input" placeholder="+374 91 000000">
           </div>
 
           <div class="grid grid-2">
             <div class="form-group">
               <label class="form-label">Գաղտնաբառ *</label>
-              <input type="password" class="form-input" placeholder="••••••••" required>
+              <input type="password" name="password" class="form-input" placeholder="••••••••" autocomplete="new-password" required>
             </div>
             <div class="form-group">
               <label class="form-label">Կրկնել գաղտնաբառը *</label>
-              <input type="password" class="form-input" placeholder="••••••••" required>
+              <input type="password" name="password2" class="form-input" placeholder="••••••••" autocomplete="new-password" required>
             </div>
           </div>
 
           <label class="reg-terms-row">
-            <input type="checkbox" required checked>
+            <input type="checkbox" name="terms" required>
             <span>Համաձայն եմ Gavel-ի <a href="404.html">օգտագործման կանոններին</a> և գաղտնիության
               քաղաքականությանը:</span>
           </label>

@@ -500,3 +500,136 @@
   75%, 96% { background: #d19a66; width: 22px; border-radius: 99px; }
   100% { background: rgba(255, 255, 255, 0.3); width: 8px; border-radius: 50%; }
 }
+
+/* ==========================================================================
+   JS: CATAWIKI STYLE CATEGORY CARDS (js/categories.js + data/categories.json)
+   Հորիզոնական քարտեր՝ յուրահատուկ պաստելային գույնով և աջ կիսաշրջան նկարով
+   ========================================================================== */
+#category-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 56px;
+}
+
+.cat-card.cat-card-catawiki {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0 16px 16px;
+  min-height: 112px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  text-decoration: none;
+  gap: 8px;
+}
+.cat-card-catawiki:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+}
+
+.cat-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 2;
+  text-align: left;
+}
+.cat-card-catawiki .cat-title {
+  font-family: var(--font-h);
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.3;
+  text-align: left;
+}
+.cat-card-catawiki .cat-count {
+  font-size: 11px;
+  color: rgba(26, 26, 26, 0.7);
+  font-weight: 600;
+  text-align: left;
+}
+
+/* Աջ կողմի կիսաշրջանաձև կտրվածքը */
+.cat-photo-cutout {
+  width: 90px;
+  height: 90px;
+  border-radius: 90px 0 0 90px;
+  background: #ffffff;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: -3px 0 10px rgba(0, 0, 0, 0.08);
+}
+.cat-cutout-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+.cat-card-catawiki:hover .cat-cutout-img {
+  transform: scale(1.1);
+}
+
+.cat-new-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: var(--b);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  z-index: 3;
+}
+.cat-grid-msg {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--mute);
+  padding: 24px 0;
+}
+
+/* 18 Կատեգորիաների պաստելային գույները (Catawiki palette, ZERO inline styles) */
+.cat-theme-archaeology   { background: #D5B892; }
+.cat-theme-art           { background: #B2D28E; }
+.cat-theme-asian-tribal  { background: #6F9EC9; }
+.cat-theme-books         { background: #A0AC85; }
+.cat-theme-classic-cars  { background: #AA9993; }
+.cat-theme-coins-stamps  { background: #D3C9B6; }
+.cat-theme-comics        { background: #8EE5D6; }
+.cat-theme-fashion       { background: #BCC3EB; }
+.cat-theme-interiors     { background: #C5E5FD; }
+.cat-theme-jewellery     { background: #A2B7C8; }
+.cat-theme-music-cameras { background: #E17058; }
+.cat-theme-sports        { background: #F6D264; }
+.cat-theme-toys          { background: #F9B59B; }
+.cat-theme-trading-cards { background: #F7A55A; }
+.cat-theme-watches       { background: #6998C8; }
+.cat-theme-wine          { background: #A36970; }
+.cat-theme-cars          { background: #8297AA; }
+.cat-theme-electronics   { background: #7A84CB; }
+
+@media (max-width: 1100px) {
+  #category-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 800px) {
+  #category-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 480px) {
+  #category-grid {
+    grid-template-columns: 1fr;
+  }
+}

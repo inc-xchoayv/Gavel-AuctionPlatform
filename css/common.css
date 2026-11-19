@@ -1466,3 +1466,69 @@ footer a:hover { color: #fff; }
   display: block;
 }
 
+/* ==========================================================================
+   JS: ROLE-BASED NAV, FORM ERRORS, FLASH TOAST (js/auth.js, js/form-helpers.js)
+   ========================================================================== */
+
+/* Ադմին հղումը՝ ոչ ադմինի համար ամբողջությամբ թաքցված */
+.is-hidden {
+  display: none !important;
+}
+
+/* Հյուրի համար՝ երևում է, բայց չի սեղմվում */
+.nav-link.is-locked {
+  color: var(--mute);
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.nav-link.is-locked:hover {
+  background: transparent;
+  color: var(--mute);
+}
+.nav-link.is-locked::before {
+  content: "🔒 ";
+  font-size: 11px;
+}
+
+/* Ֆորմայի սխալներ */
+.form-input.is-invalid {
+  border-color: var(--bad);
+  box-shadow: 0 0 0 3px rgba(160, 82, 45, 0.12);
+}
+.form-error {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--bad);
+}
+.form-alert {
+  margin-bottom: 16px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--bad);
+  background: rgba(160, 82, 45, 0.08);
+  color: var(--bad);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Մեկանգամյա հաղորդագրություն էջի վերևում */
+.flash-toast {
+  position: fixed;
+  top: 84px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10000;
+  padding: 12px 20px;
+  border-radius: 10px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: var(--shadow-lg);
+  transition: opacity 0.4s ease;
+}
+.flash-toast.is-hiding {
+  opacity: 0;
+}

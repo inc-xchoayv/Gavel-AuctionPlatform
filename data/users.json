@@ -1,0 +1,9 @@
+[
+  { "id": 1, "firstName": "Գարիկ",  "lastName": "Հարությունյան", "email": "garik@example.com",          "password": "garik123",  "phone": "+374 91 111111", "role": "user",  "status": "active",  "avatar": "images/avatar-user.jpg", "registeredAt": "2026-01-14" },
+  { "id": 2, "firstName": "Արմեն",  "lastName": "Սարգսյան",      "email": "armen.sargsyan@example.com", "password": "armen123",  "phone": "+374 93 222222", "role": "user",  "status": "active",  "avatar": null,                     "registeredAt": "2026-02-03" },
+  { "id": 3, "firstName": "Աննա",   "lastName": "Գրիգորյան",     "email": "anna@example.com",           "password": "anna1234",  "phone": "+374 94 333333", "role": "user",  "status": "active",  "avatar": null,                     "registeredAt": "2026-03-21" },
+  { "id": 4, "firstName": "Կարեն",  "lastName": "Մկրտչյան",      "email": "karen@example.com",          "password": "karen123",  "phone": "+374 95 444444", "role": "user",  "status": "active",  "avatar": null,                     "registeredAt": "2026-04-09" },
+  { "id": 5, "firstName": "Դավիթ",  "lastName": "Սահակյան",      "email": "davit@example.com",          "password": "davit123",  "phone": "+374 96 555555", "role": "user",  "status": "active",  "avatar": null,                     "registeredAt": "2026-05-17" },
+  { "id": 6, "firstName": "Մարիամ", "lastName": "Պետրոսյան",     "email": "mariam@example.com",         "password": "mariam123", "phone": "+374 97 666666", "role": "user",  "status": "blocked", "avatar": null,                     "registeredAt": "2026-06-30" },
+  { "id": 7, "firstName": "Gavel",  "lastName": "Admin",         "email": "admin@gavel.am",             "password": "admin123",  "phone": "+374 10 000000", "role": "admin", "status": "active",  "avatar": null,                     "registeredAt": "2025-12-01" }
+]
