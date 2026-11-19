@@ -8,6 +8,8 @@
   <link rel="shortcut icon" href="favicon.ico">
   <link rel="stylesheet" href="css/common.css">
   <link rel="stylesheet" href="css/index.css">
+  <script src="js/auth.js"></script>
+  <script src="js/categories.js" defer></script>
 </head>
 <body>
 
@@ -192,53 +194,10 @@
         <a href="auctions.html" class="btn sm">Բոլոր կատեգորիաները →</a>
       </div>
 
-      <div class="cat-grid">
-        <a href="auctions.html" class="cat-card">
-          <div class="cat-icon">🚗</div>
-          <div class="cat-title">Ավտոմեքենաներ</div>
-          <div class="cat-count">2 ակտիվ լոտ</div>
-        </a>
-        <a href="auctions.html" class="cat-card">
-          <div class="cat-icon">⏱️</div>
-          <div class="cat-title">Ժամացույցներ</div>
-          <div class="cat-count">12 ակտիվ լոտ</div>
-        </a>
-        <a href="auctions.html" class="cat-card">
-          <div class="cat-icon">🎨</div>
-          <div class="cat-title">Արվեստ</div>
-          <div class="cat-count">24 ակտիվ լոտ</div>
-        </a>
-        <a href="auctions.html" class="cat-card">
-          <div class="cat-icon">🧶</div>
-          <div class="cat-title">Գորգեր</div>
-          <div class="cat-count">8 ակտիվ լոտ</div>
-        </a>
-        <a href="auctions.html" class="cat-card">
-          <div class="cat-icon">🏺</div>
-          <div class="cat-title">Կերամիկա</div>
-          <div class="cat-count">15 ակտիվ լոտ</div>
-        </a>
-        <a href="auctions.html" class="cat-card">
-          <div class="cat-icon">🪑</div>
-          <div class="cat-title">Կահույք</div>
-          <div class="cat-count">6 ակտիվ լոտ</div>
-        </a>
-        <a href="auctions.html" class="cat-card">
-          <div class="cat-icon">📚</div>
-          <div class="cat-title">Գրքեր</div>
-          <div class="cat-count">11 ակտիվ լոտ</div>
-        </a>
-        <a href="auctions.html" class="cat-card">
-          <div class="cat-icon">💍</div>
-          <div class="cat-title">Զարդեր</div>
-          <div class="cat-count">19 ակտիվ լոտ</div>
-        </a>
-        <a href="auctions.html" class="cat-card">
-          <div class="cat-icon">🪙</div>
-          <div class="cat-title">Հավաքածուներ</div>
-          <div class="cat-count">14 ակտիվ լոտ</div>
-        </a>
+      <div class="cat-grid" id="category-grid">
+        <p class="cat-grid-msg">Կատեգորիաները բեռնվում են...</p>
       </div>
+
 
       <!-- Ending Soon Lots -->
       <div class="section-head">
