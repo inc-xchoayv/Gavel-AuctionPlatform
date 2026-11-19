@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="hy">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,29 +10,43 @@
   <link rel="stylesheet" href="css/common.css">
   <link rel="stylesheet" href="css/auctions.css">
 </head>
+
 <body>
 
-  <!-- Utility Bar -->
-  <div class="util">
+  <!-- Header -->
+  <header>
     <div class="w">
-      <div><span>Հայաստանի առաջատար առցանց աճուրդների հարթակ</span></div>
-      <div class="util-links">
-        <a href="login.html" class="util-highlight">Վաճառել Gavel-ում</a>
-        <a href="auctions.html">Օգնություն</a>
-        <!-- Pure CSS Interactive Language Switcher -->
+      <a class="logo" href="index.html">
+        <img src="images/logo.png" alt="Gavel Logo">
+      </a>
+      <form class="srch" action="auctions.html" method="get">
+        <svg viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="7" />
+          <path d="M20 20l-4-4" />
+        </svg>
+        <input type="search" name="q" placeholder="Որոնել Gavel-ում..." aria-label="Որոնել">
+      </form>
+      <nav>
+        <a class="nav-link" href="index.html">Գլխավոր</a>
+        <a class="nav-link active" href="auctions.html">Աճուրդներ</a>
+        <a class="nav-link" href="my-participations.html">Իմ մասնակցությունները</a>
+        <a class="nav-link" href="my-lots.html">Իմ լոտերը</a>
+        <a class="nav-link" href="profile.html">Անձնական էջ</a>
+        <a class="nav-link" href="admin-dashboard.html">Ադմին</a>
+      </nav>
+      <div class="header-actions">
+        <a href="login.html" class="btn sm">Մուտք</a>
+        <a href="register.html" class="btn sm pri">Գրանցվել</a>
+        <!-- Pure CSS Interactive Language Switcher (Flag Only) -->
         <div class="lang-dropdown">
           <input type="radio" name="site-lang" id="lang-hy" class="lang-radio" checked>
           <input type="radio" name="site-lang" id="lang-en" class="lang-radio">
           <input type="radio" name="site-lang" id="lang-ru" class="lang-radio">
 
-          <button type="button" class="lang-btn" aria-label="Ընտրել լեզուն">
+          <button type="button" class="lang-btn" aria-label="Ընտրել լեզուն" title="Լեզու / Language">
             <span class="lang-flag flag-hy">🇦🇲</span>
             <span class="lang-flag flag-en">🇬🇧</span>
             <span class="lang-flag flag-ru">🇷🇺</span>
-            <span class="lang-text text-hy">Հայերեն</span>
-            <span class="lang-text text-en">English</span>
-            <span class="lang-text text-ru">Русский</span>
-            <span class="lang-arrow">▾</span>
           </button>
 
           <div class="lang-menu" role="menu">
@@ -52,31 +67,7 @@
             </label>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Header -->
-  <header>
-    <div class="w">
-      <a class="logo" href="index.html">
-        <img src="images/logo.png" alt="Gavel Logo">
-      </a>
-      <form class="srch" action="auctions.html" method="get">
-        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
-        <input type="search" name="q" placeholder="Որոնել Gavel-ում..." aria-label="Որոնել">
-      </form>
-      <nav>
-        <a class="nav-link" href="index.html">Գլխավոր</a>
-        <a class="nav-link active" href="auctions.html">Աճուրդներ</a>
-        <a class="nav-link" href="my-participations.html">Իմ մասնակցությունները</a>
-        <a class="nav-link" href="my-lots.html">Իմ լոտերը</a>
-        <a class="nav-link" href="profile.html">Անձնական էջ</a>
-        <a class="nav-link" href="admin-dashboard.html">Ադմին</a>
-      </nav>
-      <div class="header-actions">
-        <a href="login.html" class="btn sm">Մուտք</a>
-        <a href="register.html" class="btn sm pri">Գրանցվել</a>
+      
       </div>
     </div>
   </header>
@@ -124,7 +115,7 @@
               <div class="filter-title">Կատեգորիաներ</div>
               <div>
                 <label class="ck-item">
-                  <span><input type="checkbox" name="cat_auto" value="1" checked> 🚗 Ավտոմեքենաներ</span>
+                  <span><input type="checkbox" name="cat_auto" value="1" checked> Ավտոմեքենաներ</span>
                   <small>2</small>
                 </label>
                 <label class="ck-item">
@@ -212,8 +203,13 @@
                 <label class="remind-btn">
                   <input type="checkbox" class="remind-cb" checked>
                   <span class="remind-icon">
-                    <svg class="remind-off" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15 15"></polyline></svg>
-                    <svg class="remind-on" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <svg class="remind-off" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="9"></circle>
+                      <polyline points="12 7 12 12 15 15"></polyline>
+                    </svg>
+                    <svg class="remind-on" viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
                   </span>
                 </label>
               </div>
@@ -244,8 +240,13 @@
                 <label class="remind-btn">
                   <input type="checkbox" class="remind-cb">
                   <span class="remind-icon">
-                    <svg class="remind-off" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15 15"></polyline></svg>
-                    <svg class="remind-on" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <svg class="remind-off" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="9"></circle>
+                      <polyline points="12 7 12 12 15 15"></polyline>
+                    </svg>
+                    <svg class="remind-on" viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
                   </span>
                 </label>
               </div>
@@ -276,8 +277,13 @@
                 <label class="remind-btn">
                   <input type="checkbox" class="remind-cb" checked>
                   <span class="remind-icon">
-                    <svg class="remind-off" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15 15"></polyline></svg>
-                    <svg class="remind-on" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <svg class="remind-off" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="9"></circle>
+                      <polyline points="12 7 12 12 15 15"></polyline>
+                    </svg>
+                    <svg class="remind-on" viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
                   </span>
                 </label>
               </div>
@@ -308,8 +314,13 @@
                 <label class="remind-btn">
                   <input type="checkbox" class="remind-cb">
                   <span class="remind-icon">
-                    <svg class="remind-off" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15 15"></polyline></svg>
-                    <svg class="remind-on" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <svg class="remind-off" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="9"></circle>
+                      <polyline points="12 7 12 12 15 15"></polyline>
+                    </svg>
+                    <svg class="remind-on" viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
                   </span>
                 </label>
               </div>
@@ -340,8 +351,13 @@
                 <label class="remind-btn">
                   <input type="checkbox" class="remind-cb" checked>
                   <span class="remind-icon">
-                    <svg class="remind-off" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15 15"></polyline></svg>
-                    <svg class="remind-on" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <svg class="remind-off" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="9"></circle>
+                      <polyline points="12 7 12 12 15 15"></polyline>
+                    </svg>
+                    <svg class="remind-on" viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
                   </span>
                 </label>
               </div>
@@ -372,8 +388,13 @@
                 <label class="remind-btn">
                   <input type="checkbox" class="remind-cb">
                   <span class="remind-icon">
-                    <svg class="remind-off" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15 15"></polyline></svg>
-                    <svg class="remind-on" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <svg class="remind-off" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="9"></circle>
+                      <polyline points="12 7 12 12 15 15"></polyline>
+                    </svg>
+                    <svg class="remind-on" viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
                   </span>
                 </label>
               </div>
@@ -404,8 +425,13 @@
                 <label class="remind-btn">
                   <input type="checkbox" class="remind-cb">
                   <span class="remind-icon">
-                    <svg class="remind-off" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15 15"></polyline></svg>
-                    <svg class="remind-on" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <svg class="remind-off" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="9"></circle>
+                      <polyline points="12 7 12 12 15 15"></polyline>
+                    </svg>
+                    <svg class="remind-on" viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
                   </span>
                 </label>
               </div>
@@ -436,8 +462,13 @@
                 <label class="remind-btn">
                   <input type="checkbox" class="remind-cb">
                   <span class="remind-icon">
-                    <svg class="remind-off" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15 15"></polyline></svg>
-                    <svg class="remind-on" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <svg class="remind-off" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="9"></circle>
+                      <polyline points="12 7 12 12 15 15"></polyline>
+                    </svg>
+                    <svg class="remind-on" viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
                   </span>
                 </label>
               </div>
@@ -468,8 +499,13 @@
                 <label class="remind-btn">
                   <input type="checkbox" class="remind-cb">
                   <span class="remind-icon">
-                    <svg class="remind-off" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15 15"></polyline></svg>
-                    <svg class="remind-on" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <svg class="remind-off" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="9"></circle>
+                      <polyline points="12 7 12 12 15 15"></polyline>
+                    </svg>
+                    <svg class="remind-on" viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
                   </span>
                 </label>
               </div>
@@ -500,8 +536,13 @@
                 <label class="remind-btn">
                   <input type="checkbox" class="remind-cb">
                   <span class="remind-icon">
-                    <svg class="remind-off" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15 15"></polyline></svg>
-                    <svg class="remind-on" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <svg class="remind-off" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="9"></circle>
+                      <polyline points="12 7 12 12 15 15"></polyline>
+                    </svg>
+                    <svg class="remind-on" viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
                   </span>
                 </label>
               </div>
@@ -532,8 +573,13 @@
                 <label class="remind-btn">
                   <input type="checkbox" class="remind-cb">
                   <span class="remind-icon">
-                    <svg class="remind-off" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15 15"></polyline></svg>
-                    <svg class="remind-on" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <svg class="remind-off" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="9"></circle>
+                      <polyline points="12 7 12 12 15 15"></polyline>
+                    </svg>
+                    <svg class="remind-on" viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
                   </span>
                 </label>
               </div>
@@ -564,8 +610,13 @@
                 <label class="remind-btn">
                   <input type="checkbox" class="remind-cb">
                   <span class="remind-icon">
-                    <svg class="remind-off" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15 15"></polyline></svg>
-                    <svg class="remind-on" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <svg class="remind-off" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="9"></circle>
+                      <polyline points="12 7 12 12 15 15"></polyline>
+                    </svg>
+                    <svg class="remind-on" viewBox="0 0 24 24">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
                   </span>
                 </label>
               </div>
@@ -648,7 +699,9 @@
     <label for="chat-widget-toggle" class="chat-fab-btn" title="Առցանց օգնական և չաթ">
       <span class="chat-fab-icon chat-fab-open">
         <svg viewBox="0 0 24 24" width="26" height="26">
-          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path
+            d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
         </svg>
       </span>
       <span class="chat-fab-icon chat-fab-close">✕</span>
@@ -697,14 +750,15 @@
             <div class="chat-msg-avatar">🤖</div>
             <div class="chat-msg-bubble">
               <div class="chat-msg-sender">Gavel AI Bot · <small>Ավտոմատ</small></div>
-              <p>Ողջույն, <b>Արմեն</b> 👋 Ես Gavel-ի ինտելեկտուալ օգնականն եմ։ Կարող եմ պատասխանել աճուրդների, հայտերի և կանոնների մասին ձեր բոլոր հարցերին։</p>
+              <p>Ողջույն, <b>Արմեն</b> 👋 Ես Gavel-ի ինտելեկտուալ օգնականն եմ։ Կարող եմ պատասխանել աճուրդների, հայտերի և
+                կանոնների մասին ձեր բոլոր հարցերին։</p>
             </div>
           </div>
 
           <!-- Quick FAQ Prompt Toggles -->
           <div class="chat-faq-section">
             <small class="chat-faq-title">⚡ Հաճախակի տրվող հարցեր՝</small>
-            
+
             <!-- FAQ 1 Toggle -->
             <input type="checkbox" id="faq-toggle-1" class="chat-faq-cb">
             <label for="faq-toggle-1" class="chat-faq-chip">
@@ -712,7 +766,9 @@
               <span class="faq-chip-arrow">▼</span>
             </label>
             <div class="chat-faq-answer">
-              <p>Live աճուրդում յուրաքանչյուր նոր առաջարկից հետո հետհաշվարկը վերականգնվում է մինչև 15 վրկ («Մուրճի հետհաշվարկ»): Եթե 15 վայրկյանում ավելի բարձր գին չի առաջարկվում, լոտը վաճառվում է ամենաբարձր հայտ ներկայացրած մասնակցին։</p>
+              <p>Live աճուրդում յուրաքանչյուր նոր առաջարկից հետո հետհաշվարկը վերականգնվում է մինչև 15 վրկ («Մուրճի
+                հետհաշվարկ»): Եթե 15 վայրկյանում ավելի բարձր գին չի առաջարկվում, լոտը վաճառվում է ամենաբարձր հայտ
+                ներկայացրած մասնակցին։</p>
             </div>
 
             <!-- FAQ 2 Toggle -->
@@ -722,7 +778,8 @@
               <span class="faq-chip-arrow">▼</span>
             </label>
             <div class="chat-faq-answer">
-              <p>Գնորդի միջնորդավճարը կազմում է շահած գումարի 3-5%-ը՝ կախված կատեգորիայից (օր.՝ ավտոմեքենաների համար 3%, հնաոճ իրերի համար 5%):</p>
+              <p>Գնորդի միջնորդավճարը կազմում է շահած գումարի 3-5%-ը՝ կախված կատեգորիայից (օր.՝ ավտոմեքենաների համար 3%,
+                հնաոճ իրերի համար 5%):</p>
             </div>
 
             <!-- FAQ 3 Toggle -->
@@ -732,7 +789,8 @@
               <span class="faq-chip-arrow">▼</span>
             </label>
             <div class="chat-faq-answer">
-              <p>Լոտը շահելուց անմիջապես հետո կողքի <b>«Վաճառող (Լոտ #405)»</b> ներդիրում բացվում է ուղիղ երկխոսություն վաճառողի հետ՝ առաքման և վճարման մանրամասները պայմանավորվելու համար։</p>
+              <p>Լոտը շահելուց անմիջապես հետո կողքի <b>«Վաճառող (Լոտ #405)»</b> ներդիրում բացվում է ուղիղ երկխոսություն
+                վաճառողի հետ՝ առաքման և վճարման մանրամասները պայմանավորվելու համար։</p>
             </div>
           </div>
         </div>
@@ -741,7 +799,10 @@
         <div class="chat-input-bar">
           <input type="text" placeholder="Գրեք ձեր հարցը AI-ին..." class="chat-input-field">
           <button type="button" class="chat-send-btn" title="Ուղարկել">
-            <svg viewBox="0 0 24 24" width="18" height="18"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            <svg viewBox="0 0 24 24" width="18" height="18">
+              <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
           </button>
         </div>
       </div>
@@ -764,7 +825,8 @@
             <div class="chat-msg-avatar seller-av">Դ</div>
             <div class="chat-msg-bubble">
               <div class="chat-msg-sender">Copart Armenia (Դավիթ Ս.)</div>
-              <p>Շնորհավորում ենք աճուրդը շահելու կապակցությամբ։ Լոտի մաքսային փաստաթղթերը և Run &amp; Drive սերտիֆիկատը պատրաստ են։ Ե՞րբ կկարողանաք մոտենալ կենտրոնական ավտոկայան։</p>
+              <p>Շնորհավորում ենք աճուրդը շահելու կապակցությամբ։ Լոտի մաքսային փաստաթղթերը և Run &amp; Drive սերտիֆիկատը
+                պատրաստ են։ Ե՞րբ կկարողանաք մոտենալ կենտրոնական ավտոկայան։</p>
               <span class="chat-msg-time">16:40</span>
             </div>
           </div>
@@ -773,7 +835,8 @@
           <div class="chat-msg chat-msg-me">
             <div class="chat-msg-bubble">
               <div class="chat-msg-sender">Դուք (Արմեն Ս.)</div>
-              <p>Բարև Ձեզ, շնորհակալություն։ Վաղը ժամը 14:00-ին հարմա՞ր կլինի մոտենալ մեքենան զննելու և տեղափոխելու համար։</p>
+              <p>Բարև Ձեզ, շնորհակալություն։ Վաղը ժամը 14:00-ին հարմա՞ր կլինի մոտենալ մեքենան զննելու և տեղափոխելու
+                համար։</p>
               <span class="chat-msg-time">16:42 · Կարդացված ✓✓</span>
             </div>
           </div>
@@ -783,7 +846,8 @@
             <div class="chat-msg-avatar seller-av">Դ</div>
             <div class="chat-msg-bubble">
               <div class="chat-msg-sender">Copart Armenia (Դավիթ Ս.)</div>
-              <p>Այո, սիրով, ժամը 14:00-ին ձեզ կսպասենք։ Ձեզ հետ վերցրեք անձնագիրը և Gavel համակարգի վճարման անդորրագիրը։</p>
+              <p>Այո, սիրով, ժամը 14:00-ին ձեզ կսպասենք։ Ձեզ հետ վերցրեք անձնագիրը և Gavel համակարգի վճարման
+                անդորրագիրը։</p>
               <span class="chat-msg-time">16:43</span>
             </div>
           </div>
@@ -793,7 +857,10 @@
         <div class="chat-input-bar">
           <input type="text" placeholder="Գրեք հաղորդագրություն վաճառողին..." class="chat-input-field">
           <button type="button" class="chat-send-btn" title="Ուղարկել">
-            <svg viewBox="0 0 24 24" width="18" height="18"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            <svg viewBox="0 0 24 24" width="18" height="18">
+              <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
           </button>
         </div>
       </div>
@@ -801,4 +868,5 @@
   </div>
 
 </body>
+
 </html>
