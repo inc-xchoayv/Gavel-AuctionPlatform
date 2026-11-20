@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gavel — Օգտատերերի կառավարում</title>
+  <title data-i18n="title_admin_users">Gavel — Օգտատերերի կառավարում</title>
   <link rel="icon" type="image/png" href="images/favicon.png">
   <link rel="shortcut icon" href="favicon.ico">
   <link rel="stylesheet" href="css/common.css">
@@ -21,20 +21,20 @@
       </a>
       <form class="srch" action="auctions.html" method="get">
         <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
-        <input type="search" name="q" placeholder="Որոնել Gavel-ում..." aria-label="Որոնել">
+        <input type="search" name="q" placeholder="Որոնել Gavel-ում..." data-i18n-placeholder="search_placeholder" aria-label="Որոնել" data-i18n-aria="search_aria">
       </form>
       <nav>
-        <a class="nav-link" href="index.html">Գլխավոր</a>
-        <a class="nav-link" href="auctions.html">Աճուրդներ</a>
-        <a class="nav-link" href="my-participations.html">Իմ մասնակցությունները</a>
-        <a class="nav-link" href="my-lots.html">Իմ լոտերը</a>
-        <a class="nav-link" href="profile.html">Անձնական էջ</a>
-        <a class="nav-link active" href="admin-dashboard.html">Ադմին</a>
+        <a class="nav-link" href="index.html" data-i18n="nav_home">Գլխավոր</a>
+        <a class="nav-link" href="auctions.html" data-i18n="nav_auctions">Աճուրդներ</a>
+        <a class="nav-link" href="my-participations.html" data-i18n="nav_participations">Իմ մասնակցությունները</a>
+        <a class="nav-link" href="my-lots.html" data-i18n="nav_my_lots">Իմ լոտերը</a>
+        <a class="nav-link" href="profile.html" data-i18n="nav_profile">Անձնական էջ</a>
+        <a class="nav-link active" href="admin-dashboard.html" data-i18n="nav_admin">Ադմին</a>
       </nav>
       <div class="header-actions">
         <a href="profile.html" class="user-menu-btn">
           <span class="user-avatar">Ա</span>
-          <span>Ադմին</span>
+          <span data-i18n="nav_admin">Ադմին</span>
         </a>
         <!-- Pure CSS Interactive Language Switcher (Flag Only) -->
         <div class="lang-dropdown">
@@ -42,27 +42,27 @@
           <input type="radio" name="site-lang" id="lang-en" class="lang-radio">
           <input type="radio" name="site-lang" id="lang-ru" class="lang-radio">
 
-          <button type="button" class="lang-btn" aria-label="Ընտրել լեզուն" title="Լեզու / Language">
-            <span class="lang-flag flag-hy">🇦🇲</span>
-            <span class="lang-flag flag-en">🇬🇧</span>
-            <span class="lang-flag flag-ru">🇷🇺</span>
+          <button type="button" class="lang-btn" aria-label="Ընտրել լեզուն" data-i18n-aria="lang_choose_aria" title="Լեզու / Language" data-i18n-title="lang_choose_title">
+            <span class="lang-flag flag-hy"><svg class="lang-flag-svg" viewBox="0 0 21 15" aria-hidden="true"><rect width="21" height="5" fill="#D90012"/><rect y="5" width="21" height="5" fill="#0033A0"/><rect y="10" width="21" height="5" fill="#F2A800"/></svg></span>
+            <span class="lang-flag flag-en"><svg class="lang-flag-svg" viewBox="0 0 21 15" aria-hidden="true"><rect width="21" height="15" fill="#012169"/><path d="M0 0l21 15M21 0L0 15" stroke="#FFF" stroke-width="2.6"/><path d="M0 0l21 15M21 0L0 15" stroke="#C8102E" stroke-width="1.3"/><path d="M10.5 0v15M0 7.5h21" stroke="#FFF" stroke-width="4"/><path d="M10.5 0v15M0 7.5h21" stroke="#C8102E" stroke-width="2.2"/></svg></span>
+            <span class="lang-flag flag-ru"><svg class="lang-flag-svg" viewBox="0 0 21 15" aria-hidden="true"><rect width="21" height="5" fill="#FFFFFF"/><rect y="5" width="21" height="5" fill="#0039A6"/><rect y="10" width="21" height="5" fill="#D52B1E"/></svg></span>
           </button>
 
           <div class="lang-menu" role="menu">
             <label for="lang-hy" class="lang-item item-hy">
-              <span class="lang-flag">🇦🇲</span>
+              <span class="lang-flag"><svg class="lang-flag-svg" viewBox="0 0 21 15" aria-hidden="true"><rect width="21" height="5" fill="#D90012"/><rect y="5" width="21" height="5" fill="#0033A0"/><rect y="10" width="21" height="5" fill="#F2A800"/></svg></span>
               <span class="lang-name">Հայերեն</span>
-              <span class="lang-check">✓</span>
+              <span class="lang-check"><svg class="ico ico-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
             </label>
             <label for="lang-en" class="lang-item item-en">
-              <span class="lang-flag">🇬🇧</span>
+              <span class="lang-flag"><svg class="lang-flag-svg" viewBox="0 0 21 15" aria-hidden="true"><rect width="21" height="15" fill="#012169"/><path d="M0 0l21 15M21 0L0 15" stroke="#FFF" stroke-width="2.6"/><path d="M0 0l21 15M21 0L0 15" stroke="#C8102E" stroke-width="1.3"/><path d="M10.5 0v15M0 7.5h21" stroke="#FFF" stroke-width="4"/><path d="M10.5 0v15M0 7.5h21" stroke="#C8102E" stroke-width="2.2"/></svg></span>
               <span class="lang-name">English</span>
-              <span class="lang-check">✓</span>
+              <span class="lang-check"><svg class="ico ico-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
             </label>
             <label for="lang-ru" class="lang-item item-ru">
-              <span class="lang-flag">🇷🇺</span>
+              <span class="lang-flag"><svg class="lang-flag-svg" viewBox="0 0 21 15" aria-hidden="true"><rect width="21" height="5" fill="#FFFFFF"/><rect y="5" width="21" height="5" fill="#0039A6"/><rect y="10" width="21" height="5" fill="#D52B1E"/></svg></span>
               <span class="lang-name">Русский</span>
-              <span class="lang-check">✓</span>
+              <span class="lang-check"><svg class="ico ico-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
             </label>
           </div>
         </div>
@@ -74,27 +74,27 @@
   <main>
     <div class="w">
       <div class="breadcrumb">
-        <a href="index.html">Գլխավոր</a>
+        <a href="index.html" data-i18n="nav_home">Գլխավոր</a>
         <span>›</span>
-        <a href="admin-dashboard.html">Ադմինիստրացիա</a>
+        <a href="admin-dashboard.html" data-i18n="adm_bc">Ադմինիստրացիա</a>
         <span>›</span>
-        <span>Օգտատերերի կառավարում</span>
+        <span data-i18n="adm_nav_users">Օգտատերերի կառավարում</span>
       </div>
 
       <div class="page-title-row">
         <div>
-          <h1>Օգտատերերի կառավարում</h1>
-          <p>Գրանցված օգտատերերի ցուցակ, իրավունքներ և արգելափակում</p>
+          <h1 data-i18n="adm_nav_users">Օգտատերերի կառավարում</h1>
+          <p data-i18n="adm_users_desc">Գրանցված օգտատերերի ցուցակ, իրավունքներ և արգելափակում</p>
         </div>
-        <a href="register.html" class="btn pri sm">+ Ավելացնել օգտատեր</a>
+        <a href="register.html" class="btn pri sm" data-i18n="adm_users_add">+ Ավելացնել օգտատեր</a>
       </div>
 
       <!-- Subnavigation -->
       <div class="admin-subnav">
-        <a href="admin-dashboard.html">Վահանակ</a>
-        <a href="admin-auctions.html">Աճուրդների կառավարում</a>
-        <a href="admin-users.html" class="active">Օգտատերերի կառավարում</a>
-        <a href="admin-reports.html">Հաշվետվություններ</a>
+        <a href="admin-dashboard.html" data-i18n="adm_nav_dash">Վահանակ</a>
+        <a href="admin-auctions.html" data-i18n="adm_nav_auctions">Աճուրդների կառավարում</a>
+        <a href="admin-users.html" class="active" data-i18n="adm_nav_users">Օգտատերերի կառավարում</a>
+        <a href="admin-reports.html" data-i18n="footer_reports">Հաշվետվություններ</a>
       </div>
 
       <!-- Pure CSS Role Filter Radios -->
@@ -105,13 +105,13 @@
       <!-- Filter Controls -->
       <div class="admin-users-filter-bar">
         <form action="admin-users.html" method="get" class="search-box">
-          <input type="text" name="q" class="form-input admin-users-search-inp" placeholder="Փնտրել ըստ անվան կամ էլ. հասցեի...">
-          <button type="submit" class="btn sm pri">Որոնել</button>
+          <input type="text" name="q" class="form-input admin-users-search-inp" placeholder="Փնտրել ըստ անվան կամ էլ. հասցեի..." data-i18n-placeholder="adm_users_search_ph">
+          <button type="submit" class="btn sm pri" data-i18n="search_aria">Որոնել</button>
         </form>
         <div class="admin-users-btn-group">
-          <label for="ufilter-all" class="btn sm ubtn-all">Բոլորը</label>
-          <label for="ufilter-users" class="btn sm ubtn-users">Օգտատերեր</label>
-          <label for="ufilter-admins" class="btn sm ubtn-admins">Ադմիններ</label>
+          <label for="ufilter-all" class="btn sm ubtn-all" data-i18n="flt_all">Բոլորը</label>
+          <label for="ufilter-users" class="btn sm ubtn-users" data-i18n="adm_tab_users">Օգտատերեր</label>
+          <label for="ufilter-admins" class="btn sm ubtn-admins" data-i18n="adm_tab_admins">Ադմիններ</label>
         </div>
       </div>
 
@@ -121,13 +121,13 @@
           <thead>
             <tr>
               <th>ID</th>
-              <th>Անուն Ազգանուն</th>
-              <th>Էլ. հասցե</th>
-              <th>Դեր</th>
-              <th>Ակտիվություն</th>
-              <th>Հաշվեկշիռ</th>
-              <th>Կարգավիճակ</th>
-              <th>Գործողություն</th>
+              <th data-i18n="tbl_fullname">Անուն Ազգանուն</th>
+              <th data-i18n="lbl_email">Էլ. հասցե</th>
+              <th data-i18n="tbl_role">Դեր</th>
+              <th data-i18n="tbl_activity">Ակտիվություն</th>
+              <th data-i18n="tbl_balance">Հաշվեկշիռ</th>
+              <th data-i18n="flt_status">Կարգավիճակ</th>
+              <th data-i18n="tbl_action">Գործողություն</th>
             </tr>
           </thead>
           <tbody>
@@ -135,18 +135,18 @@
               <td>#1</td>
               <td><b>Գարիկ Հարությունյան</b></td>
               <td>garik@example.com</td>
-              <td><span class="chip user-role-badge role-user-badge">Օգտատեր</span></td>
+              <td><span class="chip user-role-badge role-user-badge" data-i18n="prof_role_user">Օգտատեր</span></td>
               <td>28 հայտ · 2 լոտ</td>
               <td><b>$4,200</b></td>
               <td>
-                <span class="chip ok status-badge-active">Ակտիվ</span>
-                <span class="chip bad status-badge-blocked">Արգելափակված</span>
+                <span class="chip ok status-badge-active" data-i18n="chip_active">Ակտիվ</span>
+                <span class="chip bad status-badge-blocked" data-i18n="chip_blocked">Արգելափակված</span>
               </td>
               <td>
                 <label class="user-block-toggle-lbl" title="Սեղմեք կարգավիճակը փոխելու համար">
                   <input type="checkbox" class="user-block-cb">
-                  <span class="btn sm bad btn-block-action">Արգելափակել</span>
-                  <span class="btn sm ok btn-unblock-action">Ակտիվացնել</span>
+                  <span class="btn sm bad btn-block-action" data-i18n="adm_btn_block">Արգելափակել</span>
+                  <span class="btn sm ok btn-unblock-action" data-i18n="adm_btn_activate">Ակտիվացնել</span>
                 </label>
               </td>
             </tr>
@@ -154,18 +154,18 @@
               <td>#2</td>
               <td><b>Արմեն Սարգսյան</b></td>
               <td>armen.sargsyan@example.com</td>
-              <td><span class="chip user-role-badge role-user-badge">Օգտատեր</span></td>
+              <td><span class="chip user-role-badge role-user-badge" data-i18n="prof_role_user">Օգտատեր</span></td>
               <td>14 հայտ · 12 լոտ</td>
               <td><b>$18,450</b></td>
               <td>
-                <span class="chip ok status-badge-active">Ակտիվ</span>
-                <span class="chip bad status-badge-blocked">Արգելափակված</span>
+                <span class="chip ok status-badge-active" data-i18n="chip_active">Ակտիվ</span>
+                <span class="chip bad status-badge-blocked" data-i18n="chip_blocked">Արգելափակված</span>
               </td>
               <td>
                 <label class="user-block-toggle-lbl" title="Սեղմեք կարգավիճակը փոխելու համար">
                   <input type="checkbox" class="user-block-cb">
-                  <span class="btn sm bad btn-block-action">Արգելափակել</span>
-                  <span class="btn sm ok btn-unblock-action">Ակտիվացնել</span>
+                  <span class="btn sm bad btn-block-action" data-i18n="adm_btn_block">Արգելափակել</span>
+                  <span class="btn sm ok btn-unblock-action" data-i18n="adm_btn_activate">Ակտիվացնել</span>
                 </label>
               </td>
             </tr>
@@ -173,28 +173,28 @@
               <td>#3</td>
               <td><b>Ադմին Gavel</b></td>
               <td>admin@gavel.am</td>
-              <td><span class="chip user-role-badge role-admin-badge">Ադմին</span></td>
+              <td><span class="chip user-role-badge role-admin-badge" data-i18n="nav_admin">Ադմին</span></td>
               <td>Գլխավոր ադմին</td>
               <td><b>—</b></td>
-              <td><span class="chip ok status-badge-active">Ակտիվ</span></td>
-              <td><a href="profile.html" class="btn sm">Դիտել</a></td>
+              <td><span class="chip ok status-badge-active" data-i18n="chip_active">Ակտիվ</span></td>
+              <td><a href="profile.html" class="btn sm" data-i18n="btn_view">Դիտել</a></td>
             </tr>
             <tr class="role-user">
               <td>#4</td>
               <td><b>Աննա Գրիգորյան</b></td>
               <td>anna@example.com</td>
-              <td><span class="chip user-role-badge role-user-badge">Օգտատեր</span></td>
+              <td><span class="chip user-role-badge role-user-badge" data-i18n="prof_role_user">Օգտատեր</span></td>
               <td>7 հայտ · 1 լոտ</td>
               <td><b>$850</b></td>
               <td>
-                <span class="chip ok status-badge-active">Ակտիվ</span>
-                <span class="chip bad status-badge-blocked">Արգելափակված</span>
+                <span class="chip ok status-badge-active" data-i18n="chip_active">Ակտիվ</span>
+                <span class="chip bad status-badge-blocked" data-i18n="chip_blocked">Արգելափակված</span>
               </td>
               <td>
                 <label class="user-block-toggle-lbl" title="Սեղմեք կարգավիճակը փոխելու համար">
                   <input type="checkbox" class="user-block-cb">
-                  <span class="btn sm bad btn-block-action">Արգելափակել</span>
-                  <span class="btn sm ok btn-unblock-action">Ակտիվացնել</span>
+                  <span class="btn sm bad btn-block-action" data-i18n="adm_btn_block">Արգելափակել</span>
+                  <span class="btn sm ok btn-unblock-action" data-i18n="adm_btn_activate">Ակտիվացնել</span>
                 </label>
               </td>
             </tr>
@@ -202,18 +202,18 @@
               <td>#5</td>
               <td><b>Կարեն Պետրոսյան</b></td>
               <td>karen@example.com</td>
-              <td><span class="chip user-role-badge role-user-badge">Օգտատեր</span></td>
+              <td><span class="chip user-role-badge role-user-badge" data-i18n="prof_role_user">Օգտատեր</span></td>
               <td>5 հայտ · 3 լոտ</td>
               <td><b>$0</b></td>
               <td>
-                <span class="chip ok status-badge-active">Ակտիվ</span>
-                <span class="chip bad status-badge-blocked">Արգելափակված</span>
+                <span class="chip ok status-badge-active" data-i18n="chip_active">Ակտիվ</span>
+                <span class="chip bad status-badge-blocked" data-i18n="chip_blocked">Արգելափակված</span>
               </td>
               <td>
                 <label class="user-block-toggle-lbl" title="Սեղմեք կարգավիճակը փոխելու համար">
                   <input type="checkbox" class="user-block-cb" checked>
-                  <span class="btn sm bad btn-block-action">Արգելափակել</span>
-                  <span class="btn sm ok btn-unblock-action">Ակտիվացնել</span>
+                  <span class="btn sm bad btn-block-action" data-i18n="adm_btn_block">Արգելափակել</span>
+                  <span class="btn sm ok btn-unblock-action" data-i18n="adm_btn_activate">Ակտիվացնել</span>
                 </label>
               </td>
             </tr>
@@ -221,18 +221,18 @@
               <td>#6</td>
               <td><b>Դավիթ Մանուկյան</b></td>
               <td>david@example.com</td>
-              <td><span class="chip user-role-badge role-user-badge">Օգտատեր</span></td>
+              <td><span class="chip user-role-badge role-user-badge" data-i18n="prof_role_user">Օգտատեր</span></td>
               <td>15 հայտ · 4 լոտ</td>
               <td><b>$2,100</b></td>
               <td>
-                <span class="chip ok status-badge-active">Ակտիվ</span>
-                <span class="chip bad status-badge-blocked">Արգելափակված</span>
+                <span class="chip ok status-badge-active" data-i18n="chip_active">Ակտիվ</span>
+                <span class="chip bad status-badge-blocked" data-i18n="chip_blocked">Արգելափակված</span>
               </td>
               <td>
                 <label class="user-block-toggle-lbl" title="Սեղմեք կարգավիճակը փոխելու համար">
                   <input type="checkbox" class="user-block-cb">
-                  <span class="btn sm bad btn-block-action">Արգելափակել</span>
-                  <span class="btn sm ok btn-unblock-action">Ակտիվացնել</span>
+                  <span class="btn sm bad btn-block-action" data-i18n="adm_btn_block">Արգելափակել</span>
+                  <span class="btn sm ok btn-unblock-action" data-i18n="adm_btn_activate">Ակտիվացնել</span>
                 </label>
               </td>
             </tr>
@@ -249,40 +249,40 @@
         <a class="logo" href="index.html">
           <span class="logo-fallback">GAVEL</span>
         </a>
-        <p class="footer-desc">
+        <p class="footer-desc" data-i18n="footer_desc">
           Առցանց աճուրդների կառավարման հարթակ: Արվեստի գործերի, հնաոճ իրերի և հազվագյուտ նմուշների վստահելի շուկա:
         </p>
       </div>
       <div>
-        <h4>Մոդուլներ</h4>
+        <h4 data-i18n="footer_modules">Մոդուլներ</h4>
         <ul>
-          <li><a href="auctions.html">Աճուրդների ցանկ</a></li>
-          <li><a href="my-participations.html">Իմ մասնակցությունները</a></li>
-          <li><a href="my-lots.html">Իմ լոտերը</a></li>
-          <li><a href="add-lot.html">Ավելացնել լոտ</a></li>
+          <li><a href="auctions.html" data-i18n="footer_auctions_list">Աճուրդների ցանկ</a></li>
+          <li><a href="my-participations.html" data-i18n="nav_participations">Իմ մասնակցությունները</a></li>
+          <li><a href="my-lots.html" data-i18n="nav_my_lots">Իմ լոտերը</a></li>
+          <li><a href="add-lot.html" data-i18n="footer_add_lot">Ավելացնել լոտ</a></li>
         </ul>
       </div>
       <div>
-        <h4>Կառավարում</h4>
+        <h4 data-i18n="footer_management">Կառավարում</h4>
         <ul>
-          <li><a href="profile.html">Անձնական էջ</a></li>
-          <li><a href="admin-dashboard.html">Ադմինի վահանակ</a></li>
-          <li><a href="admin-users.html">Օգտատերերի ցուցակ</a></li>
-          <li><a href="admin-reports.html">Հաշվետվություններ</a></li>
+          <li><a href="profile.html" data-i18n="nav_profile">Անձնական էջ</a></li>
+          <li><a href="admin-dashboard.html" data-i18n="footer_admin_dash">Ադմինի վահանակ</a></li>
+          <li><a href="admin-users.html" data-i18n="footer_users_list">Օգտատերերի ցուցակ</a></li>
+          <li><a href="admin-reports.html" data-i18n="footer_reports">Հաշվետվություններ</a></li>
         </ul>
       </div>
       <div>
-        <h4>Համակարգ</h4>
+        <h4 data-i18n="footer_system">Համակարգ</h4>
         <ul>
-          <li><a href="login.html">Մուտք գործել</a></li>
-          <li><a href="register.html">Գրանցվել</a></li>
-          <li><a href="404.html">404 Error էջ</a></li>
+          <li><a href="login.html" data-i18n="footer_login">Մուտք գործել</a></li>
+          <li><a href="register.html" data-i18n="nav_register">Գրանցվել</a></li>
+          <li><a href="404.html" data-i18n="footer_404">404 Error էջ</a></li>
         </ul>
       </div>
     </div>
     <div class="w footer-bottom">
-      <div>© 2026 Gavel Auction Platform. Բոլոր իրավունքները պաշտպանված են:</div>
-      <div>Կուրսային աշխատանք · Առցանց աճուրդների հարթակ</div>
+      <div data-i18n="footer_copy">© 2026 Gavel Auction Platform. Բոլոր իրավունքները պաշտպանված են:</div>
+      <div data-i18n="footer_course">Կուրսային աշխատանք · Առցանց աճուրդների հարթակ</div>
     </div>
   </footer>
 
@@ -294,13 +294,13 @@
     <input type="checkbox" id="chat-widget-toggle" class="chat-widget-toggle-cb">
 
     <!-- Floating Action Button (FAB) -->
-    <label for="chat-widget-toggle" class="chat-fab-btn" title="Առցանց օգնական և չաթ">
+    <label for="chat-widget-toggle" class="chat-fab-btn" title="Առցանց օգնական և չաթ" data-i18n-title="chat_fab_title">
       <span class="chat-fab-icon chat-fab-open">
         <svg viewBox="0 0 24 24" width="26" height="26">
           <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
         </svg>
       </span>
-      <span class="chat-fab-icon chat-fab-close">✕</span>
+      <span class="chat-fab-icon chat-fab-close"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span>
       <span class="chat-fab-pulse"></span>
       <span class="chat-fab-badge">1</span>
     </label>
@@ -311,15 +311,15 @@
       <div class="chat-widget-header">
         <div class="chat-header-main">
           <div class="chat-avatar-wrap">
-            <span class="chat-header-avatar">🏛️</span>
+            <span class="chat-header-avatar"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><line x1="3" x2="21" y1="22" y2="22"/><line x1="6" x2="6" y1="18" y2="11"/><line x1="10" x2="10" y1="18" y2="11"/><line x1="14" x2="14" y1="18" y2="11"/><line x1="18" x2="18" y1="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg></span>
             <span class="chat-status-dot"></span>
           </div>
           <div class="chat-header-info">
-            <h4 class="chat-header-title">Gavel Աջակցություն և Չաթ</h4>
-            <span class="chat-header-status">🟢 Օնլայն · Պատասխանում է ակնթարթորեն</span>
+            <h4 class="chat-header-title" data-i18n="chat_header_title">Gavel Աջակցություն և Չաթ</h4>
+            <span class="chat-header-status"><span class="status-dot-online"></span><span data-i18n="chat_online_status">Օնլայն · Պատասխանում է ակնթարթորեն</span></span>
           </div>
         </div>
-        <label for="chat-widget-toggle" class="chat-close-btn" title="Փակել չաթը">✕</label>
+        <label for="chat-widget-toggle" class="chat-close-btn" title="Փակել չաթը" data-i18n-title="chat_close_title"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></label>
       </div>
 
       <!-- Tab Toggles (Radio inputs) -->
@@ -329,12 +329,12 @@
       <!-- Chat Navigation Tabs -->
       <div class="chat-tabs-bar">
         <label for="chat-tab-ai" class="chat-tab-btn chat-tab-btn-ai">
-          <span class="chat-tab-icon">🤖</span>
-          <span>AI Օգնական</span>
+          <span class="chat-tab-icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg></span>
+          <span data-i18n="chat_tab_ai">AI Օգնական</span>
         </label>
         <label for="chat-tab-seller" class="chat-tab-btn chat-tab-btn-seller">
-          <span class="chat-tab-icon">💬</span>
-          <span>Վաճառող (Լոտ #405)</span>
+          <span class="chat-tab-icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span>
+          <span data-i18n="chat_tab_seller">Վաճառող (Լոտ #405)</span>
           <span class="chat-unread-dot"></span>
         </label>
       </div>
@@ -343,21 +343,21 @@
       <div class="chat-tab-content chat-content-ai">
         <div class="chat-messages-scroll">
           <div class="chat-msg chat-msg-bot">
-            <div class="chat-msg-avatar">🤖</div>
+            <div class="chat-msg-avatar"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg></div>
             <div class="chat-msg-bubble">
-              <div class="chat-msg-sender">Gavel AI Bot · <small>Ավտոմատ</small></div>
-              <p>Ողջույն, <b>Արմեն</b> 👋 Ես Gavel-ի ինտելեկտուալ օգնականն եմ։ Կարող եմ պատասխանել աճուրդների, հայտերի և կանոնների մասին ձեր բոլոր հարցերին։</p>
+              <div class="chat-msg-sender">Gavel AI Bot · <small data-i18n="chat_auto_badge">Ավտոմատ</small></div>
+              <p>Ողջույն, <b>Արմեն</b> Ես Gavel-ի ինտելեկտուալ օգնականն եմ։ Կարող եմ պատասխանել աճուրդների, հայտերի և կանոնների մասին ձեր բոլոր հարցերին։</p>
             </div>
           </div>
 
           <!-- Quick FAQ Prompt Toggles -->
           <div class="chat-faq-section">
-            <small class="chat-faq-title">⚡ Հաճախակի տրվող հարցեր՝</small>
+            <small class="chat-faq-title"><span data-i18n="chat_faq_title">Հաճախակի տրվող հարցեր՝</span></small>
             
             <!-- FAQ 1 Toggle -->
             <input type="checkbox" id="faq-toggle-1" class="chat-faq-cb">
             <label for="faq-toggle-1" class="chat-faq-chip">
-              <span>Ինչպե՞ս է աշխատում Live աճուրդը</span>
+              <span data-i18n="chat_faq_q1">Ինչպե՞ս է աշխատում Live աճուրդը</span>
               <span class="faq-chip-arrow">▼</span>
             </label>
             <div class="chat-faq-answer">
@@ -367,7 +367,7 @@
             <!-- FAQ 2 Toggle -->
             <input type="checkbox" id="faq-toggle-2" class="chat-faq-cb">
             <label for="faq-toggle-2" class="chat-faq-chip">
-              <span>Որքա՞ն է հարթակի միջնորդավճարը</span>
+              <span data-i18n="chat_faq_q2">Որքա՞ն է հարթակի միջնորդավճարը</span>
               <span class="faq-chip-arrow">▼</span>
             </label>
             <div class="chat-faq-answer">
@@ -377,19 +377,19 @@
             <!-- FAQ 3 Toggle -->
             <input type="checkbox" id="faq-toggle-3" class="chat-faq-cb">
             <label for="faq-toggle-3" class="chat-faq-chip">
-              <span>Ինչպե՞ս կապվել վաճառողի հետ</span>
+              <span data-i18n="chat_faq_q3">Ինչպե՞ս կապվել վաճառողի հետ</span>
               <span class="faq-chip-arrow">▼</span>
             </label>
             <div class="chat-faq-answer">
-              <p>Լոտը շահելուց անմիջապես հետո կողքի <b>«Վաճառող (Լոտ #405)»</b> ներդիրում բացվում է ուղիղ երկխոսություն վաճառողի հետ՝ առաքման և վճարման մանրամասները պայմանավորվելու համար։</p>
+              <p><span data-i18n="chat_faq_a3_p1">Լոտը շահելուց անմիջապես հետո կողքի</span> <b data-i18n="chat_tab_seller">Վաճառող (Լոտ #405)</b> <span data-i18n="chat_faq_a3_p2">ներդիրում բացվում է ուղիղ երկխոսություն վաճառողի հետ՝ առաքման և վճարման մանրամասները պայմանավորվելու համար։</span></p>
             </div>
           </div>
         </div>
 
         <!-- Chat Input Bar -->
         <div class="chat-input-bar">
-          <input type="text" placeholder="Գրեք ձեր հարցը AI-ին..." class="chat-input-field">
-          <button type="button" class="chat-send-btn" title="Ուղարկել">
+          <input type="text" placeholder="Գրեք ձեր հարցը AI-ին..." data-i18n-placeholder="chat_ai_placeholder" class="chat-input-field">
+          <button type="button" class="chat-send-btn" title="Ուղարկել" data-i18n-title="chat_send_title">
             <svg viewBox="0 0 24 24" width="18" height="18"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
           </button>
         </div>
@@ -401,7 +401,7 @@
         <div class="chat-deal-context">
           <div class="chat-deal-img"><img src="images/car-front.jpg" alt="Porsche 911"></div>
           <div class="chat-deal-info">
-            <div class="chat-deal-badge">🏆 Շահած լոտ #405 · $48,500</div>
+            <div class="chat-deal-badge"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/><circle cx="12" cy="8" r="6"/></svg> <span data-i18n="chat_won_lot_badge">Շահած լոտ #405 · $48,500</span></div>
             <div class="chat-deal-title">2021 Porsche 911 Carrera 4S</div>
             <small class="chat-deal-seller">Վաճառող՝ <b>Copart Armenia</b> (Դավիթ Ս.)</small>
           </div>
@@ -423,7 +423,7 @@
             <div class="chat-msg-bubble">
               <div class="chat-msg-sender">Դուք (Արմեն Ս.)</div>
               <p>Բարև Ձեզ, շնորհակալություն։ Վաղը ժամը 14:00-ին հարմա՞ր կլինի մոտենալ մեքենան զննելու և տեղափոխելու համար։</p>
-              <span class="chat-msg-time">16:42 · Կարդացված ✓✓</span>
+              <span class="chat-msg-time"><span data-i18n="chat_read_status">16:42 · Կարդացված</span> <svg class="ico ico-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
             </div>
           </div>
 
@@ -440,8 +440,8 @@
 
         <!-- Chat Input Bar -->
         <div class="chat-input-bar">
-          <input type="text" placeholder="Գրեք հաղորդագրություն վաճառողին..." class="chat-input-field">
-          <button type="button" class="chat-send-btn" title="Ուղարկել">
+          <input type="text" placeholder="Գրեք հաղորդագրություն վաճառողին..." data-i18n-placeholder="chat_seller_placeholder" class="chat-input-field">
+          <button type="button" class="chat-send-btn" title="Ուղարկել" data-i18n-title="chat_send_title">
             <svg viewBox="0 0 24 24" width="18" height="18"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
           </button>
         </div>

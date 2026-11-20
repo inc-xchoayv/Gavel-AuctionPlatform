@@ -318,10 +318,44 @@
   color: #f1e4d6;
 }
 
-/* Slides container */
+/* Slides container (JS-powered interactive slider, zero inline styles) */
+.rec-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.rec-counter {
+  font-size: 12px;
+  font-weight: 700;
+  color: #e6d5c3;
+  letter-spacing: 0.04em;
+  min-width: 34px;
+  text-align: center;
+}
+.rec-arrow {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.08);
+  color: #f1e4d6;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--trans);
+}
+.rec-arrow:hover,
+.rec-arrow:focus-visible {
+  background: var(--b);
+  border-color: var(--b);
+  color: #fff;
+  outline: none;
+}
+
 .recommended-slides-wrap {
   position: relative;
-  height: 485px;
+  min-height: 470px;
 }
 
 .recommended-card {
@@ -332,173 +366,68 @@
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transform: translateY(12px) scale(0.98);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transform: translateX(18px) scale(0.985);
+  transition: opacity 0.42s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.42s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.42s;
+  z-index: 1;
+}
+.recommended-card.is-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(0) scale(1);
+  z-index: 3;
 }
 
-/* 12s total cycle for 4 slides (3 seconds per slide) */
-.rcard-1 {
-  animation: autoSlide1 12s infinite;
+/* Progress bar indicators (5s synced with js/slider.js) */
+.rec-progress-bars {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 12px;
 }
-.rcard-2 {
-  animation: autoSlide2 12s infinite;
+.rec-bar {
+  position: relative;
+  height: 5px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.22);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  overflow: hidden;
+  transition: background 0.2s ease;
 }
-.rcard-3 {
-  animation: autoSlide3 12s infinite;
+.rec-bar:hover {
+  background: rgba(255, 255, 255, 0.38);
 }
-.rcard-4 {
-  animation: autoSlide4 12s infinite;
+.rec-bar-fill {
+  display: block;
+  width: 0%;
+  height: 100%;
+  background: #d19a66;
+  border-radius: 99px;
 }
-
-@keyframes autoSlide1 {
-  0%, 21% {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0) scale(1);
-    pointer-events: auto;
-    z-index: 3;
-  }
-  25%, 96% {
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-8px) scale(0.98);
-    pointer-events: none;
-    z-index: 1;
-  }
-  100% {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0) scale(1);
-    pointer-events: auto;
-    z-index: 3;
-  }
+.rec-bar.is-active .rec-bar-fill {
+  animation: recBarProgress 5s linear forwards;
 }
-
-@keyframes autoSlide2 {
-  0%, 21% {
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(8px) scale(0.98);
-    pointer-events: none;
-    z-index: 1;
-  }
-  25%, 46% {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0) scale(1);
-    pointer-events: auto;
-    z-index: 3;
-  }
-  50%, 100% {
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-8px) scale(0.98);
-    pointer-events: none;
-    z-index: 1;
-  }
-}
-
-@keyframes autoSlide3 {
-  0%, 46% {
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(8px) scale(0.98);
-    pointer-events: none;
-    z-index: 1;
-  }
-  50%, 71% {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0) scale(1);
-    pointer-events: auto;
-    z-index: 3;
-  }
-  75%, 100% {
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-8px) scale(0.98);
-    pointer-events: none;
-    z-index: 1;
-  }
-}
-
-@keyframes autoSlide4 {
-  0%, 71% {
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(8px) scale(0.98);
-    pointer-events: none;
-    z-index: 1;
-  }
-  75%, 96% {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0) scale(1);
-    pointer-events: auto;
-    z-index: 3;
-  }
-  100% {
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-8px) scale(0.98);
-    pointer-events: none;
-    z-index: 1;
-  }
-}
-
-/* Pause animation on hover */
-.recommended-carousel:hover .rcard-1,
-.recommended-carousel:hover .rcard-2,
-.recommended-carousel:hover .rcard-3,
-.recommended-carousel:hover .rcard-4,
-.recommended-carousel:hover .rdot-1,
-.recommended-carousel:hover .rdot-2,
-.recommended-carousel:hover .rdot-3,
-.recommended-carousel:hover .rdot-4 {
+.recommended-carousel.is-paused .rec-bar.is-active .rec-bar-fill {
   animation-play-state: paused;
 }
 
-/* Indicator dots synchronized with 12s cycle (3s per slide) */
-.recommended-dots {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  margin-top: 10px;
+@keyframes recBarProgress {
+  from { width: 0%; }
+  to   { width: 100%; }
 }
 
-.rec-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
-  transition: all 0.3s ease;
-  display: inline-block;
-}
-
-.rdot-1 { animation: autoDot1 12s infinite; }
-.rdot-2 { animation: autoDot2 12s infinite; }
-.rdot-3 { animation: autoDot3 12s infinite; }
-.rdot-4 { animation: autoDot4 12s infinite; }
-
-@keyframes autoDot1 {
-  0%, 21% { background: #d19a66; width: 22px; border-radius: 99px; }
-  25%, 100% { background: rgba(255, 255, 255, 0.3); width: 8px; border-radius: 50%; }
-}
-@keyframes autoDot2 {
-  0%, 21% { background: rgba(255, 255, 255, 0.3); width: 8px; border-radius: 50%; }
-  25%, 46% { background: #d19a66; width: 22px; border-radius: 99px; }
-  50%, 100% { background: rgba(255, 255, 255, 0.3); width: 8px; border-radius: 50%; }
-}
-@keyframes autoDot3 {
-  0%, 46% { background: rgba(255, 255, 255, 0.3); width: 8px; border-radius: 50%; }
-  50%, 71% { background: #d19a66; width: 22px; border-radius: 99px; }
-  75%, 100% { background: rgba(255, 255, 255, 0.3); width: 8px; border-radius: 50%; }
-}
-@keyframes autoDot4 {
-  0%, 71% { background: rgba(255, 255, 255, 0.3); width: 8px; border-radius: 50%; }
-  75%, 96% { background: #d19a66; width: 22px; border-radius: 99px; }
-  100% { background: rgba(255, 255, 255, 0.3); width: 8px; border-radius: 50%; }
+@media (max-width: 640px) {
+  .recommended-slides-wrap {
+    min-height: 455px;
+  }
+  .rec-arrow {
+    width: 34px;
+    height: 34px;
+  }
 }
 
 /* ==========================================================================
@@ -598,25 +527,60 @@
   padding: 24px 0;
 }
 
-/* 18 Կատեգորիաների պաստելային գույները (Catawiki palette, ZERO inline styles) */
-.cat-theme-archaeology   { background: #D5B892; }
-.cat-theme-art           { background: #B2D28E; }
-.cat-theme-asian-tribal  { background: #6F9EC9; }
-.cat-theme-books         { background: #A0AC85; }
-.cat-theme-classic-cars  { background: #AA9993; }
-.cat-theme-coins-stamps  { background: #D3C9B6; }
-.cat-theme-comics        { background: #8EE5D6; }
-.cat-theme-fashion       { background: #BCC3EB; }
-.cat-theme-interiors     { background: #C5E5FD; }
-.cat-theme-jewellery     { background: #A2B7C8; }
-.cat-theme-music-cameras { background: #E17058; }
-.cat-theme-sports        { background: #F6D264; }
-.cat-theme-toys          { background: #F9B59B; }
-.cat-theme-trading-cards { background: #F7A55A; }
-.cat-theme-watches       { background: #6998C8; }
-.cat-theme-wine          { background: #A36970; }
-.cat-theme-cars          { background: #8297AA; }
-.cat-theme-electronics   { background: #7A84CB; }
+/* 18 Կատեգորիաների Gavel բրենդային պալիտրա (Heritage Auction House Palette)
+   Համադրված է common.css-ի --ink (#2a1d14), --b (#8b5a2b), --soft (#faf5ef),
+   --ok (#5f6e2c) և --bad (#a0522d) գույների հետ՝ բարձր կոնտրաստով (WCAG AA+) */
+#category-grid {
+  --cat-sand:       #EFE5D6;
+  --cat-sage:       #E3E8DC;
+  --cat-slate:      #DFE6EC;
+  --cat-olive:      #E5E7D9;
+  --cat-taupe:      #EAE2DC;
+  --cat-linen:      #EDE8DF;
+  --cat-mist:       #E0EBE8;
+  --cat-lavender:   #E6E4EE;
+  --cat-stone:      #E4E9ED;
+  --cat-blush:      #EFE2E0;
+  --cat-terracotta: #F0DFD5;
+  --cat-ochre:      #F2E8CF;
+  --cat-clay:       #EFE0D8;
+  --cat-amber:      #F2E4D1;
+  --cat-steel:      #E1E7EA;
+  --cat-burgundy:   #EBDFE0;
+  --cat-graphite:   #E5E7EA;
+  --cat-indigo:     #E3E5EE;
+}
+.cat-card-catawiki .cat-title {
+  color: var(--ink);
+}
+.cat-card-catawiki .cat-count {
+  color: var(--mute);
+}
+.cat-card.cat-card-catawiki {
+  border: 1px solid var(--line);
+}
+.cat-card.cat-card-catawiki:hover {
+  border-color: var(--b);
+}
+
+.cat-theme-archaeology   { background: var(--cat-sand); }
+.cat-theme-art           { background: var(--cat-sage); }
+.cat-theme-asian-tribal  { background: var(--cat-slate); }
+.cat-theme-books         { background: var(--cat-olive); }
+.cat-theme-classic-cars  { background: var(--cat-taupe); }
+.cat-theme-coins-stamps  { background: var(--cat-linen); }
+.cat-theme-comics        { background: var(--cat-mist); }
+.cat-theme-fashion       { background: var(--cat-lavender); }
+.cat-theme-interiors     { background: var(--cat-stone); }
+.cat-theme-jewellery     { background: var(--cat-blush); }
+.cat-theme-music-cameras { background: var(--cat-terracotta); }
+.cat-theme-sports        { background: var(--cat-ochre); }
+.cat-theme-toys          { background: var(--cat-clay); }
+.cat-theme-trading-cards { background: var(--cat-amber); }
+.cat-theme-watches       { background: var(--cat-steel); }
+.cat-theme-wine          { background: var(--cat-burgundy); }
+.cat-theme-cars          { background: var(--cat-graphite); }
+.cat-theme-electronics   { background: var(--cat-indigo); }
 
 @media (max-width: 1100px) {
   #category-grid {

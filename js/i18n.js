@@ -1,7 +1,8 @@
 /* ==========================================================================
-   js/i18n.js — Բազմալեզվության (i18n) համակարգ (hy, en, ru)
-   Կարդում է data/translations.json-ը, թարգմանում է data-i18n տարրերը,
-   պահպանում է ընտրված լեզուն localStorage-ում և համաժամեցնում navbar-ի դրոշը:
+   js/i18n.js — Ամբողջական բազմալեզվության (i18n) համակարգ (hy, en, ru)
+   Բեռնում է data/lang/hy.json, en.json, ru.json ֆայլերը, թարգմանում է
+   data-i18n / placeholder / title / aria-label / <title> տարրերը,
+   պահպանում է ընտրությունը localStorage-ում և չի դիպչում օգտատերերի (UGC) տեքստերին:
    ========================================================================== */
 
 const I18n = (function () {
@@ -12,64 +13,60 @@ const I18n = (function () {
   let currentLang = localStorage.getItem(STORAGE_KEY) || DEFAULT_LANG;
   if (!SUPPORTED_LANGS.includes(currentLang)) currentLang = DEFAULT_LANG;
 
-  let translations = null;
-  let isLoaded = false;
+  const cache = {}; // { hy: {...}, en: {...}, ru: {...} }
 
-  // 1. Բեռնում ենք translations.json-ը
-  async function init() {
-    try {
-      const response = await fetch("data/translations.json");
-      if (!response.ok) throw new Error("HTTP " + response.status);
-      translations = await response.json();
-      isLoaded = true;
-
-      // Կիրառում ենք ընտրված լեզուն
-      applyLanguage(currentLang);
-    } catch (error) {
-      console.warn("i18n: translations.json չբեռնվեց (բացեք Live Server-ով):", error);
-    }
-
-    bindSwitcher();
+  async function loadDict(lang) {
+    if (cache[lang]) return cache[lang];
+    const response = await fetch("data/lang/" + lang + ".json");
+    if (!response.ok) throw new Error("HTTP " + response.status);
+    cache[lang] = await response.json();
+    return cache[lang];
   }
 
-  // 2. Ստանալ ընթացիկ լեզուն
+  async function init() {
+    bindSwitcher();
+    try {
+      await loadDict(currentLang);
+      applyLanguage(currentLang);
+      window.dispatchEvent(new CustomEvent("gavelLanguageChanged", { detail: { lang: currentLang } }));
+    } catch (error) {
+      console.warn("i18n: չհաջողվեց բեռնել data/lang/" + currentLang + ".json (բացեք Live Server-ով):", error);
+    }
+  }
+
   function getLang() {
     return currentLang;
   }
 
-  // 3. Թարգմանել մեկ բանալի (JS կոդի մեջ օգտագործելու համար)
   function t(key, fallback) {
-    if (translations && translations[currentLang] && translations[currentLang][key]) {
-      return translations[currentLang][key];
-    }
+    const dict = cache[currentLang];
+    if (dict && dict[key] !== undefined) return dict[key];
     return fallback !== undefined ? fallback : key;
   }
 
-  // 4. Փոխել լեզուն
-  function setLanguage(lang) {
+  async function setLanguage(lang) {
     if (!SUPPORTED_LANGS.includes(lang)) return;
     currentLang = lang;
     localStorage.setItem(STORAGE_KEY, lang);
 
-    // Թարմացնում ենք HTML էլեմենտները
-    applyLanguage(lang);
-
-    // Համաժամեցնում ենք navbar-ի radio-ն
     const radio = document.getElementById("lang-" + lang);
-    if (radio && !radio.checked) {
-      radio.checked = true;
+    if (radio && !radio.checked) radio.checked = true;
+
+    try {
+      await loadDict(lang);
+      applyLanguage(lang);
+    } catch (error) {
+      console.warn("i18n: չհաջողվեց բեռնել data/lang/" + lang + ".json:", error);
     }
 
-    // Ուղարկում ենք իրադարձություն, որպեսզի այլ մոդուլներ (օր.՝ categories.js) իմանան
     window.dispatchEvent(new CustomEvent("gavelLanguageChanged", { detail: { lang: lang } }));
   }
 
-  // 5. Կիրառել լեզուն բոլոր data-i18n տարրերի վրա
   function applyLanguage(lang) {
-    if (!translations || !translations[lang]) return;
-    const dict = translations[lang];
+    const dict = cache[lang];
+    if (!dict) return;
 
-    // a. Տեքստային տարրեր
+    // 1. Տեքստային տարրեր (ներառյալ <title data-i18n="...">)
     document.querySelectorAll("[data-i18n]").forEach(function (el) {
       const key = el.getAttribute("data-i18n");
       if (dict[key] !== undefined) {
@@ -77,7 +74,7 @@ const I18n = (function () {
       }
     });
 
-    // b. Placeholder-ներ (որոնման դաշտ, ինփութներ)
+    // 2. Placeholder-ներ (որոնման դաշտ, ֆորմաներ, չաթ)
     document.querySelectorAll("[data-i18n-placeholder]").forEach(function (el) {
       const key = el.getAttribute("data-i18n-placeholder");
       if (dict[key] !== undefined) {
@@ -85,7 +82,7 @@ const I18n = (function () {
       }
     });
 
-    // c. Title ատրիբուտներ
+    // 3. Title հուշումներ (tooltip)
     document.querySelectorAll("[data-i18n-title]").forEach(function (el) {
       const key = el.getAttribute("data-i18n-title");
       if (dict[key] !== undefined) {
@@ -93,17 +90,22 @@ const I18n = (function () {
       }
     });
 
-    // d. HTML tag-ի lang ատրիբուտը (SEO / Accessibility)
+    // 4. Aria-label (հասանելիություն / screen readers)
+    document.querySelectorAll("[data-i18n-aria]").forEach(function (el) {
+      const key = el.getAttribute("data-i18n-aria");
+      if (dict[key] !== undefined) {
+        el.setAttribute("aria-label", dict[key]);
+      }
+    });
+
+    // 5. <html lang="...">
     document.documentElement.lang = lang;
   }
 
-  // 6. Կապել navbar-ի radio կոճակները (🇦🇲, 🇬🇧, 🇷🇺)
   function bindSwitcher() {
-    // Էջը բացելիս նշում ենք պահպանված լեզվի radio-ն
     const activeRadio = document.getElementById("lang-" + currentLang);
     if (activeRadio) activeRadio.checked = true;
 
-    // Լսում ենք radio-ի փոփոխությունները
     document.querySelectorAll('input[name="site-lang"]').forEach(function (radio) {
       radio.addEventListener("change", function () {
         if (radio.checked) {
@@ -114,7 +116,6 @@ const I18n = (function () {
     });
   }
 
-  // Գործարկում, երբ DOM-ը պատրաստ է
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);
   } else {

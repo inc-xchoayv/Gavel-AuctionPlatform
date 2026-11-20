@@ -11,6 +11,12 @@
   padding: 36px 32px;
   box-shadow: var(--shadow-md);
 }
+.reg-container .grid.grid-2 {
+  gap: 14px;
+}
+.reg-container .form-group {
+  min-width: 0;
+}
 .reg-header {
   text-align: center;
   margin-bottom: 24px;
@@ -25,6 +31,7 @@
 }
 .reg-subtitle {
   font-size: 14px;
+  color: var(--mute);
 }
 
 .reg-terms-row {
@@ -34,10 +41,12 @@
   font-size: 13px;
   margin: 16px 0 24px 0;
   cursor: pointer;
+  line-height: 1.5;
 }
 .reg-terms-row input {
   accent-color: var(--b);
   margin-top: 3px;
+  flex-shrink: 0;
 }
 .reg-terms-row a {
   color: var(--b);
@@ -50,4 +59,11 @@
 .reg-footer-prompt a {
   color: var(--b);
   font-weight: 700;
+}
+
+@media (max-width: 640px) {
+  .reg-container {
+    margin: 20px auto;
+    padding: 24px 18px;
+  }
 }

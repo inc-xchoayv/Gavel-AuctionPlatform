@@ -1569,3 +1569,68 @@ footer a:hover { color: #fff; }
   text-align: center;
   white-space: nowrap;
 }
+
+/* ==========================================================================
+   LUCIDE SVG ICONS & STATUS DOTS (Zero Emojis, currentColor)
+   ========================================================================== */
+.ico {
+  width: 1.05em;
+  height: 1.05em;
+  display: inline-block;
+  vertical-align: -0.16em;
+  flex-shrink: 0;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.ico-lg {
+  width: 28px;
+  height: 28px;
+  stroke-width: 1.5;
+}
+.ico-sm {
+  width: 14px;
+  height: 14px;
+}
+.ico-fill {
+  fill: currentColor;
+  stroke: none;
+}
+
+/* Crisp SVG flags inside the language switcher */
+.lang-flag-svg {
+  width: 20px;
+  height: 14px;
+  border-radius: 2px;
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 1px rgba(42, 29, 20, 0.14);
+}
+
+/* Pure CSS status indicators replacing 🟢 and 🔴 emojis */
+.status-dot-online {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #3aa76d;
+  display: inline-block;
+  margin-right: 4px;
+  vertical-align: middle;
+}
+.live-dot-pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  display: inline-block;
+  margin-right: 5px;
+  vertical-align: middle;
+  animation: liveDotPulse 1.6s ease-in-out infinite;
+}
+@keyframes liveDotPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(0.8); }
+}
