@@ -645,6 +645,60 @@
 .cat-theme-cars          { background: var(--cat-graphite); }
 .cat-theme-electronics   { background: var(--cat-indigo); }
 
+/* 16-րդ «Տեսնել ավելին» / «Թաքցնել» կոճակ-քարտը (4x4 ցանցի վերջին տեղում) */
+.cat-card.cat-card-more {
+  background: var(--soft);
+  border: 1.5px dashed var(--b);
+  cursor: pointer;
+  font-family: inherit;
+  width: 100%;
+  text-align: left;
+}
+.cat-card.cat-card-more:hover,
+.cat-card.cat-card-more:focus-visible {
+  background: var(--b-l);
+  border-style: solid;
+  border-color: var(--b);
+  outline: none;
+}
+.cat-card.cat-card-more .cat-title {
+  color: var(--b-d);
+}
+.cat-more-cutout {
+  background: var(--b-l);
+  color: var(--b);
+  box-shadow: none;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+.cat-card.cat-card-more:hover .cat-more-cutout {
+  background: var(--b);
+  color: #fff;
+}
+.cat-more-ico {
+  width: 26px;
+  height: 26px;
+  stroke-width: 2;
+  transition: transform 0.25s ease;
+}
+.cat-card.cat-card-more:hover .cat-more-ico {
+  transform: scale(1.12);
+}
+
+/* Սահուն բացվող քարտերի անիմացիա */
+.cat-card-reveal {
+  animation: catReveal 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes catReveal {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 @media (max-width: 1100px) {
   #category-grid {
     grid-template-columns: repeat(3, 1fr);
