@@ -104,7 +104,7 @@
 
             <div class="form-group">
               <label class="form-label" data-i18n="al_lbl_title">Լոտի անվանումը *</label>
-              <input type="text" class="form-input" placeholder="օր.՝ Հին շվեյցարական գրպանի ժամացույց (1910 թ.)" value="Հին շվեյցարական գրպանի ժամացույց" required>
+              <input type="text" class="form-input" placeholder="օր.՝ Հին շվեյցարական գրպանի ժամացույց (1910 թ.)" data-i18n-placeholder="al_ph_title" value="Հին շվեյցարական գրպանի ժամացույց" required>
             </div>
 
             <div class="form-group">
@@ -133,7 +133,7 @@
 
             <div class="form-group">
               <label class="form-label" data-i18n="al_lbl_desc">Մանրամասն նկարագրություն *</label>
-              <textarea class="form-textarea" placeholder="Նկարագրեք ապրանքի առանձնահատկությունները, նյութը, պատմությունը..." required>Բացառիկ պահպանվածությամբ շվեյցարական գրպանի ժամացույց: Պատրաստված է 875 հարգի արծաթից, մեխանիկական լարով, աշխատող վիճակում:</textarea>
+              <textarea class="form-textarea" placeholder="Նկարագրեք ապրանքի առանձնահատկությունները, նյութը, պատմությունը..." data-i18n-placeholder="al_ph_desc" required>Բացառիկ պահպանվածությամբ շվեյցարական գրպանի ժամացույց: Պատրաստված է 875 հարգի արծաթից, մեխանիկական լարով, աշխատող վիճակում:</textarea>
             </div>
 
             <div class="wizard-pane-nav">
@@ -157,20 +157,20 @@
               <div class="preview-card">
                 <input type="checkbox" id="del-p1" class="photo-del-cb">
                 <img src="images/lot-watch.jpg" alt="Գլխավոր նկար (Դիմացից)">
-                <span>Գլխավոր նկար</span>
-                <label for="del-p1" class="preview-remove-btn" title="Հեռացնել"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></label>
+                <span data-i18n="al_photo_main">Գլխավոր նկար</span>
+                <label for="del-p1" class="preview-remove-btn" title="Հեռացնել" data-i18n-title="btn_remove"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></label>
               </div>
               <div class="preview-card">
                 <input type="checkbox" id="del-p2" class="photo-del-cb">
                 <img src="images/watch-side.jpg" alt="Դետալ 1 (Կողքից)">
-                <span>Դետալ 1 (Կողքից)</span>
-                <label for="del-p2" class="preview-remove-btn" title="Հեռացնել"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></label>
+                <span data-i18n="al_photo_detail1">Դետալ 1 (Կողքից)</span>
+                <label for="del-p2" class="preview-remove-btn" title="Հեռացնել" data-i18n-title="btn_remove"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></label>
               </div>
               <div class="preview-card">
                 <input type="checkbox" id="del-p3" class="photo-del-cb">
                 <img src="images/watch-mech.jpg" alt="Մեխանիզմ">
-                <span>Մեխանիզմ</span>
-                <label for="del-p3" class="preview-remove-btn" title="Հեռացնել"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></label>
+                <span data-i18n="al_photo_mech">Մեխանիզմ</span>
+                <label for="del-p3" class="preview-remove-btn" title="Հեռացնել" data-i18n-title="btn_remove"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></label>
               </div>
             </div>
 
@@ -199,42 +199,42 @@
             <div class="grid grid-2">
               <div class="form-group">
                 <label class="form-label" data-i18n="det_dims">Չափսեր / Քաշ</label>
-                <input type="text" class="form-input" placeholder="օր.՝ 52 մմ տրամագիծ, 85 գրամ" value="52 մմ տրամագիծ, 85 գրամ">
+                <input type="text" class="form-input" placeholder="օր.՝ 52 մմ տրամագիծ, 85 գրամ" data-i18n-placeholder="al_ph_dims" value="52 մմ տրամագիծ, 85 գրամ">
               </div>
               <div class="form-group">
-                <label class="form-label">Ծագման երկիր / Քաղաք</label>
-                <input type="text" class="form-input" placeholder="օր.՝ Ժնև, Շվեյցարիա" value="Ժնև, Շվեյցարիա">
+                <label class="form-label" data-i18n="al_lbl_origin">Ծագման երկիր / Քաղաք</label>
+                <input type="text" class="form-input" placeholder="օր.՝ Ժնև, Շվեյցարիա" data-i18n-placeholder="al_ph_origin" value="Ժնև, Շվեյցարիա">
               </div>
             </div>
 
             <div class="wizard-pane-nav">
               <label for="wstep-2" class="btn" data-i18n="al_prev">‹ Նախորդը</label>
-              <label for="wstep-4" class="btn pri">Հաջորդ քայլը (Աճուրդ) ›</label>
+              <label for="wstep-4" class="btn pri" data-i18n="al_next_auction">Հաջորդ քայլը (Աճուրդ) ›</label>
             </div>
           </div>
 
           <!-- Step 4: Auction Setting Pane -->
           <div class="wizard-pane wizard-pane-4">
-            <h2 class="wizard-pane-title">4. Աճուրդի պայմաններ</h2>
-            <p class="wizard-pane-desc">Ընտրեք աճուրդի տևողությունը և հաստատեք հայտը:</p>
+            <h2 class="wizard-pane-title" data-i18n="al_s4_title">4. Աճուրդի պայմաններ</h2>
+            <p class="wizard-pane-desc" data-i18n="al_s4_desc">Ընտրեք աճուրդի տևողությունը և հաստատեք հայտը:</p>
 
             <div class="form-group">
-              <label class="form-label">Աճուրդի տևողությունը</label>
+              <label class="form-label" data-i18n="al_lbl_duration">Աճուրդի տևողությունը</label>
               <select class="form-select">
-                <option value="3">3 օր (Արագ աճուրդ)</option>
-                <option value="7" selected>7 օր (Ստանդարտ)</option>
-                <option value="14">14 օր (Երկարաժամկետ)</option>
+                <option value="3" data-i18n="al_dur_3">3 օր (Արագ աճուրդ)</option>
+                <option value="7" selected data-i18n="al_dur_7">7 օր (Ստանդարտ)</option>
+                <option value="14" data-i18n="al_dur_14">14 օր (Երկարաժամկետ)</option>
               </select>
             </div>
 
             <div class="form-group">
-              <label class="form-label">Կոնտակտային հեռախոսահամար *</label>
+              <label class="form-label" data-i18n="al_lbl_contact_phone">Կոնտակտային հեռախոսահամար *</label>
               <input type="tel" class="form-input" value="+374 91 123456" required>
             </div>
 
             <div class="moderation-note-box">
-              <h4 class="moderation-note-title">ℹ️ Մոդերացիայի կանոններ</h4>
-              <p class="moderation-note-desc">
+              <h4 class="moderation-note-title"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg> <span data-i18n="al_mod_title">Մոդերացիայի կանոններ</span></h4>
+              <p class="moderation-note-desc" data-i18n="al_mod_desc">
                 Տեղադրելուց հետո ձեր լոտն անցնում է ադմինիստրատորի ստուգում (սովորաբար 1-2 ժամվա ընթացքում): Հաստատվելուն պես այն կդառնա հասանելի հարթակի բոլոր մասնակիցներին:
               </p>
             </div>
@@ -355,7 +355,7 @@
             <div class="chat-msg-avatar"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg></div>
             <div class="chat-msg-bubble">
               <div class="chat-msg-sender">Gavel AI Bot · <small data-i18n="chat_auto_badge">Ավտոմատ</small></div>
-              <p>Ողջույն, <b>Արմեն</b> Ես Gavel-ի ինտելեկտուալ օգնականն եմ։ Կարող եմ պատասխանել աճուրդների, հայտերի և կանոնների մասին ձեր բոլոր հարցերին։</p>
+              <p><span data-i18n="chat_hello">Ողջույն,</span> <b>Արմեն</b> <span data-i18n="chat_ai_intro_full">Ես Gavel-ի ինտելեկտուալ օգնականն եմ։ Կարող եմ պատասխանել աճուրդների, հայտերի և կանոնների մասին ձեր բոլոր հարցերին։</span></p>
             </div>
           </div>
 
@@ -370,7 +370,7 @@
               <span class="faq-chip-arrow">▼</span>
             </label>
             <div class="chat-faq-answer">
-              <p>Live աճուրդում յուրաքանչյուր նոր առաջարկից հետո հետհաշվարկը վերականգնվում է մինչև 15 վրկ («Մուրճի հետհաշվարկ»): Եթե 15 վայրկյանում ավելի բարձր գին չի առաջարկվում, լոտը վաճառվում է ամենաբարձր հայտ ներկայացրած մասնակցին։</p>
+              <p data-i18n="chat_faq_a1_full">Live աճուրդում յուրաքանչյուր նոր առաջարկից հետո հետհաշվարկը վերականգնվում է մինչև 15 վրկ («Մուրճի հետհաշվարկ»): Եթե 15 վայրկյանում ավելի բարձր գին չի առաջարկվում, լոտը վաճառվում է ամենաբարձր հայտ ներկայացրած մասնակցին։</p>
             </div>
 
             <!-- FAQ 2 Toggle -->
@@ -380,7 +380,7 @@
               <span class="faq-chip-arrow">▼</span>
             </label>
             <div class="chat-faq-answer">
-              <p>Գնորդի միջնորդավճարը կազմում է շահած գումարի 3-5%-ը՝ կախված կատեգորիայից (օր.՝ ավտոմեքենաների համար 3%, հնաոճ իրերի համար 5%):</p>
+              <p data-i18n="chat_faq_a2_full">Գնորդի միջնորդավճարը կազմում է շահած գումարի 3-5%-ը՝ կախված կատեգորիայից (օր.՝ ավտոմեքենաների համար 3%, հնաոճ իրերի համար 5%):</p>
             </div>
 
             <!-- FAQ 3 Toggle -->
@@ -412,7 +412,7 @@
           <div class="chat-deal-info">
             <div class="chat-deal-badge"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/><circle cx="12" cy="8" r="6"/></svg> <span data-i18n="chat_won_lot_badge">Շահած լոտ #405 · $48,500</span></div>
             <div class="chat-deal-title">2021 Porsche 911 Carrera 4S</div>
-            <small class="chat-deal-seller">Վաճառող՝ <b>Copart Armenia</b> (Դավիթ Ս.)</small>
+            <small class="chat-deal-seller"><span data-i18n="chat_seller_label">Վաճառող՝</span> <b>Copart Armenia</b> (Դավիթ Ս.)</small>
           </div>
         </div>
 

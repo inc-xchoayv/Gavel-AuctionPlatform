@@ -95,19 +95,19 @@
             <div class="filter-sec">
               <div class="filter-title" data-i18n="flt_status">Կարգավիճակ</div>
               <label class="ck-item">
-                <span><input type="radio" name="f-status" value="all" checked> Բոլորը</span>
+                <span><input type="radio" name="f-status" value="all" checked> <span data-i18n="flt_all">Բոլորը</span></span>
                 <small>15</small>
               </label>
               <label class="ck-item">
-                <span><input type="radio" name="f-status" value="live"> Ուղիղ (Live)</span>
+                <span><input type="radio" name="f-status" value="live"> <span data-i18n="flt_live">Ուղիղ (Live)</span></span>
                 <small>9</small>
               </label>
               <label class="ck-item">
-                <span><input type="radio" name="f-status" value="soon"> Շուտով ավարտվող</span>
+                <span><input type="radio" name="f-status" value="soon"> <span data-i18n="flt_ending">Շուտով ավարտվող</span></span>
                 <small>3</small>
               </label>
               <label class="ck-item">
-                <span><input type="radio" name="f-status" value="end"> Ավարտված</span>
+                <span><input type="radio" name="f-status" value="end"> <span data-i18n="chip_ended">Ավարտված</span></span>
                 <small>3</small>
               </label>
             </div>
@@ -117,39 +117,39 @@
               <div class="filter-title" data-i18n="flt_categories">Կատեգորիաներ</div>
               <div>
                 <label class="ck-item">
-                  <span><input type="checkbox" name="cat_auto" value="1" checked> Ավտոմեքենաներ</span>
+                  <span><input type="checkbox" name="cat_auto" value="1" checked> <span data-i18n="cat_cars">Ավտոմեքենաներ</span></span>
                   <small>2</small>
                 </label>
                 <label class="ck-item">
-                  <span><input type="checkbox" name="cat_watches" value="1" checked> Ժամացույցներ</span>
+                  <span><input type="checkbox" name="cat_watches" value="1" checked> <span data-i18n="cat_watches">Ժամացույցներ</span></span>
                   <small>3</small>
                 </label>
                 <label class="ck-item">
-                  <span><input type="checkbox" name="cat_art" value="1" checked> Արվեստ</span>
+                  <span><input type="checkbox" name="cat_art" value="1" checked> <span data-i18n="cat_art">Արվեստ</span></span>
                   <small>4</small>
                 </label>
                 <label class="ck-item">
-                  <span><input type="checkbox" name="cat_rugs" value="1" checked> Գորգեր</span>
+                  <span><input type="checkbox" name="cat_rugs" value="1" checked> <span data-i18n="cat_carpets">Գորգեր</span></span>
                   <small>2</small>
                 </label>
                 <label class="ck-item">
-                  <span><input type="checkbox" name="cat_ceramics" value="1" checked> Կերամիկա</span>
+                  <span><input type="checkbox" name="cat_ceramics" value="1" checked> <span data-i18n="cat_ceramics">Կերամիկա</span></span>
                   <small>2</small>
                 </label>
                 <label class="ck-item">
-                  <span><input type="checkbox" name="cat_furniture" value="1" checked> Կահույք</span>
+                  <span><input type="checkbox" name="cat_furniture" value="1" checked> <span data-i18n="cat_furniture">Կահույք</span></span>
                   <small>1</small>
                 </label>
                 <label class="ck-item">
-                  <span><input type="checkbox" name="cat_books" value="1" checked> Գրքեր</span>
+                  <span><input type="checkbox" name="cat_books" value="1" checked> <span data-i18n="cat_books">Գրքեր</span></span>
                   <small>1</small>
                 </label>
                 <label class="ck-item">
-                  <span><input type="checkbox" name="cat_jewelry" value="1" checked> Զարդեր</span>
+                  <span><input type="checkbox" name="cat_jewelry" value="1" checked> <span data-i18n="cat_jewellery">Զարդեր</span></span>
                   <small>1</small>
                 </label>
                 <label class="ck-item">
-                  <span><input type="checkbox" name="cat_collections" value="1" checked> Հավաքածուներ</span>
+                  <span><input type="checkbox" name="cat_collections" value="1" checked> <span data-i18n="cat_collectibles">Հավաքածուներ</span></span>
                   <small>1</small>
                 </label>
               </div>
@@ -159,9 +159,9 @@
             <div class="filter-sec">
               <div class="filter-title" data-i18n="flt_price_range">Գնային միջակայք ($)</div>
               <div class="price-range-inputs">
-                <input type="number" name="min_price" class="form-input price-input-field" placeholder="Սկսած">
+                <input type="number" name="min_price" class="form-input price-input-field" placeholder="Սկսած" data-i18n-placeholder="flt_price_from">
                 <span>—</span>
-                <input type="number" name="max_price" class="form-input price-input-field" placeholder="Մինչև">
+                <input type="number" name="max_price" class="form-input price-input-field" placeholder="Մինչև" data-i18n-placeholder="flt_price_to">
               </div>
             </div>
 
@@ -178,12 +178,12 @@
           <div class="catalog-top">
             <form action="auctions.html" method="get" class="search-box">
               <span class="search-icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span>
-              <input type="text" name="q" class="form-input search-input-inner" placeholder="Փնտրել ըստ անվանման...">
+              <input type="text" name="q" class="form-input search-input-inner" placeholder="Փնտրել ըստ անվանման..." data-i18n-placeholder="flt_search_name_ph">
               <button type="submit" class="btn sm pri search-submit-btn" data-i18n="search_aria">Որոնել</button>
             </form>
 
             <div class="catalog-right-controls">
-              <span class="catalog-counter">Գտնվել է <b>15</b> լոտ</span>
+              <span class="catalog-counter"><span data-i18n="flt_found">Գտնվել է</span> <b>15</b> <span data-i18n="flt_lots_word">լոտ</span></span>
               <select class="form-select catalog-sort-select">
                 <option value="ending" data-i18n="flt_ending">Շուտով ավարտվող</option>
                 <option value="price-asc" data-i18n="sort_price_asc">Գին՝ աճման կարգով</option>
@@ -769,7 +769,7 @@
               <span class="faq-chip-arrow">▼</span>
             </label>
             <div class="chat-faq-answer">
-              <p>Live աճուրդում յուրաքանչյուր նոր առաջարկից հետո հետհաշվարկը վերականգնվում է մինչև 15 վրկ («Մուրճի
+              <p data-i18n="chat_faq_a1_full">Live աճուրդում յուրաքանչյուր նոր առաջարկից հետո հետհաշվարկը վերականգնվում է մինչև 15 վրկ («Մուրճի
                 հետհաշվարկ»): Եթե 15 վայրկյանում ավելի բարձր գին չի առաջարկվում, լոտը վաճառվում է ամենաբարձր հայտ
                 ներկայացրած մասնակցին։</p>
             </div>
@@ -781,7 +781,7 @@
               <span class="faq-chip-arrow">▼</span>
             </label>
             <div class="chat-faq-answer">
-              <p>Գնորդի միջնորդավճարը կազմում է շահած գումարի 3-5%-ը՝ կախված կատեգորիայից (օր.՝ ավտոմեքենաների համար 3%,
+              <p data-i18n="chat_faq_a2_full">Գնորդի միջնորդավճարը կազմում է շահած գումարի 3-5%-ը՝ կախված կատեգորիայից (օր.՝ ավտոմեքենաների համար 3%,
                 հնաոճ իրերի համար 5%):</p>
             </div>
 
@@ -818,7 +818,7 @@
           <div class="chat-deal-info">
             <div class="chat-deal-badge"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/><circle cx="12" cy="8" r="6"/></svg> <span data-i18n="chat_won_lot_badge">Շահած լոտ #405 · $48,500</span></div>
             <div class="chat-deal-title">2021 Porsche 911 Carrera 4S</div>
-            <small class="chat-deal-seller">Վաճառող՝ <b>Copart Armenia</b> (Դավիթ Ս.)</small>
+            <small class="chat-deal-seller"><span data-i18n="chat_seller_label">Վաճառող՝</span> <b>Copart Armenia</b> (Դավիթ Ս.)</small>
           </div>
         </div>
 

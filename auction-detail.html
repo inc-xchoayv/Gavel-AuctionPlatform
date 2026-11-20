@@ -156,7 +156,7 @@
                 <div class="shipping-info-grid">
                   <div class="shipping-box">
                     <div class="shipping-box-title"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg> <span data-i18n="det_ship_title">Առաքման պայմաններ</span></div>
-                    <div class="shipping-box-desc">Անվճար ապահովագրված առաքում Երևանի տարածքում 24 ժամում: ՀՀ մարզեր և Արցախ՝ 1-2 աշխատանքային օր:</div>
+                    <div class="shipping-box-desc" data-i18n="det_ship_desc">Անվճար ապահովագրված առաքում Երևանի տարածքում 24 ժամում: ՀՀ մարզեր և Արցախ՝ 1-2 աշխատանքային օր:</div>
                   </div>
                   <div class="shipping-box">
                     <div class="shipping-box-title"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg> <span data-i18n="det_auth_title">Իսկության երաշխիք</span></div>
@@ -201,8 +201,8 @@
               </div>
 
               <div class="bid-price-meta">
-                <span>Մեկնարկային գին՝ <b>$800</b></span>
-                <span>Հայտերի քանակ՝ <b>14</b></span>
+                <span><span data-i18n="det_start_price">Մեկնարկային գին՝</span> <b>$800</b></span>
+                <span><span data-i18n="det_bids_count">Հայտերի քանակ՝</span> <b>14</b></span>
               </div>
             </div>
 
@@ -226,7 +226,7 @@
                 <small class="form-hint">Նվազագույն թույլատրելի գին՝ $1,300 (քայլը՝ +$50)</small>
               </div>
 
-              <a href="place-bid.html" class="btn pri lg full">Միանալ ուղիղ աճուրդին</a>
+              <a href="place-bid.html" class="btn pri lg full" data-i18n="det_join_live">Միանալ ուղիղ աճուրդին</a>
             </form>
 
             <!-- Seller Info -->
@@ -236,19 +236,19 @@
                 <div class="seller-name">Արմեն Սարգսյան</div>
                 <div class="seller-rating-txt">4.9 <svg class="ico ico-sm ico-fill" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> · 12 լոտ</div>
               </div>
-              <label for="chat-widget-toggle" class="btn sm chat-open-label" title="Բացել չաթը վաճառողի հետ"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg> Կապ</label>
+              <label for="chat-widget-toggle" class="btn sm chat-open-label" title="Բացել չաթը վաճառողի հետ" data-i18n-title="det_open_chat_title"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg> Կապ</label>
             </div>
 
             <!-- Bid History -->
             <div class="bid-history-section">
               <div class="bid-history-head">
-                <h4>Առաջարկների պատմություն</h4>
-                <span class="bid-history-live-pill">Ուղիղ եթեր</span>
+                <h4 data-i18n="det_bid_history">Առաջարկների պատմություն</h4>
+                <span class="bid-history-live-pill" data-i18n="det_live_badge">Ուղիղ եթեր</span>
               </div>
               <div class="bid-history-list">
                 <div class="bid-history-row highlight">
                   <div>
-                    <b>Գարիկ Հ.</b> <small class="bid-me-tag">(Դուք · Առաջատար)</small>
+                    <b>Գարիկ Հ.</b> <small class="bid-me-tag" data-i18n="det_you_leader">(Դուք · Առաջատար)</small>
                     <small class="bid-time-tag">2 րոպե առաջ</small>
                   </div>
                   <div class="bid-amount-tag">$1,250</div>
@@ -379,7 +379,7 @@
             <div class="chat-msg-avatar"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg></div>
             <div class="chat-msg-bubble">
               <div class="chat-msg-sender">Gavel AI Bot · <small data-i18n="chat_auto_badge">Ավտոմատ</small></div>
-              <p>Ողջույն, <b>Արմեն</b> Ես Gavel-ի ինտելեկտուալ օգնականն եմ։ Կարող եմ պատասխանել աճուրդների, հայտերի և կանոնների մասին ձեր բոլոր հարցերին։</p>
+              <p><span data-i18n="chat_hello">Ողջույն,</span> <b>Արմեն</b> <span data-i18n="chat_ai_intro_full">Ես Gavel-ի ինտելեկտուալ օգնականն եմ։ Կարող եմ պատասխանել աճուրդների, հայտերի և կանոնների մասին ձեր բոլոր հարցերին։</span></p>
             </div>
           </div>
 
@@ -394,7 +394,7 @@
               <span class="faq-chip-arrow">▼</span>
             </label>
             <div class="chat-faq-answer">
-              <p>Live աճուրդում յուրաքանչյուր նոր առաջարկից հետո հետհաշվարկը վերականգնվում է մինչև 15 վրկ («Մուրճի հետհաշվարկ»): Եթե 15 վայրկյանում ավելի բարձր գին չի առաջարկվում, լոտը վաճառվում է ամենաբարձր հայտ ներկայացրած մասնակցին։</p>
+              <p data-i18n="chat_faq_a1_full">Live աճուրդում յուրաքանչյուր նոր առաջարկից հետո հետհաշվարկը վերականգնվում է մինչև 15 վրկ («Մուրճի հետհաշվարկ»): Եթե 15 վայրկյանում ավելի բարձր գին չի առաջարկվում, լոտը վաճառվում է ամենաբարձր հայտ ներկայացրած մասնակցին։</p>
             </div>
 
             <!-- FAQ 2 Toggle -->
@@ -404,7 +404,7 @@
               <span class="faq-chip-arrow">▼</span>
             </label>
             <div class="chat-faq-answer">
-              <p>Գնորդի միջնորդավճարը կազմում է շահած գումարի 3-5%-ը՝ կախված կատեգորիայից (օր.՝ ավտոմեքենաների համար 3%, հնաոճ իրերի համար 5%):</p>
+              <p data-i18n="chat_faq_a2_full">Գնորդի միջնորդավճարը կազմում է շահած գումարի 3-5%-ը՝ կախված կատեգորիայից (օր.՝ ավտոմեքենաների համար 3%, հնաոճ իրերի համար 5%):</p>
             </div>
 
             <!-- FAQ 3 Toggle -->
@@ -436,7 +436,7 @@
           <div class="chat-deal-info">
             <div class="chat-deal-badge"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/><circle cx="12" cy="8" r="6"/></svg> <span data-i18n="chat_won_lot_badge">Շահած լոտ #405 · $48,500</span></div>
             <div class="chat-deal-title">2021 Porsche 911 Carrera 4S</div>
-            <small class="chat-deal-seller">Վաճառող՝ <b>Copart Armenia</b> (Դավիթ Ս.)</small>
+            <small class="chat-deal-seller"><span data-i18n="chat_seller_label">Վաճառող՝</span> <b>Copart Armenia</b> (Դավիթ Ս.)</small>
           </div>
         </div>
 

@@ -165,7 +165,7 @@
 
               <div class="form-group">
                 <label class="form-label" data-i18n="prof_lbl_bio">Համառոտ տեղեկություն (Bio)</label>
-                <textarea class="form-textarea" placeholder="Կարճ նշեք ձեր հավաքորդական նախասիրությունները...">Անտիկվարիատի, շվեյցարական ժամացույցների և հայկական արվեստի գործերի սիրահար ու հավաքորդ:</textarea>
+                <textarea class="form-textarea" placeholder="Կարճ նշեք ձեր հավաքորդական նախասիրությունները..." data-i18n-placeholder="prof_ph_bio">Անտիկվարիատի, շվեյցարական ժամացույցների և հայկական արվեստի գործերի սիրահար ու հավաքորդ:</textarea>
               </div>
 
               <button type="submit" class="btn pri profile-save-btn" data-i18n="prof_save_btn">Պահպանել փոփոխությունները</button>
@@ -186,11 +186,11 @@
               <div class="grid grid-2">
                 <div class="form-group">
                   <label class="form-label" data-i18n="prof_new_pass">Նոր գաղտնաբառ</label>
-                  <input type="password" class="form-input" placeholder="Նվազագույնը 8 նիշ">
+                  <input type="password" class="form-input" placeholder="Նվազագույնը 8 նիշ" data-i18n-placeholder="prof_ph_new_pass">
                 </div>
                 <div class="form-group">
                   <label class="form-label" data-i18n="prof_rep_pass">Կրկնել նոր գաղտնաբառը</label>
-                  <input type="password" class="form-input" placeholder="Կրկնեք նոր գաղտնաբառը">
+                  <input type="password" class="form-input" placeholder="Կրկնեք նոր գաղտնաբառը" data-i18n-placeholder="prof_ph_rep_pass">
                 </div>
               </div>
 
@@ -224,7 +224,7 @@
                   <div class="session-title">Mobile Safari (Apple iPhone 15)</div>
                   <div class="session-meta">Երևան, Հայաստան · Վերջին ակտիվությունը՝ 2 ժամ առաջ</div>
                 </div>
-                <label class="session-term-toggle" title="Սեղմեք սեսիան ավարտելու համար">
+                <label class="session-term-toggle" title="Սեղմեք սեսիան ավարտելու համար" data-i18n-title="prof_end_sess_title">
                   <input type="checkbox" class="session-term-cb">
                   <span class="btn sm bad btn-term-act" data-i18n="prof_end_session">Ավարտել</span>
                   <span class="chip btn-term-done" data-i18n="chip_ended">Ավարտված</span>
@@ -241,14 +241,14 @@
             <!-- Balance Box -->
             <div class="balance-overview-box">
               <div>
-                <span class="balance-label">Աճուրդային երաշխիքային հաշվեկշիռ</span>
+                <span class="balance-label" data-i18n="prof_bal_title">Աճուրդային երաշխիքային հաշվեկշիռ</span>
                 <div class="balance-amount">$4,200</div>
-                <small class="balance-meta">Ազատ միջոցներ՝ <b>$2,950</b> · Արգելափակված հայտերում՝ <b>$1,250</b></small>
+                <small class="balance-meta"><span data-i18n="prof_bal_free">Ազատ միջոցներ՝</span> <b>$2,950</b> <span data-i18n="prof_bal_locked">· Արգելափակված հայտերում՝</span> <b>$1,250</b></small>
               </div>
-              <a href="#new-card-form" class="btn pri sm">+ Համալրել հաշիվը</a>
+              <a href="#new-card-form" class="btn pri sm" data-i18n="prof_topup_btn">+ Համալրել հաշիվը</a>
             </div>
 
-            <h3 class="security-card-title">Կցված բանկային քարտեր</h3>
+            <h3 class="security-card-title" data-i18n="prof_cards_title">Կցված բանկային քարտեր</h3>
 
             <!-- Card 1 -->
             <div class="payment-card-box">
@@ -260,8 +260,8 @@
                 </div>
               </div>
               <div class="payment-card-actions">
-                <span class="chip ok">Հիմնական</span>
-                <label class="card-del-toggle" title="Հեռացնել քարտը">
+                <span class="chip ok" data-i18n="prof_card_primary">Հիմնական</span>
+                <label class="card-del-toggle" title="Հեռացնել քարտը" data-i18n-title="prof_rm_card_title">
                   <input type="checkbox" class="card-del-cb">
                   <span class="btn sm bad"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg> Հեռացնել</span>
                 </label>
@@ -278,12 +278,12 @@
                 </div>
               </div>
               <div class="payment-card-actions">
-                <label class="card-primary-toggle" title="Դարձնել հիմնական">
+                <label class="card-primary-toggle" title="Դարձնել հիմնական" data-i18n-title="prof_card_make_primary">
                   <input type="checkbox" class="card-primary-cb">
-                  <span class="btn sm btn-make-primary">Դարձնել հիմնական</span>
+                  <span class="btn sm btn-make-primary" data-i18n="prof_card_make_primary">Դարձնել հիմնական</span>
                   <span class="chip ok chip-primary-now"><svg class="ico ico-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Հիմնական</span>
                 </label>
-                <label class="card-del-toggle" title="Հեռացնել քարտը">
+                <label class="card-del-toggle" title="Հեռացնել քարտը" data-i18n-title="prof_rm_card_title">
                   <input type="checkbox" class="card-del-cb">
                   <span class="btn sm bad"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg> Հեռացնել</span>
                 </label>
@@ -292,15 +292,15 @@
 
             <!-- Add New Card Form -->
             <div class="add-card-section" id="new-card-form">
-              <h4 class="add-card-title">+ Կցել նոր վճարային քարտ</h4>
+              <h4 class="add-card-title" data-i18n="prof_card_add_title">+ Կցել նոր վճարային քարտ</h4>
               <form action="profile.html" method="get">
                 <div class="form-group">
-                  <label class="form-label">Քարտի համար</label>
+                  <label class="form-label" data-i18n="prof_card_num">Քարտի համար</label>
                   <input type="text" class="form-input" placeholder="0000 0000 0000 0000">
                 </div>
                 <div class="grid grid-2">
                   <div class="form-group">
-                    <label class="form-label">Ժամկետ (MM/YY)</label>
+                    <label class="form-label" data-i18n="prof_card_exp">Ժամկետ (MM/YY)</label>
                     <input type="text" class="form-input" placeholder="MM/YY">
                   </div>
                   <div class="form-group">
@@ -309,36 +309,36 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="form-label">Քարտապանի անուն ազգանուն</label>
+                  <label class="form-label" data-i18n="prof_card_holder">Քարտապանի անուն ազգանուն</label>
                   <input type="text" class="form-input" placeholder="GARIK HARUTYUNYAN">
                 </div>
-                <button type="submit" class="btn pri sm">Պահպանել քարտը</button>
+                <button type="submit" class="btn pri sm" data-i18n="prof_card_save">Պահպանել քարտը</button>
               </form>
             </div>
           </div>
 
           <!-- Pane 4: Notification Settings -->
           <div id="pane-notifications" class="profile-tab-pane">
-            <h2 class="profile-section-title">Ծանուցումների կարգավորումներ</h2>
-            <p class="profile-section-desc">Ընտրեք, թե ինչ իրադարձությունների դեպքում և որ ալիքներով եք ցանկանում ստանալ ծանուցումներ:</p>
+            <h2 class="profile-section-title" data-i18n="prof_notif_title">Ծանուցումների կարգավորումներ</h2>
+            <p class="profile-section-desc" data-i18n="prof_notif_desc">Ընտրեք, թե ինչ իրադարձությունների դեպքում և որ ալիքներով եք ցանկանում ստանալ ծանուցումներ:</p>
 
             <form action="profile.html" method="get">
               <div class="notification-group">
-                <div class="notification-group-title">Աճուրդային իրադարձություններ</div>
+                <div class="notification-group-title" data-i18n="prof_notif_events">Աճուրդային իրադարձություններ</div>
 
                 <label class="notification-row">
                   <input type="checkbox" checked class="notification-checkbox">
                   <div class="notification-text-wrap">
-                    <b class="notification-name">Գերազանցված հայտ (Outbid alert)</b>
-                    <small class="notification-sub">Ծանուցել անմիջապես, երբ մեկ այլ մասնակից ձեզնից ավելի բարձր գին է առաջարկում</small>
+                    <b class="notification-name" data-i18n="prof_notif_outbid">Գերազանցված հայտ (Outbid alert)</b>
+                    <small class="notification-sub" data-i18n="prof_notif_outbid_d">Ծանուցել անմիջապես, երբ մեկ այլ մասնակից ձեզնից ավելի բարձր գին է առաջարկում</small>
                   </div>
                 </label>
 
                 <label class="notification-row">
                   <input type="checkbox" checked class="notification-checkbox">
                   <div class="notification-text-wrap">
-                    <b class="notification-name">⏱️ Աճուրդի ավարտի հիշեցում</b>
-                    <small class="notification-sub">Հիշեցնել ձեր հավանած կամ մասնակցած աճուրդի ավարտից 1 ժամ առաջ</small>
+                    <b class="notification-name"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> <span data-i18n="prof_notif_ending">Աճուրդի ավարտի հիշեցում</span></b>
+                    <small class="notification-sub" data-i18n="prof_notif_ending_d">Հիշեցնել ձեր հավանած կամ մասնակցած աճուրդի ավարտից 1 ժամ առաջ</small>
                   </div>
                 </label>
 
@@ -346,7 +346,7 @@
                   <input type="checkbox" checked class="notification-checkbox">
                   <div class="notification-text-wrap">
                     <b class="notification-name"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/><circle cx="12" cy="8" r="6"/></svg> Հաղթանակի ծանուցում</b>
-                    <small class="notification-sub">Ծանուցել, երբ աճուրդն ավարտվում է ձեր հաղթանակով և պատրաստ է վճարման</small>
+                    <small class="notification-sub" data-i18n="prof_notif_win_d">Ծանուցել, երբ աճուրդն ավարտվում է ձեր հաղթանակով և պատրաստ է վճարման</small>
                   </div>
                 </label>
 
@@ -354,7 +354,7 @@
                   <input type="checkbox" checked class="notification-checkbox">
                   <div class="notification-text-wrap">
                     <b class="notification-name"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg> <span data-i18n="prof_notif_lots">Նոր լոտեր իմ նախընտրած բաժիններում</span></b>
-                    <small class="notification-sub">Տեղեկացնել նոր ավելացված ժամացույցների, գորգերի կամ արվեստի գործերի մասին</small>
+                    <small class="notification-sub" data-i18n="prof_notif_lots_d">Տեղեկացնել նոր ավելացված ժամացույցների, գորգերի կամ արվեստի գործերի մասին</small>
                   </div>
                 </label>
 
@@ -362,19 +362,19 @@
                   <input type="checkbox" class="notification-checkbox">
                   <div class="notification-text-wrap">
                     <b class="notification-name"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg> <span data-i18n="prof_notif_digest">Gavel-ի շաբաթական ամփոփագիր</span></b>
-                    <small class="notification-sub">Ստանալ շաբաթվա գլխավոր աճուրդների և բացառիկ լոտերի ընտրանին</small>
+                    <small class="notification-sub" data-i18n="prof_notif_digest_d">Ստանալ շաբաթվա գլխավոր աճուրդների և բացառիկ լոտերի ընտրանին</small>
                   </div>
                 </label>
               </div>
 
               <div class="notification-group">
-                <div class="notification-group-title">Ծանուցման ալիքներ</div>
+                <div class="notification-group-title" data-i18n="prof_notif_channels">Ծանուցման ալիքներ</div>
 
                 <label class="notification-row">
                   <input type="checkbox" checked class="notification-checkbox">
                   <div class="notification-text-wrap">
                     <b class="notification-name"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg> <span data-i18n="lbl_email">Էլ. հասցե</span> (garik@example.com)</b>
-                    <small class="notification-sub">Ստանալ մանրամասն նամակներ հաշիվ-ապրանքագրերով և հաղթանակի փաստաթղթերով</small>
+                    <small class="notification-sub" data-i18n="prof_notif_email_d">Ստանալ մանրամասն նամակներ հաշիվ-ապրանքագրերով և հաղթանակի փաստաթղթերով</small>
                   </div>
                 </label>
 
@@ -382,7 +382,7 @@
                   <input type="checkbox" checked class="notification-checkbox">
                   <div class="notification-text-wrap">
                     <b class="notification-name"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg> SMS հաղորդագրություն (+374 98 765432)</b>
-                    <small class="notification-sub">Ստանալ շտապ կարճ հաղորդագրություններ (գերազանցված հայտերի դեպքում)</small>
+                    <small class="notification-sub" data-i18n="prof_notif_sms_d">Ստանալ շտապ կարճ հաղորդագրություններ (գերազանցված հայտերի դեպքում)</small>
                   </div>
                 </label>
 
@@ -390,12 +390,12 @@
                   <input type="checkbox" checked class="notification-checkbox">
                   <div class="notification-text-wrap">
                     <b class="notification-name"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg> Բրաուզերի Push ծանուցումներ</b>
-                    <small class="notification-sub">Ակնթարթային ծանուցումներ համակարգչի կամ հեռախոսի էկրանին</small>
+                    <small class="notification-sub" data-i18n="prof_notif_push_d">Ակնթարթային ծանուցումներ համակարգչի կամ հեռախոսի էկրանին</small>
                   </div>
                 </label>
               </div>
 
-              <button type="submit" class="btn pri profile-save-btn">Պահպանել կարգավորումները</button>
+              <button type="submit" class="btn pri profile-save-btn" data-i18n="prof_notif_save">Պահպանել կարգավորումները</button>
             </form>
           </div>
 
@@ -508,7 +508,7 @@
             <div class="chat-msg-avatar"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg></div>
             <div class="chat-msg-bubble">
               <div class="chat-msg-sender">Gavel AI Bot · <small data-i18n="chat_auto_badge">Ավտոմատ</small></div>
-              <p>Ողջույն, <b>Արմեն</b> Ես Gavel-ի ինտելեկտուալ օգնականն եմ։ Կարող եմ պատասխանել աճուրդների, հայտերի և կանոնների մասին ձեր բոլոր հարցերին։</p>
+              <p><span data-i18n="chat_hello">Ողջույն,</span> <b>Արմեն</b> <span data-i18n="chat_ai_intro_full">Ես Gavel-ի ինտելեկտուալ օգնականն եմ։ Կարող եմ պատասխանել աճուրդների, հայտերի և կանոնների մասին ձեր բոլոր հարցերին։</span></p>
             </div>
           </div>
 
@@ -523,7 +523,7 @@
               <span class="faq-chip-arrow">▼</span>
             </label>
             <div class="chat-faq-answer">
-              <p>Live աճուրդում յուրաքանչյուր նոր առաջարկից հետո հետհաշվարկը վերականգնվում է մինչև 15 վրկ («Մուրճի հետհաշվարկ»): Եթե 15 վայրկյանում ավելի բարձր գին չի առաջարկվում, լոտը վաճառվում է ամենաբարձր հայտ ներկայացրած մասնակցին։</p>
+              <p data-i18n="chat_faq_a1_full">Live աճուրդում յուրաքանչյուր նոր առաջարկից հետո հետհաշվարկը վերականգնվում է մինչև 15 վրկ («Մուրճի հետհաշվարկ»): Եթե 15 վայրկյանում ավելի բարձր գին չի առաջարկվում, լոտը վաճառվում է ամենաբարձր հայտ ներկայացրած մասնակցին։</p>
             </div>
 
             <!-- FAQ 2 Toggle -->
@@ -533,7 +533,7 @@
               <span class="faq-chip-arrow">▼</span>
             </label>
             <div class="chat-faq-answer">
-              <p>Գնորդի միջնորդավճարը կազմում է շահած գումարի 3-5%-ը՝ կախված կատեգորիայից (օր.՝ ավտոմեքենաների համար 3%, հնաոճ իրերի համար 5%):</p>
+              <p data-i18n="chat_faq_a2_full">Գնորդի միջնորդավճարը կազմում է շահած գումարի 3-5%-ը՝ կախված կատեգորիայից (օր.՝ ավտոմեքենաների համար 3%, հնաոճ իրերի համար 5%):</p>
             </div>
 
             <!-- FAQ 3 Toggle -->
@@ -565,7 +565,7 @@
           <div class="chat-deal-info">
             <div class="chat-deal-badge"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/><circle cx="12" cy="8" r="6"/></svg> <span data-i18n="chat_won_lot_badge">Շահած լոտ #405 · $48,500</span></div>
             <div class="chat-deal-title">2021 Porsche 911 Carrera 4S</div>
-            <small class="chat-deal-seller">Վաճառող՝ <b>Copart Armenia</b> (Դավիթ Ս.)</small>
+            <small class="chat-deal-seller"><span data-i18n="chat_seller_label">Վաճառող՝</span> <b>Copart Armenia</b> (Դավիթ Ս.)</small>
           </div>
         </div>
 

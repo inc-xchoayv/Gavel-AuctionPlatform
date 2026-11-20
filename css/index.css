@@ -366,17 +366,23 @@
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transform: translateX(18px) scale(0.985);
-  transition: opacity 0.42s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.42s cubic-bezier(0.16, 1, 0.3, 1),
-              visibility 0.42s;
+  transform: translateY(10px) scale(0.98);
+  transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+              visibility 0.55s;
   z-index: 1;
+}
+.recommended-card.is-leaving {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px) scale(0.98);
+  z-index: 2;
 }
 .recommended-card.is-active {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
-  transform: translateX(0) scale(1);
+  transform: translateY(0) scale(1);
   z-index: 3;
 }
 
@@ -409,7 +415,7 @@
   border-radius: 99px;
 }
 .rec-bar.is-active .rec-bar-fill {
-  animation: recBarProgress 5s linear forwards;
+  animation: recBarProgress 4.5s linear forwards;
 }
 .recommended-carousel.is-paused .rec-bar.is-active .rec-bar-fill {
   animation-play-state: paused;
