@@ -9,6 +9,7 @@
   <link rel="shortcut icon" href="favicon.ico">
   <link rel="stylesheet" href="css/common.css">
   <link rel="stylesheet" href="css/auctions.css">
+  <script src="js/i18n.js"></script>
   <script src="js/auth.js"></script>
 </head>
 
@@ -25,15 +26,15 @@
           <circle cx="11" cy="11" r="7" />
           <path d="M20 20l-4-4" />
         </svg>
-        <input type="search" name="q" placeholder="Որոնել Gavel-ում..." aria-label="Որոնել">
+        <input type="search" name="q" placeholder="Որոնել Gavel-ում..." data-i18n-placeholder="search_placeholder" aria-label="Որոնել">
       </form>
       <nav>
-        <a class="nav-link" href="index.html">Գլխավոր</a>
-        <a class="nav-link active" href="auctions.html">Աճուրդներ</a>
-        <a class="nav-link" href="my-participations.html">Իմ մասնակցությունները</a>
-        <a class="nav-link" href="my-lots.html">Իմ լոտերը</a>
-        <a class="nav-link" href="profile.html">Անձնական էջ</a>
-        <a class="nav-link" href="admin-dashboard.html">Ադմին</a>
+        <a class="nav-link" href="index.html" data-i18n="nav_home">Գլխավոր</a>
+        <a class="nav-link active" href="auctions.html" data-i18n="nav_auctions">Աճուրդներ</a>
+        <a class="nav-link" href="my-participations.html" data-i18n="nav_participations">Իմ մասնակցությունները</a>
+        <a class="nav-link" href="my-lots.html" data-i18n="nav_my_lots">Իմ լոտերը</a>
+        <a class="nav-link" href="profile.html" data-i18n="nav_profile">Անձնական էջ</a>
+        <a class="nav-link" href="admin-dashboard.html" data-i18n="nav_admin">Ադմին</a>
       </nav>
       <div class="header-actions">
         <a href="login.html" class="btn sm">Մուտք</a>
@@ -228,9 +229,9 @@
                   </div>
                 </div>
                 <div class="lot-card-action-btns">
-                  <a href="auction-detail.html" class="btn sm">Մանրամասն</a>
-                  <a href="place-bid.html" class="btn pri sm full">⚡ Միանալ ուղիղ աճուրդին</a>
-                </div>
+            <a href="auction-detail.html" class="btn sm" data-i18n="lot_details_btn">Մանրամասն</a>
+            <a href="place-bid.html" class="btn pri sm" data-i18n="lot_join_btn">Միանալ աճուրդին</a>
+          </div>
               </div>
             </article>
 
@@ -265,9 +266,9 @@
                   </div>
                 </div>
                 <div class="lot-card-action-btns">
-                  <a href="auction-detail.html" class="btn pri sm full">Մանրամասն</a>
-                  <a href="place-bid.html" class="btn sec sm" title="Արագ հայտ">⚡</a>
-                </div>
+            <a href="auction-detail.html" class="btn sm" data-i18n="lot_details_btn">Մանրամասն</a>
+            <a href="place-bid.html" class="btn pri sm" data-i18n="lot_join_btn">Միանալ աճուրդին</a>
+          </div>
               </div>
             </article>
 
@@ -302,9 +303,9 @@
                   </div>
                 </div>
                 <div class="lot-card-action-btns">
-                  <a href="auction-detail.html" class="btn pri sm full">Մանրամասն</a>
-                  <a href="place-bid.html" class="btn sec sm" title="Արագ հայտ">⚡</a>
-                </div>
+            <a href="auction-detail.html" class="btn sm" data-i18n="lot_details_btn">Մանրամասն</a>
+            <a href="place-bid.html" class="btn pri sm" data-i18n="lot_join_btn">Միանալ աճուրդին</a>
+          </div>
               </div>
             </article>
 
@@ -339,9 +340,9 @@
                   </div>
                 </div>
                 <div class="lot-card-action-btns">
-                  <a href="auction-detail.html" class="btn pri sm full">Մանրամասն</a>
-                  <a href="place-bid.html" class="btn sec sm" title="Արագ հայտ">⚡</a>
-                </div>
+            <a href="auction-detail.html" class="btn sm" data-i18n="lot_details_btn">Մանրամասն</a>
+            <a href="place-bid.html" class="btn pri sm" data-i18n="lot_join_btn">Միանալ աճուրդին</a>
+          </div>
               </div>
             </article>
 
@@ -376,9 +377,9 @@
                   </div>
                 </div>
                 <div class="lot-card-action-btns">
-                  <a href="auction-detail.html" class="btn pri sm full">Մանրամասն</a>
-                  <a href="place-bid.html" class="btn sec sm" title="Արագ հայտ">⚡</a>
-                </div>
+            <a href="auction-detail.html" class="btn sm" data-i18n="lot_details_btn">Մանրամասն</a>
+            <a href="place-bid.html" class="btn pri sm" data-i18n="lot_join_btn">Միանալ աճուրդին</a>
+          </div>
               </div>
             </article>
 
@@ -413,9 +414,9 @@
                   </div>
                 </div>
                 <div class="lot-card-action-btns">
-                  <a href="auction-detail.html" class="btn pri sm full">Մանրամասն</a>
-                  <a href="place-bid.html" class="btn sec sm" title="Արագ հայտ">⚡</a>
-                </div>
+            <a href="auction-detail.html" class="btn sm" data-i18n="lot_details_btn">Մանրամասն</a>
+            <a href="place-bid.html" class="btn pri sm" data-i18n="lot_join_btn">Միանալ աճուրդին</a>
+          </div>
               </div>
             </article>
 
@@ -450,9 +451,9 @@
                   </div>
                 </div>
                 <div class="lot-card-action-btns">
-                  <a href="auction-detail.html" class="btn pri sm full">Մանրամասն</a>
-                  <a href="place-bid.html" class="btn sec sm" title="Արագ հայտ">⚡</a>
-                </div>
+            <a href="auction-detail.html" class="btn sm" data-i18n="lot_details_btn">Մանրամասն</a>
+            <a href="place-bid.html" class="btn pri sm" data-i18n="lot_join_btn">Միանալ աճուրդին</a>
+          </div>
               </div>
             </article>
 
@@ -487,9 +488,9 @@
                   </div>
                 </div>
                 <div class="lot-card-action-btns">
-                  <a href="auction-detail.html" class="btn pri sm full">Մանրամասն</a>
-                  <a href="place-bid.html" class="btn sec sm" title="Արագ հայտ">⚡</a>
-                </div>
+            <a href="auction-detail.html" class="btn sm" data-i18n="lot_details_btn">Մանրամասն</a>
+            <a href="place-bid.html" class="btn pri sm" data-i18n="lot_join_btn">Միանալ աճուրդին</a>
+          </div>
               </div>
             </article>
 
@@ -524,9 +525,9 @@
                   </div>
                 </div>
                 <div class="lot-card-action-btns">
-                  <a href="auction-detail.html" class="btn pri sm full">Մանրամասն</a>
-                  <a href="place-bid.html" class="btn sec sm" title="Արագ հայտ">⚡</a>
-                </div>
+            <a href="auction-detail.html" class="btn sm" data-i18n="lot_details_btn">Մանրամասն</a>
+            <a href="place-bid.html" class="btn pri sm" data-i18n="lot_join_btn">Միանալ աճուրդին</a>
+          </div>
               </div>
             </article>
 
@@ -561,9 +562,9 @@
                   </div>
                 </div>
                 <div class="lot-card-action-btns">
-                  <a href="auction-detail.html" class="btn pri sm full">Մանրամասն</a>
-                  <a href="place-bid.html" class="btn sec sm" title="Արագ հայտ">⚡</a>
-                </div>
+            <a href="auction-detail.html" class="btn sm" data-i18n="lot_details_btn">Մանրամասն</a>
+            <a href="place-bid.html" class="btn pri sm" data-i18n="lot_join_btn">Միանալ աճուրդին</a>
+          </div>
               </div>
             </article>
 
@@ -598,9 +599,9 @@
                   </div>
                 </div>
                 <div class="lot-card-action-btns">
-                  <a href="auction-detail.html" class="btn pri sm full">Մանրամասն</a>
-                  <a href="place-bid.html" class="btn sec sm" title="Արագ հայտ">⚡</a>
-                </div>
+            <a href="auction-detail.html" class="btn sm" data-i18n="lot_details_btn">Մանրամասն</a>
+            <a href="place-bid.html" class="btn pri sm" data-i18n="lot_join_btn">Միանալ աճուրդին</a>
+          </div>
               </div>
             </article>
 
@@ -635,8 +636,9 @@
                   </div>
                 </div>
                 <div class="lot-card-action-btns">
-                  <a href="auction-detail.html" class="btn sm full">Դիտել արդյունքը</a>
-                </div>
+            <a href="auction-detail.html" class="btn sm" data-i18n="lot_details_btn">Մանրամասն</a>
+            <a href="place-bid.html" class="btn pri sm" data-i18n="lot_join_btn">Միանալ աճուրդին</a>
+          </div>
               </div>
             </article>
           </div>
@@ -758,7 +760,7 @@
 
           <!-- Quick FAQ Prompt Toggles -->
           <div class="chat-faq-section">
-            <small class="chat-faq-title">⚡ Հաճախակի տրվող հարցեր՝</small>
+            <small class="chat-faq-title">Հաճախակի տրվող հարցեր՝</small>
 
             <!-- FAQ 1 Toggle -->
             <input type="checkbox" id="faq-toggle-1" class="chat-faq-cb">

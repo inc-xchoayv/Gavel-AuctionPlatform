@@ -8,6 +8,7 @@
   <link rel="shortcut icon" href="favicon.ico">
   <link rel="stylesheet" href="css/common.css">
   <link rel="stylesheet" href="css/index.css">
+  <script src="js/i18n.js"></script>
   <script src="js/auth.js"></script>
   <script src="js/categories.js" defer></script>
 </head>
@@ -21,15 +22,15 @@
       </a>
       <form class="srch" action="auctions.html" method="get">
         <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
-        <input type="search" name="q" placeholder="Որոնել Gavel-ում..." aria-label="Որոնել">
+        <input type="search" name="q" placeholder="Որոնել Gavel-ում..." data-i18n-placeholder="search_placeholder" aria-label="Որոնել">
       </form>
       <nav>
-        <a class="nav-link active" href="index.html">Գլխավոր</a>
-        <a class="nav-link" href="auctions.html">Աճուրդներ</a>
-        <a class="nav-link" href="my-participations.html">Իմ մասնակցությունները</a>
-        <a class="nav-link" href="my-lots.html">Իմ լոտերը</a>
-        <a class="nav-link" href="profile.html">Անձնական էջ</a>
-        <a class="nav-link" href="admin-dashboard.html">Ադմին</a>
+        <a class="nav-link active" href="index.html" data-i18n="nav_home">Գլխավոր</a>
+        <a class="nav-link" href="auctions.html" data-i18n="nav_auctions">Աճուրդներ</a>
+        <a class="nav-link" href="my-participations.html" data-i18n="nav_participations">Իմ մասնակցությունները</a>
+        <a class="nav-link" href="my-lots.html" data-i18n="nav_my_lots">Իմ լոտերը</a>
+        <a class="nav-link" href="profile.html" data-i18n="nav_profile">Անձնական էջ</a>
+        <a class="nav-link" href="admin-dashboard.html" data-i18n="nav_admin">Ադմին</a>
       </nav>
       <div class="header-actions">
         <a href="login.html" class="btn sm">Մուտք</a>
@@ -74,11 +75,11 @@
     <div class="w">
       <div class="hero-content">
         <div>
-          <h1>Բացառիկ արվեստ և հնաոճ իրեր՝ <span class="hero-highlight">ուղիղ աճուրդով</span></h1>
-          <p class="hero-desc">Մասնակցեք Հայաստանի գլխավոր առցանց աճուրդներին: Ներկայացրեք ձեր առաջարկը իրական ժամանակում կամ վաճառեք ձեր հավաքածուն բարձրագույն արժեքով:</p>
+          <h1 data-i18n="hero_title">Բացառիկ արվեստ և հնաոճ իրեր՝ ուղիղ աճուրդով</h1>
+          <p class="hero-desc" data-i18n="hero_desc">Մասնակցեք Հայաստանի գլխավոր առցանց աճուրդներին: Ներկայացրեք ձեր առաջարկը իրական ժամանակում կամ վաճառեք ձեր հավաքածուն բարձրագույն արժեքով:</p>
           <div class="hero-actions">
-            <a href="auctions.html" class="btn pri lg">Դիտել բոլոր աճուրդները</a>
-            <a href="add-lot.html" class="btn sec lg hero-sell-btn">Վաճառել ապրանք</a>
+            <a href="auctions.html" class="btn pri lg" data-i18n="hero_btn_explore">Դիտել բոլոր աճուրդները</a>
+            <a href="add-lot.html" class="btn sec lg hero-sell-btn" data-i18n="hero_btn_sell">Վաճառել ապրանք</a>
           </div>
         </div>
         <div>
@@ -108,7 +109,7 @@
                 </div>
                 <div class="hero-card-actions">
                   <a href="place-bid.html" class="btn pri full">Մասնակցել աճուրդին</a>
-                  <a href="place-bid.html" class="btn sec" title="Արագ առաջարկ">⚡</a>
+                  <a href="place-bid.html" class="btn sec" data-i18n="lot_bid_btn">Հայտ</a>
                 </div>
               </div>
 
@@ -127,7 +128,7 @@
                 </div>
                 <div class="hero-card-actions">
                   <a href="auction-detail.html" class="btn pri full">Մասնակցել աճուրդին</a>
-                  <a href="place-bid.html" class="btn sec" title="Արագ առաջարկ">⚡</a>
+                  <a href="place-bid.html" class="btn sec" data-i18n="lot_bid_btn">Հայտ</a>
                 </div>
               </div>
 
@@ -146,7 +147,7 @@
                 </div>
                 <div class="hero-card-actions">
                   <a href="auction-detail.html" class="btn pri full">Մասնակցել աճուրդին</a>
-                  <a href="auction-detail.html" class="btn sec" title="Արագ առաջարկ">⚡</a>
+                  <a href="auction-detail.html" class="btn sec" data-i18n="lot_bid_btn">Հայտ</a>
                 </div>
               </div>
 
@@ -165,7 +166,7 @@
                 </div>
                 <div class="hero-card-actions">
                   <a href="auction-detail.html" class="btn pri full">Մասնակցել աճուրդին</a>
-                  <a href="auction-detail.html" class="btn sec" title="Արագ առաջարկ">⚡</a>
+                  <a href="auction-detail.html" class="btn sec" data-i18n="lot_bid_btn">Հայտ</a>
                 </div>
               </div>
             </div>
@@ -188,10 +189,10 @@
       <!-- Categories -->
       <div class="section-head">
         <div>
-          <h2>Գնումներ ըստ կատեգորիայի</h2>
-          <p>Բացահայտեք հազվագյուտ իրեր ձեր նախընտրած բաժնում</p>
+          <h2 data-i18n="sec_categories_title">Գնումներ ըստ կատեգորիայի</h2>
+          <p data-i18n="sec_categories_desc">Բացահայտեք հազվագյուտ իրեր ձեր նախընտրած բաժնում</p>
         </div>
-        <a href="auctions.html" class="btn sm">Բոլոր կատեգորիաները →</a>
+        <a href="auctions.html" class="btn sm" data-i18n="sec_categories_all">Բոլոր կատեգորիաները →</a>
       </div>
 
       <div class="cat-grid" id="category-grid">
@@ -202,7 +203,7 @@
       <!-- Ending Soon Lots -->
       <div class="section-head">
         <div>
-          <h2>Շուտով ավարտվող լոտեր</h2>
+          <h2 data-i18n="sec_ending_title">Շուտով ավարտվող լոտեր</h2>
           <p>Շտապեք ներկայացնել ձեր առաջարկը նախքան մուրճի վերջին հարվածը</p>
         </div>
         <a href="auctions.html" class="btn sm">Դիտել բոլորը</a>
@@ -235,8 +236,8 @@
               </div>
             </div>
             <div class="lot-card-btns">
-              <a href="auction-detail.html" class="btn sm full">Մանրամասն</a>
-              <a href="place-bid.html" class="btn pri sm">⚡ Live Bid</a>
+              <a href="auction-detail.html" class="btn sm" data-i18n="lot_details_btn">Մանրամասն</a>
+              <a href="place-bid.html" class="btn pri sm" data-i18n="lot_join_btn">Միանալ աճուրդին</a>
             </div>
           </div>
         </article>

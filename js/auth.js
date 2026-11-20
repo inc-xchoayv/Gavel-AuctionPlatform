@@ -1,18 +1,17 @@
 /* ==========================================================================
    js/auth.js — Gavel: սեսիա, էջերի պաշտպանություն (guard), navbar ըստ դերի
-   Միացվում է ԲՈԼՈՐ էջերի <head>-ում՝ ԱՌԱՆՑ defer, որպեսզի guard-ը
-   աշխատի էջի պարունակությունը ցույց տալուց ԱՌԱՋ։
+   Միացվում է ԲՈԼՈՐ էջերի <head>-ում՝ i18n.js-ից ՀԵՏՈ:
    ========================================================================== */
 
 const Gavel = (function () {
 
   // ---------- 1. Կարգավորումներ ----------
-  const USERS_URL      = "data/users.json";  // «սկզբնական» օգտատերերը (read-only)
-  const KEY_USERS      = "gavel_users";      // localStorage — նոր գրանցվածները
-  const KEY_SESSION    = "gavel_session";    // localStorage — ով է մուտք գործած
-  const KEY_FLASH      = "gavel_flash";      // sessionStorage — մեկանգամյա հաղորդագրություն
+  const USERS_URL      = "data/users.json";
+  const KEY_USERS      = "gavel_users";
+  const KEY_SESSION    = "gavel_session";
+  const KEY_FLASH      = "gavel_flash";
 
-  // Ո՞ր էջին ո՞վ կարող է մտնել։  "user" = ցանկացած մուտք գործած, "admin" = միայն ադմին
+  // Էջերի հասանելիությունն ըստ դերերի
   const PAGE_ACCESS = {
     "my-participations.html": "user",
     "my-lots.html":           "user",
@@ -24,7 +23,6 @@ const Gavel = (function () {
     "admin-auctions.html":    "admin",
     "admin-reports.html":     "admin"
   };
-  // Էջեր, որոնք մուտք գործածին պետք չեն (նրան ուղարկում ենք Անձնական էջ)
   const GUEST_ONLY = ["login.html", "register.html"];
 
   // ---------- 2. Սեսիա ----------
@@ -33,7 +31,6 @@ const Gavel = (function () {
     catch (e) { return null; }
   }
   function startSession(user) {
-    // Գաղտնաբառը սեսիայում ՉԵՆՔ պահում
     const session = {
       id: user.id, firstName: user.firstName, lastName: user.lastName,
       email: user.email, role: user.role, avatar: user.avatar || null
@@ -43,16 +40,18 @@ const Gavel = (function () {
   }
   function logout() {
     localStorage.removeItem(KEY_SESSION);
-    setFlash("Դուք դուրս եկաք համակարգից։");
+    const msg = (typeof I18n !== "undefined")
+      ? I18n.t("toast_logout_success", "Դուք դուրս եկաք համակարգից։")
+      : "Դուք դուրս եկաք համակարգից։";
+    setFlash(msg);
     window.location.href = "index.html";
   }
 
-  // ---------- 3. Օգտատերերի «բազա» ----------
+  // ---------- 3. Օգտատերերի բազա ----------
   function getRegisteredUsers() {
     try { return JSON.parse(localStorage.getItem(KEY_USERS)) || []; }
     catch (e) { return []; }
   }
-  // JSON ֆայլի օգտատերեր + localStorage-ի նոր գրանցվածներ = ամբողջ ցուցակը
   async function loadAllUsers() {
     const response = await fetch(USERS_URL);
     if (!response.ok) throw new Error("users.json-ը չբեռնվեց");
@@ -65,7 +64,7 @@ const Gavel = (function () {
     localStorage.setItem(KEY_USERS, JSON.stringify(list));
   }
 
-  // ---------- 4. Flash հաղորդագրություն (ցույց է տրվում հաջորդ էջում) ----------
+  // ---------- 4. Flash հաղորդագրություն ----------
   function setFlash(text) { sessionStorage.setItem(KEY_FLASH, text); }
   function showFlash() {
     const text = sessionStorage.getItem(KEY_FLASH);
@@ -89,12 +88,18 @@ const Gavel = (function () {
     const session = getSession();
 
     if (need && !session) {
-      setFlash("Այս էջը տեսնելու համար մուտք գործեք։");
+      const msg = (typeof I18n !== "undefined")
+        ? I18n.t("toast_guard_login", "Այս էջը տեսնելու համար մուտք գործեք։")
+        : "Այս էջը տեսնելու համար մուտք գործեք։";
+      setFlash(msg);
       window.location.replace("login.html?next=" + encodeURIComponent(page));
       return;
     }
     if (need === "admin" && session.role !== "admin") {
-      setFlash("Այս էջը հասանելի է միայն ադմինիստրատորին։");
+      const msg = (typeof I18n !== "undefined")
+        ? I18n.t("toast_guard_admin", "Այս էջը հասանելի է միայն ադմինիստրատորին։")
+        : "Այս էջը հասանելի է միայն ադմինիստրատորին։";
+      setFlash(msg);
       window.location.replace("index.html");
       return;
     }
@@ -103,38 +108,57 @@ const Gavel = (function () {
     }
   }
 
-  // ---------- 6. NAVBAR ըստ դերի ----------
+  // ---------- 6. NAVBAR ըստ դերի (ԱՌԱՆՑ Ելքի կոճակի և ԱՌԱՆՑ էմոջիների) ----------
   function buildNav() {
     const session = getSession();
     const role = session ? session.role : "guest";
 
+    const lockedTooltip = (typeof I18n !== "undefined")
+      ? I18n.t("nav_locked_tooltip", "Մուտք գործեք՝ այս բաժինն օգտագործելու համար")
+      : "Մուտք գործեք՝ այս բաժինն օգտագործելու համար";
+
     // 6a. Հղումները nav-ում
     document.querySelectorAll("header nav a").forEach(function (link) {
-      const need = PAGE_ACCESS[link.getAttribute("href")];
+      const href = link.getAttribute("href");
+      const need = PAGE_ACCESS[href];
+
+      // Մաքրում ենք նախորդ կարգավիճակները
+      link.classList.remove("is-hidden", "is-locked");
+      link.removeAttribute("aria-disabled");
+      link.removeAttribute("tabindex");
+      link.removeAttribute("title");
+
       if (need === "admin" && role !== "admin") {
-        link.classList.add("is-hidden");             // Ադմին՝ ամբողջությամբ թաքցված
+        link.classList.add("is-hidden");             // Ոչ ադմինից լիովին թաքցված
       } else if (need === "user" && role === "guest") {
-        link.classList.add("is-locked");             // Հյուր՝ երևում է, բայց չի սեղմվում
+        link.classList.add("is-locked");             // Հյուրին երևում է, բայց արգելափակված (առանց էմոջիի!)
         link.setAttribute("aria-disabled", "true");
         link.setAttribute("tabindex", "-1");
-        link.title = "Մուտք գործեք՝ այս բաժինն օգտագործելու համար";
-        link.addEventListener("click", function (e) { e.preventDefault(); });
+        link.title = lockedTooltip;
+        link.onclick = function (e) { e.preventDefault(); };
+      } else {
+        link.onclick = null;
       }
     });
 
-    // 6b. Աջ կողմի կոճակները (.header-actions)։ Լեզվի ընտրիչը թողնում ենք։
+    // 6b. Աջ կողմի կոճակները (.header-actions)
     const actions = document.querySelector(".header-actions");
     if (!actions) return;
-    actions.querySelectorAll(":scope > a, :scope > button").forEach(function (el) { el.remove(); });
+
+    // Մաքրում ենք միայն նախորդ հղումները/կոճակները, լեզվի ընտրիչը թողնում ենք
+    actions.querySelectorAll(":scope > a, :scope > button:not(.lang-btn)").forEach(function (el) { el.remove(); });
     const lang = actions.querySelector(".lang-dropdown");
 
+    const loginText = (typeof I18n !== "undefined") ? I18n.t("nav_login", "Մուտք") : "Մուտք";
+    const regText   = (typeof I18n !== "undefined") ? I18n.t("nav_register", "Գրանցվել") : "Գրանցվել";
+
     if (!session) {
-      actions.insertBefore(makeLink("login.html", "btn sm", "Մուտք"), lang);
-      actions.insertBefore(makeLink("register.html", "btn sm pri", "Գրանցվել"), lang);
+      actions.insertBefore(makeLink("login.html", "btn sm", loginText, "nav_login"), lang);
+      actions.insertBefore(makeLink("register.html", "btn sm pri", regText, "nav_register"), lang);
       return;
     }
 
-    // Մուտք գործած՝ անուն + ավատար + Ելք
+    // Մուտք գործած՝ ՄԻԱՅՆ օգտատիրոջ անունը և ավատարը (Ելքի կոճակը տեղափոխվել է Անձնական էջ)
     const userBtn = makeLink("profile.html", "user-menu-btn", "");
     const avatar = document.createElement("span");
     avatar.className = "user-avatar";
@@ -144,37 +168,49 @@ const Gavel = (function () {
       img.alt = session.firstName;
       avatar.appendChild(img);
     } else {
-      avatar.textContent = session.firstName.charAt(0);   // Անվան առաջին տառը
+      avatar.textContent = session.firstName.charAt(0);
     }
     const name = document.createElement("span");
     name.textContent = session.firstName + " " + session.lastName.charAt(0) + ".";
     userBtn.append(avatar, name);
 
-    const logoutBtn = document.createElement("button");
-    logoutBtn.type = "button";
-    logoutBtn.className = "btn sm";
-    logoutBtn.textContent = "Ելք";
-    logoutBtn.addEventListener("click", logout);
-
     actions.insertBefore(userBtn, lang);
-    actions.insertBefore(logoutBtn, lang);
   }
 
-  function makeLink(href, className, text) {
+  function makeLink(href, className, text, i18nKey) {
     const a = document.createElement("a");
     a.href = href;
     a.className = className;
     a.textContent = text;
+    if (i18nKey) a.setAttribute("data-i18n", i18nKey);
     return a;
   }
 
-  // ---------- 7. Գործարկում ----------
-  guardPage();                                  // Անմիջապես (head-ում)
+  // ---------- 7. Կապել Profile-ի Logout կոճակը (Task 5) ----------
+  function bindProfileLogout() {
+    const btn = document.getElementById("btn-profile-logout");
+    if (!btn) return;
+    btn.addEventListener("click", function () {
+      const confirmMsg = (typeof I18n !== "undefined")
+        ? I18n.t("logout_confirm", "Իսկապե՞ս ցանկանում եք դուրս գալ համակարգից:")
+        : "Իսկապե՞ս ցանկանում եք դուրս գալ համակարգից:";
+      if (window.confirm(confirmMsg)) {
+        logout();
+      }
+    });
+  }
+
+  // ---------- 8. Գործարկում ----------
+  guardPage();
   document.addEventListener("DOMContentLoaded", function () {
-    buildNav();                                 // Երբ HTML-ը պատրաստ է
+    buildNav();
+    bindProfileLogout();
     showFlash();
   });
 
-  // Այն, ինչ հասանելի է մյուս ֆայլերին (login.js, register.js)
-  return { getSession, startSession, logout, loadAllUsers, saveRegisteredUser, setFlash };
+  window.addEventListener("gavelLanguageChanged", function () {
+    buildNav();
+  });
+
+  return { getSession, startSession, logout, loadAllUsers, saveRegisteredUser, setFlash, buildNav };
 })();

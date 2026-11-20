@@ -1,35 +1,42 @@
 /* ==========================================================================
    js/categories.js — Գլխավոր էջի կատեգորիաները data/categories.json-ից
-   Catawiki ոճի քարտեր՝ յուրահատուկ գույնով և կիսաշրջանաձև նկարով
+   Catawiki ոճի քարտեր՝ յուրահատուկ գույնով, աջ կիսաշրջան նկարով
+   և 3 լեզվով ավտոմատ թարգմանությամբ (I18n.getLang())
    ========================================================================== */
 
-const LANG = "hy";   // Հետագայում՝ "en" կամ "ru", երբ ավելացնենք 3 լեզուն
+let cachedCategories = null;
 
 async function renderCategories() {
   const grid = document.getElementById("category-grid");
   if (!grid) return;
 
-  try {
-    const response = await fetch("data/categories.json");
-    if (!response.ok) throw new Error("HTTP " + response.status);
-    const categories = await response.json();
+  const currentLang = (typeof I18n !== "undefined") ? I18n.getLang() : "hy";
 
-    grid.innerHTML = "";                       // Հեռացնում ենք «Բեռնվում է...» տեքստը
-    categories.forEach(function (cat) {
-      grid.appendChild(createCategoryCard(cat));
+  try {
+    if (!cachedCategories) {
+      const response = await fetch("data/categories.json");
+      if (!response.ok) throw new Error("HTTP " + response.status);
+      cachedCategories = await response.json();
+    }
+
+    grid.innerHTML = "";
+    cachedCategories.forEach(function (cat) {
+      grid.appendChild(createCategoryCard(cat, currentLang));
     });
   } catch (error) {
     grid.innerHTML = "";
     const msg = document.createElement("p");
     msg.className = "cat-grid-msg";
-    msg.textContent = "Կատեգորիաները չբեռնվեցին։ Կայքը բացեք Live Server-ով, ոչ թե կրկնակի սեղմումով։";
+    msg.textContent = (typeof I18n !== "undefined")
+      ? I18n.t("err_categories_load", "Կատեգորիաները չբեռնվեցին։ Կայքը բացեք Live Server-ով:")
+      : "Կատեգորիաները չբեռնվեցին։ Կայքը բացեք Live Server-ով:";
     grid.appendChild(msg);
     console.error("categories.json:", error);
   }
 }
 
-// Մեկ քարտ՝ Catawiki ոճով (տեքստը ձախից, կիսաշրջան նկարը աջից)
-function createCategoryCard(cat) {
+// Մեկ քարտ՝ Catawiki ոճով
+function createCategoryCard(cat, lang) {
   const card = document.createElement("a");
   card.className = "cat-card cat-card-catawiki cat-theme-" + cat.id;
   card.href = "auctions.html?category=" + encodeURIComponent(cat.id);
@@ -39,11 +46,12 @@ function createCategoryCard(cat) {
 
   const title = document.createElement("div");
   title.className = "cat-title";
-  title.textContent = cat.name[LANG];
+  title.textContent = (cat.name && cat.name[lang]) ? cat.name[lang] : (cat.name ? cat.name.hy : cat.id);
 
   const count = document.createElement("div");
   count.className = "cat-count";
-  count.textContent = cat.activeLots + " ակտիվ լոտ";
+  const activeLotsWord = (typeof I18n !== "undefined") ? I18n.t("cat_active_lots", "ակտիվ լոտ") : "ակտիվ լոտ";
+  count.textContent = cat.activeLots + " " + activeLotsWord;
 
   content.append(title, count);
 
@@ -53,7 +61,7 @@ function createCategoryCard(cat) {
   const img = document.createElement("img");
   img.className = "cat-cutout-img";
   img.src = cat.image;
-  img.alt = cat.name[LANG];
+  img.alt = title.textContent;
   img.loading = "lazy";
 
   cutout.appendChild(img);
@@ -62,11 +70,16 @@ function createCategoryCard(cat) {
   if (cat.isNew) {
     const badge = document.createElement("span");
     badge.className = "cat-new-badge";
-    badge.textContent = "Նոր";
+    badge.textContent = (typeof I18n !== "undefined") ? I18n.t("badge_new", "Նոր") : "Նոր";
     card.appendChild(badge);
   }
 
   return card;
 }
+
+// Երբ լեզուն փոխվում է navbar-ից, վերարտադրում ենք կատեգորիաները
+window.addEventListener("gavelLanguageChanged", function () {
+  renderCategories();
+});
 
 renderCategories();
