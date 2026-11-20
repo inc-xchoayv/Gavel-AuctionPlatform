@@ -318,44 +318,10 @@
   color: #f1e4d6;
 }
 
-/* Slides container (JS-powered interactive slider, zero inline styles) */
-.rec-controls {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.rec-counter {
-  font-size: 12px;
-  font-weight: 700;
-  color: #e6d5c3;
-  letter-spacing: 0.04em;
-  min-width: 34px;
-  text-align: center;
-}
-.rec-arrow {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  background: rgba(255, 255, 255, 0.08);
-  color: #f1e4d6;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: var(--trans);
-}
-.rec-arrow:hover,
-.rec-arrow:focus-visible {
-  background: var(--b);
-  border-color: var(--b);
-  color: #fff;
-  outline: none;
-}
-
+/* Slides container (Pure CSS smooth auto-cycling) */
 .recommended-slides-wrap {
   position: relative;
-  min-height: 470px;
+  height: 485px;
 }
 
 .recommended-card {
@@ -366,74 +332,165 @@
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transform: translateY(10px) scale(0.98);
-  transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-              visibility 0.55s;
-  z-index: 1;
-}
-.recommended-card.is-leaving {
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-8px) scale(0.98);
-  z-index: 2;
-}
-.recommended-card.is-active {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  transform: translateY(0) scale(1);
-  z-index: 3;
+  transform: translateY(12px) scale(0.98);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-/* Progress bar indicators (5s synced with js/slider.js) */
-.rec-progress-bars {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
-  margin-top: 12px;
+/* 16s total cycle for 4 slides (4 seconds per slide) */
+.rcard-1 { animation: autoSlide1 16s infinite; }
+.rcard-2 { animation: autoSlide2 16s infinite; }
+.rcard-3 { animation: autoSlide3 16s infinite; }
+.rcard-4 { animation: autoSlide4 16s infinite; }
+
+@keyframes autoSlide1 {
+  0%, 21% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+    z-index: 3;
+  }
+  25%, 96% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px) scale(0.98);
+    pointer-events: none;
+    z-index: 1;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+    z-index: 3;
+  }
 }
-.rec-bar {
-  position: relative;
-  height: 5px;
-  border-radius: 99px;
-  background: rgba(255, 255, 255, 0.22);
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  overflow: hidden;
-  transition: background 0.2s ease;
+
+@keyframes autoSlide2 {
+  0%, 21% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px) scale(0.98);
+    pointer-events: none;
+    z-index: 1;
+  }
+  25%, 46% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+    z-index: 3;
+  }
+  50%, 100% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px) scale(0.98);
+    pointer-events: none;
+    z-index: 1;
+  }
 }
-.rec-bar:hover {
-  background: rgba(255, 255, 255, 0.38);
+
+@keyframes autoSlide3 {
+  0%, 46% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px) scale(0.98);
+    pointer-events: none;
+    z-index: 1;
+  }
+  50%, 71% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+    z-index: 3;
+  }
+  75%, 100% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px) scale(0.98);
+    pointer-events: none;
+    z-index: 1;
+  }
 }
-.rec-bar-fill {
-  display: block;
-  width: 0%;
-  height: 100%;
-  background: #d19a66;
-  border-radius: 99px;
+
+@keyframes autoSlide4 {
+  0%, 71% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px) scale(0.98);
+    pointer-events: none;
+    z-index: 1;
+  }
+  75%, 96% {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+    z-index: 3;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px) scale(0.98);
+    pointer-events: none;
+    z-index: 1;
+  }
 }
-.rec-bar.is-active .rec-bar-fill {
-  animation: recBarProgress 4.5s linear forwards;
-}
-.recommended-carousel.is-paused .rec-bar.is-active .rec-bar-fill {
+
+/* Pause animation on hover */
+.recommended-carousel:hover .rcard-1,
+.recommended-carousel:hover .rcard-2,
+.recommended-carousel:hover .rcard-3,
+.recommended-carousel:hover .rcard-4,
+.recommended-carousel:hover .rdot-1,
+.recommended-carousel:hover .rdot-2,
+.recommended-carousel:hover .rdot-3,
+.recommended-carousel:hover .rdot-4 {
   animation-play-state: paused;
 }
 
-@keyframes recBarProgress {
-  from { width: 0%; }
-  to   { width: 100%; }
+/* Indicator pill dots synchronized with 16s cycle (4s per slide) */
+.recommended-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
 }
 
-@media (max-width: 640px) {
-  .recommended-slides-wrap {
-    min-height: 455px;
-  }
-  .rec-arrow {
-    width: 34px;
-    height: 34px;
-  }
+.rec-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.rdot-1 { animation: autoDot1 16s infinite; }
+.rdot-2 { animation: autoDot2 16s infinite; }
+.rdot-3 { animation: autoDot3 16s infinite; }
+.rdot-4 { animation: autoDot4 16s infinite; }
+
+@keyframes autoDot1 {
+  0%, 21% { background: #d19a66; width: 22px; border-radius: 99px; }
+  25%, 100% { background: rgba(255, 255, 255, 0.3); width: 8px; border-radius: 50%; }
+}
+@keyframes autoDot2 {
+  0%, 21% { background: rgba(255, 255, 255, 0.3); width: 8px; border-radius: 50%; }
+  25%, 46% { background: #d19a66; width: 22px; border-radius: 99px; }
+  50%, 100% { background: rgba(255, 255, 255, 0.3); width: 8px; border-radius: 50%; }
+}
+@keyframes autoDot3 {
+  0%, 46% { background: rgba(255, 255, 255, 0.3); width: 8px; border-radius: 50%; }
+  50%, 71% { background: #d19a66; width: 22px; border-radius: 99px; }
+  75%, 100% { background: rgba(255, 255, 255, 0.3); width: 8px; border-radius: 50%; }
+}
+@keyframes autoDot4 {
+  0%, 71% { background: rgba(255, 255, 255, 0.3); width: 8px; border-radius: 50%; }
+  75%, 96% { background: #d19a66; width: 22px; border-radius: 99px; }
+  100% { background: rgba(255, 255, 255, 0.3); width: 8px; border-radius: 50%; }
 }
 
 /* ==========================================================================
