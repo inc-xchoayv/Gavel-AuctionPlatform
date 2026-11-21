@@ -14,7 +14,8 @@
   --mute: #7c6a5c;
   --line: #eaddd0;
   --line-light: #f0e6dc;
-  --b: #8b5a2b;          /* Primary brand leather/wood */
+  --b: #8b5a2b;
+  --pri: #8b5a2b;          /* Primary brand leather/wood */
   --b-d: #5c3a1e;        /* Dark brand */
   --b-l: #f1e4d6;        /* Light brand accent */
   --ok: #5f6e2c;         /* Success olive */

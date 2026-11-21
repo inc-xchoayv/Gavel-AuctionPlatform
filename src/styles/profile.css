@@ -800,13 +800,15 @@
 
 
 .profile-nav-btn.active {
-  background: var(--pri) !important;
-  color: #ffffff !important;
-  border-color: var(--pri) !important;
+  background: var(--b-l, #f1e4d6) !important;
+  color: var(--b-d, #5c3a1e) !important;
+  font-weight: 700 !important;
+  border-color: #d8c3b0 !important;
+  box-shadow: 0 2px 6px rgba(139, 90, 43, 0.08) !important;
 }
 
 .profile-nav-btn.active .ico {
-  stroke: #ffffff;
+  stroke: var(--b-d, #5c3a1e) !important;
 }
 
 .profile-tab-pane.active {
