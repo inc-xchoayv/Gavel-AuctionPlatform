@@ -39,8 +39,8 @@ const LANG_NAMES = { hy: "Հայերեն", en: "English", ru: "Русский" }
 const NAV_ITEMS = [
   { to: "/", key: "nav_home", need: null },
   { to: "/auctions", key: "nav_auctions", need: null },
-  { to: "/my-participations", key: "nav_participations", need: "user" },
-  { to: "/my-lots", key: "nav_my_lots", need: "user" },
+  { to: "/my-participations", key: "nav_participations", need: "user", userOnly: true },
+  { to: "/my-lots", key: "nav_my_lots", need: "user", userOnly: true },
   { to: "/profile", key: "nav_profile", need: "user" },
   { to: "/admin-dashboard", key: "nav_admin", need: "admin" },
 ];
@@ -73,6 +73,9 @@ export default function Header() {
 
         <nav>
           {NAV_ITEMS.map((item) => {
+            // Եթե մուտք է գործել ադմինը, «userOnly» հղումները (Իմ մասնակցությունները, Իմ լոտերը) թաքցվում են
+            if (role === "admin" && item.userOnly) return null;
+
             // Ադմինի հղումը ոչ-ադմինից լրիվ թաքցվում է
             if (item.need === "admin" && role !== "admin") return null;
 
