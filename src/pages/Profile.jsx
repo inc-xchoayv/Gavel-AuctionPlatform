@@ -9,11 +9,48 @@ import { useI18n } from "../i18n/I18nContext";
 export default function Profile({ initialTab = "info" }) {
   const { t } = useI18n();
   usePageTitle("title_profile");
-  const { session, logout, updateAvatar, setFlash } = useAuth();
+  const { session, logout, updateAvatar, updateProfile, setFlash } = useAuth();
   const [searchParams, setSearchParams] = useSearchParams();
   const urlTab = searchParams.get("tab");
   const [activeTab, setActiveTab] = useState(urlTab || initialTab || "info");
   const avatarInputRef = useRef(null);
+
+  const [personalForm, setPersonalForm] = useState({
+    firstName: session?.firstName || "",
+    lastName: session?.lastName || "",
+    email: session?.email || "",
+    phone: session?.phone || "",
+    address: session?.address || "",
+    city: session?.city || "",
+    zip: session?.zip || "",
+    bio: session?.bio || "",
+  });
+
+  useEffect(() => {
+    if (session) {
+      setPersonalForm({
+        firstName: session.firstName || "",
+        lastName: session.lastName || "",
+        email: session.email || "",
+        phone: session.phone || "",
+        address: session.address || "",
+        city: session.city || "",
+        zip: session.zip || "",
+        bio: session.bio || "",
+      });
+    }
+  }, [session]);
+
+  const handlePersonalChange = (e) => {
+    const { name, value } = e.target;
+    setPersonalForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSavePersonal = (e) => {
+    e.preventDefault();
+    updateProfile(personalForm);
+    setFlash(t("prof_personal_saved") || "Անձնական տվյալները հաջողությամբ պահպանվեցին:");
+  };
 
   useEffect(() => {
     if (urlTab && urlTab !== activeTab) {
@@ -205,14 +242,16 @@ export default function Profile({ initialTab = "info" }) {
                 <h2 className="profile-section-title">{t("prof_tab_personal")}</h2>
                 <p className="profile-section-desc">{t("prof_personal_desc")}</p>
 
-                <form onSubmit={(e) => { e.preventDefault(); setFlash("Տվյալները պահպանվեցին"); }}>
+                <form onSubmit={handleSavePersonal}>
                   <div className="grid grid-2">
                     <div className="form-group">
                       <label className="form-label">{t("lbl_first_name_req")}</label>
                       <input
                         type="text"
+                        name="firstName"
                         className="form-input"
-                        defaultValue={session?.firstName || "Գարիկ"}
+                        value={personalForm.firstName}
+                        onChange={handlePersonalChange}
                         required
                       />
                     </div>
@@ -220,8 +259,10 @@ export default function Profile({ initialTab = "info" }) {
                       <label className="form-label">{t("lbl_last_name_req")}</label>
                       <input
                         type="text"
+                        name="lastName"
                         className="form-input"
-                        defaultValue={session?.lastName || "Հարությունյան"}
+                        value={personalForm.lastName}
+                        onChange={handlePersonalChange}
                         required
                       />
                     </div>
@@ -232,8 +273,10 @@ export default function Profile({ initialTab = "info" }) {
                       <label className="form-label">{t("lbl_email_req")}</label>
                       <input
                         type="email"
+                        name="email"
                         className="form-input"
-                        defaultValue={session?.email || "garik@example.com"}
+                        value={personalForm.email}
+                        onChange={handlePersonalChange}
                         required
                       />
                     </div>
@@ -241,8 +284,10 @@ export default function Profile({ initialTab = "info" }) {
                       <label className="form-label">{t("lbl_phone_req")}</label>
                       <input
                         type="tel"
+                        name="phone"
                         className="form-input"
-                        defaultValue={session?.phone || "+374 94 552234"}
+                        value={personalForm.phone}
+                        onChange={handlePersonalChange}
                         required
                       />
                     </div>
@@ -252,29 +297,47 @@ export default function Profile({ initialTab = "info" }) {
                     <label className="form-label">{t("prof_lbl_address")}</label>
                     <input
                       type="text"
+                      name="address"
                       className="form-input"
-                      defaultValue="ք. Երևան, Տերյան 105, բն. 24"
-                      required
+                      placeholder={t("prof_ph_address")}
+                      value={personalForm.address}
+                      onChange={handlePersonalChange}
                     />
                   </div>
 
                   <div className="grid grid-2">
                     <div className="form-group">
                       <label className="form-label">{t("prof_lbl_city")}</label>
-                      <input type="text" className="form-input" defaultValue="Երևան, Կենտրոն" />
+                      <input
+                        type="text"
+                        name="city"
+                        className="form-input"
+                        placeholder={t("prof_ph_city")}
+                        value={personalForm.city}
+                        onChange={handlePersonalChange}
+                      />
                     </div>
                     <div className="form-group">
                       <label className="form-label">{t("prof_lbl_zip")}</label>
-                      <input type="text" className="form-input" defaultValue="0009" />
+                      <input
+                        type="text"
+                        name="zip"
+                        className="form-input"
+                        placeholder={t("prof_ph_zip")}
+                        value={personalForm.zip}
+                        onChange={handlePersonalChange}
+                      />
                     </div>
                   </div>
 
                   <div className="form-group">
                     <label className="form-label">{t("prof_lbl_bio")}</label>
                     <textarea
+                      name="bio"
                       className="form-textarea"
                       placeholder={t("prof_ph_bio")}
-                      defaultValue="Անտիկվարիատի, շվեյցարական ժամացույցների և հայկական արվեստի գործերի սիրահար ու հավաքորդ:"
+                      value={personalForm.bio}
+                      onChange={handlePersonalChange}
                     ></textarea>
                   </div>
 

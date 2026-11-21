@@ -530,5 +530,9 @@
   "prof_verif_check_approval": "Փաստաթղթի հաստատում 20%",
   "prof_verif_change_avatar": "Փոխել ավատարը",
   "prof_verif_personal_page": "Անհատական էջ",
-  "prof_avatar_updated": "Ավատարը հաջողությամբ թարմացվեց"
+  "prof_avatar_updated": "Ավատարը հաջողությամբ թարմացվեց",
+  "prof_ph_address": "օր.՝ ք. Երևան, Տերյան 105, բն. 24",
+  "prof_ph_city": "օր.՝ Երևան, Կենտրոն",
+  "prof_ph_zip": "օր.՝ 0009",
+  "prof_personal_saved": "Անձնական տվյալները հաջողությամբ պահպանվեցին:"
 }

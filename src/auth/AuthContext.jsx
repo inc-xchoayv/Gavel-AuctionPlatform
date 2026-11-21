@@ -160,6 +160,22 @@ export function AuthProvider({ children }) {
     });
   }, []);
 
+  const updateProfile = useCallback((profileData) => {
+    setSession((prev) => {
+      if (!prev) return prev;
+      const updated = { ...prev, ...profileData };
+      localStorage.setItem(KEY_SESSION, JSON.stringify(updated));
+
+      const users = readJson(KEY_USERS, []);
+      const userIdx = users.findIndex((u) => u.id === prev.id);
+      if (userIdx !== -1) {
+        users[userIdx] = { ...users[userIdx], ...profileData };
+        localStorage.setItem(KEY_USERS, JSON.stringify(users));
+      }
+      return updated;
+    });
+  }, []);
+
   const value = useMemo(
     () => ({
       session,
@@ -171,8 +187,9 @@ export function AuthProvider({ children }) {
       setFlash,
       updateAvatar,
       updateVerification,
+      updateProfile,
     }),
-    [session, login, register, logout, flash, setFlash, updateAvatar, updateVerification]
+    [session, login, register, logout, flash, setFlash, updateAvatar, updateVerification, updateProfile]
   );
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

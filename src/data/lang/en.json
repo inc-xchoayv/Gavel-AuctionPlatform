@@ -530,5 +530,9 @@
   "prof_verif_check_approval": "Document approval 20%",
   "prof_verif_change_avatar": "Change avatar",
   "prof_verif_personal_page": "Personal profile",
-  "prof_avatar_updated": "Avatar updated successfully"
+  "prof_avatar_updated": "Avatar updated successfully",
+  "prof_ph_address": "e.g. 105 Teryan St, Apt 24",
+  "prof_ph_city": "e.g. Yerevan, Center",
+  "prof_ph_zip": "e.g. 0009",
+  "prof_personal_saved": "Personal details saved successfully:"
 }

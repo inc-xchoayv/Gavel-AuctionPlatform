@@ -530,5 +530,9 @@
   "prof_verif_check_approval": "Подтверждение документа 20%",
   "prof_verif_change_avatar": "Изменить аватар",
   "prof_verif_personal_page": "Личная страница",
-  "prof_avatar_updated": "Аватар успешно обновлен"
+  "prof_avatar_updated": "Аватар успешно обновлен",
+  "prof_ph_address": "напр., г. Ереван, ул. Теряна 105, кв. 24",
+  "prof_ph_city": "напр., Ереван, Кентрон",
+  "prof_ph_zip": "напр., 0009",
+  "prof_personal_saved": "Личные данные успешно сохранены:"
 }
