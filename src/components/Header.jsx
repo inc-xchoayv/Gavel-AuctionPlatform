@@ -5,33 +5,31 @@ import { useI18n, SUPPORTED_LANGS } from "../i18n/I18nContext";
 // Դրոշների SVG-ները՝ փոքր կոմպոնենտներ (props-ով ընտրվում է լեզուն)
 function Flag({ code }) {
   return (
-    <span className="lang-flag">
-      <svg className="lang-flag-svg" viewBox="0 0 21 15" aria-hidden="true">
-        {code === "hy" && (
-          <>
-            <rect width="21" height="5" fill="#D90012" />
-            <rect y="5" width="21" height="5" fill="#0033A0" />
-            <rect y="10" width="21" height="5" fill="#F2A800" />
-          </>
-        )}
-        {code === "en" && (
-          <>
-            <rect width="21" height="15" fill="#012169" />
-            <path d="M0 0l21 15M21 0L0 15" stroke="#FFF" strokeWidth="2.6" />
-            <path d="M0 0l21 15M21 0L0 15" stroke="#C8102E" strokeWidth="1.3" />
-            <path d="M10.5 0v15M0 7.5h21" stroke="#FFF" strokeWidth="4" />
-            <path d="M10.5 0v15M0 7.5h21" stroke="#C8102E" strokeWidth="2.2" />
-          </>
-        )}
-        {code === "ru" && (
-          <>
-            <rect width="21" height="5" fill="#FFFFFF" />
-            <rect y="5" width="21" height="5" fill="#0039A6" />
-            <rect y="10" width="21" height="5" fill="#D52B1E" />
-          </>
-        )}
-      </svg>
-    </span>
+    <svg className="lang-flag-svg" viewBox="0 0 21 15" aria-hidden="true">
+      {code === "hy" && (
+        <>
+          <rect width="21" height="5" fill="#D90012" />
+          <rect y="5" width="21" height="5" fill="#0033A0" />
+          <rect y="10" width="21" height="5" fill="#F2A800" />
+        </>
+      )}
+      {code === "en" && (
+        <>
+          <rect width="21" height="15" fill="#012169" />
+          <path d="M0 0l21 15M21 0L0 15" stroke="#FFF" strokeWidth="2.6" />
+          <path d="M0 0l21 15M21 0L0 15" stroke="#C8102E" strokeWidth="1.3" />
+          <path d="M10.5 0v15M0 7.5h21" stroke="#FFF" strokeWidth="4" />
+          <path d="M10.5 0v15M0 7.5h21" stroke="#C8102E" strokeWidth="2.2" />
+        </>
+      )}
+      {code === "ru" && (
+        <>
+          <rect width="21" height="5" fill="#FFFFFF" />
+          <rect y="5" width="21" height="5" fill="#0039A6" />
+          <rect y="10" width="21" height="5" fill="#D52B1E" />
+        </>
+      )}
+    </svg>
   );
 }
 
@@ -140,7 +138,7 @@ export default function Header() {
 
             <button type="button" className="lang-btn" aria-label={t("lang_choose_aria")} title={t("lang_choose_title")}>
               {SUPPORTED_LANGS.map((code) => (
-                <span key={code} className={`lang-flag flag-${code}`}>
+                <span key={code} className={`lang-flag flag-${code}${lang === code ? " is-active" : ""}`}>
                   <Flag code={code} />
                 </span>
               ))}
@@ -148,8 +146,15 @@ export default function Header() {
 
             <div className="lang-menu" role="menu">
               {SUPPORTED_LANGS.map((code) => (
-                <label key={code} htmlFor={`lang-${code}`} className={`lang-item item-${code}`}>
-                  <Flag code={code} />
+                <label
+                  key={code}
+                  htmlFor={`lang-${code}`}
+                  className={`lang-item item-${code}${lang === code ? " is-active" : ""}`}
+                  onClick={() => setLang(code)}
+                >
+                  <span className="lang-flag">
+                    <Flag code={code} />
+                  </span>
                   <span className="lang-name">{LANG_NAMES[code]}</span>
                   <span className="lang-check">
                     <svg className="ico ico-sm" viewBox="0 0 24 24" aria-hidden="true">

@@ -49,9 +49,11 @@ export default function CategoryGrid() {
         >
           <div className="cat-content">
             <div className="cat-title">{expanded ? t("cat_show_less") : t("cat_see_more")}</div>
-            <div className="cat-count">
-              {expanded ? t("cat_show_less_sub") : `+${hiddenCount} ${t("cat_more_word")}`}
-            </div>
+            {!expanded && (
+              <div className="cat-count">
+                +{hiddenCount} {t("cat_more_word")}
+              </div>
+            )}
           </div>
           <div className="cat-photo-cutout cat-more-cutout">
             <svg className="ico cat-more-ico" viewBox="0 0 24 24" aria-hidden="true">
