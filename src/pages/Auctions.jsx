@@ -298,19 +298,21 @@ export default function Auctions() {
             <div className="catalog-top">
               {/* Որոնում */}
               <form onSubmit={handleSearchSubmit} className="search-box">
-                <span className="search-icon">
-                  <svg className="ico" viewBox="0 0 24 24" aria-hidden="true">
-                    <circle cx="11" cy="11" r="8" />
-                    <path d="m21 21-4.3-4.3" />
-                  </svg>
-                </span>
-                <input
-                  type="text"
-                  className="form-input search-input-inner"
-                  placeholder={t("flt_search_name_ph")}
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />
+                <div className="search-input-wrap">
+                  <span className="search-icon">
+                    <svg className="ico" viewBox="0 0 24 24" aria-hidden="true">
+                      <circle cx="11" cy="11" r="8" />
+                      <path d="m21 21-4.3-4.3" />
+                    </svg>
+                  </span>
+                  <input
+                    type="text"
+                    className="form-input search-input-inner"
+                    placeholder={t("flt_search_name_ph")}
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                  />
+                </div>
                 <button type="submit" className="btn sm pri search-submit-btn">
                   {t("search_aria")}
                 </button>
@@ -335,18 +337,18 @@ export default function Auctions() {
                 </select>
 
                 <div className="view-toggle">
-                  <label
-                    htmlFor="cview-grid"
-                    className="view-btn view-btn-grid"
-                    title={t("view_grid_title")}
+                  <button
+                    type="button"
+                    className={`view-btn view-btn-grid ${viewMode === "grid" ? "is-active" : ""}`}
+                    title={t("view_grid_title") || "Ցանց"}
                     onClick={() => setViewMode("grid")}
                   >
                     ⊞
-                  </label>
-                  <label
-                    htmlFor="cview-list"
-                    className="view-btn view-btn-list"
-                    title={t("view_list_title")}
+                  </button>
+                  <button
+                    type="button"
+                    className={`view-btn view-btn-list ${viewMode === "list" ? "is-active" : ""}`}
+                    title={t("view_list_title") || "Ցուցակ"}
                     onClick={() => setViewMode("list")}
                   >
                     <svg className="ico" viewBox="0 0 24 24" aria-hidden="true">
@@ -357,7 +359,7 @@ export default function Auctions() {
                       <line x1="3" x2="3.01" y1="12" y2="12" />
                       <line x1="3" x2="3.01" y1="18" y2="18" />
                     </svg>
-                  </label>
+                  </button>
                 </div>
               </div>
             </div>

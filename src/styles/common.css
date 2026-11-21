@@ -1406,6 +1406,7 @@ footer a:hover { color: #fff; }
   z-index: 2;
 }
 
+button.remind-btn,
 .remind-btn {
   position: relative;
   display: inline-flex;
@@ -1413,6 +1414,15 @@ footer a:hover { color: #fff; }
   justify-content: center;
   cursor: pointer;
   user-select: none;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  border-radius: 50%;
+  outline: none;
+  box-shadow: none;
 }
 
 .remind-cb {
@@ -1462,6 +1472,7 @@ footer a:hover { color: #fff; }
 }
 
 /* Active / Checked State */
+.remind-btn.is-reminded .remind-icon,
 .remind-cb:checked ~ .remind-icon {
   background: var(--b);
   color: #fff;
@@ -1469,10 +1480,12 @@ footer a:hover { color: #fff; }
   box-shadow: 0 2px 8px rgba(139, 90, 43, 0.4);
 }
 
+.remind-btn.is-reminded .remind-icon .remind-off,
 .remind-cb:checked ~ .remind-icon .remind-off {
   display: none;
 }
 
+.remind-btn.is-reminded .remind-icon .remind-on,
 .remind-cb:checked ~ .remind-icon .remind-on {
   display: block;
 }

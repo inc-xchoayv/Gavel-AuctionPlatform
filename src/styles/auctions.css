@@ -89,19 +89,35 @@
 }
 .search-box {
   flex: 1;
-  max-width: 320px;
+  max-width: 360px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.search-input-wrap {
   position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
 }
-.search-input-inner {
-  padding: 8px 12px 8px 36px;
-  font-size: 13px;
-}
-.search-icon {
+.search-input-wrap .search-icon {
   position: absolute;
   left: 12px;
   top: 50%;
   transform: translateY(-50%);
   color: var(--mute);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  z-index: 2;
+}
+.search-input-wrap .search-input-inner {
+  width: 100%;
+  padding: 8px 12px 8px 38px !important;
+  font-size: 13px;
 }
 .catalog-right-controls {
   display: flex;
@@ -119,11 +135,13 @@
   font-size: 13px;
 }
 .view-toggle {
-  display: flex;
+  display: inline-flex;
   border: 1px solid var(--line);
   border-radius: 6px;
   overflow: hidden;
   background: #fff;
+  flex-shrink: 0;
+  box-shadow: 0 1px 2px rgba(42, 29, 20, 0.04);
 }
 .catalog-view-radio {
   position: absolute;
@@ -134,26 +152,39 @@
   margin: 0;
 }
 .view-btn {
-  padding: 6px 12px;
+  width: 36px;
+  height: 34px;
+  padding: 0;
   border: none;
-  background: transparent;
+  background: #fff;
   cursor: pointer;
   color: var(--mute);
   user-select: none;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   transition: var(--trans);
+  flex-shrink: 0;
+  font-size: 16px;
+}
+.view-btn:first-child {
+  border-right: 1px solid var(--line);
 }
 .view-btn:hover {
   color: var(--ink);
-  background: rgba(139, 90, 43, 0.05);
+  background: rgba(139, 90, 43, 0.08);
 }
+.view-btn.is-active,
 #cview-grid:checked ~ .catalog-top .view-btn-grid,
 #cview-list:checked ~ .catalog-top .view-btn-list {
   background: var(--b);
   color: #fff;
   font-weight: 700;
+}
+.view-btn.is-active .ico,
+#cview-grid:checked ~ .catalog-top .view-btn-grid .ico,
+#cview-list:checked ~ .catalog-top .view-btn-list .ico {
+  stroke: #fff;
 }
 
 /* List Mode Transformation (Pure CSS) */

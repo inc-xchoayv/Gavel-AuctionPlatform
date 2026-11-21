@@ -41,7 +41,9 @@
     "title": "1968 Ford Mustang Fastback Shelby GT",
     "categoryId": "classic-cars",
     "image": "/images/lot-classic-car.jpg",
-    "gallery": ["/images/lot-classic-car.jpg"],
+    "gallery": [
+      "/images/lot-classic-car.jpg"
+    ],
     "currentBid": 62000,
     "startingPrice": 45000,
     "minIncrement": 1000,
@@ -109,7 +111,9 @@
     "title": "19th Century Imperial Russian Silver Samovar",
     "categoryId": "interiors",
     "image": "/images/lot-samovar.jpg",
-    "gallery": ["/images/lot-samovar.jpg"],
+    "gallery": [
+      "/images/lot-samovar.jpg"
+    ],
     "currentBid": 800,
     "startingPrice": 800,
     "minIncrement": 25,
@@ -176,7 +180,9 @@
     "title": "Antique Persian Tabriz Silk & Wool Carpet",
     "categoryId": "interiors",
     "image": "/images/lot-carpet.jpg",
-    "gallery": ["/images/lot-carpet.jpg"],
+    "gallery": [
+      "/images/lot-carpet.jpg"
+    ],
     "currentBid": 3100,
     "startingPrice": 2000,
     "minIncrement": 100,
@@ -207,7 +213,9 @@
     "title": "Ancient Tigranes the Great Silver Tetradrachm (95-55 BC)",
     "categoryId": "coins-stamps",
     "image": "/images/lot-coins.jpg",
-    "gallery": ["/images/lot-coins.jpg"],
+    "gallery": [
+      "/images/lot-coins.jpg"
+    ],
     "currentBid": 2850,
     "startingPrice": 1800,
     "minIncrement": 50,
@@ -238,7 +246,9 @@
     "title": "Illuminated Armenian Manuscript Gospel Leaves (1684)",
     "categoryId": "books",
     "image": "/images/lot-book.jpg",
-    "gallery": ["/images/lot-book.jpg"],
+    "gallery": [
+      "/images/lot-book.jpg"
+    ],
     "currentBid": 1750,
     "startingPrice": 1200,
     "minIncrement": 50,
@@ -269,7 +279,9 @@
     "title": "Mid-Century Modern Rosewood Executive Desk",
     "categoryId": "interiors",
     "image": "/images/lot-desk.jpg",
-    "gallery": ["/images/lot-desk.jpg"],
+    "gallery": [
+      "/images/lot-desk.jpg"
+    ],
     "currentBid": 1950,
     "startingPrice": 1500,
     "minIncrement": 50,
@@ -300,7 +312,9 @@
     "title": "Art Deco Platinum Natural Sapphire & Diamond Ring",
     "categoryId": "jewellery",
     "image": "/images/lot-ring.jpg",
-    "gallery": ["/images/lot-ring.jpg"],
+    "gallery": [
+      "/images/lot-ring.jpg"
+    ],
     "currentBid": 5400,
     "startingPrice": 3800,
     "minIncrement": 100,
@@ -331,7 +345,9 @@
     "title": "Bronze Mythological Torso Sculpture by H. Hakobyan",
     "categoryId": "art",
     "image": "/images/lot-sculpture.jpg",
-    "gallery": ["/images/lot-sculpture.jpg"],
+    "gallery": [
+      "/images/lot-sculpture.jpg"
+    ],
     "currentBid": 2600,
     "startingPrice": 2000,
     "minIncrement": 50,
@@ -362,7 +378,9 @@
     "title": "Imperial Qing Dynasty Cloisonné Dragon Vase (18th c.)",
     "categoryId": "asian-tribal",
     "image": "/images/lot-vase.jpg",
-    "gallery": ["/images/lot-vase.jpg"],
+    "gallery": [
+      "/images/lot-vase.jpg"
+    ],
     "currentBid": 7800,
     "startingPrice": 5000,
     "minIncrement": 200,

@@ -39,7 +39,7 @@ export default function LotCard({ lot, viewMode = "grid" }) {
         {badgeEl}
         <button
           type="button"
-          className="remind-btn"
+          className={`remind-btn ${reminded ? "is-reminded" : ""}`}
           aria-label={reminded ? "Remove reminder" : "Set reminder"}
           onClick={(e) => {
             e.preventDefault();
@@ -47,18 +47,12 @@ export default function LotCard({ lot, viewMode = "grid" }) {
             toggleRemind(lot.id);
           }}
         >
-          <input
-            type="checkbox"
-            className="remind-cb"
-            checked={reminded}
-            readOnly
-          />
           <span className="remind-icon">
-            <svg className="remind-off" viewBox="0 0 24 24">
+            <svg className="remind-off" viewBox="0 0 24 24" aria-hidden="true">
               <circle cx="12" cy="12" r="9"></circle>
               <polyline points="12 7 12 12 15 15"></polyline>
             </svg>
-            <svg className="remind-on" viewBox="0 0 24 24">
+            <svg className="remind-on" viewBox="0 0 24 24" aria-hidden="true">
               <polyline points="20 6 9 17 4 12"></polyline>
             </svg>
           </span>

@@ -1,20 +1,184 @@
 [
-  { "id": "archaeology",   "name": { "hy": "Հնագիտություն և բնական պատմություն", "en": "Archaeology & Natural History",            "ru": "Археология и естествознание" },            "image": "images/categories/archaeology.jpg",   "activeLots": 7 },
-  { "id": "art",           "name": { "hy": "Արվեստ",                              "en": "Art",                                      "ru": "Искусство" },                              "image": "images/categories/art.jpg",           "activeLots": 24 },
-  { "id": "asian-tribal",  "name": { "hy": "Ասիական և ցեղային արվեստ",            "en": "Asian & Tribal Art",                       "ru": "Азиатское и племенное искусство" },        "image": "images/categories/asian-tribal.jpg",  "activeLots": 9 },
-  { "id": "books",         "name": { "hy": "Գրքեր և պատմական հուշանվերներ",       "en": "Books & Historical Memorabilia",           "ru": "Книги и исторические реликвии" },          "image": "images/categories/books.jpg",         "activeLots": 11 },
-  { "id": "classic-cars",  "name": { "hy": "Դասական մեքենաներ և մոտոցիկլներ",     "en": "Classic Cars, Motorcycles & Automobilia",  "ru": "Классические авто и мотоциклы" },          "image": "images/categories/classic-cars.jpg",  "activeLots": 5 },
-  { "id": "coins-stamps",  "name": { "hy": "Մետաղադրամներ և նամականիշեր",         "en": "Coins & Stamps",                           "ru": "Монеты и марки" },                         "image": "images/categories/coins-stamps.jpg",  "activeLots": 14 },
-  { "id": "comics",        "name": { "hy": "Կոմիքսներ և անիմացիա",                "en": "Comics & Animation",                       "ru": "Комиксы и анимация" },                     "image": "images/categories/comics.jpg",        "activeLots": 6 },
-  { "id": "fashion",       "name": { "hy": "Նորաձևություն",                       "en": "Fashion",                                  "ru": "Мода" },                                   "image": "images/categories/fashion.jpg",       "activeLots": 12 },
-  { "id": "interiors",     "name": { "hy": "Ինտերիեր և դեկոր",                    "en": "Interiors & Decorations",                  "ru": "Интерьер и декор" },                       "image": "images/categories/interiors.jpg",     "activeLots": 15 },
-  { "id": "jewellery",     "name": { "hy": "Զարդեր և թանկարժեք քարեր",            "en": "Jewellery & Precious Stones",              "ru": "Украшения и драгоценные камни" },          "image": "images/categories/jewellery.jpg",     "activeLots": 19 },
-  { "id": "music-cameras", "name": { "hy": "Երաժշտություն, ֆիլմեր և տեսախցիկներ", "en": "Music, Movies & Cameras",                  "ru": "Музыка, кино и фотокамеры" },              "image": "images/categories/music-cameras.jpg", "activeLots": 8 },
-  { "id": "sports",        "name": { "hy": "Սպորտ",                               "en": "Sports",                                   "ru": "Спорт" },                                  "image": "images/categories/sports.jpg",        "activeLots": 4 },
-  { "id": "toys",          "name": { "hy": "Խաղալիքներ և մոդելներ",               "en": "Toys & Models",                            "ru": "Игрушки и модели" },                       "image": "images/categories/toys.jpg",          "activeLots": 10 },
-  { "id": "trading-cards", "name": { "hy": "Հավաքական քարտեր",                    "en": "Trading Cards",                            "ru": "Коллекционные карточки" },                 "image": "images/categories/trading-cards.jpg", "activeLots": 13 },
-  { "id": "watches",       "name": { "hy": "Ժամացույցներ, գրիչներ և կրակայրիչներ", "en": "Watches, Pens & Lighters",                "ru": "Часы, ручки и зажигалки" },                "image": "images/categories/watches.jpg",       "activeLots": 12 },
-  { "id": "wine",          "name": { "hy": "Գինի, վիսկի և թունդ խմիչքներ",        "en": "Wine, Whisky & Spirits",                   "ru": "Вино, виски и крепкие напитки" },          "image": "images/categories/wine.jpg",          "activeLots": 9 },
-  { "id": "cars",          "name": { "hy": "Ավտոմեքենաներ",                       "en": "Cars",                                     "ru": "Автомобили" },                             "image": "images/categories/cars.jpg",          "activeLots": 2,  "isNew": true },
-  { "id": "electronics",   "name": { "hy": "Էլեկտրոնիկա և խաղեր",                 "en": "Electronics & Gaming",                     "ru": "Электроника и игры" },                     "image": "images/categories/electronics.jpg",   "activeLots": 6,  "isNew": true }
+  {
+    "id": "archaeology",
+    "name": {
+      "hy": "Հնագիտություն և բնական պատմություն",
+      "en": "Archaeology & Natural History",
+      "ru": "Археология и естествознание"
+    },
+    "image": "images/categories/archaeology.jpg",
+    "activeLots": 7
+  },
+  {
+    "id": "art",
+    "name": {
+      "hy": "Արվեստ",
+      "en": "Art",
+      "ru": "Искусство"
+    },
+    "image": "images/categories/art.jpg",
+    "activeLots": 24
+  },
+  {
+    "id": "asian-tribal",
+    "name": {
+      "hy": "Ասիական և ցեղային արվեստ",
+      "en": "Asian & Tribal Art",
+      "ru": "Азиатское и племенное искусство"
+    },
+    "image": "images/categories/asian-tribal.jpg",
+    "activeLots": 9
+  },
+  {
+    "id": "books",
+    "name": {
+      "hy": "Գրքեր և պատմական հուշանվերներ",
+      "en": "Books & Historical Memorabilia",
+      "ru": "Книги и исторические реликвии"
+    },
+    "image": "images/categories/books.jpg",
+    "activeLots": 11
+  },
+  {
+    "id": "classic-cars",
+    "name": {
+      "hy": "Դասական մեքենաներ և մոտոցիկլներ",
+      "en": "Classic Cars, Motorcycles & Automobilia",
+      "ru": "Классические авто и мотоциклы"
+    },
+    "image": "images/categories/classic-cars.jpg",
+    "activeLots": 5
+  },
+  {
+    "id": "coins-stamps",
+    "name": {
+      "hy": "Մետաղադրամներ և նամականիշեր",
+      "en": "Coins & Stamps",
+      "ru": "Монеты и марки"
+    },
+    "image": "images/categories/coins-stamps.jpg",
+    "activeLots": 14
+  },
+  {
+    "id": "comics",
+    "name": {
+      "hy": "Կոմիքսներ և անիմացիա",
+      "en": "Comics & Animation",
+      "ru": "Комиксы и анимация"
+    },
+    "image": "images/categories/comics.jpg",
+    "activeLots": 6
+  },
+  {
+    "id": "fashion",
+    "name": {
+      "hy": "Նորաձևություն",
+      "en": "Fashion",
+      "ru": "Мода"
+    },
+    "image": "images/categories/fashion.jpg",
+    "activeLots": 12
+  },
+  {
+    "id": "interiors",
+    "name": {
+      "hy": "Ինտերիեր և դեկոր",
+      "en": "Interiors & Decorations",
+      "ru": "Интерьер и декор"
+    },
+    "image": "images/categories/interiors.jpg",
+    "activeLots": 15
+  },
+  {
+    "id": "jewellery",
+    "name": {
+      "hy": "Զարդեր և թանկարժեք քարեր",
+      "en": "Jewellery & Precious Stones",
+      "ru": "Украшения и драгоценные камни"
+    },
+    "image": "images/categories/jewellery.jpg",
+    "activeLots": 19
+  },
+  {
+    "id": "music-cameras",
+    "name": {
+      "hy": "Երաժշտություն, ֆիլմեր և տեսախցիկներ",
+      "en": "Music, Movies & Cameras",
+      "ru": "Музыка, кино и фотокамеры"
+    },
+    "image": "images/categories/music-cameras.jpg",
+    "activeLots": 8
+  },
+  {
+    "id": "sports",
+    "name": {
+      "hy": "Սպորտ",
+      "en": "Sports",
+      "ru": "Спорт"
+    },
+    "image": "images/categories/sports.jpg",
+    "activeLots": 4
+  },
+  {
+    "id": "toys",
+    "name": {
+      "hy": "Խաղալիքներ և մոդելներ",
+      "en": "Toys & Models",
+      "ru": "Игрушки и модели"
+    },
+    "image": "images/categories/toys.jpg",
+    "activeLots": 10
+  },
+  {
+    "id": "trading-cards",
+    "name": {
+      "hy": "Հավաքական քարտեր",
+      "en": "Trading Cards",
+      "ru": "Коллекционные карточки"
+    },
+    "image": "images/categories/trading-cards.jpg",
+    "activeLots": 13
+  },
+  {
+    "id": "watches",
+    "name": {
+      "hy": "Ժամացույցներ, գրիչներ և կրակայրիչներ",
+      "en": "Watches, Pens & Lighters",
+      "ru": "Часы, ручки и зажигалки"
+    },
+    "image": "images/categories/watches.jpg",
+    "activeLots": 12
+  },
+  {
+    "id": "wine",
+    "name": {
+      "hy": "Գինի, վիսկի և թունդ խմիչքներ",
+      "en": "Wine, Whisky & Spirits",
+      "ru": "Вино, виски и крепкие напитки"
+    },
+    "image": "images/categories/wine.jpg",
+    "activeLots": 9
+  },
+  {
+    "id": "cars",
+    "name": {
+      "hy": "Ավտոմեքենաներ",
+      "en": "Cars",
+      "ru": "Автомобили"
+    },
+    "image": "images/categories/cars.jpg",
+    "activeLots": 2,
+    "isNew": true
+  },
+  {
+    "id": "electronics",
+    "name": {
+      "hy": "Էլեկտրոնիկա և խաղեր",
+      "en": "Electronics & Gaming",
+      "ru": "Электроника и игры"
+    },
+    "image": "images/categories/electronics.jpg",
+    "activeLots": 6,
+    "isNew": true
+  }
 ]
