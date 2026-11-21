@@ -1,12 +1,19 @@
 import "../styles/index.css";
 import { Link } from "react-router-dom";
 import { useI18n } from "../i18n/I18nContext";
+import { useLots } from "../context/LotContext";
 import usePageTitle from "../hooks/usePageTitle";
 import CategoryGrid from "../components/CategoryGrid";
+import LotCard from "../components/LotCard";
 
 export default function Home() {
   const { t } = useI18n();
   usePageTitle("title_index");
+  const { lots } = useLots();
+
+  const endingSoonLots = lots
+    .filter((l) => l.status === "active")
+    .slice(0, 3);
 
   return (
     <>
@@ -141,99 +148,9 @@ export default function Home() {
             </div>
 
             <div className="grid grid-3">
-
-              <article className="card lot">
-                <div className="im"><img src="/images/car-front.jpg" alt="2021 Porsche 911 Carrera 4S" />
-                  <span className="chip live"><span className="live-dot-pulse"></span>Live</span>
-                  <label className="remind-btn">
-                    <input type="checkbox" className="remind-cb" defaultChecked />
-                    <span className="remind-icon">
-                      <svg className="remind-off" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15 15"></polyline></svg>
-                      <svg className="remind-on" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    </span>
-                  </label>
-                </div>
-                <div className="card-body">
-                  <small className="lot-card-cat"><span>{t("det_lot_word")}</span> #405 · <span>{t("cat_cars")}</span> · Run &amp; Drive</small>
-                  <h3 className="lot-card-title"><Link to="/auction-detail">2021 Porsche 911 Carrera 4S</Link></h3>
-                  <div className="lot-card-pricing">
-                    <div>
-                      <small className="lot-card-lbl">{t("lot_current_bid")}</small>
-                      <span className="price">$48,500</span>
-                    </div>
-                    <div className="lot-card-timing">
-                      <small className="lot-card-lbl">{t("lot_hammer_countdown")}</small>
-                      <span className="tm hot">00:14 <span>{t("unit_sec")}</span></span>
-                    </div>
-                  </div>
-                  <div className="lot-card-btns">
-                    <Link to="/auction-detail" className="btn sm">{t("lot_details_btn")}</Link>
-                    <Link to="/place-bid" className="btn pri sm">{t("lot_join_btn")}</Link>
-                  </div>
-                </div>
-              </article>
-
-              <article className="card lot">
-                <div className="im t2"><img src="/images/lot-carpet.jpg" alt="Ձեռագործ գորգ" />
-                  <span className="chip live">{t("chip_live")}</span>
-                  <label className="remind-btn">
-                    <input type="checkbox" className="remind-cb" />
-                    <span className="remind-icon">
-                      <svg className="remind-off" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15 15"></polyline></svg>
-                      <svg className="remind-on" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    </span>
-                  </label>
-                </div>
-                <div className="card-body">
-                  <small className="lot-card-cat"><span>{t("det_lot_word")}</span> #211 · <span>{t("cat_carpets")}</span></small>
-                  <h3 className="lot-card-title"><Link to="/auction-detail">Ձեռագործ գորգ</Link></h3>
-                  <div className="lot-card-pricing">
-                    <div>
-                      <small className="lot-card-lbl">{t("lot_current_price")}</small>
-                      <span className="price">$900</span>
-                    </div>
-                    <div className="lot-card-timing">
-                      <small className="lot-card-lbl">{t("lot_time_left")}</small>
-                      <span className="tm hot">00:08:30</span>
-                    </div>
-                  </div>
-                  <div className="lot-card-btns">
-                    <Link to="/auction-detail" className="btn pri sm full">{t("lot_details_btn")}</Link>
-                    <Link to="/place-bid" className="btn sec sm">{t("lot_bid_action")}</Link>
-                  </div>
-                </div>
-              </article>
-
-              <article className="card lot">
-                <div className="im t3"><img src="/images/lot-samovar.jpg" alt="Արծաթե սամովար" />
-                  <span className="chip live">{t("chip_live")}</span>
-                  <label className="remind-btn">
-                    <input type="checkbox" className="remind-cb" defaultChecked />
-                    <span className="remind-icon">
-                      <svg className="remind-off" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15 15"></polyline></svg>
-                      <svg className="remind-on" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    </span>
-                  </label>
-                </div>
-                <div className="card-body">
-                  <small className="lot-card-cat"><span>{t("det_lot_word")}</span> #94 · <span>{t("cat_collectibles")}</span></small>
-                  <h3 className="lot-card-title"><Link to="/auction-detail">Արծաթե սամովար</Link></h3>
-                  <div className="lot-card-pricing">
-                    <div>
-                      <small className="lot-card-lbl">{t("lot_current_price")}</small>
-                      <span className="price">$480</span>
-                    </div>
-                    <div className="lot-card-timing">
-                      <small className="lot-card-lbl">{t("lot_time_left")}</small>
-                      <span className="tm">05:12:40</span>
-                    </div>
-                  </div>
-                  <div className="lot-card-btns">
-                    <Link to="/auction-detail" className="btn pri sm full">{t("lot_details_btn")}</Link>
-                    <Link to="/place-bid" className="btn sec sm">{t("lot_bid_action")}</Link>
-                  </div>
-                </div>
-              </article>
+              {endingSoonLots.map((lot) => (
+                <LotCard key={lot.id} lot={lot} />
+              ))}
             </div>
 
           </div>

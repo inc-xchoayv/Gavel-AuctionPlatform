@@ -249,3 +249,14 @@
     margin-bottom: 24px;
   }
 }
+
+.catalog-empty-box {
+  padding: 48px 24px;
+  text-align: center;
+}
+.catalog-empty-msg {
+  font-size: 16px;
+  color: var(--mute);
+  margin-bottom: 16px;
+}
+

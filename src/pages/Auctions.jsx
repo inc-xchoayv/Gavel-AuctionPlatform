@@ -1,573 +1,391 @@
+import React, { useState, useMemo } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import "../styles/auctions.css";
-import { Link } from "react-router-dom";
 import { useI18n } from "../i18n/I18nContext";
+import { useLots } from "../context/LotContext";
 import usePageTitle from "../hooks/usePageTitle";
+import LotCard from "../components/LotCard";
+import categoriesData from "../data/categories.json";
 
 export default function Auctions() {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   usePageTitle("title_auctions");
+  const { lots } = useLots();
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const initialQ = searchParams.get("q") || "";
+  const initialCategory = searchParams.get("category") || "";
+
+  // Ֆիլտրերի և սորտավորման վիճակները (React State)
+  const [searchTerm, setSearchTerm] = useState(initialQ);
+  const [activeSearch, setActiveSearch] = useState(initialQ);
+  const [statusFilter, setStatusFilter] = useState("all");
+  const [selectedCategories, setSelectedCategories] = useState(
+    initialCategory ? [initialCategory] : []
+  );
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
+  const [appliedMinPrice, setAppliedMinPrice] = useState(null);
+  const [appliedMaxPrice, setAppliedMaxPrice] = useState(null);
+  const [sortBy, setSortBy] = useState("ending");
+  const [viewMode, setViewMode] = useState("grid"); // "grid" կամ "list"
+
+  // Կատեգորիան նշել/հանել
+  const handleCategoryToggle = (catId) => {
+    setSelectedCategories((prev) =>
+      prev.includes(catId) ? prev.filter((id) => id !== catId) : [...prev, catId]
+    );
+  };
+
+  // Գնային ֆիլտրի կիրառում
+  const handleApplyPrice = (e) => {
+    e.preventDefault();
+    setAppliedMinPrice(minPrice ? Number(minPrice) : null);
+    setAppliedMaxPrice(maxPrice ? Number(maxPrice) : null);
+  };
+
+  // Որոնման ֆորմի ուղարկում
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    setActiveSearch(searchTerm.trim());
+    if (searchTerm.trim()) {
+      setSearchParams({ q: searchTerm.trim() });
+    } else {
+      setSearchParams({});
+    }
+  };
+
+  // Բոլոր ֆիլտրերի մաքրում (Clear All)
+  const handleClearFilters = (e) => {
+    e.preventDefault();
+    setSearchTerm("");
+    setActiveSearch("");
+    setStatusFilter("all");
+    setSelectedCategories([]);
+    setMinPrice("");
+    setMaxPrice("");
+    setAppliedMinPrice(null);
+    setAppliedMaxPrice(null);
+    setSortBy("ending");
+    setSearchParams({});
+  };
+
+  // Ֆիլտրված և սորտավորված լոտերի հաշվարկ (useMemo)
+  const filteredLots = useMemo(() => {
+    return lots
+      .filter((lot) => {
+        // 1. Կարգավիճակի ֆիլտր
+        if (statusFilter === "live" && lot.status !== "active") return false;
+        if (statusFilter === "soon" && (!lot.isHot || lot.status !== "active")) return false;
+        if (statusFilter === "end" && lot.status !== "ended") return false;
+
+        // 2. Կատեգորիայի ֆիլտր
+        if (selectedCategories.length > 0 && !selectedCategories.includes(lot.categoryId)) {
+          return false;
+        }
+
+        // 3. Որոնում անվան և նկարագրության մեջ
+        if (activeSearch) {
+          const q = activeSearch.toLowerCase();
+          const matchTitle = lot.title?.toLowerCase().includes(q);
+          const matchDesc = lot.description?.toLowerCase().includes(q);
+          const matchCat = lot.categoryId?.toLowerCase().includes(q);
+          if (!matchTitle && !matchDesc && !matchCat) return false;
+        }
+
+        // 4. Գնային սահման
+        const price = lot.currentBid || lot.startingPrice || 0;
+        if (appliedMinPrice !== null && price < appliedMinPrice) return false;
+        if (appliedMaxPrice !== null && price > appliedMaxPrice) return false;
+
+        return true;
+      })
+      .sort((a, b) => {
+        if (sortBy === "price-asc") {
+          return (a.currentBid || 0) - (b.currentBid || 0);
+        }
+        if (sortBy === "price-desc") {
+          return (b.currentBid || 0) - (a.currentBid || 0);
+        }
+        if (sortBy === "bids") {
+          return (b.bidsCount || 0) - (a.bidsCount || 0);
+        }
+        // "ending" - առաջինը ամենաթեժերը
+        if (a.isHot && !b.isHot) return -1;
+        if (!a.isHot && b.isHot) return 1;
+        return (b.id || 0) - (a.id || 0);
+      });
+  }, [lots, statusFilter, selectedCategories, activeSearch, appliedMinPrice, appliedMaxPrice, sortBy]);
+
+  // Կատեգորիաներ ֆիլտրի ցուցակի համար (հաշվում ենք յուրաքանչյուրի քանակը)
+  const availableCategories = useMemo(() => {
+    return categoriesData.slice(0, 10).map((cat) => {
+      const count = lots.filter((l) => l.categoryId === cat.id).length;
+      return {
+        ...cat,
+        count,
+      };
+    });
+  }, [lots]);
+
+  // Կարգավիճակների քանակները
+  const statusCounts = useMemo(() => {
+    return {
+      all: lots.length,
+      live: lots.filter((l) => l.status === "active").length,
+      soon: lots.filter((l) => l.status === "active" && l.isHot).length,
+      end: lots.filter((l) => l.status === "ended").length,
+    };
+  }, [lots]);
 
   return (
-    <>
-      <main>
-          <div className="w">
-            <div className="breadcrumb">
-              <Link to="/">{t("nav_home")}</Link>
-              <span>›</span>
-              <span>{t("footer_auctions_list")}</span>
+    <main>
+      <div className="w">
+        <div className="breadcrumb">
+          <Link to="/">{t("nav_home")}</Link>
+          <span>›</span>
+          <span>{t("footer_auctions_list")}</span>
+        </div>
+
+        <div className="catalog-layout">
+          {/* Ձախ կողմի ֆիլտրերի վահանակ */}
+          <aside className="filters-card">
+            <div>
+              <div className="filters-header">
+                <h3>{t("flt_title")}</h3>
+                <button
+                  type="button"
+                  onClick={handleClearFilters}
+                  className="btn sm clear-btn"
+                >
+                  {t("flt_clear")}
+                </button>
+              </div>
+
+              {/* Կարգավիճակի ֆիլտր */}
+              <div className="filter-sec">
+                <div className="filter-title">{t("flt_status")}</div>
+                <label className="ck-item">
+                  <span>
+                    <input
+                      type="radio"
+                      name="f-status"
+                      value="all"
+                      checked={statusFilter === "all"}
+                      onChange={() => setStatusFilter("all")}
+                    />
+                    <span>{t("flt_all")}</span>
+                  </span>
+                  <small>{statusCounts.all}</small>
+                </label>
+                <label className="ck-item">
+                  <span>
+                    <input
+                      type="radio"
+                      name="f-status"
+                      value="live"
+                      checked={statusFilter === "live"}
+                      onChange={() => setStatusFilter("live")}
+                    />
+                    <span>{t("flt_live")}</span>
+                  </span>
+                  <small>{statusCounts.live}</small>
+                </label>
+                <label className="ck-item">
+                  <span>
+                    <input
+                      type="radio"
+                      name="f-status"
+                      value="soon"
+                      checked={statusFilter === "soon"}
+                      onChange={() => setStatusFilter("soon")}
+                    />
+                    <span>{t("flt_ending")}</span>
+                  </span>
+                  <small>{statusCounts.soon}</small>
+                </label>
+                <label className="ck-item">
+                  <span>
+                    <input
+                      type="radio"
+                      name="f-status"
+                      value="end"
+                      checked={statusFilter === "end"}
+                      onChange={() => setStatusFilter("end")}
+                    />
+                    <span>{t("chip_ended")}</span>
+                  </span>
+                  <small>{statusCounts.end}</small>
+                </label>
+              </div>
+
+              {/* Կատեգորիաների ֆիլտր */}
+              <div className="filter-sec">
+                <div className="filter-title">{t("flt_categories")}</div>
+                <div>
+                  {availableCategories.map((cat) => {
+                    const isChecked = selectedCategories.includes(cat.id);
+                    const catName = cat.name?.[lang] || cat.name?.en || cat.id;
+                    return (
+                      <label key={cat.id} className="ck-item">
+                        <span>
+                          <input
+                            type="checkbox"
+                            checked={isChecked}
+                            onChange={() => handleCategoryToggle(cat.id)}
+                          />
+                          <span>{catName}</span>
+                        </span>
+                        <small>{cat.count}</small>
+                      </label>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Գնային միջակայք */}
+              <div className="filter-sec">
+                <div className="filter-title">{t("flt_price_range")}</div>
+                <div className="price-range-inputs">
+                  <input
+                    type="number"
+                    className="form-input price-input-field"
+                    placeholder={t("flt_price_from")}
+                    value={minPrice}
+                    onChange={(e) => setMinPrice(e.target.value)}
+                  />
+                  <span>—</span>
+                  <input
+                    type="number"
+                    className="form-input price-input-field"
+                    placeholder={t("flt_price_to")}
+                    value={maxPrice}
+                    onChange={(e) => setMaxPrice(e.target.value)}
+                  />
+                </div>
+              </div>
+
+              <button
+                type="button"
+                onClick={handleApplyPrice}
+                className="btn pri sm full filter-apply-btn"
+              >
+                {t("flt_apply")}
+              </button>
+            </div>
+          </aside>
+
+          {/* Աջ կողմի կատալոգ */}
+          <section>
+            {/* CSS Selector triggers for grid / list views */}
+            <input
+              type="radio"
+              name="catalog-view"
+              id="cview-grid"
+              className="catalog-view-radio"
+              checked={viewMode === "grid"}
+              onChange={() => setViewMode("grid")}
+            />
+            <input
+              type="radio"
+              name="catalog-view"
+              id="cview-list"
+              className="catalog-view-radio"
+              checked={viewMode === "list"}
+              onChange={() => setViewMode("list")}
+            />
+
+            <div className="catalog-top">
+              {/* Որոնում */}
+              <form onSubmit={handleSearchSubmit} className="search-box">
+                <span className="search-icon">
+                  <svg className="ico" viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="11" cy="11" r="8" />
+                    <path d="m21 21-4.3-4.3" />
+                  </svg>
+                </span>
+                <input
+                  type="text"
+                  className="form-input search-input-inner"
+                  placeholder={t("flt_search_name_ph")}
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
+                <button type="submit" className="btn sm pri search-submit-btn">
+                  {t("search_aria")}
+                </button>
+              </form>
+
+              {/* Վերահսկման կոճակներ */}
+              <div className="catalog-right-controls">
+                <span className="catalog-counter">
+                  <span>{t("flt_found")}</span> <b>{filteredLots.length}</b>{" "}
+                  <span>{t("flt_lots_word")}</span>
+                </span>
+
+                <select
+                  className="form-select catalog-sort-select"
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
+                >
+                  <option value="ending">{t("flt_ending")}</option>
+                  <option value="price-asc">{t("sort_price_asc")}</option>
+                  <option value="price-desc">{t("sort_price_desc")}</option>
+                  <option value="bids">{t("sort_bids")}</option>
+                </select>
+
+                <div className="view-toggle">
+                  <label
+                    htmlFor="cview-grid"
+                    className="view-btn view-btn-grid"
+                    title={t("view_grid_title")}
+                    onClick={() => setViewMode("grid")}
+                  >
+                    ⊞
+                  </label>
+                  <label
+                    htmlFor="cview-list"
+                    className="view-btn view-btn-list"
+                    title={t("view_list_title")}
+                    onClick={() => setViewMode("list")}
+                  >
+                    <svg className="ico" viewBox="0 0 24 24" aria-hidden="true">
+                      <line x1="8" x2="21" y1="6" y2="6" />
+                      <line x1="8" x2="21" y1="12" y2="12" />
+                      <line x1="8" x2="21" y1="18" y2="18" />
+                      <line x1="3" x2="3.01" y1="6" y2="6" />
+                      <line x1="3" x2="3.01" y1="12" y2="12" />
+                      <line x1="3" x2="3.01" y1="18" y2="18" />
+                    </svg>
+                  </label>
+                </div>
+              </div>
             </div>
 
-            <div className="catalog-layout">
-
-              <aside className="filters-card">
-                <form action="/auctions" method="get">
-                  <div className="filters-header">
-                    <h3>{t("flt_title")}</h3>
-                    <Link to="/auctions" className="btn sm clear-btn">{t("flt_clear")}</Link>
-                  </div>
-
-                  <div className="filter-sec">
-                    <div className="filter-title">{t("flt_status")}</div>
-                    <label className="ck-item">
-                      <span><input type="radio" name="f-status" value="all" defaultChecked /> <span>{t("flt_all")}</span></span>
-                      <small>15</small>
-                    </label>
-                    <label className="ck-item">
-                      <span><input type="radio" name="f-status" value="live" /> <span>{t("flt_live")}</span></span>
-                      <small>9</small>
-                    </label>
-                    <label className="ck-item">
-                      <span><input type="radio" name="f-status" value="soon" /> <span>{t("flt_ending")}</span></span>
-                      <small>3</small>
-                    </label>
-                    <label className="ck-item">
-                      <span><input type="radio" name="f-status" value="end" /> <span>{t("chip_ended")}</span></span>
-                      <small>3</small>
-                    </label>
-                  </div>
-
-                  <div className="filter-sec">
-                    <div className="filter-title">{t("flt_categories")}</div>
-                    <div>
-                      <label className="ck-item">
-                        <span><input type="checkbox" name="cat_auto" value="1" defaultChecked /> <span>{t("cat_cars")}</span></span>
-                        <small>2</small>
-                      </label>
-                      <label className="ck-item">
-                        <span><input type="checkbox" name="cat_watches" value="1" defaultChecked /> <span>{t("cat_watches")}</span></span>
-                        <small>3</small>
-                      </label>
-                      <label className="ck-item">
-                        <span><input type="checkbox" name="cat_art" value="1" defaultChecked /> <span>{t("cat_art")}</span></span>
-                        <small>4</small>
-                      </label>
-                      <label className="ck-item">
-                        <span><input type="checkbox" name="cat_rugs" value="1" defaultChecked /> <span>{t("cat_carpets")}</span></span>
-                        <small>2</small>
-                      </label>
-                      <label className="ck-item">
-                        <span><input type="checkbox" name="cat_ceramics" value="1" defaultChecked /> <span>{t("cat_ceramics")}</span></span>
-                        <small>2</small>
-                      </label>
-                      <label className="ck-item">
-                        <span><input type="checkbox" name="cat_furniture" value="1" defaultChecked /> <span>{t("cat_furniture")}</span></span>
-                        <small>1</small>
-                      </label>
-                      <label className="ck-item">
-                        <span><input type="checkbox" name="cat_books" value="1" defaultChecked /> <span>{t("cat_books")}</span></span>
-                        <small>1</small>
-                      </label>
-                      <label className="ck-item">
-                        <span><input type="checkbox" name="cat_jewelry" value="1" defaultChecked /> <span>{t("cat_jewellery")}</span></span>
-                        <small>1</small>
-                      </label>
-                      <label className="ck-item">
-                        <span><input type="checkbox" name="cat_collections" value="1" defaultChecked /> <span>{t("cat_collectibles")}</span></span>
-                        <small>1</small>
-                      </label>
-                    </div>
-                  </div>
-
-                  <div className="filter-sec">
-                    <div className="filter-title">{t("flt_price_range")}</div>
-                    <div className="price-range-inputs">
-                      <input type="number" name="min_price" className="form-input price-input-field" placeholder={t("flt_price_from")} />
-                      <span>—</span>
-                      <input type="number" name="max_price" className="form-input price-input-field" placeholder={t("flt_price_to")} />
-                    </div>
-                  </div>
-
-                  <button type="submit" className="btn pri sm full filter-apply-btn">{t("flt_apply")}</button>
-                </form>
-              </aside>
-
-              <section>
-
-                <input type="radio" name="catalog-view" id="cview-grid" className="catalog-view-radio" defaultChecked />
-                <input type="radio" name="catalog-view" id="cview-list" className="catalog-view-radio" />
-
-                <div className="catalog-top">
-                  <form action="/auctions" method="get" className="search-box">
-                    <span className="search-icon"><svg className="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span>
-                    <input type="text" name="q" className="form-input search-input-inner" placeholder={t("flt_search_name_ph")} />
-                    <button type="submit" className="btn sm pri search-submit-btn">{t("search_aria")}</button>
-                  </form>
-
-                  <div className="catalog-right-controls">
-                    <span className="catalog-counter"><span>{t("flt_found")}</span> <b>15</b> <span>{t("flt_lots_word")}</span></span>
-                    <select className="form-select catalog-sort-select">
-                      <option value="ending">{t("flt_ending")}</option>
-                      <option value="price-asc">{t("sort_price_asc")}</option>
-                      <option value="price-desc">{t("sort_price_desc")}</option>
-                      <option value="bids">{t("sort_bids")}</option>
-                    </select>
-                    <div className="view-toggle">
-                      <label htmlFor="cview-grid" className="view-btn view-btn-grid" title={t("view_grid_title")}>⊞</label>
-                      <label htmlFor="cview-list" className="view-btn view-btn-list" title={t("view_list_title")}><svg className="ico" viewBox="0 0 24 24" aria-hidden="true"><line x1="8" x2="21" y1="6" y2="6"/><line x1="8" x2="21" y1="12" y2="12"/><line x1="8" x2="21" y1="18" y2="18"/><line x1="3" x2="3.01" y1="6" y2="6"/><line x1="3" x2="3.01" y1="12" y2="12"/><line x1="3" x2="3.01" y1="18" y2="18"/></svg></label>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="grid grid-3 lot-items-grid">
-
-                  <article className="card lot">
-                    <div className="im"><img src="/images/car-front.jpg" alt="2021 Porsche 911 Carrera 4S" />
-                      <span className="chip copart-live"><span className="copart-dot"></span> Live</span>
-                      <label className="remind-btn">
-                        <input type="checkbox" className="remind-cb" defaultChecked />
-                        <span className="remind-icon">
-                          <svg className="remind-off" viewBox="0 0 24 24">
-                            <circle cx="12" cy="12" r="9"></circle>
-                            <polyline points="12 7 12 12 15 15"></polyline>
-                          </svg>
-                          <svg className="remind-on" viewBox="0 0 24 24">
-                            <polyline points="20 6 9 17 4 12"></polyline>
-                          </svg>
-                        </span>
-                      </label>
-                    </div>
-                    <div className="card-body">
-                      <small className="lot-card-cat"><span>{t("det_lot_word")}</span> #405 · <span>{t("cat_cars")}</span> · Run &amp; Drive</small>
-                      <h3 className="lot-card-title"><Link to="/auction-detail">2021 Porsche 911 Carrera 4S</Link></h3>
-                      <div className="lot-card-info-row">
-                        <div>
-                          <small className="lot-card-lbl">{t("lot_current_bid_live")}</small>
-                          <span className="price">$48,500</span>
-                        </div>
-                        <div className="lot-card-timing">
-                          <small className="lot-card-lbl">{t("lot_hammer_countdown")}</small>
-                          <span className="tm hot">00:14 <span>{t("unit_sec")}</span></span>
-                        </div>
-                      </div>
-                      <div className="lot-card-action-btns">
-                  <Link to="/auction-detail" className="btn sm">{t("lot_details_btn")}</Link>
-                  <Link to="/place-bid" className="btn pri sm">{t("lot_join_btn")}</Link>
-                </div>
-                    </div>
-                  </article>
-
-                  <article className="card lot">
-                    <div className="im"><img src="/images/lot-classic-car.jpg" alt="1968 Ford Mustang Shelby GT" />
-                      <span className="chip live">{t("chip_live")}</span>
-                      <label className="remind-btn">
-                        <input type="checkbox" className="remind-cb" />
-                        <span className="remind-icon">
-                          <svg className="remind-off" viewBox="0 0 24 24">
-                            <circle cx="12" cy="12" r="9"></circle>
-                            <polyline points="12 7 12 12 15 15"></polyline>
-                          </svg>
-                          <svg className="remind-on" viewBox="0 0 24 24">
-                            <polyline points="20 6 9 17 4 12"></polyline>
-                          </svg>
-                        </span>
-                      </label>
-                    </div>
-                    <div className="card-body">
-                      <small className="lot-card-cat"><span>{t("det_lot_word")}</span> #412 · <span>{t("cat_classic_cars")}</span> · Clean Title</small>
-                      <h3 className="lot-card-title"><Link to="/auction-detail">1968 Ford Mustang Fastback</Link></h3>
-                      <div className="lot-card-info-row">
-                        <div>
-                          <small className="lot-card-lbl">{t("lot_current_price")}</small>
-                          <span className="price">$62,000</span>
-                        </div>
-                        <div className="lot-card-timing">
-                          <small className="lot-card-lbl">{t("lot_time_left")}</small>
-                          <span className="tm">01:24:00</span>
-                        </div>
-                      </div>
-                      <div className="lot-card-action-btns">
-                  <Link to="/auction-detail" className="btn sm">{t("lot_details_btn")}</Link>
-                  <Link to="/place-bid" className="btn pri sm">{t("lot_join_btn")}</Link>
-                </div>
-                    </div>
-                  </article>
-
-                  <article className="card lot">
-                    <div className="im t1"><img src="/images/lot-watch.jpg" alt="Հին ժամացույց" />
-                      <span className="chip live">{t("chip_live")}</span>
-                      <label className="remind-btn">
-                        <input type="checkbox" className="remind-cb" defaultChecked />
-                        <span className="remind-icon">
-                          <svg className="remind-off" viewBox="0 0 24 24">
-                            <circle cx="12" cy="12" r="9"></circle>
-                            <polyline points="12 7 12 12 15 15"></polyline>
-                          </svg>
-                          <svg className="remind-on" viewBox="0 0 24 24">
-                            <polyline points="20 6 9 17 4 12"></polyline>
-                          </svg>
-                        </span>
-                      </label>
-                    </div>
-                    <div className="card-body">
-                      <small className="lot-card-cat"><span>{t("det_lot_word")}</span> #128 · <span>{t("cat_watches")}</span></small>
-                      <h3 className="lot-card-title"><Link to="/auction-detail">Հին ժամացույց</Link></h3>
-                      <div className="lot-card-info-row">
-                        <div>
-                          <small className="lot-card-lbl">{t("lot_current_price")}</small>
-                          <span className="price">$1,250</span>
-                        </div>
-                        <div className="lot-card-timing">
-                          <small className="lot-card-lbl">{t("lot_time_left")}</small>
-                          <span className="tm">02:41:08</span>
-                        </div>
-                      </div>
-                      <div className="lot-card-action-btns">
-                  <Link to="/auction-detail" className="btn sm">{t("lot_details_btn")}</Link>
-                  <Link to="/place-bid" className="btn pri sm">{t("lot_join_btn")}</Link>
-                </div>
-                    </div>
-                  </article>
-
-                  <article className="card lot">
-                    <div className="im t2"><img src="/images/lot-carpet.jpg" alt="Ձեռագործ գորգ" />
-                      <span className="chip live">{t("chip_live")}</span>
-                      <label className="remind-btn">
-                        <input type="checkbox" className="remind-cb" />
-                        <span className="remind-icon">
-                          <svg className="remind-off" viewBox="0 0 24 24">
-                            <circle cx="12" cy="12" r="9"></circle>
-                            <polyline points="12 7 12 12 15 15"></polyline>
-                          </svg>
-                          <svg className="remind-on" viewBox="0 0 24 24">
-                            <polyline points="20 6 9 17 4 12"></polyline>
-                          </svg>
-                        </span>
-                      </label>
-                    </div>
-                    <div className="card-body">
-                      <small className="lot-card-cat"><span>{t("det_lot_word")}</span> #211 · <span>{t("cat_carpets")}</span></small>
-                      <h3 className="lot-card-title"><Link to="/auction-detail">Ձեռագործ գորգ</Link></h3>
-                      <div className="lot-card-info-row">
-                        <div>
-                          <small className="lot-card-lbl">{t("lot_current_price")}</small>
-                          <span className="price">$900</span>
-                        </div>
-                        <div className="lot-card-timing">
-                          <small className="lot-card-lbl">{t("lot_time_left")}</small>
-                          <span className="tm hot">00:08:30</span>
-                        </div>
-                      </div>
-                      <div className="lot-card-action-btns">
-                  <Link to="/auction-detail" className="btn sm">{t("lot_details_btn")}</Link>
-                  <Link to="/place-bid" className="btn pri sm">{t("lot_join_btn")}</Link>
-                </div>
-                    </div>
-                  </article>
-
-                  <article className="card lot">
-                    <div className="im t3"><img src="/images/lot-samovar.jpg" alt="Արծաթե սամովար" />
-                      <span className="chip live">{t("chip_live")}</span>
-                      <label className="remind-btn">
-                        <input type="checkbox" className="remind-cb" defaultChecked />
-                        <span className="remind-icon">
-                          <svg className="remind-off" viewBox="0 0 24 24">
-                            <circle cx="12" cy="12" r="9"></circle>
-                            <polyline points="12 7 12 12 15 15"></polyline>
-                          </svg>
-                          <svg className="remind-on" viewBox="0 0 24 24">
-                            <polyline points="20 6 9 17 4 12"></polyline>
-                          </svg>
-                        </span>
-                      </label>
-                    </div>
-                    <div className="card-body">
-                      <small className="lot-card-cat"><span>{t("det_lot_word")}</span> #94 · <span>{t("cat_collectibles")}</span></small>
-                      <h3 className="lot-card-title"><Link to="/auction-detail">Արծաթե սամովար</Link></h3>
-                      <div className="lot-card-info-row">
-                        <div>
-                          <small className="lot-card-lbl">{t("lot_current_price")}</small>
-                          <span className="price">$480</span>
-                        </div>
-                        <div className="lot-card-timing">
-                          <small className="lot-card-lbl">{t("lot_time_left")}</small>
-                          <span className="tm">05:12:40</span>
-                        </div>
-                      </div>
-                      <div className="lot-card-action-btns">
-                  <Link to="/auction-detail" className="btn sm">{t("lot_details_btn")}</Link>
-                  <Link to="/place-bid" className="btn pri sm">{t("lot_join_btn")}</Link>
-                </div>
-                    </div>
-                  </article>
-
-                  <article className="card lot">
-                    <div className="im t4"><img src="/images/lot-painting.jpg" alt="Յուղաներկ նկար" />
-                      <span className="chip live">{t("chip_live")}</span>
-                      <label className="remind-btn">
-                        <input type="checkbox" className="remind-cb" />
-                        <span className="remind-icon">
-                          <svg className="remind-off" viewBox="0 0 24 24">
-                            <circle cx="12" cy="12" r="9"></circle>
-                            <polyline points="12 7 12 12 15 15"></polyline>
-                          </svg>
-                          <svg className="remind-on" viewBox="0 0 24 24">
-                            <polyline points="20 6 9 17 4 12"></polyline>
-                          </svg>
-                        </span>
-                      </label>
-                    </div>
-                    <div className="card-body">
-                      <small className="lot-card-cat"><span>{t("det_lot_word")}</span> #142 · <span>{t("cat_art")}</span></small>
-                      <h3 className="lot-card-title"><Link to="/auction-detail">Յուղաներկ նկար</Link></h3>
-                      <div className="lot-card-info-row">
-                        <div>
-                          <small className="lot-card-lbl">{t("lot_current_price")}</small>
-                          <span className="price">$2,300</span>
-                        </div>
-                        <div className="lot-card-timing">
-                          <small className="lot-card-lbl">{t("lot_time_left")}</small>
-                          <span className="tm">09:00:00</span>
-                        </div>
-                      </div>
-                      <div className="lot-card-action-btns">
-                  <Link to="/auction-detail" className="btn sm">{t("lot_details_btn")}</Link>
-                  <Link to="/place-bid" className="btn pri sm">{t("lot_join_btn")}</Link>
-                </div>
-                    </div>
-                  </article>
-
-                  <article className="card lot">
-                    <div className="im t5"><img src="/images/lot-desk.jpg" alt="Փայտե գրասեղան" />
-                      <span className="chip live">{t("chip_live")}</span>
-                      <label className="remind-btn">
-                        <input type="checkbox" className="remind-cb" />
-                        <span className="remind-icon">
-                          <svg className="remind-off" viewBox="0 0 24 24">
-                            <circle cx="12" cy="12" r="9"></circle>
-                            <polyline points="12 7 12 12 15 15"></polyline>
-                          </svg>
-                          <svg className="remind-on" viewBox="0 0 24 24">
-                            <polyline points="20 6 9 17 4 12"></polyline>
-                          </svg>
-                        </span>
-                      </label>
-                    </div>
-                    <div className="card-body">
-                      <small className="lot-card-cat"><span>{t("det_lot_word")}</span> #168 · <span>{t("cat_furniture")}</span></small>
-                      <h3 className="lot-card-title"><Link to="/auction-detail">Փայտե գրասեղան</Link></h3>
-                      <div className="lot-card-info-row">
-                        <div>
-                          <small className="lot-card-lbl">{t("lot_current_price")}</small>
-                          <span className="price">$650</span>
-                        </div>
-                        <div className="lot-card-timing">
-                          <small className="lot-card-lbl">{t("lot_time_left")}</small>
-                          <span className="tm">12:30:00</span>
-                        </div>
-                      </div>
-                      <div className="lot-card-action-btns">
-                  <Link to="/auction-detail" className="btn sm">{t("lot_details_btn")}</Link>
-                  <Link to="/place-bid" className="btn pri sm">{t("lot_join_btn")}</Link>
-                </div>
-                    </div>
-                  </article>
-
-                  <article className="card lot">
-                    <div className="im t6"><img src="/images/lot-ring.jpg" alt="Ոսկե մատանի" />
-                      <span className="chip live">{t("chip_live")}</span>
-                      <label className="remind-btn">
-                        <input type="checkbox" className="remind-cb" />
-                        <span className="remind-icon">
-                          <svg className="remind-off" viewBox="0 0 24 24">
-                            <circle cx="12" cy="12" r="9"></circle>
-                            <polyline points="12 7 12 12 15 15"></polyline>
-                          </svg>
-                          <svg className="remind-on" viewBox="0 0 24 24">
-                            <polyline points="20 6 9 17 4 12"></polyline>
-                          </svg>
-                        </span>
-                      </label>
-                    </div>
-                    <div className="card-body">
-                      <small className="lot-card-cat"><span>{t("det_lot_word")}</span> #189 · <span>{t("cat_jewellery")}</span></small>
-                      <h3 className="lot-card-title"><Link to="/auction-detail">Ոսկե մատանի նռնաքարով</Link></h3>
-                      <div className="lot-card-info-row">
-                        <div>
-                          <small className="lot-card-lbl">{t("lot_current_price")}</small>
-                          <span className="price">$1,750</span>
-                        </div>
-                        <div className="lot-card-timing">
-                          <small className="lot-card-lbl">{t("lot_time_left")}</small>
-                          <span className="tm hot">00:55:00</span>
-                        </div>
-                      </div>
-                      <div className="lot-card-action-btns">
-                  <Link to="/auction-detail" className="btn sm">{t("lot_details_btn")}</Link>
-                  <Link to="/place-bid" className="btn pri sm">{t("lot_join_btn")}</Link>
-                </div>
-                    </div>
-                  </article>
-
-                  <article className="card lot">
-                    <div className="im"><img src="/images/lot-vase.jpg" alt="Հնաոճ ճենապակյա սկահակ" />
-                      <span className="chip live">{t("chip_live")}</span>
-                      <label className="remind-btn">
-                        <input type="checkbox" className="remind-cb" />
-                        <span className="remind-icon">
-                          <svg className="remind-off" viewBox="0 0 24 24">
-                            <circle cx="12" cy="12" r="9"></circle>
-                            <polyline points="12 7 12 12 15 15"></polyline>
-                          </svg>
-                          <svg className="remind-on" viewBox="0 0 24 24">
-                            <polyline points="20 6 9 17 4 12"></polyline>
-                          </svg>
-                        </span>
-                      </label>
-                    </div>
-                    <div className="card-body">
-                      <small className="lot-card-cat"><span>{t("det_lot_word")}</span> #215 · <span>{t("cat_ceramics")}</span></small>
-                      <h3 className="lot-card-title"><Link to="/auction-detail">Հնաոճ ճենապակյա սկահակ</Link></h3>
-                      <div className="lot-card-info-row">
-                        <div>
-                          <small className="lot-card-lbl">{t("lot_current_price")}</small>
-                          <span className="price">$820</span>
-                        </div>
-                        <div className="lot-card-timing">
-                          <small className="lot-card-lbl">{t("lot_time_left")}</small>
-                          <span className="tm">04:15:30</span>
-                        </div>
-                      </div>
-                      <div className="lot-card-action-btns">
-                  <Link to="/auction-detail" className="btn sm">{t("lot_details_btn")}</Link>
-                  <Link to="/place-bid" className="btn pri sm">{t("lot_join_btn")}</Link>
-                </div>
-                    </div>
-                  </article>
-
-                  <article className="card lot">
-                    <div className="im"><img src="/images/lot-sculpture.jpg" alt="Բրոնզե քանդակ «Հեծյալը»" />
-                      <span className="chip live">{t("chip_live")}</span>
-                      <label className="remind-btn">
-                        <input type="checkbox" className="remind-cb" />
-                        <span className="remind-icon">
-                          <svg className="remind-off" viewBox="0 0 24 24">
-                            <circle cx="12" cy="12" r="9"></circle>
-                            <polyline points="12 7 12 12 15 15"></polyline>
-                          </svg>
-                          <svg className="remind-on" viewBox="0 0 24 24">
-                            <polyline points="20 6 9 17 4 12"></polyline>
-                          </svg>
-                        </span>
-                      </label>
-                    </div>
-                    <div className="card-body">
-                      <small className="lot-card-cat"><span>{t("det_lot_word")}</span> #220 · <span>{t("cat_art")}</span></small>
-                      <h3 className="lot-card-title"><Link to="/auction-detail">Բրոնզե քանդակ «Հեծյալը»</Link></h3>
-                      <div className="lot-card-info-row">
-                        <div>
-                          <small className="lot-card-lbl">{t("lot_current_price")}</small>
-                          <span className="price">$950</span>
-                        </div>
-                        <div className="lot-card-timing">
-                          <small className="lot-card-lbl">{t("lot_time_left")}</small>
-                          <span className="tm hot">01:45:10</span>
-                        </div>
-                      </div>
-                      <div className="lot-card-action-btns">
-                  <Link to="/auction-detail" className="btn sm">{t("lot_details_btn")}</Link>
-                  <Link to="/place-bid" className="btn pri sm">{t("lot_join_btn")}</Link>
-                </div>
-                    </div>
-                  </article>
-
-                  <article className="card lot">
-                    <div className="im"><img src="/images/lot-book.jpg" alt="Կաշվեպատ հնատիպ գիրք" />
-                      <span className="chip live">{t("chip_live")}</span>
-                      <label className="remind-btn">
-                        <input type="checkbox" className="remind-cb" />
-                        <span className="remind-icon">
-                          <svg className="remind-off" viewBox="0 0 24 24">
-                            <circle cx="12" cy="12" r="9"></circle>
-                            <polyline points="12 7 12 12 15 15"></polyline>
-                          </svg>
-                          <svg className="remind-on" viewBox="0 0 24 24">
-                            <polyline points="20 6 9 17 4 12"></polyline>
-                          </svg>
-                        </span>
-                      </label>
-                    </div>
-                    <div className="card-body">
-                      <small className="lot-card-cat"><span>{t("det_lot_word")}</span> #242 · <span>{t("cat_books")}</span></small>
-                      <h3 className="lot-card-title"><Link to="/auction-detail">Կաշվեպատ հնատիպ գիրք, 1785 թ.</Link></h3>
-                      <div className="lot-card-info-row">
-                        <div>
-                          <small className="lot-card-lbl">{t("lot_current_price")}</small>
-                          <span className="price">$640</span>
-                        </div>
-                        <div className="lot-card-timing">
-                          <small className="lot-card-lbl">{t("lot_time_left")}</small>
-                          <span className="tm">07:20:00</span>
-                        </div>
-                      </div>
-                      <div className="lot-card-action-btns">
-                  <Link to="/auction-detail" className="btn sm">{t("lot_details_btn")}</Link>
-                  <Link to="/place-bid" className="btn pri sm">{t("lot_join_btn")}</Link>
-                </div>
-                    </div>
-                  </article>
-
-                  <article className="card lot">
-                    <div className="im"><img src="/images/lot-coins.jpg" alt="Անտիկ մետաղադրամներ" />
-                      <span className="chip end">{t("chip_finished")}</span>
-                      <label className="remind-btn">
-                        <input type="checkbox" className="remind-cb" />
-                        <span className="remind-icon">
-                          <svg className="remind-off" viewBox="0 0 24 24">
-                            <circle cx="12" cy="12" r="9"></circle>
-                            <polyline points="12 7 12 12 15 15"></polyline>
-                          </svg>
-                          <svg className="remind-on" viewBox="0 0 24 24">
-                            <polyline points="20 6 9 17 4 12"></polyline>
-                          </svg>
-                        </span>
-                      </label>
-                    </div>
-                    <div className="card-body">
-                      <small className="lot-card-cat"><span>{t("det_lot_word")}</span> #301 · <span>{t("cat_collectibles")}</span></small>
-                      <h3 className="lot-card-title"><Link to="/auction-detail">Անտիկ մետաղադրամներ</Link></h3>
-                      <div className="lot-card-info-row">
-                        <div>
-                          <small className="lot-card-lbl">{t("tbl_final_price")}</small>
-                          <span className="price">$1,150</span>
-                        </div>
-                        <div className="lot-card-timing">
-                          <small className="lot-card-lbl">{t("tbl_bids")}</small>
-                          <span className="tm">22 <span>{t("unit_bids")}</span></span>
-                        </div>
-                      </div>
-                      <div className="lot-card-action-btns">
-                  <Link to="/auction-detail" className="btn sm">{t("lot_details_btn")}</Link>
-                  <Link to="/place-bid" className="btn pri sm">{t("lot_join_btn")}</Link>
-                </div>
-                    </div>
-                  </article>
-                </div>
-              </section>
-            </div>
-          </div>
-        </main>
-
-
-    </>
+            {/* Լոտերի ցանց / ցուցակ */}
+            {filteredLots.length > 0 ? (
+              <div className="grid grid-3 lot-items-grid">
+                {filteredLots.map((lot) => (
+                  <LotCard key={lot.id} lot={lot} viewMode={viewMode} />
+                ))}
+              </div>
+            ) : (
+              <div className="card catalog-empty-box">
+                <p className="catalog-empty-msg">
+                  {t("no_lots_matching") || "Համապատասխան լոտեր չեն գտնվել"}
+                </p>
+                <button
+                  type="button"
+                  onClick={handleClearFilters}
+                  className="btn sec sm"
+                >
+                  {t("flt_clear")}
+                </button>
+              </div>
+            )}
+          </section>
+        </div>
+      </div>
+    </main>
   );
 }

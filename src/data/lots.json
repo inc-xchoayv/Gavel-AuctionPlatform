@@ -1,0 +1,391 @@
+[
+  {
+    "id": 405,
+    "title": "2021 Porsche 911 Carrera 4S",
+    "categoryId": "cars",
+    "image": "/images/car-front.jpg",
+    "gallery": [
+      "/images/car-front.jpg",
+      "/images/car-side.jpg",
+      "/images/car-rear.jpg",
+      "/images/car-interior.jpg"
+    ],
+    "currentBid": 48500,
+    "startingPrice": 35000,
+    "minIncrement": 500,
+    "currency": "$",
+    "bidsCount": 38,
+    "status": "active",
+    "badge": "copart-live",
+    "isHot": true,
+    "featured": true,
+    "endsIn": "00:14",
+    "endsAt": "2026-12-05T18:00:00Z",
+    "seller": {
+      "id": "seller-1",
+      "name": "ArmeniaAutoClub",
+      "verified": true,
+      "rating": 4.9
+    },
+    "specs": {
+      "engine": "3.0L Twin-Turbo (443 hp)",
+      "mileage": "18,420 mi",
+      "vin": "WP0AB2A92MS123456",
+      "condition": "Run & Drive",
+      "titleType": "Clean Title"
+    },
+    "description": "Exquisite 2021 Porsche 911 Carrera 4S in GT Silver Metallic. Full service history at certified Porsche center, Sport Chrono package, Sport Exhaust, 20/21 RS Spyder design wheels."
+  },
+  {
+    "id": 412,
+    "title": "1968 Ford Mustang Fastback Shelby GT",
+    "categoryId": "classic-cars",
+    "image": "/images/lot-classic-car.jpg",
+    "gallery": ["/images/lot-classic-car.jpg"],
+    "currentBid": 62000,
+    "startingPrice": 45000,
+    "minIncrement": 1000,
+    "currency": "$",
+    "bidsCount": 24,
+    "status": "active",
+    "badge": "live",
+    "isHot": false,
+    "featured": true,
+    "endsIn": "01:24:00",
+    "endsAt": "2026-12-05T20:30:00Z",
+    "seller": {
+      "id": "seller-2",
+      "name": "ClassicHeritage_Yerevan",
+      "verified": true,
+      "rating": 5.0
+    },
+    "specs": {
+      "engine": "V8 390ci High Output",
+      "transmission": "4-speed Manual",
+      "condition": "Fully Restored",
+      "titleType": "Historical Title"
+    },
+    "description": "Flawless rotisserie restoration of an authentic 1968 Ford Mustang Fastback with Carroll Shelby tribute styling. Highland Green exterior with deluxe black vinyl interior."
+  },
+  {
+    "id": 128,
+    "title": "Vintage Swiss Chronograph Gold Watch 18k",
+    "categoryId": "watches",
+    "image": "/images/lot-watch.jpg",
+    "gallery": [
+      "/images/lot-watch.jpg",
+      "/images/watch-front.jpg",
+      "/images/watch-side.jpg",
+      "/images/watch-mech.jpg",
+      "/images/watch-case.jpg"
+    ],
+    "currentBid": 1250,
+    "startingPrice": 800,
+    "minIncrement": 50,
+    "currency": "$",
+    "bidsCount": 19,
+    "status": "active",
+    "badge": "rare",
+    "isHot": false,
+    "featured": true,
+    "endsIn": "02:41:08",
+    "endsAt": "2026-12-06T12:00:00Z",
+    "seller": {
+      "id": "seller-3",
+      "name": "AntiqueWatchAtelier",
+      "verified": true,
+      "rating": 4.8
+    },
+    "specs": {
+      "case": "18k Solid Yellow Gold, 38mm",
+      "movement": "Manual Calibre 72",
+      "year": "circa 1958",
+      "condition": "Mint"
+    },
+    "description": "Rare 1950s Swiss mechanical chronograph in solid 18k yellow gold. Dial features original patina, blued-steel hands, telemeter scale, and fully serviced chronograph complication."
+  },
+  {
+    "id": 219,
+    "title": "19th Century Imperial Russian Silver Samovar",
+    "categoryId": "interiors",
+    "image": "/images/lot-samovar.jpg",
+    "gallery": ["/images/lot-samovar.jpg"],
+    "currentBid": 800,
+    "startingPrice": 800,
+    "minIncrement": 25,
+    "currency": "$",
+    "bidsCount": 0,
+    "status": "upcoming",
+    "badge": "upcoming",
+    "isHot": false,
+    "featured": true,
+    "endsIn": "1d 4h",
+    "endsAt": "2026-12-07T15:00:00Z",
+    "seller": {
+      "id": "seller-4",
+      "name": "OldTiflisAntiques",
+      "verified": true,
+      "rating": 4.95
+    },
+    "specs": {
+      "origin": "Tula, Batashev Factory",
+      "material": "Silver-plated brass, bone handles",
+      "year": "1882",
+      "weight": "6.8 kg"
+    },
+    "description": "Magnificent imperial samovar awarded medals at historic industrial exhibitions. Features stamped seals of Alexander III, carved ivory handles, and airtight brass valve."
+  },
+  {
+    "id": 104,
+    "title": "Oil Painting 'Mount Ararat at Sunrise' (1934)",
+    "categoryId": "art",
+    "image": "/images/lot-painting.jpg",
+    "gallery": [
+      "/images/lot-painting.jpg",
+      "/images/art-canvas.jpg",
+      "/images/art-detail.jpg",
+      "/images/art-frame.jpg"
+    ],
+    "currentBid": 4200,
+    "startingPrice": 2500,
+    "minIncrement": 100,
+    "currency": "$",
+    "bidsCount": 27,
+    "status": "active",
+    "badge": "live",
+    "isHot": true,
+    "featured": false,
+    "endsIn": "03:15:22",
+    "endsAt": "2026-12-05T22:00:00Z",
+    "seller": {
+      "id": "seller-5",
+      "name": "YerevanArtGallery",
+      "verified": true,
+      "rating": 5.0
+    },
+    "specs": {
+      "medium": "Oil on canvas",
+      "dimensions": "85 x 115 cm",
+      "signature": "Signed lower right",
+      "provenance": "Private collection, Paris"
+    },
+    "description": "Authentic impressionist oil painting showing Mount Ararat in morning light. Comes with museum certificate of authenticity, archival restoration report, and period gilded frame."
+  },
+  {
+    "id": 315,
+    "title": "Antique Persian Tabriz Silk & Wool Carpet",
+    "categoryId": "interiors",
+    "image": "/images/lot-carpet.jpg",
+    "gallery": ["/images/lot-carpet.jpg"],
+    "currentBid": 3100,
+    "startingPrice": 2000,
+    "minIncrement": 100,
+    "currency": "$",
+    "bidsCount": 14,
+    "status": "active",
+    "badge": "live",
+    "isHot": false,
+    "featured": false,
+    "endsIn": "05:40:10",
+    "endsAt": "2026-12-06T00:30:00Z",
+    "seller": {
+      "id": "seller-6",
+      "name": "SilkRoadCarpets",
+      "verified": true,
+      "rating": 4.7
+    },
+    "specs": {
+      "knotDensity": "450,000 knots/m²",
+      "dimensions": "290 x 200 cm",
+      "dyes": "100% Natural vegetable dyes",
+      "age": "circa 1920"
+    },
+    "description": "Stunning master-woven antique Tabriz carpet featuring the celebrated Mahi (fish) motif in central medallion. Pure hand-spun wool warp and silk highlights."
+  },
+  {
+    "id": 508,
+    "title": "Ancient Tigranes the Great Silver Tetradrachm (95-55 BC)",
+    "categoryId": "coins-stamps",
+    "image": "/images/lot-coins.jpg",
+    "gallery": ["/images/lot-coins.jpg"],
+    "currentBid": 2850,
+    "startingPrice": 1800,
+    "minIncrement": 50,
+    "currency": "$",
+    "bidsCount": 31,
+    "status": "active",
+    "badge": "rare",
+    "isHot": true,
+    "featured": false,
+    "endsIn": "00:45:18",
+    "endsAt": "2026-12-05T19:30:00Z",
+    "seller": {
+      "id": "seller-7",
+      "name": "NumismaticHeritage",
+      "verified": true,
+      "rating": 5.0
+    },
+    "specs": {
+      "metal": "High-purity Silver (AR)",
+      "weight": "15.82 g",
+      "grade": "NGC Choice XF",
+      "mint": "Tigranocerta"
+    },
+    "description": "Historic Armenian silver tetradrachm depicting King of Kings Tigranes the Great wearing royal Armenian tiara with star and eagles. Reverse shows Tyche of Antioch with river god Orontes."
+  },
+  {
+    "id": 614,
+    "title": "Illuminated Armenian Manuscript Gospel Leaves (1684)",
+    "categoryId": "books",
+    "image": "/images/lot-book.jpg",
+    "gallery": ["/images/lot-book.jpg"],
+    "currentBid": 1750,
+    "startingPrice": 1200,
+    "minIncrement": 50,
+    "currency": "$",
+    "bidsCount": 11,
+    "status": "active",
+    "badge": "live",
+    "isHot": false,
+    "featured": false,
+    "endsIn": "08:12:00",
+    "endsAt": "2026-12-06T18:00:00Z",
+    "seller": {
+      "id": "seller-8",
+      "name": "ManuscriptVault",
+      "verified": true,
+      "rating": 4.9
+    },
+    "specs": {
+      "material": "Vellum / Parchment",
+      "script": "Classical Armenian Bolorgir",
+      "illustrations": "Miniature with gold leaf",
+      "pages": "4 folio leaves framed"
+    },
+    "description": "Exquisite original manuscript leaves with miniature depicting the Evangelist Mark. Rich lapis lazuli and vermilion pigments with preserved 24k gold leaf illumination."
+  },
+  {
+    "id": 722,
+    "title": "Mid-Century Modern Rosewood Executive Desk",
+    "categoryId": "interiors",
+    "image": "/images/lot-desk.jpg",
+    "gallery": ["/images/lot-desk.jpg"],
+    "currentBid": 1950,
+    "startingPrice": 1500,
+    "minIncrement": 50,
+    "currency": "$",
+    "bidsCount": 8,
+    "status": "active",
+    "badge": "live",
+    "isHot": false,
+    "featured": false,
+    "endsIn": "14:20:00",
+    "endsAt": "2026-12-07T08:00:00Z",
+    "seller": {
+      "id": "seller-9",
+      "name": "NordicVintageStudio",
+      "verified": false,
+      "rating": 4.6
+    },
+    "specs": {
+      "designer": "Danish Design, Arne Vodder style",
+      "wood": "Brazilian Rosewood & Brass",
+      "dimensions": "180 x 85 x 74 cm",
+      "drawers": "6 drawers with original key"
+    },
+    "description": "Spectacular Danish modernist executive desk in richly grained Rio rosewood. Floating top design, sculpted brass hardware, and integrated locking drawer banks."
+  },
+  {
+    "id": 830,
+    "title": "Art Deco Platinum Natural Sapphire & Diamond Ring",
+    "categoryId": "jewellery",
+    "image": "/images/lot-ring.jpg",
+    "gallery": ["/images/lot-ring.jpg"],
+    "currentBid": 5400,
+    "startingPrice": 3800,
+    "minIncrement": 100,
+    "currency": "$",
+    "bidsCount": 22,
+    "status": "active",
+    "badge": "live",
+    "isHot": false,
+    "featured": false,
+    "endsIn": "04:02:15",
+    "endsAt": "2026-12-05T23:45:00Z",
+    "seller": {
+      "id": "seller-10",
+      "name": "GenevaGems",
+      "verified": true,
+      "rating": 4.95
+    },
+    "specs": {
+      "centerStone": "3.42 ct Unheated Royal Blue Sapphire",
+      "accentDiamonds": "1.10 ct Old European Cut (VS1/G)",
+      "metal": "Platinum 950",
+      "ringSize": "US 6.5 (resizable)"
+    },
+    "description": "Authentic 1925 Art Deco masterwork certified by GIA. Central unheated Ceylon sapphire of velvety royal blue tone, surrounded by openwork filigree and calibrated diamonds."
+  },
+  {
+    "id": 941,
+    "title": "Bronze Mythological Torso Sculpture by H. Hakobyan",
+    "categoryId": "art",
+    "image": "/images/lot-sculpture.jpg",
+    "gallery": ["/images/lot-sculpture.jpg"],
+    "currentBid": 2600,
+    "startingPrice": 2000,
+    "minIncrement": 50,
+    "currency": "$",
+    "bidsCount": 9,
+    "status": "active",
+    "badge": "live",
+    "isHot": false,
+    "featured": false,
+    "endsIn": "18:10:00",
+    "endsAt": "2026-12-07T12:00:00Z",
+    "seller": {
+      "id": "seller-5",
+      "name": "YerevanArtGallery",
+      "verified": true,
+      "rating": 5.0
+    },
+    "specs": {
+      "material": "Lost-wax cast bronze on black granite base",
+      "height": "62 cm",
+      "edition": "3/7",
+      "year": "1978"
+    },
+    "description": "Monumental bronze modernist sculpture with deep green-brown chemical patina. Signed by sculptor with artist foundry stamp."
+  },
+  {
+    "id": 1052,
+    "title": "Imperial Qing Dynasty Cloisonné Dragon Vase (18th c.)",
+    "categoryId": "asian-tribal",
+    "image": "/images/lot-vase.jpg",
+    "gallery": ["/images/lot-vase.jpg"],
+    "currentBid": 7800,
+    "startingPrice": 5000,
+    "minIncrement": 200,
+    "currency": "$",
+    "bidsCount": 42,
+    "status": "ended",
+    "badge": "ended",
+    "isHot": false,
+    "featured": false,
+    "endsIn": "00:00",
+    "endsAt": "2026-11-20T18:00:00Z",
+    "seller": {
+      "id": "seller-4",
+      "name": "OldTiflisAntiques",
+      "verified": true,
+      "rating": 4.95
+    },
+    "specs": {
+      "dynasty": "Qing, Qianlong Period",
+      "technique": "Gilt-bronze & Cloisonné enamel",
+      "height": "42 cm",
+      "motif": "Five-clawed imperial dragons"
+    },
+    "description": "Museum-grade cloisonné baluster vase decorated with undulating imperial five-claw dragons pursuing flaming pearls among swirling clouds."
+  }
+]
