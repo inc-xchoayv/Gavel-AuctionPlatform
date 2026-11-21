@@ -129,8 +129,9 @@ export default function MyLots() {
                   </div>
                   <div className="lot-manage-info">
                     <div className="lot-manage-status-row">
-                      <span className={`chip ${lot.status === "active" ? "live" : "ended"}`}>
-                        {lot.status === "active" ? t("chip_live") : t("hist_ended")}
+                      <span className={`chip ${lot.status === "active" ? "chip-live" : "chip-ended"}`}>
+                        <span className="chip-dot"></span>
+                        {lot.status === "active" ? (t("mode_live") || "Ուղիղ") : (t("mode_ended") || "Ավարտված / Վաճառված")}
                       </span>
                       <small className="lot-manage-id-lbl">
                         <span>{t("det_lot_word")}</span> #{lot.id} · {lot.categoryId}

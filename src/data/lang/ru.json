@@ -493,5 +493,10 @@
   "cat_see_more": "Показать ещё",
   "cat_more_word": "категории",
   "cat_show_less": "Свернуть",
-  "cat_show_less_sub": ""
+  "cat_show_less_sub": "",
+  "mode_live": "В эфире",
+  "mode_ending_prefix": "Осталось",
+  "mode_upcoming": "Скоро",
+  "mode_ended": "Завершён / Продан",
+  "hist_ended": "Завершён / Продан"
 }

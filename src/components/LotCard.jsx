@@ -14,22 +14,55 @@ export default function LotCard({ lot, viewMode = "grid" }) {
   const catObj = categoriesData.find((c) => c.id === lot.categoryId);
   const categoryLabel = catObj?.name?.[lang] || catObj?.name?.en || lot.categoryId;
 
-  // Բեյջի տեսակը
+  // 4 Action Modes:
+  // 1. Live (Ուղիղ) -> lot.status === "active" && !isEndingSoon
+  // 2. Ending soon / < 15m (Մնաց XX:XX) -> lot.status === "active" && isEndingSoon (pulsing red)
+  // 3. Upcoming (Շուտով) -> lot.status === "upcoming"
+  // 4. Ended (Ավարտված / Վաճառված) -> lot.status === "ended"
+  const isEndingSoon = (() => {
+    if (lot.status !== "active") return false;
+    if (lot.isEndingSoon) return true;
+    if (!lot.endsIn) return false;
+    const raw = String(lot.endsIn).trim();
+    const parts = raw.split(":").map((p) => parseInt(p, 10));
+    if (parts.length === 2 && !isNaN(parts[0])) {
+      return parts[0] < 15;
+    }
+    if (parts.length === 3 && !isNaN(parts[0]) && !isNaN(parts[1])) {
+      return parts[0] === 0 && parts[1] < 15;
+    }
+    return false;
+  })();
+
   let badgeEl = null;
-  if (lot.badge === "copart-live") {
+  if (lot.status === "ended" || lot.badge === "ended") {
     badgeEl = (
-      <span className="chip copart-live">
-        <span className="copart-dot"></span> Live
+      <span className="chip chip-ended">
+        <span className="chip-dot"></span>
+        {t("mode_ended") || "Ավարտված / Վաճառված"}
       </span>
     );
   } else if (lot.status === "upcoming" || lot.badge === "upcoming") {
-    badgeEl = <span className="chip upcoming">{t("rec_badge_antique") || "Upcoming"}</span>;
-  } else if (lot.status === "ended" || lot.badge === "ended") {
-    badgeEl = <span className="chip end">{t("chip_ended") || "Ended"}</span>;
-  } else if (lot.badge === "rare") {
-    badgeEl = <span className="chip rare">{t("rec_badge_rare") || "Rare"}</span>;
+    badgeEl = (
+      <span className="chip chip-upcoming">
+        <span className="chip-dot"></span>
+        {t("mode_upcoming") || "Շուտով"}
+      </span>
+    );
+  } else if (isEndingSoon) {
+    badgeEl = (
+      <span className="chip chip-ending">
+        <span className="chip-dot"></span>
+        {t("mode_ending_prefix") || "Մնաց"} {lot.endsIn || "00:14"}
+      </span>
+    );
   } else {
-    badgeEl = <span className="chip live">{t("chip_live") || "Live"}</span>;
+    badgeEl = (
+      <span className="chip chip-live">
+        <span className="chip-dot"></span>
+        {t("mode_live") || "Ուղիղ"}
+      </span>
+    );
   }
 
   return (

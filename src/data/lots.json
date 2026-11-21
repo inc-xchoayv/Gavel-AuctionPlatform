@@ -59,7 +59,7 @@
       "id": "seller-2",
       "name": "ClassicHeritage_Yerevan",
       "verified": true,
-      "rating": 5.0
+      "rating": 5
     },
     "specs": {
       "engine": "V8 390ci High Output",
@@ -165,7 +165,7 @@
       "id": "seller-5",
       "name": "YerevanArtGallery",
       "verified": true,
-      "rating": 5.0
+      "rating": 5
     },
     "specs": {
       "medium": "Oil on canvas",
@@ -222,16 +222,16 @@
     "currency": "$",
     "bidsCount": 31,
     "status": "active",
-    "badge": "rare",
+    "badge": "ending",
     "isHot": true,
     "featured": false,
-    "endsIn": "00:45:18",
+    "endsIn": "08:30",
     "endsAt": "2026-12-05T19:30:00Z",
     "seller": {
       "id": "seller-7",
       "name": "NumismaticHeritage",
       "verified": true,
-      "rating": 5.0
+      "rating": 5
     },
     "specs": {
       "metal": "High-purity Silver (AR)",
@@ -363,7 +363,7 @@
       "id": "seller-5",
       "name": "YerevanArtGallery",
       "verified": true,
-      "rating": 5.0
+      "rating": 5
     },
     "specs": {
       "material": "Lost-wax cast bronze on black granite base",

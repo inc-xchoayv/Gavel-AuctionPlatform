@@ -493,5 +493,10 @@
   "cat_see_more": "Տեսնել ավելին",
   "cat_more_word": "կատեգորիա",
   "cat_show_less": "Թաքցնել",
-  "cat_show_less_sub": ""
+  "cat_show_less_sub": "",
+  "mode_live": "Ուղիղ",
+  "mode_ending_prefix": "Մնաց",
+  "mode_upcoming": "Շուտով",
+  "mode_ended": "Ավարտված / Վաճառված",
+  "hist_ended": "Ավարտված / Վաճառված"
 }
