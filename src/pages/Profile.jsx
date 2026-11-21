@@ -223,6 +223,33 @@ export default function Profile({ initialTab = "info" }) {
     setFlash(`${t("prof_topup_done")}${amt.toLocaleString()}`);
   };
 
+  const [notifForm, setNotifForm] = useState(() => ({
+    outbid: session?.notifications?.outbid ?? true,
+    ending: session?.notifications?.ending ?? true,
+    win: session?.notifications?.win ?? true,
+    lots: session?.notifications?.lots ?? true,
+    digest: session?.notifications?.digest ?? false,
+    email: session?.notifications?.email ?? true,
+    sms: session?.notifications?.sms ?? true,
+    push: session?.notifications?.push ?? true,
+  }));
+
+  useEffect(() => {
+    if (session?.notifications) {
+      setNotifForm((prev) => ({ ...prev, ...session.notifications }));
+    }
+  }, [session]);
+
+  const handleNotifToggle = (key) => {
+    setNotifForm((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
+
+  const handleSaveNotifications = (e) => {
+    e.preventDefault();
+    updateProfile({ notifications: notifForm });
+    setFlash(t("prof_notif_saved") || "Ծանուցումների կարգավորումները պահպանվեցին:");
+  };
+
   useEffect(() => {
     if (urlTab && urlTab !== activeTab) {
       setActiveTab(urlTab);
@@ -896,20 +923,33 @@ export default function Profile({ initialTab = "info" }) {
                 <h2 className="profile-section-title">{t("prof_notif_title")}</h2>
                 <p className="profile-section-desc">{t("prof_notif_desc")}</p>
 
-                <form onSubmit={(e) => { e.preventDefault(); setFlash("Ծանուցումների կարգավորումները պահպանվեցին"); }}>
+                <form onSubmit={handleSaveNotifications}>
+                  {/* GROUP 1: AUCTION EVENTS */}
                   <div className="notification-group">
                     <div className="notification-group-title">{t("prof_notif_events")}</div>
 
+                    {/* 1. Outbid alert */}
                     <label className="notification-row">
-                      <input type="checkbox" defaultChecked className="notification-checkbox" />
+                      <input
+                        type="checkbox"
+                        className="notification-checkbox"
+                        checked={notifForm.outbid}
+                        onChange={() => handleNotifToggle("outbid")}
+                      />
                       <div className="notification-text-wrap">
                         <b className="notification-name">{t("prof_notif_outbid")}</b>
                         <small className="notification-sub">{t("prof_notif_outbid_d")}</small>
                       </div>
                     </label>
 
+                    {/* 2. Auction ending reminder */}
                     <label className="notification-row">
-                      <input type="checkbox" defaultChecked className="notification-checkbox" />
+                      <input
+                        type="checkbox"
+                        className="notification-checkbox"
+                        checked={notifForm.ending}
+                        onChange={() => handleNotifToggle("ending")}
+                      />
                       <div className="notification-text-wrap">
                         <b className="notification-name">
                           <svg className="ico" viewBox="0 0 24 24" aria-hidden="true">
@@ -922,17 +962,133 @@ export default function Profile({ initialTab = "info" }) {
                       </div>
                     </label>
 
+                    {/* 3. Winning bid notification */}
                     <label className="notification-row">
-                      <input type="checkbox" defaultChecked className="notification-checkbox" />
+                      <input
+                        type="checkbox"
+                        className="notification-checkbox"
+                        checked={notifForm.win}
+                        onChange={() => handleNotifToggle("win")}
+                      />
                       <div className="notification-text-wrap">
                         <b className="notification-name">
                           <svg className="ico" viewBox="0 0 24 24" aria-hidden="true">
                             <path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526" />
                             <circle cx="12" cy="8" r="6" />
                           </svg>{" "}
-                          Հաղթանակի ծանուցում
+                          <span>{t("prof_notif_win")}</span>
                         </b>
                         <small className="notification-sub">{t("prof_notif_win_d")}</small>
+                      </div>
+                    </label>
+
+                    {/* 4. New lots in favorite categories */}
+                    <label className="notification-row">
+                      <input
+                        type="checkbox"
+                        className="notification-checkbox"
+                        checked={notifForm.lots}
+                        onChange={() => handleNotifToggle("lots")}
+                      />
+                      <div className="notification-text-wrap">
+                        <b className="notification-name">
+                          <svg className="ico" viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
+                            <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
+                            <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
+                            <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
+                            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z" />
+                          </svg>{" "}
+                          <span>{t("prof_notif_lots")}</span>
+                        </b>
+                        <small className="notification-sub">{t("prof_notif_lots_d")}</small>
+                      </div>
+                    </label>
+
+                    {/* 5. Gavel weekly digest */}
+                    <label className="notification-row">
+                      <input
+                        type="checkbox"
+                        className="notification-checkbox"
+                        checked={notifForm.digest}
+                        onChange={() => handleNotifToggle("digest")}
+                      />
+                      <div className="notification-text-wrap">
+                        <b className="notification-name">
+                          <svg className="ico" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2" />
+                            <path d="M18 14h-8" />
+                            <path d="M15 18h-5" />
+                            <path d="M10 6h8v4h-8V6Z" />
+                          </svg>{" "}
+                          <span>{t("prof_notif_digest")}</span>
+                        </b>
+                        <small className="notification-sub">{t("prof_notif_digest_d")}</small>
+                      </div>
+                    </label>
+                  </div>
+
+                  {/* GROUP 2: NOTIFICATION CHANNELS */}
+                  <div className="notification-group">
+                    <div className="notification-group-title">{t("prof_notif_channels")}</div>
+
+                    {/* Channel 1: Email */}
+                    <label className="notification-row">
+                      <input
+                        type="checkbox"
+                        className="notification-checkbox"
+                        checked={notifForm.email}
+                        onChange={() => handleNotifToggle("email")}
+                      />
+                      <div className="notification-text-wrap">
+                        <b className="notification-name">
+                          <svg className="ico" viewBox="0 0 24 24" aria-hidden="true">
+                            <rect width="20" height="16" x="2" y="4" rx="2" />
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                          </svg>{" "}
+                          <span>{t("lbl_email")}</span> ({session?.email || "garik@example.com"})
+                        </b>
+                        <small className="notification-sub">{t("prof_notif_email_d")}</small>
+                      </div>
+                    </label>
+
+                    {/* Channel 2: SMS */}
+                    <label className="notification-row">
+                      <input
+                        type="checkbox"
+                        className="notification-checkbox"
+                        checked={notifForm.sms}
+                        onChange={() => handleNotifToggle("sms")}
+                      />
+                      <div className="notification-text-wrap">
+                        <b className="notification-name">
+                          <svg className="ico" viewBox="0 0 24 24" aria-hidden="true">
+                            <rect width="14" height="20" x="5" y="2" rx="2" ry="2" />
+                            <path d="M12 18h.01" />
+                          </svg>{" "}
+                          <span>{t("prof_notif_sms")}</span> ({session?.phone || "+374 98 765432"})
+                        </b>
+                        <small className="notification-sub">{t("prof_notif_sms_d")}</small>
+                      </div>
+                    </label>
+
+                    {/* Channel 3: Browser Push */}
+                    <label className="notification-row">
+                      <input
+                        type="checkbox"
+                        className="notification-checkbox"
+                        checked={notifForm.push}
+                        onChange={() => handleNotifToggle("push")}
+                      />
+                      <div className="notification-text-wrap">
+                        <b className="notification-name">
+                          <svg className="ico" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
+                            <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
+                          </svg>{" "}
+                          <span>{t("prof_notif_push")}</span>
+                        </b>
+                        <small className="notification-sub">{t("prof_notif_push_d")}</small>
                       </div>
                     </label>
                   </div>
