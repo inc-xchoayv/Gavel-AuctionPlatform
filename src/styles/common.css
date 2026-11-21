@@ -502,7 +502,41 @@ nav {
   animation: pulse-dot 1.5s infinite;
 }
 .chip.soon { background: var(--warn-bg); color: var(--warn); }
-.chip.end { background: #f3efe9; color: var(--mute); }
+.chip.end,
+.chip.ended {
+  background: #f1f0ee;
+  color: #71717a;
+}
+.chip.end::before,
+.chip.ended::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #a1a1aa;
+}
+.chip.rare {
+  background: #fef3c7;
+  color: #92400e;
+}
+.chip.rare::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #d97706;
+}
+.chip.upcoming {
+  background: #eff6ff;
+  color: #1e40af;
+}
+.chip.upcoming::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #3b82f6;
+}
 .chip.lead { background: var(--ok-bg); color: var(--ok); }
 .chip.out { background: var(--bad-bg); color: var(--bad); }
 .chip.rv { background: #fef9e7; color: #8a6d0b; }

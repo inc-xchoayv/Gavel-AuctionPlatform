@@ -25,7 +25,7 @@ export default function LotCard({ lot, viewMode = "grid" }) {
   } else if (lot.status === "upcoming" || lot.badge === "upcoming") {
     badgeEl = <span className="chip upcoming">{t("rec_badge_antique") || "Upcoming"}</span>;
   } else if (lot.status === "ended" || lot.badge === "ended") {
-    badgeEl = <span className="chip ended">{t("hist_ended") || "Ended"}</span>;
+    badgeEl = <span className="chip end">{t("chip_ended") || "Ended"}</span>;
   } else if (lot.badge === "rare") {
     badgeEl = <span className="chip rare">{t("rec_badge_rare") || "Rare"}</span>;
   } else {
