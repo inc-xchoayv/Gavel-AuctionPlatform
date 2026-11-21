@@ -37,7 +37,9 @@
   font-size: 13px;
   font-weight: 600;
   color: var(--mute);
+  border: none;
   border-bottom: 3px solid transparent;
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -46,6 +48,9 @@
   transition: var(--trans);
   user-select: none;
   text-decoration: none;
+}
+.step-item:not(:last-child) {
+  border-right: 1px solid var(--line);
 }
 .step-item:hover {
   color: var(--ink);
@@ -66,7 +71,8 @@
   transition: var(--trans);
 }
 
-/* Active Step Highlight (Pure CSS) */
+/* Active Step Highlight */
+.step-item.active,
 #wstep-1:checked ~ .wizard-steps .step-nav-1,
 #wstep-2:checked ~ .wizard-steps .step-nav-2,
 #wstep-3:checked ~ .wizard-steps .step-nav-3,
@@ -76,6 +82,7 @@
   background: #fff;
   font-weight: 700;
 }
+.step-item.active .step-badge,
 #wstep-1:checked ~ .wizard-steps .step-nav-1 .step-badge,
 #wstep-2:checked ~ .wizard-steps .step-nav-2 .step-badge,
 #wstep-3:checked ~ .wizard-steps .step-nav-3 .step-badge,

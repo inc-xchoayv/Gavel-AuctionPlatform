@@ -124,30 +124,30 @@ export default function AddLot() {
             <button
               type="button"
               onClick={() => setCurrentStep(1)}
-              className="step-item step-nav-1"
+              className={`step-item step-nav-1 ${currentStep === 1 ? "active" : ""}`}
             >
-              <span className="step-badge">1</span> Տվյալներ
+              <span className="step-badge">1</span> {t("al_step1") || "Տվյալներ"}
             </button>
             <button
               type="button"
               onClick={() => setCurrentStep(2)}
-              className="step-item step-nav-2"
+              className={`step-item step-nav-2 ${currentStep === 2 ? "active" : ""}`}
             >
-              <span className="step-badge">2</span> Լուսանկարներ
+              <span className="step-badge">2</span> {t("al_step2") || "Լուսանկարներ"}
             </button>
             <button
               type="button"
               onClick={() => setCurrentStep(3)}
-              className="step-item step-nav-3"
+              className={`step-item step-nav-3 ${currentStep === 3 ? "active" : ""}`}
             >
-              <span className="step-badge">3</span> Գին և չափսեր
+              <span className="step-badge">3</span> {t("al_step3") || "Գին և չափսեր"}
             </button>
             <button
               type="button"
               onClick={() => setCurrentStep(4)}
-              className="step-item step-nav-4"
+              className={`step-item step-nav-4 ${currentStep === 4 ? "active" : ""}`}
             >
-              <span className="step-badge">4</span> Աճուրդ
+              <span className="step-badge">4</span> {t("al_step4") || "Աճուրդ"}
             </button>
           </div>
 
@@ -399,7 +399,7 @@ export default function AddLot() {
                 </button>
                 <div className="wizard-nav-right">
                   <button type="submit" className="btn pri">
-                    Տեղադրել աճուրդի{" "}
+                    {t("al_submit_btn") || "Տեղադրել աճուրդի"}{" "}
                     <svg className="ico ico-sm" viewBox="0 0 24 24" aria-hidden="true">
                       <path d="M20 6 9 17l-5-5" />
                     </svg>
