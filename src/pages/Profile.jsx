@@ -52,6 +52,177 @@ export default function Profile({ initialTab = "info" }) {
     setFlash(t("prof_personal_saved") || "Անձնական տվյալները հաջողությամբ պահպանվեցին:");
   };
 
+  const newCardFormRef = useRef(null);
+  const cardNumInputRef = useRef(null);
+  const [highlightCardForm, setHighlightCardForm] = useState(false);
+  const [showTopup, setShowTopup] = useState(false);
+  const [topupAmount, setTopupAmount] = useState(500);
+  const [topupCardId, setTopupCardId] = useState("");
+
+  const [cards, setCards] = useState(() => {
+    if (session?.cards && Array.isArray(session.cards)) return session.cards;
+    if (session && session.email && session.email !== "garik@example.com") {
+      return [];
+    }
+    return [
+      {
+        id: "card_mc_4242",
+        brand: "Mastercard",
+        num: "•••• 4242",
+        last4: "4242",
+        exp: "12/28",
+        holder: `${session?.firstName || "GARIK"} ${session?.lastName || "HARUTYUNYAN"}`.toUpperCase(),
+        isPrimary: true,
+      },
+      {
+        id: "card_visa_8819",
+        brand: "Visa Gold",
+        num: "•••• 8819",
+        last4: "8819",
+        exp: "09/27",
+        holder: `${session?.firstName || "GARIK"} ${session?.lastName || "HARUTYUNYAN"}`.toUpperCase(),
+        isPrimary: false,
+      },
+    ];
+  });
+
+  useEffect(() => {
+    if (session?.cards && Array.isArray(session.cards)) {
+      setCards(session.cards);
+    } else if (session && session.email && session.email !== "garik@example.com") {
+      setCards([]);
+    }
+  }, [session]);
+
+  const [cardForm, setCardForm] = useState({
+    number: "",
+    exp: "",
+    cvv: "",
+    holder: "",
+    isPrimary: false,
+  });
+
+  const getCardBrand = (num) => {
+    const cleaned = (num || "").replace(/\s+/g, "");
+    if (/^4/.test(cleaned)) return "Visa";
+    if (/^(5[1-5]|2[2-7])/.test(cleaned)) return "Mastercard";
+    if (/^(9051|9)/.test(cleaned)) return "ArCa";
+    if (/^3[47]/.test(cleaned)) return "Amex";
+    return "";
+  };
+  const detectedBrand = getCardBrand(cardForm.number);
+
+  const handleCardNumberChange = (e) => {
+    const raw = e.target.value.replace(/\D/g, "").slice(0, 16);
+    const formatted = raw.replace(/(\d{4})(?=\d)/g, "$1 ");
+    setCardForm((prev) => ({ ...prev, number: formatted }));
+  };
+
+  const handleCardExpChange = (e) => {
+    let raw = e.target.value.replace(/\D/g, "").slice(0, 4);
+    if (raw.length > 2) {
+      raw = raw.slice(0, 2) + "/" + raw.slice(2);
+    }
+    setCardForm((prev) => ({ ...prev, exp: raw }));
+  };
+
+  const handleAddCard = (e) => {
+    e.preventDefault();
+    const rawNum = cardForm.number.replace(/\s+/g, "");
+    if (rawNum.length < 16) {
+      alert(t("prof_card_invalid_num"));
+      return;
+    }
+    if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(cardForm.exp)) {
+      alert(t("prof_card_invalid_exp"));
+      return;
+    }
+    if (cardForm.cvv.length < 3) {
+      alert(t("prof_card_invalid_cvv"));
+      return;
+    }
+    if (!cardForm.holder.trim()) {
+      alert(t("prof_card_invalid_holder"));
+      return;
+    }
+
+    const last4 = rawNum.slice(-4);
+    const brand = detectedBrand || "Bank Card";
+    const isFirst = cards.length === 0;
+    const shouldBePrimary = isFirst || cardForm.isPrimary;
+
+    const newCard = {
+      id: "card_" + Date.now(),
+      brand,
+      num: `•••• ${last4}`,
+      last4,
+      exp: cardForm.exp,
+      holder: cardForm.holder.trim().toUpperCase(),
+      isPrimary: shouldBePrimary,
+    };
+
+    const updatedCards = shouldBePrimary
+      ? [newCard, ...cards.map((c) => ({ ...c, isPrimary: false }))]
+      : [...cards, newCard];
+
+    setCards(updatedCards);
+    updateProfile({ cards: updatedCards });
+    setFlash(t("prof_card_added") || "Քարտը հաջողությամբ կցվեց:");
+    setCardForm({ number: "", exp: "", cvv: "", holder: "", isPrimary: false });
+  };
+
+  const handleMakePrimary = (cardId) => {
+    const updated = cards.map((c) => ({
+      ...c,
+      isPrimary: c.id === cardId,
+    }));
+    setCards(updated);
+    updateProfile({ cards: updated });
+    setFlash(t("prof_card_made_primary") || "Հիմնական քարտը փոխվեց:");
+  };
+
+  const handleRemoveCard = (cardId) => {
+    const filtered = cards.filter((c) => c.id !== cardId);
+    if (filtered.length > 0 && !filtered.some((c) => c.isPrimary)) {
+      filtered[0].isPrimary = true;
+    }
+    setCards(filtered);
+    updateProfile({ cards: filtered });
+    setFlash(t("prof_card_removed") || "Քարտը հեռացվեց:");
+  };
+
+  const scrollToCardForm = () => {
+    if (newCardFormRef.current) {
+      newCardFormRef.current.scrollIntoView({ behavior: "smooth" });
+      setHighlightCardForm(true);
+      setTimeout(() => setHighlightCardForm(false), 2000);
+      cardNumInputRef.current?.focus();
+    }
+  };
+
+  const handleTopupClick = () => {
+    if (cards.length === 0) {
+      setFlash(t("prof_topup_need_card"));
+      scrollToCardForm();
+    } else {
+      setShowTopup((prev) => !prev);
+    }
+  };
+
+  const handleExecuteTopup = (e) => {
+    e.preventDefault();
+    const amt = Number(topupAmount);
+    if (!amt || amt <= 0) return;
+    const curBalance = session?.balance ?? 4200;
+    const curFree = session?.freeBalance ?? 2950;
+    const nextBalance = curBalance + amt;
+    const nextFree = curFree + amt;
+
+    updateProfile({ balance: nextBalance, freeBalance: nextFree });
+    setShowTopup(false);
+    setFlash(`${t("prof_topup_done")}${amt.toLocaleString()}`);
+  };
+
   useEffect(() => {
     if (urlTab && urlTab !== activeTab) {
       setActiveTab(urlTab);
@@ -455,54 +626,265 @@ export default function Profile({ initialTab = "info" }) {
                 <div className="balance-overview-box">
                   <div>
                     <span className="balance-label">{t("prof_bal_title")}</span>
-                    <div className="balance-amount">$4,200</div>
+                    <div className="balance-amount">
+                      ${(session?.balance ?? 4200).toLocaleString()}
+                    </div>
                     <small className="balance-meta">
-                      <span>{t("prof_bal_free")}</span> <b>$2,950</b>{" "}
-                      <span>{t("prof_bal_locked")}</span> <b>$1,250</b>
+                      <span>{t("prof_bal_free")}</span>{" "}
+                      <b>${(session?.freeBalance ?? 2950).toLocaleString()}</b>{" "}
+                      <span>{t("prof_bal_locked")}</span>{" "}
+                      <b>${(session?.lockedBalance ?? 1250).toLocaleString()}</b>
                     </small>
                   </div>
-                  <a href="#new-card-form" className="btn pri sm">
+                  <button
+                    type="button"
+                    className="btn pri sm"
+                    onClick={handleTopupClick}
+                  >
                     {t("prof_topup_btn")}
-                  </a>
+                  </button>
                 </div>
 
-                <h3 className="security-card-title">{t("prof_cards_title")}</h3>
+                {showTopup && (
+                  <div className="topup-expand-panel">
+                    <h4 className="topup-panel-title">{t("prof_topup_panel_title")}</h4>
+                    <form onSubmit={handleExecuteTopup}>
+                      <div className="topup-preset-row">
+                        {[100, 500, 1000, 2500].map((preset) => (
+                          <button
+                            type="button"
+                            key={preset}
+                            className={`topup-preset-btn ${topupAmount === preset ? "active" : ""}`}
+                            onClick={() => setTopupAmount(preset)}
+                          >
+                            +${preset.toLocaleString()}
+                          </button>
+                        ))}
+                      </div>
 
-                <div className="payment-card-box">
-                  <div className="payment-card-left">
-                    <span className="payment-card-icon">
-                      <svg className="ico" viewBox="0 0 24 24" aria-hidden="true">
-                        <rect width="20" height="14" x="2" y="5" rx="2" />
-                        <line x1="2" x2="22" y1="10" y2="10" />
-                      </svg>
-                    </span>
-                    <div>
-                      <b className="payment-card-num">Mastercard •••• 4242</b>
-                      <small className="payment-card-sub">
-                        Ժամկետ՝ 12/28 · Հիմնական վճարման քարտ
-                      </small>
-                    </div>
+                      <div className="grid grid-2">
+                        <div className="form-group">
+                          <label className="form-label">{t("prof_topup_amount_lbl")}</label>
+                          <input
+                            type="number"
+                            min="10"
+                            step="10"
+                            className="form-input"
+                            value={topupAmount}
+                            onChange={(e) => setTopupAmount(Number(e.target.value))}
+                            required
+                          />
+                        </div>
+                        <div className="form-group">
+                          <label className="form-label">{t("prof_topup_card_lbl")}</label>
+                          <select
+                            className="form-select"
+                            value={topupCardId || (cards.find((c) => c.isPrimary)?.id || cards[0]?.id || "")}
+                            onChange={(e) => setTopupCardId(e.target.value)}
+                          >
+                            {cards.map((c) => (
+                              <option key={c.id} value={c.id}>
+                                {c.brand} •••• {c.last4} {c.isPrimary ? `(${t("prof_card_primary")})` : ""}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                      </div>
+
+                      <div className="topup-actions-row">
+                        <button type="submit" className="btn pri sm">
+                          {t("prof_topup_confirm_btn")}
+                        </button>
+                        <button
+                          type="button"
+                          className="btn sm"
+                          onClick={() => setShowTopup(false)}
+                        >
+                          {t("prof_topup_cancel_btn")}
+                        </button>
+                      </div>
+                    </form>
                   </div>
-                  <div className="payment-card-actions">
-                    <span className="chip ok">{t("prof_card_primary")}</span>
-                  </div>
+                )}
+
+                <div className="add-card-header">
+                  <h3 className="security-card-title">{t("prof_cards_title")}</h3>
+                  <button
+                    type="button"
+                    className="btn sm"
+                    onClick={scrollToCardForm}
+                  >
+                    {t("prof_card_add_title")}
+                  </button>
                 </div>
 
-                <div className="payment-card-box">
-                  <div className="payment-card-left">
-                    <span className="payment-card-icon">
-                      <svg className="ico" viewBox="0 0 24 24" aria-hidden="true">
-                        <rect width="20" height="14" x="2" y="5" rx="2" />
-                        <line x1="2" x2="22" y1="10" y2="10" />
-                      </svg>
-                    </span>
-                    <div>
-                      <b className="payment-card-num">Visa Gold •••• 8819</b>
-                      <small className="payment-card-sub">
-                        Ժամկետ՝ 09/27 · Պահուստային քարտ
-                      </small>
+                {cards.length === 0 ? (
+                  <div className="empty-cards-state">
+                    {t("prof_no_cards_yet")}
+                  </div>
+                ) : (
+                  cards.map((card) => (
+                    <div key={card.id} className="payment-card-box">
+                      <div className="payment-card-left">
+                        <span className="payment-card-icon">
+                          <svg className="ico" viewBox="0 0 24 24" aria-hidden="true">
+                            <rect width="20" height="14" x="2" y="5" rx="2" />
+                            <line x1="2" x2="22" y1="10" y2="10" />
+                          </svg>
+                        </span>
+                        <div>
+                          <b className="payment-card-num">{card.brand} {card.num}</b>
+                          <small className="payment-card-sub">
+                            {t("prof_card_exp")}՝ {card.exp} · {card.holder}
+                          </small>
+                        </div>
+                      </div>
+                      <div className="payment-card-actions">
+                        {card.isPrimary ? (
+                          <span className="chip ok">{t("prof_card_primary")}</span>
+                        ) : (
+                          <button
+                            type="button"
+                            className="btn sm"
+                            onClick={() => handleMakePrimary(card.id)}
+                            title={t("prof_card_make_primary")}
+                          >
+                            {t("prof_card_make_primary")}
+                          </button>
+                        )}
+                        <button
+                          type="button"
+                          className="btn sm bad"
+                          onClick={() => handleRemoveCard(card.id)}
+                          title={t("prof_rm_card_title")}
+                        >
+                          <svg className="ico" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M18 6 6 18" />
+                            <path d="m6 6 12 12" />
+                          </svg>
+                          {" "}
+                          <span>{t("prof_rm_card_title")}</span>
+                        </button>
+                      </div>
+                    </div>
+                  ))
+                )}
+
+                {/* ADD NEW CARD FORM */}
+                <div
+                  className={`add-card-section ${highlightCardForm ? "highlight-target" : ""}`}
+                  id="new-card-form"
+                  ref={newCardFormRef}
+                >
+                  <div className="add-card-header">
+                    <h4 className="add-card-title">{t("prof_card_add_title")}</h4>
+                    <div className="card-brand-preview-badges">
+                      <span className={`brand-pill ${detectedBrand === "Mastercard" ? "active" : ""}`}>
+                        Mastercard
+                      </span>
+                      <span className={`brand-pill ${detectedBrand === "Visa" ? "active" : ""}`}>
+                        Visa
+                      </span>
+                      <span className={`brand-pill ${detectedBrand === "ArCa" ? "active" : ""}`}>
+                        ArCa
+                      </span>
                     </div>
                   </div>
+
+                  <form onSubmit={handleAddCard}>
+                    <div className="form-group">
+                      <label className="form-label">{t("prof_card_num")}</label>
+                      <div className="card-input-wrapper">
+                        <input
+                          ref={cardNumInputRef}
+                          type="text"
+                          className="form-input"
+                          placeholder="0000 0000 0000 0000"
+                          value={cardForm.number}
+                          onChange={handleCardNumberChange}
+                          maxLength={19}
+                          required
+                        />
+                        {detectedBrand && (
+                          <span className="card-detected-brand">{detectedBrand}</span>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="grid grid-2">
+                      <div className="form-group">
+                        <label className="form-label">{t("prof_card_exp")}</label>
+                        <input
+                          type="text"
+                          className="form-input"
+                          placeholder="MM/YY"
+                          value={cardForm.exp}
+                          onChange={handleCardExpChange}
+                          maxLength={5}
+                          required
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label className="form-label">CVV / CVC</label>
+                        <input
+                          type="password"
+                          className="form-input"
+                          placeholder="•••"
+                          value={cardForm.cvv}
+                          onChange={(e) =>
+                            setCardForm((prev) => ({
+                              ...prev,
+                              cvv: e.target.value.replace(/\D/g, "").slice(0, 4),
+                            }))
+                          }
+                          maxLength={4}
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div className="form-group">
+                      <label className="form-label">{t("prof_card_holder")}</label>
+                      <input
+                        type="text"
+                        className="form-input"
+                        placeholder={
+                          `${session?.firstName || "KHACHATUR"} ${session?.lastName || "AYVAZYAN"}`.toUpperCase()
+                        }
+                        value={cardForm.holder}
+                        onChange={(e) =>
+                          setCardForm((prev) => ({
+                            ...prev,
+                            holder: e.target.value.toUpperCase(),
+                          }))
+                        }
+                        required
+                      />
+                    </div>
+
+                    <div className="form-group">
+                      <label className="notification-row">
+                        <input
+                          type="checkbox"
+                          className="notification-checkbox"
+                          checked={cardForm.isPrimary}
+                          onChange={(e) =>
+                            setCardForm((prev) => ({
+                              ...prev,
+                              isPrimary: e.target.checked,
+                            }))
+                          }
+                        />
+                        <div className="notification-text-wrap">
+                          <b className="notification-name">{t("prof_card_make_primary_label")}</b>
+                        </div>
+                      </label>
+                    </div>
+
+                    <button type="submit" className="btn pri profile-save-btn">
+                      {t("prof_card_save")}
+                    </button>
+                  </form>
                 </div>
               </div>
 

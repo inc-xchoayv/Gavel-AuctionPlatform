@@ -534,5 +534,21 @@
   "prof_ph_address": "напр., г. Ереван, ул. Теряна 105, кв. 24",
   "prof_ph_city": "напр., Ереван, Кентрон",
   "prof_ph_zip": "напр., 0009",
-  "prof_personal_saved": "Личные данные успешно сохранены:"
+  "prof_personal_saved": "Личные данные успешно сохранены:",
+  "prof_topup_panel_title": "Пополнить гарантийный баланс",
+  "prof_topup_amount_lbl": "Сумма ($ USD)",
+  "prof_topup_card_lbl": "Карта оплаты",
+  "prof_topup_confirm_btn": "Пополнить сейчас",
+  "prof_topup_cancel_btn": "Отмена",
+  "prof_topup_done": "Баланс успешно пополнен на $",
+  "prof_topup_need_card": "Для пополнения баланса сначала привяжите банковскую карту:",
+  "prof_card_make_primary_label": "Сделать основной картой оплаты",
+  "prof_card_added": "Карта успешно привязана:",
+  "prof_card_removed": "Карта удалена:",
+  "prof_card_made_primary": "Основная карта обновлена:",
+  "prof_no_cards_yet": "Нет привязанных карт. Воспользуйтесь формой ниже, чтобы привязать карту.",
+  "prof_card_invalid_num": "Введите корректный 16-значный номер карты:",
+  "prof_card_invalid_exp": "Введите корректный срок действия (MM/YY):",
+  "prof_card_invalid_cvv": "Введите 3 или 4-значный код CVV/CVC:",
+  "prof_card_invalid_holder": "Введите имя владельца карты:"
 }

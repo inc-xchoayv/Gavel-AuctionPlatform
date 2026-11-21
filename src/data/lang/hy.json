@@ -534,5 +534,21 @@
   "prof_ph_address": "օր.՝ ք. Երևան, Տերյան 105, բն. 24",
   "prof_ph_city": "օր.՝ Երևան, Կենտրոն",
   "prof_ph_zip": "օր.՝ 0009",
-  "prof_personal_saved": "Անձնական տվյալները հաջողությամբ պահպանվեցին:"
+  "prof_personal_saved": "Անձնական տվյալները հաջողությամբ պահպանվեցին:",
+  "prof_topup_panel_title": "Համալրել երաշխիքային հաշվեկշիռը",
+  "prof_topup_amount_lbl": "Գումար ($ USD)",
+  "prof_topup_card_lbl": "Վճարման քարտ",
+  "prof_topup_confirm_btn": "Համալրել հիմա",
+  "prof_topup_cancel_btn": "Չեղարկել",
+  "prof_topup_done": "Հաշվեկշիռը հաջողությամբ համալրվեց $",
+  "prof_topup_need_card": "Հաշիվը համալրելու համար նախ կցեք բանկային քարտ:",
+  "prof_card_make_primary_label": "Դարձնել հիմնական վճարման քարտ",
+  "prof_card_added": "Քարտը հաջողությամբ կցվեց:",
+  "prof_card_removed": "Քարտը հեռացվեց:",
+  "prof_card_made_primary": "Հիմնական քարտը փոխվեց:",
+  "prof_no_cards_yet": "Դեռևս կցված վճարային քարտ չկա։ Օգտագործեք ստորև գտնվող ձևը՝ ձեր քարտը կցելու համար։",
+  "prof_card_invalid_num": "Մուտքագրեք վավեր 16-նիշ քարտի համար:",
+  "prof_card_invalid_exp": "Մուտքագրեք վավեր գործողության ժամկետ (MM/YY):",
+  "prof_card_invalid_cvv": "Մուտքագրեք 3 կամ 4 նիշ CVV/CVC:",
+  "prof_card_invalid_holder": "Մուտքագրեք քարտապանի անունը:"
 }

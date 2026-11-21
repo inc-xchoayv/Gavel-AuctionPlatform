@@ -534,5 +534,21 @@
   "prof_ph_address": "e.g. 105 Teryan St, Apt 24",
   "prof_ph_city": "e.g. Yerevan, Center",
   "prof_ph_zip": "e.g. 0009",
-  "prof_personal_saved": "Personal details saved successfully:"
+  "prof_personal_saved": "Personal details saved successfully:",
+  "prof_topup_panel_title": "Top up auction guarantee balance",
+  "prof_topup_amount_lbl": "Amount ($ USD)",
+  "prof_topup_card_lbl": "Payment card",
+  "prof_topup_confirm_btn": "Top up now",
+  "prof_topup_cancel_btn": "Cancel",
+  "prof_topup_done": "Balance topped up successfully with $",
+  "prof_topup_need_card": "Please attach a bank card first to top up your balance:",
+  "prof_card_make_primary_label": "Set as primary payment card",
+  "prof_card_added": "Card linked successfully:",
+  "prof_card_removed": "Card removed:",
+  "prof_card_made_primary": "Primary card updated:",
+  "prof_no_cards_yet": "No linked payment cards yet. Use the form below to attach your card.",
+  "prof_card_invalid_num": "Please enter a valid 16-digit card number:",
+  "prof_card_invalid_exp": "Please enter a valid expiry date (MM/YY):",
+  "prof_card_invalid_cvv": "Please enter a 3 or 4-digit CVV/CVC:",
+  "prof_card_invalid_holder": "Please enter cardholder name:"
 }

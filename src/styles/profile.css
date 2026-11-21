@@ -276,13 +276,118 @@
   background: #fff;
   border: 1px dashed var(--line);
   border-radius: 10px;
-  padding: 20px;
-  margin-top: 20px;
+  padding: 24px;
+  margin-top: 24px;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.add-card-section.highlight-target {
+  border-color: var(--b);
+  box-shadow: 0 0 0 3px rgba(139, 90, 43, 0.2);
+}
+.add-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 .add-card-title {
   font-size: 15px;
   font-weight: 700;
+  margin: 0;
+  color: var(--ink);
+}
+.card-brand-preview-badges {
+  display: flex;
+  gap: 6px;
+}
+.brand-pill {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 12px;
+  background: #f1f5f9;
+  color: #64748b;
+  border: 1px solid #e2e8f0;
+  transition: all 0.2s ease;
+}
+.brand-pill.active {
+  background: #8b5a2b;
+  color: #ffffff;
+  border-color: #8b5a2b;
+}
+.card-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.card-detected-brand {
+  position: absolute;
+  right: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #8b5a2b;
+  background: #fbf5ee;
+  border: 1px solid #e5d3c0;
+  padding: 2px 8px;
+  border-radius: 4px;
+  pointer-events: none;
+}
+.empty-cards-state {
+  background: var(--soft);
+  border: 1px dashed var(--line);
+  border-radius: 10px;
+  padding: 24px;
+  text-align: center;
+  color: var(--mute);
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+/* Top up panel */
+.topup-expand-panel {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+}
+.topup-panel-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
   margin-bottom: 14px;
+}
+.topup-preset-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.topup-preset-btn {
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-weight: 600;
+  font-size: 13.5px;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.topup-preset-btn:hover,
+.topup-preset-btn.active {
+  background: var(--b);
+  color: #fff;
+  border-color: var(--b);
+}
+.topup-actions-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 16px;
 }
 
 /* Notification Tab Elements */
