@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <defs>
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fed7aa" />
+      <stop offset="100%" stop-color="#fdba74" />
+    </radialGradient>
+    <linearGradient id="foxFur" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ea580c" />
+      <stop offset="100%" stop-color="#c2410c" />
+    </linearGradient>
+  </defs>
+  <!-- Background circle -->
+  <circle cx="60" cy="60" r="58" fill="url(#bgGrad)" stroke="#fb923c" stroke-width="2"/>
+  
+  <!-- Banner text "ALWAYS WINNER" top left -->
+  <rect x="12" y="18" width="52" height="14" rx="3" fill="#ffffff" stroke="#0284c7" stroke-width="1.2"/>
+  <text x="38" y="28" font-family="Arial, sans-serif" font-weight="900" font-size="6.5" fill="#0369a1" text-anchor="middle" letter-spacing="0.5">ALWAYS</text>
+  <text x="38" y="31" font-family="Arial, sans-serif" font-weight="900" font-size="4.5" fill="#ea580c" text-anchor="middle">★ WINNER ★</text>
+
+  <!-- Fox Body -->
+  <ellipse cx="60" cy="98" rx="36" ry="24" fill="url(#foxFur)"/>
+  <ellipse cx="60" cy="100" rx="20" ry="16" fill="#fff7ed"/>
+
+  <!-- Fox Ears -->
+  <polygon points="36,46 44,18 56,40" fill="#c2410c"/>
+  <polygon points="40,42 46,24 52,38" fill="#ffedd5"/>
+  <polygon points="84,46 76,18 64,40" fill="#c2410c"/>
+  <polygon points="80,42 74,24 68,38" fill="#ffedd5"/>
+
+  <!-- Fox Head -->
+  <polygon points="32,56 88,56 60,94" fill="url(#foxFur)"/>
+  <circle cx="60" cy="60" r="28" fill="url(#foxFur)"/>
+
+  <!-- White cheeks -->
+  <polygon points="32,56 46,78 60,94" fill="#ffffff"/>
+  <polygon points="88,56 74,78 60,94" fill="#ffffff"/>
+
+  <!-- Cap / Hat (blue or stylish cap) -->
+  <path d="M42,42 Q60,26 78,42" fill="#0284c7"/>
+  <ellipse cx="60" cy="40" rx="20" ry="8" fill="#0284c7"/>
+  <path d="M44,42 Q60,34 76,42 L84,45 Q60,38 36,45 Z" fill="#0369a1"/>
+
+  <!-- Eyes (cool / playful wink or cute eyes) -->
+  <ellipse cx="48" cy="62" rx="3.5" ry="4.5" fill="#1e293b"/>
+  <circle cx="47" cy="60.5" r="1.5" fill="#ffffff"/>
+  <ellipse cx="72" cy="62" rx="3.5" ry="4.5" fill="#1e293b"/>
+  <circle cx="71" cy="60.5" r="1.5" fill="#ffffff"/>
+
+  <!-- Nose -->
+  <ellipse cx="60" cy="84" rx="4" ry="3" fill="#0f172a"/>
+  
+  <!-- Smile -->
+  <path d="M56,88 Q60,91 64,88" fill="none" stroke="#0f172a" stroke-width="1.5" stroke-linecap="round"/>
+</svg>

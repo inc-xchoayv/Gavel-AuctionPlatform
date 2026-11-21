@@ -1732,3 +1732,19 @@ button.remind-btn,
   display: contents;
 }
 
+
+
+.user-verified-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #10b981;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1;
+  margin-left: 2px;
+}

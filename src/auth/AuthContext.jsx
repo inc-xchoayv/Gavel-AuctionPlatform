@@ -20,7 +20,25 @@ function getAllUsers() {
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
-  const [session, setSession] = useState(() => readJson(KEY_SESSION, null));
+  const [session, setSession] = useState(() => {
+    const s = readJson(KEY_SESSION, null);
+    if (!s) return null;
+    // ensure verification object exists
+    if (!s.verification) {
+      s.verification = {
+        status: "unverified",
+        idNumber: "",
+        citizenship: "am",
+        firstName: "",
+        lastName: "",
+        dob: "",
+        phone: s.phone || "+374 94 552234",
+        files: [],
+      };
+    }
+    return s;
+  });
+
   const [flash, setFlashState] = useState("");
   const flashTimer = useRef(null);
 
@@ -38,8 +56,19 @@ export function AuthProvider({ children }) {
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
+      phone: user.phone || "+374 94 552234",
       role: user.role,
-      avatar: user.avatar || null,
+      avatar: user.avatar || "/images/avatar-winner.svg",
+      verification: user.verification || {
+        status: "unverified",
+        idNumber: "",
+        citizenship: "am",
+        firstName: "",
+        lastName: "",
+        dob: "",
+        phone: user.phone || "+374 94 552234",
+        files: [],
+      },
     };
     localStorage.setItem(KEY_SESSION, JSON.stringify(next));
     setSession(next);
@@ -69,11 +98,21 @@ export function AuthProvider({ children }) {
         lastName: data.lastName,
         email: data.email,
         password: data.password, // ՈՒՇԱԴՐՈՒԹՅՈՒՆ՝ միայն ուսումնական նպատակով. իրական կայքում՝ երբեք
-        phone: data.phone,
+        phone: data.phone || "+374 94 552234",
         role: "user",
         status: "active",
-        avatar: null,
+        avatar: "/images/avatar-winner.svg",
         registeredAt: new Date().toISOString().slice(0, 10),
+        verification: {
+          status: "unverified",
+          idNumber: "",
+          citizenship: "am",
+          firstName: "",
+          lastName: "",
+          dob: "",
+          phone: data.phone || "+374 94 552234",
+          files: [],
+        },
       };
       localStorage.setItem(KEY_USERS, JSON.stringify([...readJson(KEY_USERS, []), newUser]));
       startSession(newUser);
@@ -87,9 +126,53 @@ export function AuthProvider({ children }) {
     setSession(null);
   }, []);
 
+  const updateAvatar = useCallback((newAvatar) => {
+    setSession((prev) => {
+      if (!prev) return prev;
+      const updated = { ...prev, avatar: newAvatar };
+      localStorage.setItem(KEY_SESSION, JSON.stringify(updated));
+
+      const users = readJson(KEY_USERS, []);
+      const userIdx = users.findIndex((u) => u.id === prev.id);
+      if (userIdx !== -1) {
+        users[userIdx].avatar = newAvatar;
+        localStorage.setItem(KEY_USERS, JSON.stringify(users));
+      }
+      return updated;
+    });
+  }, []);
+
+  const updateVerification = useCallback((verificationData) => {
+    setSession((prev) => {
+      if (!prev) return prev;
+      const currentVerif = prev.verification || {};
+      const nextVerif = { ...currentVerif, ...verificationData };
+      const updated = { ...prev, verification: nextVerif };
+      localStorage.setItem(KEY_SESSION, JSON.stringify(updated));
+
+      const users = readJson(KEY_USERS, []);
+      const userIdx = users.findIndex((u) => u.id === prev.id);
+      if (userIdx !== -1) {
+        users[userIdx].verification = nextVerif;
+        localStorage.setItem(KEY_USERS, JSON.stringify(users));
+      }
+      return updated;
+    });
+  }, []);
+
   const value = useMemo(
-    () => ({ session, role: session ? session.role : "guest", login, register, logout, flash, setFlash }),
-    [session, login, register, logout, flash, setFlash]
+    () => ({
+      session,
+      role: session ? session.role : "guest",
+      login,
+      register,
+      logout,
+      flash,
+      setFlash,
+      updateAvatar,
+      updateVerification,
+    }),
+    [session, login, register, logout, flash, setFlash, updateAvatar, updateVerification]
   );
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

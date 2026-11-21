@@ -119,6 +119,9 @@ export default function Header() {
                 {session.avatar ? <img src={session.avatar} alt={session.firstName} /> : session.firstName.charAt(0)}
               </span>
               <span>{session.firstName} {session.lastName.charAt(0)}.</span>
+              {session.verification?.status === "verified" && (
+                <span className="user-verified-check" title="Վերիֆիկացված օգտատեր">✓</span>
+              )}
             </Link>
           )}
 

@@ -41,6 +41,7 @@ export default function App() {
         <Route path="/my-lots" element={user(<MyLots />)} />
         <Route path="/add-lot" element={user(<AddLot />)} />
         <Route path="/profile" element={user(<Profile />)} />
+        <Route path="/verification" element={user(<Profile initialTab="verification" />)} />
 
         {/* Միայն ադմինի համար */}
         <Route path="/admin-dashboard" element={admin(<AdminDashboard />)} />
