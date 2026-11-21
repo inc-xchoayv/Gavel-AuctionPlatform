@@ -18,7 +18,7 @@ function CategoryCard({ cat, lang, t, reveal }) {
         <div className="cat-count">{cat.activeLots} {t("cat_active_lots")}</div>
       </div>
       <div className="cat-photo-cutout">
-        <img className="cat-cutout-img" src={`/${cat.image}`} alt={name} loading="lazy" />
+        <img className="cat-cutout-img" src={`/${cat.image}`} alt={name} decoding="async" />
       </div>
       {cat.isNew && <span className="cat-new-badge">{t("badge_new")}</span>}
     </Link>
