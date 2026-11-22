@@ -14,7 +14,8 @@ export default function Auctions() {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const initialQ = searchParams.get("q") || "";
-  const initialCategory = searchParams.get("category") || "";
+  const rawCategory = searchParams.get("category") || "";
+  const initialCategory = rawCategory === "classic-cars" ? "cars" : rawCategory;
 
   // Ֆիլտրերի և սորտավորման վիճակները (React State)
   const [searchTerm, setSearchTerm] = useState(initialQ);
@@ -119,7 +120,7 @@ export default function Auctions() {
 
   // Կատեգորիաներ ֆիլտրի ցուցակի համար (հաշվում ենք յուրաքանչյուրի քանակը)
   const availableCategories = useMemo(() => {
-    return categoriesData.slice(0, 10).map((cat) => {
+    return categoriesData.map((cat) => {
       const count = lots.filter((l) => l.categoryId === cat.id).length;
       return {
         ...cat,

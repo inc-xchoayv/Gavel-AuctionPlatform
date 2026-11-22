@@ -1,5 +1,5 @@
 import "../styles/index.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useI18n } from "../i18n/I18nContext";
 import { useLots } from "../context/LotContext";
 import usePageTitle from "../hooks/usePageTitle";
@@ -10,6 +10,7 @@ export default function Home() {
   const { t } = useI18n();
   usePageTitle("title_index");
   const { lots } = useLots();
+  const navigate = useNavigate();
 
   const endingSoonLots = lots
     .filter((l) => l.status === "active")
@@ -41,7 +42,10 @@ export default function Home() {
 
                   <div className="recommended-slides-wrap">
 
-                    <div className="hero-card recommended-card rcard-1">
+                    <div
+                      className="hero-card recommended-card rcard-1 clickable-lot-card"
+                      onClick={() => navigate("/auction-detail?id=405")}
+                    >
                       <div className="hero-card-img-wrap">
                         <img src="/images/car-front.jpg" alt="2021 Porsche 911 Carrera 4S" className="hero-card-img" />
                         <span className="hero-card-badge"><span className="live-dot-pulse"></span><span>{t("rec_badge_top")}</span></span>
@@ -54,12 +58,14 @@ export default function Home() {
                         <span className="tm hot hero-timer-val">00:14</span>
                       </div>
                       <div className="hero-card-actions">
-                        <Link to="/place-bid" className="btn pri full">{t("rec_join_btn")}</Link>
-                        <Link to="/place-bid" className="btn sec">{t("lot_bid_btn")}</Link>
+                        <Link to="/auction-detail?id=405" className="btn pri full" onClick={(e) => e.stopPropagation()}>{t("rec_join_btn")}</Link>
                       </div>
                     </div>
 
-                    <div className="hero-card recommended-card rcard-2">
+                    <div
+                      className="hero-card recommended-card rcard-2 clickable-lot-card"
+                      onClick={() => navigate("/auction-detail?id=128")}
+                    >
                       <div className="hero-card-img-wrap">
                         <img src="/images/lot-watch.jpg" alt="Հին շվեյցարական ժամացույց" className="hero-card-img" />
                         <span className="hero-card-badge"><span className="live-dot-pulse"></span><span>{t("rec_badge_rare")}</span></span>
@@ -72,12 +78,14 @@ export default function Home() {
                         <span className="tm hero-timer-val">02:41:08</span>
                       </div>
                       <div className="hero-card-actions">
-                        <Link to="/auction-detail" className="btn pri full">{t("rec_join_btn")}</Link>
-                        <Link to="/place-bid" className="btn sec">{t("lot_bid_btn")}</Link>
+                        <Link to="/auction-detail?id=128" className="btn pri full" onClick={(e) => e.stopPropagation()}>{t("rec_join_btn")}</Link>
                       </div>
                     </div>
 
-                    <div className="hero-card recommended-card rcard-3">
+                    <div
+                      className="hero-card recommended-card rcard-3 clickable-lot-card"
+                      onClick={() => navigate("/auction-detail?id=219")}
+                    >
                       <div className="hero-card-img-wrap">
                         <img src="/images/lot-samovar.jpg" alt="19-րդ դարի արծաթապատ սամովար" className="hero-card-img" />
                         <span className="hero-card-badge"><span className="live-dot-pulse"></span><span>{t("rec_badge_antique")}</span></span>
@@ -90,26 +98,27 @@ export default function Home() {
                         <span className="tm hero-timer-val">{t("time_1d_4h")}</span>
                       </div>
                       <div className="hero-card-actions">
-                        <Link to="/auction-detail" className="btn pri full">{t("rec_join_btn")}</Link>
-                        <Link to="/auction-detail" className="btn sec">{t("lot_bid_btn")}</Link>
+                        <Link to="/auction-detail?id=219" className="btn pri full" onClick={(e) => e.stopPropagation()}>{t("rec_join_btn")}</Link>
                       </div>
                     </div>
 
-                    <div className="hero-card recommended-card rcard-4">
+                    <div
+                      className="hero-card recommended-card rcard-4 clickable-lot-card"
+                      onClick={() => navigate("/auction-detail?id=315")}
+                    >
                       <div className="hero-card-img-wrap">
                         <img src="/images/lot-carpet.jpg" alt="Ղազախ ձեռագործ մետաքսե գորգ" className="hero-card-img" />
                         <span className="hero-card-badge"><span className="live-dot-pulse"></span><span>{t("rec_badge_museum")}</span></span>
                       </div>
                       <h3>Ղազախ ձեռագործ մետաքսե գորգ</h3>
-                      <p className="hero-card-meta"><span>{t("det_lot_word")}</span> #104 · <span>{t("idx_meta_carpet")}</span></p>
-                      <div className="hero-card-price">$3,400</div>
+                      <p className="hero-card-meta"><span>{t("det_lot_word")}</span> #315 · <span>{t("idx_meta_carpet")}</span></p>
+                      <div className="hero-card-price">$3,100</div>
                       <div className="hero-timer-box">
                         <span className="hero-timer-label">{t("rec_ends_in")}</span>
-                        <span className="tm hero-timer-val">08:15:30</span>
+                        <span className="tm hero-timer-val">05:40:10</span>
                       </div>
                       <div className="hero-card-actions">
-                        <Link to="/auction-detail" className="btn pri full">{t("rec_join_btn")}</Link>
-                        <Link to="/auction-detail" className="btn sec">{t("lot_bid_btn")}</Link>
+                        <Link to="/auction-detail?id=315" className="btn pri full" onClick={(e) => e.stopPropagation()}>{t("rec_join_btn")}</Link>
                       </div>
                     </div>
                   </div>

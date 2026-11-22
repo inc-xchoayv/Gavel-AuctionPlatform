@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useMemo } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/my-lots.css";
 import { useI18n } from "../i18n/I18nContext";
 import { useAuth } from "../auth/AuthContext";
@@ -9,30 +9,49 @@ import usePageTitle from "../hooks/usePageTitle";
 export default function MyLots() {
   const { t } = useI18n();
   usePageTitle("title_my_lots");
-  const { user } = useAuth();
+  const { session, user } = useAuth();
   const { lots, remindedLots, toggleRemind } = useLots();
+  const navigate = useNavigate();
 
   const [activeTab, setActiveTab] = useState("all"); // "all" | "live" | "review" | "ended" | "remind"
 
-  // Seller lots (lots where seller.id === user.id or mock lots)
-  const sellerLots = lots.filter(
-    (l) => l.seller?.id === user?.id || l.seller?.id === "me" || [405, 128, 219].includes(l.id)
-  );
+  const isDemoGarik =
+    String(session?.id) === "1" || session?.email === "garik@example.com";
+  const fullName = `${session?.firstName || ""} ${session?.lastName || ""}`
+    .trim()
+    .toLowerCase();
+
+  // Lots created by the currently authenticated user
+  const sellerLots = useMemo(() => {
+    return lots.filter((l) => {
+      if (session?.id && String(l.seller?.id) === String(session.id)) return true;
+      if (user?.id && String(l.seller?.id) === String(user.id)) return true;
+      if (fullName && l.seller?.name?.trim().toLowerCase() === fullName) return true;
+      if (isDemoGarik && (l.seller?.id === "me" || [405, 128, 219].includes(Number(l.id)))) {
+        return true;
+      }
+      return false;
+    });
+  }, [lots, session, user, fullName, isDemoGarik]);
 
   const liveLots = sellerLots.filter((l) => l.status === "active");
+  const reviewLots = sellerLots.filter((l) => l.status === "upcoming");
   const endedLots = sellerLots.filter((l) => l.status === "ended");
-  const bookmarkedLots = lots.filter((l) => remindedLots.includes(l.id));
+  const bookmarkedLots = lots.filter((l) => remindedLots.includes(Number(l.id)));
 
   // Dynamic KPIs
   const totalLotsCount = sellerLots.length;
   const liveCount = liveLots.length;
-  const reviewCount = 1;
-  const totalSales = endedLots.reduce((sum, l) => sum + (l.currentBid || 0), 18450);
-  const remindersCount = remindedLots.length;
+  const reviewCount = reviewLots.length;
+  const totalSales = endedLots.reduce(
+    (sum, l) => sum + (Number(l.currentBid) || 0),
+    isDemoGarik ? 18450 : 0
+  );
+  const remindersCount = bookmarkedLots.length;
 
   let displayList = sellerLots;
   if (activeTab === "live") displayList = liveLots;
-  else if (activeTab === "review") displayList = sellerLots.filter((l) => l.status === "upcoming");
+  else if (activeTab === "review") displayList = reviewLots;
   else if (activeTab === "ended") displayList = endedLots;
   else if (activeTab === "remind") displayList = bookmarkedLots;
 
@@ -100,7 +119,7 @@ export default function MyLots() {
             className={`btn sm ${activeTab === "review" ? "pri" : ""}`}
             onClick={() => setActiveTab("review")}
           >
-            {t("chip_review")} (1)
+            {t("chip_review")} ({reviewCount})
           </button>
           <button
             type="button"
@@ -121,27 +140,41 @@ export default function MyLots() {
         <div className="my-lots-list">
           {displayList.length > 0 ? (
             displayList.map((lot) => {
-              const isRem = remindedLots.includes(lot.id);
+              const isRem = remindedLots.includes(Number(lot.id));
+              const targetUrl = `/auction-detail?id=${lot.id}`;
               return (
-                <div key={lot.id} className="lot-manage-row">
+                <div
+                  key={lot.id}
+                  className="lot-manage-row clickable-lot-card"
+                  onClick={(e) => {
+                    if (!e.target.closest("a, button")) navigate(targetUrl);
+                  }}
+                >
                   <div className="lot-manage-thumb">
                     <img src={lot.image} alt={lot.title} />
                   </div>
                   <div className="lot-manage-info">
                     <div className="lot-manage-status-row">
-                      <span className={`chip ${lot.status === "active" ? "chip-live" : "chip-ended"}`}>
+                      <span
+                        className={`chip ${
+                          lot.status === "active" ? "chip-live" : "chip-ended"
+                        }`}
+                      >
                         <span className="chip-dot"></span>
-                        {lot.status === "active" ? (t("mode_live") || "Ուղիղ") : (t("mode_ended") || "Ավարտված / Վաճառված")}
+                        {lot.status === "active"
+                          ? t("mode_live") || "Ուղիղ"
+                          : t("mode_ended") || "Ավարտված / Վաճառված"}
                       </span>
                       <small className="lot-manage-id-lbl">
                         <span>{t("det_lot_word")}</span> #{lot.id} · {lot.categoryId}
                       </small>
                     </div>
                     <h3 className="lot-manage-title">
-                      <Link to={`/auction-detail?id=${lot.id}`}>{lot.title}</Link>
+                      <Link to={targetUrl}>{lot.title}</Link>
                     </h3>
                     <p className="lot-manage-desc">
-                      {lot.description?.slice(0, 95)}...
+                      {lot.description?.slice(0, 95)}
+                      {lot.description?.length > 95 ? "..." : ""}
                     </p>
                   </div>
                   <div className="lot-manage-data">
@@ -157,17 +190,22 @@ export default function MyLots() {
                     </div>
                     <div>
                       <small className="lot-manage-lbl">{t("lot_time_left")}</small>
-                      <span className={`tm ${lot.isHot ? "hot" : ""}`}>{lot.endsIn || "—"}</span>
+                      <span className={`tm ${lot.isHot ? "hot" : ""}`}>
+                        {lot.endsIn || "—"}
+                      </span>
                     </div>
                   </div>
                   <div className="lot-manage-actions">
-                    <Link to={`/auction-detail?id=${lot.id}`} className="btn sm">
+                    <Link to={targetUrl} className="btn pri sm">
                       {t("lot_details_btn")}
                     </Link>
                     {isRem && (
                       <button
                         type="button"
-                        onClick={() => toggleRemind(lot.id)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleRemind(lot.id);
+                        }}
                         className="btn sm bad"
                         title={t("ml_cancel_rem_title")}
                       >
@@ -184,7 +222,9 @@ export default function MyLots() {
             })
           ) : (
             <div className="card catalog-empty-box">
-              <p className="catalog-empty-msg">Այս բաժնում դեռևս լոտեր չկան:</p>
+              <p className="catalog-empty-msg">
+                Այս բաժնում դեռևս լոտեր չկան: Ավելացրեք ձեր առաջին լոտը:
+              </p>
               <Link to="/add-lot" className="btn pri sm">
                 {t("ml_add_btn")}
               </Link>

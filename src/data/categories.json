@@ -40,14 +40,14 @@
     "activeLots": 11
   },
   {
-    "id": "classic-cars",
+    "id": "cars",
     "name": {
-      "hy": "Դասական մեքենաներ և մոտոցիկլներ",
-      "en": "Classic Cars, Motorcycles & Automobilia",
-      "ru": "Классические авто и мотоциклы"
+      "hy": "Ավտոմեքենաներ և տրանսպորտ",
+      "en": "Cars & Vehicles",
+      "ru": "Автомобили и транспорт"
     },
     "image": "images/categories/classic-cars.jpg",
-    "activeLots": 5
+    "activeLots": 7
   },
   {
     "id": "coins-stamps",
@@ -158,17 +158,6 @@
     },
     "image": "images/categories/wine.jpg",
     "activeLots": 9
-  },
-  {
-    "id": "cars",
-    "name": {
-      "hy": "Ավտոմեքենաներ",
-      "en": "Cars",
-      "ru": "Автомобили"
-    },
-    "image": "images/categories/cars.jpg",
-    "activeLots": 2,
-    "isNew": true
   },
   {
     "id": "electronics",

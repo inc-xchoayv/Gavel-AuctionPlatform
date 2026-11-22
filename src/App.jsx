@@ -10,6 +10,7 @@ import MyParticipations from "./pages/MyParticipations";
 import MyLots from "./pages/MyLots";
 import AddLot from "./pages/AddLot";
 import Profile from "./pages/Profile";
+import PublicProfile from "./pages/PublicProfile";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import AdminDashboard from "./pages/AdminDashboard";
@@ -30,6 +31,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/auctions" element={<Auctions />} />
         <Route path="/auction-detail" element={<AuctionDetail />} />
+        <Route path="/profile/:userId" element={<PublicProfile />} />
 
         {/* Միայն հյուրերի համար */}
         <Route path="/login" element={<GuestOnlyRoute><Login /></GuestOnlyRoute>} />

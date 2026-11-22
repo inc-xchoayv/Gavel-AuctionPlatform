@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import "../styles/profile.css";
 import { useAuth } from "../auth/AuthContext";
+import { useLots } from "../context/LotContext";
 import HumanVerification from "../components/HumanVerification";
 import usePageTitle from "../hooks/usePageTitle";
 import { useI18n } from "../i18n/I18nContext";
@@ -10,10 +11,49 @@ export default function Profile({ initialTab = "info" }) {
   const { t } = useI18n();
   usePageTitle("title_profile");
   const { session, logout, updateAvatar, updateProfile, setFlash } = useAuth();
+  const { lots } = useLots();
   const [searchParams, setSearchParams] = useSearchParams();
   const urlTab = searchParams.get("tab");
   const [activeTab, setActiveTab] = useState(urlTab || initialTab || "info");
   const avatarInputRef = useRef(null);
+
+  const isDemoGarik =
+    String(session?.id) === "1" || session?.email === "garik@example.com";
+
+  // Dynamically compute the authenticated user's created lots & active bids
+  const myCreatedLots = useMemo(() => {
+    const fullName = `${session?.firstName || ""} ${session?.lastName || ""}`
+      .trim()
+      .toLowerCase();
+    return lots.filter((l) => {
+      if (session?.id && String(l.seller?.id) === String(session.id)) return true;
+      if (fullName && l.seller?.name?.trim().toLowerCase() === fullName) return true;
+      if (isDemoGarik && (l.seller?.id === "me" || [405, 128, 219].includes(Number(l.id)))) {
+        return true;
+      }
+      return false;
+    });
+  }, [lots, session, isDemoGarik]);
+
+  const myActiveBids = useMemo(() => {
+    const userIdStr = String(session?.id || "");
+    const items = [];
+    lots.forEach((l) => {
+      const history = Array.isArray(l.bidHistory) ? l.bidHistory : [];
+      const userBids = history.filter((b) => String(b.bidderId) === userIdStr);
+      if (userBids.length > 0) {
+        const maxBid = Math.max(...userBids.map((b) => Number(b.amount) || 0));
+        items.push({ lot: l, myBid: maxBid });
+      }
+    });
+    if (items.length === 0 && isDemoGarik) {
+      const p = lots.find((l) => l.id === 405);
+      const c = lots.find((l) => l.id === 315);
+      if (p) items.push({ lot: p, myBid: p.currentBid });
+      if (c) items.push({ lot: c, myBid: c.currentBid });
+    }
+    return items;
+  }, [lots, session, isDemoGarik]);
 
   const [personalForm, setPersonalForm] = useState({
     firstName: session?.firstName || "",
@@ -319,11 +359,14 @@ export default function Profile({ initialTab = "info" }) {
                 />
 
                 <h3 className="profile-user-name">
-                  {session?.firstName || "Գարիկ"} {session?.lastName || "Հարությունյան"}
+                  {session?.firstName} {session?.lastName}
                 </h3>
                 <p className="profile-user-email">
-                  {session?.email || "garik@example.com"}
+                  {session?.email}
                 </p>
+                {session?.bio && (
+                  <p className="profile-side-bio">{session.bio}</p>
+                )}
 
                 <div className="profile-badge-row">
                   <span className="chip profile-role-badge">
@@ -348,6 +391,28 @@ export default function Profile({ initialTab = "info" }) {
                     </button>
                   )}
                 </div>
+
+                {session?.role !== "admin" && (
+                  <div className="profile-side-stats">
+                    <Link to="/my-lots" className="profile-side-stat-item">
+                      <span className="profile-side-stat-num">{myCreatedLots.length}</span>
+                      <span className="profile-side-stat-lbl">{t("nav_my_lots")}</span>
+                    </Link>
+                    <Link to="/my-participations" className="profile-side-stat-item">
+                      <span className="profile-side-stat-num">{myActiveBids.length}</span>
+                      <span className="profile-side-stat-lbl">{t("nav_participations")}</span>
+                    </Link>
+                  </div>
+                )}
+
+                {session?.id && (
+                  <Link
+                    to={`/profile/${encodeURIComponent(session.id)}`}
+                    className="btn sm public-profile-view-link"
+                  >
+                    👁 Դիտել հանրային պրոֆիլը
+                  </Link>
+                )}
 
                 <div className="profile-nav">
                   <button
@@ -543,6 +608,89 @@ export default function Profile({ initialTab = "info" }) {
                     {t("prof_save_btn")}
                   </button>
                 </form>
+
+                {session?.role !== "admin" && (
+                  <div className="profile-activity-overview">
+                    <h3 className="security-card-title">
+                      Իմ ակտիվությունը հարթակում ({session?.firstName} {session?.lastName})
+                    </h3>
+                    <div className="profile-activity-grid">
+                      {/* Created Lots Card */}
+                      <div className="profile-activity-card">
+                        <div className="profile-activity-head">
+                          <h4 className="profile-activity-title">
+                            {t("nav_my_lots")} ({myCreatedLots.length})
+                          </h4>
+                          <Link to="/add-lot" className="btn sm pri">
+                            + Լոտ
+                          </Link>
+                        </div>
+                        {myCreatedLots.length === 0 ? (
+                          <p className="profile-section-desc">
+                            Դուք դեռ չեք ստեղծել լոտեր:
+                          </p>
+                        ) : (
+                          myCreatedLots.slice(0, 3).map((lot) => (
+                            <Link
+                              key={lot.id}
+                              to={`/auction-detail?id=${lot.id}`}
+                              className="profile-mini-lot-row"
+                            >
+                              <img
+                                src={lot.image}
+                                alt={lot.title}
+                                className="profile-mini-lot-img"
+                              />
+                              <div className="profile-mini-lot-info">
+                                <span className="profile-mini-lot-name">{lot.title}</span>
+                                <span className="profile-mini-lot-price">
+                                  ${(lot.currentBid || lot.startingPrice || 0).toLocaleString()}
+                                </span>
+                              </div>
+                            </Link>
+                          ))
+                        )}
+                      </div>
+
+                      {/* Active Bids Card */}
+                      <div className="profile-activity-card">
+                        <div className="profile-activity-head">
+                          <h4 className="profile-activity-title">
+                            {t("nav_participations")} ({myActiveBids.length})
+                          </h4>
+                          <Link to="/auctions" className="btn sm">
+                            Աճուրդներ
+                          </Link>
+                        </div>
+                        {myActiveBids.length === 0 ? (
+                          <p className="profile-section-desc">
+                            Դուք դեռ ակտիվ հայտեր չունեք:
+                          </p>
+                        ) : (
+                          myActiveBids.slice(0, 3).map(({ lot, myBid }) => (
+                            <Link
+                              key={lot.id}
+                              to={`/auction-detail?id=${lot.id}`}
+                              className="profile-mini-lot-row"
+                            >
+                              <img
+                                src={lot.image}
+                                alt={lot.title}
+                                className="profile-mini-lot-img"
+                              />
+                              <div className="profile-mini-lot-info">
+                                <span className="profile-mini-lot-name">{lot.title}</span>
+                                <span className="profile-mini-lot-price">
+                                  Իմ հայտը՝ ${(myBid || 0).toLocaleString()}
+                                </span>
+                              </div>
+                            </Link>
+                          ))
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* PANE 2: HUMAN VERIFICATION (Matches uploaded reference image) */}
@@ -603,7 +751,9 @@ export default function Profile({ initialTab = "info" }) {
                   <div className="session-item">
                     <div>
                       <div className="session-title">{t("prof_2fa_sms")}</div>
-                      <div className="session-meta">Միացված է համարին՝ +374 98 ••••32</div>
+                      <div className="session-meta">
+                        Միացված է համարին՝ {session?.phone || "+374 94 552234"}
+                      </div>
                     </div>
                     <span className="chip ok">{t("prof_enabled")}</span>
                   </div>

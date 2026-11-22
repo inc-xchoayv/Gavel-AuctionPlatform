@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useI18n } from "../i18n/I18nContext";
 import { useLots } from "../context/LotContext";
 import categoriesData from "../data/categories.json";
@@ -7,18 +7,15 @@ import categoriesData from "../data/categories.json";
 export default function LotCard({ lot, viewMode = "grid" }) {
   const { t, lang } = useI18n();
   const { isReminded, toggleRemind } = useLots();
+  const navigate = useNavigate();
 
   const reminded = isReminded(lot.id);
 
   // Կատեգորիայի անվանումը ընթացիկ լեզվով
-  const catObj = categoriesData.find((c) => c.id === lot.categoryId);
-  const categoryLabel = catObj?.name?.[lang] || catObj?.name?.en || lot.categoryId;
+  const normCatId = lot.categoryId === "classic-cars" ? "cars" : lot.categoryId;
+  const catObj = categoriesData.find((c) => c.id === normCatId);
+  const categoryLabel = catObj?.name?.[lang] || catObj?.name?.en || normCatId;
 
-  // 4 Action Modes:
-  // 1. Live (Ուղիղ) -> lot.status === "active" && !isEndingSoon
-  // 2. Ending soon / < 15m (Մնաց XX:XX) -> lot.status === "active" && isEndingSoon (pulsing red)
-  // 3. Upcoming (Շուտով) -> lot.status === "upcoming"
-  // 4. Ended (Ավարտված / Վաճառված) -> lot.status === "ended"
   const isEndingSoon = (() => {
     if (lot.status !== "active") return false;
     if (lot.isEndingSoon) return true;
@@ -65,8 +62,27 @@ export default function LotCard({ lot, viewMode = "grid" }) {
     );
   }
 
+  const targetUrl = `/auction-detail?id=${lot.id}`;
+  const sellerId = lot.seller?.id || lot.seller?.name || "seller-1";
+
+  const handleCardClick = (e) => {
+    if (e.target.closest("a, button")) return;
+    navigate(targetUrl);
+  };
+
+  const handleCardKeyDown = (e) => {
+    if (e.key === "Enter" && !e.target.closest("a, button")) {
+      navigate(targetUrl);
+    }
+  };
+
   return (
-    <article className={`card lot ${viewMode === "list" ? "lot-card-list" : ""}`}>
+    <article
+      className={`card lot clickable-lot-card ${viewMode === "list" ? "lot-card-list" : ""}`}
+      onClick={handleCardClick}
+      onKeyDown={handleCardKeyDown}
+      tabIndex={0}
+    >
       <div className="im card-img-wrap">
         <img src={lot.image} alt={lot.title} loading="lazy" />
         {badgeEl}
@@ -99,13 +115,28 @@ export default function LotCard({ lot, viewMode = "grid" }) {
         </small>
 
         <h3 className="lot-card-title">
-          <Link to={`/auction-detail?id=${lot.id}`}>{lot.title}</Link>
+          <Link to={targetUrl}>{lot.title}</Link>
         </h3>
+
+        {lot.seller?.name && (
+          <div className="lot-card-seller-row">
+            <span>{t("chat_seller_label") || "Վաճառող՝"} </span>
+            <Link
+              to={`/profile/${encodeURIComponent(sellerId)}`}
+              className="lot-card-seller-link"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {lot.seller.name}
+            </Link>
+          </div>
+        )}
 
         <div className="lot-card-info-row">
           <div>
             <small className="lot-card-lbl">
-              {lot.status === "active" ? t("lot_current_price") : t("lot_starting_price") || t("lot_current_price")}
+              {lot.status === "active"
+                ? t("lot_current_price")
+                : t("lot_starting_price") || t("lot_current_price")}
             </small>
             <span className="price">
               ${(lot.currentBid || lot.startingPrice || 0).toLocaleString()}
@@ -122,11 +153,8 @@ export default function LotCard({ lot, viewMode = "grid" }) {
         </div>
 
         <div className="lot-card-action-btns">
-          <Link to={`/auction-detail?id=${lot.id}`} className="btn sm">
-            {t("lot_details_btn")}
-          </Link>
-          <Link to={`/place-bid?id=${lot.id}`} className="btn pri sm">
-            {t("lot_join_btn")}
+          <Link to={targetUrl} className="btn pri sm">
+            {lot.status === "ended" ? t("lot_details_btn") : t("lot_join_btn")}
           </Link>
         </div>
       </div>

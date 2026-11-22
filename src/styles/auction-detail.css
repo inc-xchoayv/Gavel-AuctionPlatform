@@ -45,24 +45,15 @@
   inset: 0;
   width: 100%;
   height: 100%;
-  opacity: 0;
+  opacity: 1;
   transition: opacity 0.25s ease-in-out;
-  pointer-events: none;
+  pointer-events: auto;
 }
 .gallery-slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-}
-
-/* Show active slide when corresponding radio is checked */
-#gview-1:checked ~ .gallery-main-viewport .slide-1,
-#gview-2:checked ~ .gallery-main-viewport .slide-2,
-#gview-3:checked ~ .gallery-main-viewport .slide-3,
-#gview-4:checked ~ .gallery-main-viewport .slide-4 {
-  opacity: 1;
-  pointer-events: auto;
 }
 
 /* Gallery Thumbnails */
@@ -81,6 +72,7 @@
   position: relative;
   transition: var(--trans);
   display: block;
+  padding: 0;
 }
 .thumb-item img {
   width: 100%;
@@ -93,6 +85,7 @@
 }
 
 /* Active Thumbnail Gold-Leather Border Highlight */
+.thumb-item.active,
 #gview-1:checked ~ .gallery-thumbs .thumb-btn-1,
 #gview-2:checked ~ .gallery-thumbs .thumb-btn-2,
 #gview-3:checked ~ .gallery-thumbs .thumb-btn-3,
@@ -440,3 +433,68 @@
     grid-template-columns: 1fr;
   }
 }
+
+.tab-btn.active {
+  color: var(--b);
+  font-weight: 700;
+  border-bottom: 2px solid var(--b);
+}
+.detail-tab-pane {
+  display: block;
+}
+.seller-profile-link {
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 700;
+  transition: color 0.2s ease;
+}
+.seller-profile-link:hover {
+  color: var(--b);
+  text-decoration: underline;
+}
+.bidder-profile-link {
+  color: inherit;
+  text-decoration: none;
+  font-weight: 700;
+}
+.bidder-profile-link:hover {
+  color: var(--b);
+  text-decoration: underline;
+}
+.copart-tabs-wrap {
+  margin-top: 24px;
+}
+.prebid-schedule-banner {
+  background: #fff8f6;
+  border: 1px solid #f5c2c0;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  font-size: 13px;
+  color: #7f1d1d;
+  line-height: 1.5;
+}
+.prebid-schedule-head {
+  font-weight: 700;
+  margin-bottom: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+.hammer-bar-fill.step-15 { width: 100%; }
+.hammer-bar-fill.step-14 { width: 93%; }
+.hammer-bar-fill.step-13 { width: 86%; }
+.hammer-bar-fill.step-12 { width: 80%; }
+.hammer-bar-fill.step-11 { width: 73%; }
+.hammer-bar-fill.step-10 { width: 66%; }
+.hammer-bar-fill.step-9  { width: 60%; }
+.hammer-bar-fill.step-8  { width: 53%; }
+.hammer-bar-fill.step-7  { width: 46%; }
+.hammer-bar-fill.step-6  { width: 40%; }
+.hammer-bar-fill.step-5  { width: 33%; }
+.hammer-bar-fill.step-4  { width: 26%; }
+.hammer-bar-fill.step-3  { width: 20%; }
+.hammer-bar-fill.step-2  { width: 13%; }
+.hammer-bar-fill.step-1  { width: 7%; }
+.hammer-bar-fill.step-0  { width: 0%; }
