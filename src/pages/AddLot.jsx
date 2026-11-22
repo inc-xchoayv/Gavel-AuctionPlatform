@@ -62,7 +62,7 @@ function getNextSaturdayDateStr() {
 
 const DURATION_LABELS = {
   hy: {
-    opt_24h: "24 ժամ (Էքսպրես / Շտապ վաճառք) — նրանց համար, ովքեր ցանկանում են վաճառել 1 օրում",
+    opt_24h: "24 ժամ (Էքսպրես / Շտապ վաճառք)",
     opt_3d: "3 օր (Արագ աճուրդ)",
     opt_7d: "7 օր (Ստանդարտ — խորհուրդ է տրվում)",
     opt_14d: "14 օր (Երկարաժամկետ)",
@@ -84,7 +84,7 @@ const DURATION_LABELS = {
     no_photos: "Լուսանկարներ դեռ կցված չեն։ Սեղմեք վերևի դաշտին կամ քաշեք նկարները այստեղ։",
   },
   ru: {
-    opt_24h: "24 часа (Экспресс / Срочная продажа) — для тех, кому нужно продать товар за 1 день",
+    opt_24h: "24 часа (Экспресс / Срочная продажа)",
     opt_3d: "3 дня (Быстрый аукцион)",
     opt_7d: "7 дней (Стандартный — рекомендуется)",
     opt_14d: "14 дней (Длительный)",
@@ -106,7 +106,7 @@ const DURATION_LABELS = {
     no_photos: "Фотографии еще не добавлены. Нажмите на область выше или перетащите файлы.",
   },
   en: {
-    opt_24h: "24 hours (Express / Urgent Sale) — for selling an item within 1 day",
+    opt_24h: "24 hours (Express / Urgent Sale)",
     opt_3d: "3 days (Fast auction)",
     opt_7d: "7 days (Standard — recommended)",
     opt_14d: "14 days (Long duration)",
