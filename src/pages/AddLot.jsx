@@ -141,6 +141,7 @@ export default function AddLot() {
 
   // Wizard Step (1 to 4)
   const [currentStep, setCurrentStep] = useState(1);
+  const [formError, setFormError] = useState("");
 
   // Step 1: Info State
   const [title, setTitle] = useState("");
@@ -253,16 +254,36 @@ export default function AddLot() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setFormError("");
 
     if (!title.trim()) {
+      const msg = "Խնդրում ենք Քայլ 1-ում մուտքագրել լոտի անվանումը:";
       setCurrentStep(1);
-      setFlash("Խնդրում ենք մուտքագրել լոտի անվանումը:");
+      setFormError(msg);
+      setFlash(msg);
+      return;
+    }
+
+    if (!Number(startPrice) || Number(startPrice) <= 0) {
+      const msg = "Խնդրում ենք Քայլ 3-ում մուտքագրել վավեր մեկնարկային գին:";
+      setCurrentStep(3);
+      setFormError(msg);
+      setFlash(msg);
       return;
     }
 
     if (durationType === "custom" && !customValidation.valid) {
       setCurrentStep(4);
+      setFormError(customValidation.message);
       setFlash(customValidation.message);
+      return;
+    }
+
+    if (!contactPhone.trim()) {
+      const msg = "Խնդրում ենք մուտքագրել կոնտակտային հեռախոսահամար:";
+      setCurrentStep(4);
+      setFormError(msg);
+      setFlash(msg);
       return;
     }
 
@@ -398,7 +419,10 @@ export default function AddLot() {
             </button>
           </div>
 
-          <form className="wizard-body" onSubmit={handleSubmit}>
+          <form className="wizard-body" onSubmit={handleSubmit} noValidate>
+            {formError && (
+              <div className="duration-validation-msg error">{formError}</div>
+            )}
             {/* Step 1: Info */}
             <div className="wizard-pane wizard-pane-1">
               <h2 className="wizard-pane-title">{t("al_s1_title")}</h2>
