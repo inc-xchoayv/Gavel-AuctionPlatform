@@ -4,3 +4,9 @@ Thumbs.db
 
 node_modules
 dist
+backend/.venv
+backend/__pycache__
+backend/*.db
+backend/*.db-wal
+backend/*.db-shm
+backend/uploads

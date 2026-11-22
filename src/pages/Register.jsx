@@ -44,12 +44,12 @@ export default function Register() {
     setForm((prev) => ({ ...prev, [name]: type === "checkbox" ? checked : value }));
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     const found = validate(form);
     if (Object.keys(found).length) return setErrors(found);
 
-    const result = register({
+    const result = await register({
       firstName: form.firstName.trim(),
       lastName: form.lastName.trim(),
       email: form.email.trim().toLowerCase(),

@@ -31,7 +31,7 @@ export default function Login() {
     setForm((prev) => ({ ...prev, [name]: value }));
   }
 
-  function attemptLogin(emailRaw, password) {
+  async function attemptLogin(emailRaw, password) {
     const email = emailRaw.trim().toLowerCase();
     const next = {};
     if (email === "") next.email = "err_email_required";
@@ -39,7 +39,7 @@ export default function Login() {
     if (password === "") next.password = "err_password_required";
     if (Object.keys(next).length) return setErrors(next);
 
-    const result = login(email, password);
+    const result = await login(email, password);
     if (!result.ok) return setErrors({ form: result.error });
 
     setErrors({});

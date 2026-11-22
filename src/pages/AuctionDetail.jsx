@@ -27,7 +27,7 @@ export default function AuctionDetail() {
   const { t, lang } = useI18n();
   usePageTitle("title_detail");
   const { session, user, setFlash } = useAuth();
-  const { lots, getLotById, placeBid } = useLots();
+  const { lots, getLotById, placeBid, onlineCount, lastLiveBidEvent } = useLots();
   const [searchParams] = useSearchParams();
 
   const paramId = searchParams.get("id");
@@ -72,6 +72,13 @@ export default function AuctionDetail() {
     setSelectedGalleryIdx(0);
     setStepSeconds(14);
   }, [lot.id, nextMinBid, minInc]);
+
+  // Reset Copart rapid step timer when a live bid arrives over WebSocket from any device
+  useEffect(() => {
+    if (lastLiveBidEvent && Number(lastLiveBidEvent.lotId) === Number(lot.id)) {
+      setStepSeconds(15);
+    }
+  }, [lastLiveBidEvent, lot.id]);
 
   // Real-time ticking timers
   useEffect(() => {
@@ -228,14 +235,14 @@ export default function AuctionDetail() {
     ];
   }, [lot.bidHistory, lot.bidsCount, lot.lastBidder, lot.lastBidderId, lot.startingPrice, currentPrice, minInc, session]);
 
-  const executeBid = (amount) => {
+  const executeBid = async (amount) => {
     const numAmount = Number(amount);
     if (!numAmount || numAmount < nextMinBid) {
       setFlash(`Նվազագույն առաջարկը պետք է լինի առնվազն $${nextMinBid.toLocaleString()}`);
       return;
     }
     try {
-      placeBid(lot.id, numAmount, user || session);
+      await placeBid(lot.id, numAmount, user || session);
       setFlash(`Շնորհավորում ենք: Դուք առաջարկեցիք $${numAmount.toLocaleString()}`);
       setCustomBid(numAmount + minInc);
       setAutoBidAmount(numAmount + minInc * 4);
@@ -475,7 +482,7 @@ export default function AuctionDetail() {
               <div className="arena-live-right">
                 <span>
                   Առցանց մասնակիցներ՝{" "}
-                  <b className="arena-participants-count">48 մասնակից</b>
+                  <b className="arena-participants-count">{onlineCount} մասնակից</b>
                 </span>
               </div>
             </div>

@@ -252,7 +252,7 @@ export default function AddLot() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setFormError("");
 
@@ -312,7 +312,7 @@ export default function AddLot() {
         ? new Date(`${liveDate}T${liveTime}`).toISOString()
         : null;
 
-    const created = addLot({
+    const created = await addLot({
       title: title.trim(),
       categoryId,
       startingPrice: Number(startPrice) || 100,

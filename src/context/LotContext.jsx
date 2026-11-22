@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState, useEffect, useRef } from "react";
 import initialLotsData from "../data/lots.json";
 
 const STORAGE_KEY_LOTS = "gavel_lots";
@@ -33,7 +33,6 @@ function formatDurationLeft(ms) {
 }
 
 export function LotProvider({ children }) {
-  // Load lots from localStorage or fall back to seed data
   const [lots, setLots] = useState(() => {
     try {
       const stored = localStorage.getItem(STORAGE_KEY_LOTS);
@@ -49,7 +48,9 @@ export function LotProvider({ children }) {
     return initialLotsData.map(normalizeLot);
   });
 
-  // Reminders / Bookmarks (lot IDs)
+  const [onlineCount, setOnlineCount] = useState(1);
+  const [lastLiveBidEvent, setLastLiveBidEvent] = useState(null);
+
   const [remindedLots, setRemindedLots] = useState(() => {
     try {
       const stored = localStorage.getItem(STORAGE_KEY_REMINDERS);
@@ -59,7 +60,95 @@ export function LotProvider({ children }) {
     }
   });
 
-  // Keep lots synced to localStorage
+  // Load shared lots from Python FastAPI + SQLite backend on startup
+  useEffect(() => {
+    let active = true;
+    fetch("/api/lots")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (active && Array.isArray(data) && data.length > 0) {
+          setLots(data.map(normalizeLot));
+        }
+      })
+      .catch(() => {});
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  // Real-time WebSocket connection for instant sync between PC and Phone
+  const wsRef = useRef(null);
+  useEffect(() => {
+    let reconnectTimer = null;
+    let pingTimer = null;
+    let unmounted = false;
+
+    const connect = () => {
+      if (unmounted) return;
+      const proto = window.location.protocol === "https:" ? "wss:" : "ws:";
+      const wsUrl = `${proto}//${window.location.host}/ws`;
+      try {
+        const ws = new WebSocket(wsUrl);
+        wsRef.current = ws;
+
+        ws.onopen = () => {
+          pingTimer = setInterval(() => {
+            if (ws.readyState === WebSocket.OPEN) {
+              ws.send("ping");
+            }
+          }, 25000);
+        };
+
+        ws.onmessage = (event) => {
+          try {
+            const msg = JSON.parse(event.data);
+            if (msg.type === "online_count" && typeof msg.count === "number") {
+              setOnlineCount(msg.count);
+            } else if (msg.type === "bid_placed" && msg.lot) {
+              const updated = normalizeLot(msg.lot);
+              setLots((prev) => {
+                const exists = prev.some((l) => Number(l.id) === Number(updated.id));
+                return exists
+                  ? prev.map((l) => (Number(l.id) === Number(updated.id) ? updated : l))
+                  : [updated, ...prev];
+              });
+              setLastLiveBidEvent({ lotId: Number(updated.id), ts: Date.now() });
+            } else if (msg.type === "lot_created" && msg.lot) {
+              const created = normalizeLot(msg.lot);
+              setLots((prev) => {
+                const exists = prev.some((l) => Number(l.id) === Number(created.id));
+                return exists ? prev : [created, ...prev];
+              });
+            }
+          } catch {
+            // ignore non-json
+          }
+        };
+
+        ws.onclose = () => {
+          clearInterval(pingTimer);
+          if (!unmounted) {
+            reconnectTimer = setTimeout(connect, 2500);
+          }
+        };
+
+        ws.onerror = () => {
+          ws.close();
+        };
+      } catch {
+        reconnectTimer = setTimeout(connect, 3000);
+      }
+    };
+
+    connect();
+    return () => {
+      unmounted = true;
+      clearTimeout(reconnectTimer);
+      clearInterval(pingTimer);
+      if (wsRef.current) wsRef.current.close();
+    };
+  }, []);
+
   useEffect(() => {
     try {
       localStorage.setItem(STORAGE_KEY_LOTS, JSON.stringify(lots));
@@ -68,7 +157,6 @@ export function LotProvider({ children }) {
     }
   }, [lots]);
 
-  // Keep reminders synced to localStorage
   useEffect(() => {
     try {
       localStorage.setItem(STORAGE_KEY_REMINDERS, JSON.stringify(remindedLots));
@@ -91,7 +179,25 @@ export function LotProvider({ children }) {
     return lots.find((l) => Number(l.id) === numId);
   };
 
-  const addLot = (newLot) => {
+  const addLot = async (newLot) => {
+    try {
+      const res = await fetch("/api/lots", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newLot),
+      });
+      if (res.ok) {
+        const created = normalizeLot(await res.json());
+        setLots((prev) => {
+          const exists = prev.some((l) => Number(l.id) === Number(created.id));
+          return exists ? prev : [created, ...prev];
+        });
+        return created;
+      }
+    } catch {
+      // fallback to local creation below if backend is offline
+    }
+
     const nextId =
       lots.length > 0 ? Math.max(...lots.map((l) => Number(l.id) || 0)) + 1 : 1001;
     const categoryId =
@@ -174,9 +280,45 @@ export function LotProvider({ children }) {
     return createdLot;
   };
 
-  const placeBid = (lotId, bidAmount, bidder) => {
+  const placeBid = async (lotId, bidAmount, bidder) => {
     const numId = Number(lotId);
     const amount = Number(bidAmount);
+
+    const bidderName =
+      bidder?.name ||
+      (bidder?.firstName
+        ? `${bidder.firstName} ${bidder.lastName || ""}`.trim()
+        : "Անանուն մասնակից");
+    const bidderId = bidder?.id || "guest";
+
+    try {
+      const res = await fetch(`/api/lots/${numId}/bids`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          amount,
+          bidderId,
+          bidderName,
+          bidderAvatar: bidder?.avatar || null,
+        }),
+      });
+      if (res.ok) {
+        const updated = normalizeLot(await res.json());
+        setLots((prev) =>
+          prev.map((l) => (Number(l.id) === numId ? updated : l))
+        );
+        return updated;
+      } else {
+        const errData = await res.json().catch(() => ({}));
+        throw new Error(errData.detail || "Խաղադրույքի սխալ:");
+      }
+    } catch (err) {
+      if (err.message && !err.message.includes("fetch")) {
+        throw err;
+      }
+      // Fallback to local state if backend is offline
+    }
+
     const target = lots.find((l) => Number(l.id) === numId);
     if (!target) {
       throw new Error("Լոտը չի գտնվել:");
@@ -186,14 +328,7 @@ export function LotProvider({ children }) {
       throw new Error(`Առաջարկը պետք է գերազանցի ընթացիկ գինը ($${curPrice.toLocaleString()})`);
     }
 
-    const bidderName =
-      bidder?.name ||
-      (bidder?.firstName
-        ? `${bidder.firstName} ${bidder.lastName || ""}`.trim()
-        : "Անանուն մասնակից");
-    const bidderId = bidder?.id || "guest";
     const nowIso = new Date().toISOString();
-
     const newBidEntry = {
       id: "bid_" + Date.now(),
       bidderId,
@@ -236,6 +371,8 @@ export function LotProvider({ children }) {
         remindedLots,
         toggleRemind,
         isReminded,
+        onlineCount,
+        lastLiveBidEvent,
       }}
     >
       {children}
