@@ -54,6 +54,7 @@ export default function AuctionDetail() {
   const [autoBidAmount, setAutoBidAmount] = useState(nextMinBid + minInc * 4);
   const [activeTab, setActiveTab] = useState("desc"); // "desc" | "spec" | "ship"
   const [selectedGalleryIdx, setSelectedGalleryIdx] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   // Rapid 15-second step timer for Copart Live Mode
   const [stepSeconds, setStepSeconds] = useState(14);
@@ -89,6 +90,92 @@ export default function AuctionDetail() {
     lot.gallery && lot.gallery.length > 0
       ? lot.gallery
       : [lot.image || "/images/lot-watch.jpg"];
+
+  // Keyboard navigation for fullscreen image lightbox
+  useEffect(() => {
+    if (!lightboxOpen) return;
+    const handleKey = (e) => {
+      if (e.key === "Escape") setLightboxOpen(false);
+      else if (e.key === "ArrowRight" && galleryList.length > 1) {
+        setSelectedGalleryIdx((prev) => (prev + 1) % galleryList.length);
+      } else if (e.key === "ArrowLeft" && galleryList.length > 1) {
+        setSelectedGalleryIdx((prev) => (prev - 1 + galleryList.length) % galleryList.length);
+      }
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [lightboxOpen, galleryList.length]);
+
+  const renderLightbox = () => {
+    if (!lightboxOpen) return null;
+    return (
+      <div
+        className="lightbox-overlay"
+        onClick={() => setLightboxOpen(false)}
+        role="dialog"
+        aria-modal="true"
+      >
+        <button
+          type="button"
+          className="lightbox-close-btn"
+          onClick={() => setLightboxOpen(false)}
+          aria-label="Close"
+        >
+          <svg className="ico" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M18 6 6 18" />
+            <path d="m6 6 12 12" />
+          </svg>
+        </button>
+
+        {galleryList.length > 1 && (
+          <button
+            type="button"
+            className="lightbox-nav-btn prev"
+            onClick={(e) => {
+              e.stopPropagation();
+              setSelectedGalleryIdx(
+                (prev) => (prev - 1 + galleryList.length) % galleryList.length
+              );
+            }}
+            aria-label="Previous image"
+          >
+            <svg className="ico" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m15 18-6-6 6-6" />
+            </svg>
+          </button>
+        )}
+
+        <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
+          <img
+            src={galleryList[selectedGalleryIdx] || galleryList[0]}
+            alt={lot.title}
+            className="lightbox-img"
+          />
+          {galleryList.length > 1 && (
+            <div className="lightbox-counter">
+              {selectedGalleryIdx + 1} / {galleryList.length}
+            </div>
+          )}
+        </div>
+
+        {galleryList.length > 1 && (
+          <button
+            type="button"
+            className="lightbox-nav-btn next"
+            onClick={(e) => {
+              e.stopPropagation();
+              setSelectedGalleryIdx((prev) => (prev + 1) % galleryList.length);
+            }}
+            aria-label="Next image"
+          >
+            <svg className="ico" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m9 18 6-6-6-6" />
+            </svg>
+          </button>
+        )}
+      </div>
+    );
+  };
 
   const sellerId = lot.seller?.id || lot.seller?.name || "seller-1";
   const sellerName = lot.seller?.name || "Արմեն Սարգսյան";
@@ -396,7 +483,11 @@ export default function AuctionDetail() {
             <div className="arena-left-col">
               {/* Gallery */}
               <div className="vehicle-gallery-wrapper">
-                <div className="vehicle-main-img-wrap">
+                <div
+                  className="vehicle-main-img-wrap gallery-zoomable"
+                  onClick={() => setLightboxOpen(true)}
+                  title="Սեղմեք՝ մեծացնելու համար"
+                >
                   <div className="car-slide">
                     <img
                       src={galleryList[selectedGalleryIdx] || galleryList[0]}
@@ -680,6 +771,7 @@ export default function AuctionDetail() {
             </div>
           </div>
         </div>
+        {renderLightbox()}
       </main>
     );
   }
@@ -702,7 +794,11 @@ export default function AuctionDetail() {
           <div>
             {/* Պատկերասրահ (Gallery) */}
             <div className="gallery-wrapper">
-              <div className="gallery-main-viewport">
+              <div
+                className="gallery-main-viewport gallery-zoomable"
+                onClick={() => setLightboxOpen(true)}
+                title="Սեղմեք՝ մեծացնելու համար"
+              >
                 <div className="gallery-slide">
                   <img
                     src={galleryList[selectedGalleryIdx] || galleryList[0]}
@@ -880,6 +976,7 @@ export default function AuctionDetail() {
           </div>
         </div>
       </div>
+      {renderLightbox()}
     </main>
   );
 }
