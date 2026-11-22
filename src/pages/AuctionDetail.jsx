@@ -322,7 +322,9 @@ export default function AuctionDetail() {
           </Link>{" "}
           {lot.seller?.verified && (
             <span className="user-verified-check" title="Վերիֆիկացված վաճառող">
-              ✓
+              <svg className="ico ico-sm" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20 6 9 17l-5-5" />
+              </svg>
             </span>
           )}
         </div>
@@ -538,7 +540,7 @@ export default function AuctionDetail() {
                 <div className="prebid-schedule-banner">
                   <div className="prebid-schedule-head">
                     <span>
-                      🔴 Pre-Bid ռեժիմ · Եզրափակիչ՝{" "}
+                      <span className="live-pulse-dot"></span> Pre-Bid ռեժիմ · Եզրափակիչ՝{" "}
                       {new Date(lot.liveStartAt).toLocaleString()}
                     </span>
                     <button

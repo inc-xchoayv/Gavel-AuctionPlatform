@@ -66,16 +66,16 @@ const DURATION_LABELS = {
     opt_3d: "3 օր (Արագ աճուրդ)",
     opt_7d: "7 օր (Ստանդարտ — խորհուրդ է տրվում)",
     opt_14d: "14 օր (Երկարաժամկետ)",
-    opt_custom: "📅 Ընտրել հստակ ամսաթիվ և ժամ (Սեփական ժամկետ)",
-    opt_live: "🔴 Կենդանի առցանց աճուրդ (Live Auction)",
-    custom_box_title: "📅 Ընտրեք աճուրդի ավարտի հստակ ամսաթիվը և ժամը",
+    opt_custom: "Ընտրել հստակ ամսաթիվ և ժամ (Սեփական ժամկետ)",
+    opt_live: "Կենդանի առցանց աճուրդ (Live Auction)",
+    custom_box_title: "Ընտրեք աճուրդի ավարտի հստակ ամսաթիվը և ժամը",
     custom_date_lbl: "Օրացույց՝ Ընտրեք ամսաթիվը",
     custom_time_lbl: "Ժամը (օր.՝ 19:00)",
     err_pick_date: "Խնդրում ենք ընտրել ավարտի ամսաթիվը և ժամը:",
     err_min_24h: "Ավարտի ժամանակը պետք է լինի ընթացիկ պահից առնվազն 24 ժամ հետո:",
     err_max_30d: "Ավարտի ժամանակը չի կարող գերազանցել ընթացիկ պահից 30 օրը:",
-    ok_custom_prefix: "✓ Աճուրդը կավարտվի ընտրված ժամկետում",
-    live_date_lbl: "Կենդանի եզրափակչի ամսաթիվը և ժամը (Дата и время живого финала)",
+    ok_custom_prefix: "Աճուրդը կավարտվի ընտրված ժամկետում",
+    live_date_lbl: "Կենդանի եզրափակչի ամսաթիվը և ժամը",
     live_callout:
       "«Մինչև ուղիղ եթերի մեկնարկը օգտատերերը կկարողանան կատարել նախնական առաջարկներ (Pre-bid): Նշանակված ժամին լոտը կանցնի իրական ժամանակի ռեժիմի՝ յուրաքանչյուր քայլի արագ թայմերով:»",
     drop_btn: "Ընտրել նկարներ համակարգչից",
@@ -88,15 +88,15 @@ const DURATION_LABELS = {
     opt_3d: "3 дня (Быстрый аукцион)",
     opt_7d: "7 дней (Стандартный — рекомендуется)",
     opt_14d: "14 дней (Длительный)",
-    opt_custom: "📅 Выбрать точную дату и время (Свой срок)",
-    opt_live: "🔴 Живой онлайн-аукцион (Live Auction)",
-    custom_box_title: "📅 Выберите точную дату и время завершения",
+    opt_custom: "Выбрать точную дату и время (Свой срок)",
+    opt_live: "Живой онлайн-аукцион (Live Auction)",
+    custom_box_title: "Выберите точную дату и время завершения",
     custom_date_lbl: "Календарь: Выберите дату",
     custom_time_lbl: "Время: 19:00",
     err_pick_date: "Пожалуйста, выберите дату и время окончания аукциона.",
     err_min_24h: "Время окончания должно быть не менее чем через 24 часа от текущего времени.",
     err_max_30d: "Максимальный срок аукциона — не более 30 дней от текущего момента.",
-    ok_custom_prefix: "✓ Срок корректен (от 24 часов до 30 дней)",
+    ok_custom_prefix: "Срок корректен (от 24 часов до 30 дней)",
     live_date_lbl: "Дата и время живого финала",
     live_callout:
       "«До начала прямого эфира пользователи смогут делать предварительные ставки (Pre-bid). В назначенное время лот перейдет в режим реального времени с таймером на каждый шаг.»",
@@ -110,15 +110,15 @@ const DURATION_LABELS = {
     opt_3d: "3 days (Fast auction)",
     opt_7d: "7 days (Standard — recommended)",
     opt_14d: "14 days (Long duration)",
-    opt_custom: "📅 Choose exact date & time (Custom duration)",
-    opt_live: "🔴 Live Online Auction (Live Auction)",
-    custom_box_title: "📅 Select exact end date and time",
+    opt_custom: "Choose exact date & time (Custom duration)",
+    opt_live: "Live Online Auction (Live Auction)",
+    custom_box_title: "Select exact end date and time",
     custom_date_lbl: "Calendar: Choose date",
     custom_time_lbl: "Time: 19:00",
     err_pick_date: "Please select an end date and time.",
     err_min_24h: "End time must be at least 24 hours from the current time.",
     err_max_30d: "End time cannot exceed 30 days from now.",
-    ok_custom_prefix: "✓ Valid custom duration (between 24 hours and 30 days)",
+    ok_custom_prefix: "Valid custom duration (between 24 hours and 30 days)",
     live_date_lbl: "Live Finale Date & Time",
     live_callout:
       "“Before the live broadcast starts, users will be able to place pre-bids. At the scheduled time, the lot will enter real-time live mode with a step timer for every bid.”",
@@ -571,7 +571,7 @@ export default function AddLot() {
                         </button>
                       )}
                       <span>
-                        {index === 0 ? `★ ${L.main_photo}` : photo.name || `#${index + 1}`}
+                        {index === 0 ? L.main_photo : photo.name || `#${index + 1}`}
                       </span>
                       <button
                         type="button"
@@ -701,7 +701,15 @@ export default function AddLot() {
               {/* Case A: Custom Date & Time Picker with 24h - 30d Validation */}
               {durationType === "custom" && (
                 <div className="duration-conditional-box">
-                  <h4 className="duration-box-title">{L.custom_box_title}</h4>
+                  <h4 className="duration-box-title">
+                    <svg className="ico ico-sm" viewBox="0 0 24 24" aria-hidden="true">
+                      <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
+                      <line x1="16" x2="16" y1="2" y2="6" />
+                      <line x1="8" x2="8" y1="2" y2="6" />
+                      <line x1="3" x2="21" y1="10" y2="10" />
+                    </svg>
+                    <span>{L.custom_box_title}</span>
+                  </h4>
                   <div className="grid grid-2">
                     <div className="form-group">
                       <label className="form-label">{L.custom_date_lbl}</label>
@@ -739,7 +747,10 @@ export default function AddLot() {
               {/* Case B: Live Online Auction Scheduling & Pre-bid Callout */}
               {durationType === "live" && (
                 <div className="duration-conditional-box live-mode-box">
-                  <h4 className="duration-box-title">{L.live_date_lbl}</h4>
+                  <h4 className="duration-box-title">
+                    <span className="live-pulse-dot"></span>
+                    <span>{L.live_date_lbl}</span>
+                  </h4>
                   <div className="grid grid-2">
                     <div className="form-group">
                       <label className="form-label">{L.custom_date_lbl}</label>

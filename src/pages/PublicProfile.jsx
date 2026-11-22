@@ -156,14 +156,38 @@ export default function PublicProfile() {
                 <h1 className="public-profile-name">{profileUser.name}</h1>
                 {profileUser.verified && (
                   <span className="trust-badge-pill">
-                    ✓ {t("prof_verif_status_verified") || "Վերիֆիկացված"}
+                    <svg className="ico ico-sm" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M20 6 9 17l-5-5" />
+                    </svg>
+                    <span>{t("prof_verif_status_verified") || "Վերիֆիկացված"}</span>
                   </span>
                 )}
               </div>
               <div className="public-profile-meta">
-                <span>★ {profileUser.rating} Վարկանիշ</span>
-                {profileUser.city && <span>📍 {profileUser.city}</span>}
-                <span>📅 Գրանցված է՝ {profileUser.registeredAt}</span>
+                <span>
+                  <svg className="ico ico-sm ico-fill" viewBox="0 0 24 24" aria-hidden="true">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>{" "}
+                  {profileUser.rating} Վարկանիշ
+                </span>
+                {profileUser.city && (
+                  <span>
+                    <svg className="ico ico-sm" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                      <circle cx="12" cy="10" r="3" />
+                    </svg>{" "}
+                    {profileUser.city}
+                  </span>
+                )}
+                <span>
+                  <svg className="ico ico-sm" viewBox="0 0 24 24" aria-hidden="true">
+                    <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
+                    <line x1="16" x2="16" y1="2" y2="6" />
+                    <line x1="8" x2="8" y1="2" y2="6" />
+                    <line x1="3" x2="21" y1="10" y2="10" />
+                  </svg>{" "}
+                  Գրանցված է՝ {profileUser.registeredAt}
+                </span>
               </div>
               {profileUser.bio && (
                 <p className="public-profile-bio">{profileUser.bio}</p>
@@ -175,7 +199,10 @@ export default function PublicProfile() {
             {isOwnProfile ? (
               <>
                 <Link to="/profile" className="btn sm">
-                  ✎ Խմբագրել իմ պրոֆիլը
+                  <svg className="ico ico-sm" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
+                  </svg>{" "}
+                  Խմբագրել իմ պրոֆիլը
                 </Link>
                 <Link to="/add-lot" className="btn pri sm">
                   {t("ml_add_btn")}
@@ -186,7 +213,10 @@ export default function PublicProfile() {
                 htmlFor="chat-widget-toggle"
                 className="btn pri sm chat-open-label"
               >
-                💬 Հաղորդագրություն ուղարկել
+                <svg className="ico ico-sm" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
+                </svg>{" "}
+                Հաղորդագրություն ուղարկել
               </label>
             )}
           </div>

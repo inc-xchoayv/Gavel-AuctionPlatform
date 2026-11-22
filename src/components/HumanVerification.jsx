@@ -200,14 +200,23 @@ export default function HumanVerification({ onGoToPersonal }) {
             <div className="doc-attached-list">
               {files.map((f, i) => (
                 <div key={i} className="doc-file-item">
-                  <span>📄 {f.name} ({f.size})</span>
+                  <span>
+                    <svg className="ico ico-sm" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+                      <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+                    </svg>{" "}
+                    {f.name} ({f.size})
+                  </span>
                   <button
                     type="button"
                     className="doc-file-remove"
                     onClick={() => handleRemoveFile(i)}
                     aria-label="Remove file"
                   >
-                    ✕
+                    <svg className="ico ico-sm" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M18 6 6 18" />
+                      <path d="m6 6 12 12" />
+                    </svg>
                   </button>
                 </div>
               ))}
@@ -344,21 +353,31 @@ export default function HumanVerification({ onGoToPersonal }) {
             {status === "pending" && (
               <>
                 <span className="trust-badge-pill pending">
-                  {t("prof_verif_status_pending") || "⏳ Տվյալները ստուգման փուլում են"}
+                  <svg className="ico ico-sm" viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12 6 12 12 16 14" />
+                  </svg>{" "}
+                  <span>{t("prof_verif_status_pending") || "Տվյալները ստուգման փուլում են"}</span>
                 </span>
                 <button
                   type="button"
                   className="btn sm"
                   onClick={handleSimulateApprove}
                 >
-                  {t("prof_verif_simulate_btn") || "⚡ Սիմուլացնել մոդերատորի հաստատումը"}
+                  <svg className="ico ico-sm" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" />
+                  </svg>{" "}
+                  <span>{t("prof_verif_simulate_btn") || "Սիմուլացնել մոդերատորի հաստատումը"}</span>
                 </button>
               </>
             )}
 
             {status === "verified" && (
               <span className="trust-badge-pill">
-                {t("prof_verif_status_verified") || "✓ Ինքնությունը հաստատված է (100% Վստահություն)"}
+                <svg className="ico ico-sm" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>{" "}
+                <span>{t("prof_verif_status_verified") || "Ինքնությունը հաստատված է (100% Վստահություն)"}</span>
               </span>
             )}
           </div>
@@ -408,34 +427,31 @@ export default function HumanVerification({ onGoToPersonal }) {
           </div>
 
           <ul className="completeness-items-list">
-            <li className={`completeness-list-row ${hasFiles ? "is-done" : ""}`}>
-              <span className="item-status-icon">{hasFiles ? "✓" : "✕"}</span>
-              <span>{t("prof_verif_check_doc") || "Կցել փաստաթուղթ 10%"}</span>
-            </li>
-            <li className={`completeness-list-row ${hasId ? "is-done" : ""}`}>
-              <span className="item-status-icon">{hasId ? "✓" : "✕"}</span>
-              <span>{t("prof_verif_check_id") || "Անձնագրի / ID համարը 14%"}</span>
-            </li>
-            <li className={`completeness-list-row ${hasName ? "is-done" : ""}`}>
-              <span className="item-status-icon">{hasName ? "✓" : "✕"}</span>
-              <span>{t("prof_verif_check_name") || "Անուն 14%"}</span>
-            </li>
-            <li className={`completeness-list-row ${hasSurname ? "is-done" : ""}`}>
-              <span className="item-status-icon">{hasSurname ? "✓" : "✕"}</span>
-              <span>{t("prof_verif_check_surname") || "Ազգանուն 14%"}</span>
-            </li>
-            <li className={`completeness-list-row ${hasDob ? "is-done" : ""}`}>
-              <span className="item-status-icon">{hasDob ? "✓" : "✕"}</span>
-              <span>{t("prof_verif_check_dob") || "Ծննդյան ամսաթիվ 14%"}</span>
-            </li>
-            <li className={`completeness-list-row ${hasPhone ? "is-done" : ""}`}>
-              <span className="item-status-icon">{hasPhone ? "✓" : "✕"}</span>
-              <span>{t("prof_verif_check_phone") || "Հեռախոսահամար 14%"}</span>
-            </li>
-            <li className={`completeness-list-row ${isVerified ? "is-done" : ""}`}>
-              <span className="item-status-icon">{isVerified ? "✓" : "✕"}</span>
-              <span>{t("prof_verif_check_approval") || "Փաստաթղթի հաստատում 20%"}</span>
-            </li>
+            {[
+              { done: hasFiles, label: t("prof_verif_check_doc") || "Կցել փաստաթուղթ 10%" },
+              { done: hasId, label: t("prof_verif_check_id") || "Անձնագրի / ID համարը 14%" },
+              { done: hasName, label: t("prof_verif_check_name") || "Անուն 14%" },
+              { done: hasSurname, label: t("prof_verif_check_surname") || "Ազգանուն 14%" },
+              { done: hasDob, label: t("prof_verif_check_dob") || "Ծննդյան ամսաթիվ 14%" },
+              { done: hasPhone, label: t("prof_verif_check_phone") || "Հեռախոսահամար 14%" },
+              { done: isVerified, label: t("prof_verif_check_approval") || "Փաստաթղթի հաստատում 20%" },
+            ].map((item, idx) => (
+              <li key={idx} className={`completeness-list-row ${item.done ? "is-done" : ""}`}>
+                <span className="item-status-icon">
+                  {item.done ? (
+                    <svg className="ico ico-sm" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M20 6 9 17l-5-5" />
+                    </svg>
+                  ) : (
+                    <svg className="ico ico-sm" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M18 6 6 18" />
+                      <path d="m6 6 12 12" />
+                    </svg>
+                  )}
+                </span>
+                <span>{item.label}</span>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

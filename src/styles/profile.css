@@ -942,6 +942,15 @@
   color: #0f172a;
 }
 
+.big-avatar-link {
+  display: block;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.big-avatar-link:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 14px rgba(139, 90, 43, 0.22);
+}
 .profile-badge-row {
   display: flex;
   align-items: center;

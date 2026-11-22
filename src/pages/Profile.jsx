@@ -336,19 +336,26 @@ export default function Profile({ initialTab = "info" }) {
           <div className="profile-layout">
             <aside>
               <div className="user-profile-card">
-                <div className="big-avatar">
+                <Link
+                  to={`/profile/${encodeURIComponent(session?.id || "")}`}
+                  className="big-avatar big-avatar-link"
+                  title="Դիտել հանրային պրոֆիլը"
+                >
                   <img
                     src={currentAvatar}
                     alt={`${session?.firstName || "User"} ${session?.lastName || ""}`}
                   />
-                </div>
+                </Link>
                 <button
                   type="button"
                   className="btn-change-avatar-side"
                   onClick={() => avatarInputRef.current?.click()}
                   title={t("prof_verif_change_avatar") || "Փոխել ավատարը"}
                 >
-                  ✎ {t("prof_verif_change_avatar") || "Փոխել ավատարը"}
+                  <svg className="ico ico-sm" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
+                  </svg>
+                  <span>{t("prof_verif_change_avatar") || "Փոխել ավատարը"}</span>
                 </button>
                 <input
                   type="file"
@@ -374,11 +381,18 @@ export default function Profile({ initialTab = "info" }) {
                   </span>
                   {verifStatus === "verified" ? (
                     <span className="trust-badge-pill">
-                      ✓ {t("prof_verif_status_verified")}
+                      <svg className="ico ico-sm" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M20 6 9 17l-5-5" />
+                      </svg>
+                      <span>{t("prof_verif_status_verified")}</span>
                     </span>
                   ) : verifStatus === "pending" ? (
                     <span className="trust-badge-pill pending">
-                      {t("prof_verif_status_pending")}
+                      <svg className="ico ico-sm" viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10" />
+                        <polyline points="12 6 12 12 16 14" />
+                      </svg>
+                      <span>{t("prof_verif_status_pending")}</span>
                     </span>
                   ) : (
                     <button
@@ -387,7 +401,12 @@ export default function Profile({ initialTab = "info" }) {
                       onClick={() => handleTabChange("verification")}
                       title="Սեղմեք վերիֆիկացիա անցնելու համար"
                     >
-                      ⚠️ {t("prof_tab_verification")} (14%)
+                      <svg className="ico ico-sm" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        <path d="M12 8v4" />
+                        <path d="M12 16h.01" />
+                      </svg>
+                      <span>{t("prof_tab_verification")} (14%)</span>
                     </button>
                   )}
                 </div>
@@ -403,15 +422,6 @@ export default function Profile({ initialTab = "info" }) {
                       <span className="profile-side-stat-lbl">{t("nav_participations")}</span>
                     </Link>
                   </div>
-                )}
-
-                {session?.id && (
-                  <Link
-                    to={`/profile/${encodeURIComponent(session.id)}`}
-                    className="btn sm public-profile-view-link"
-                  >
-                    👁 Դիտել հանրային պրոֆիլը
-                  </Link>
                 )}
 
                 <div className="profile-nav">
@@ -608,89 +618,6 @@ export default function Profile({ initialTab = "info" }) {
                     {t("prof_save_btn")}
                   </button>
                 </form>
-
-                {session?.role !== "admin" && (
-                  <div className="profile-activity-overview">
-                    <h3 className="security-card-title">
-                      Իմ ակտիվությունը հարթակում ({session?.firstName} {session?.lastName})
-                    </h3>
-                    <div className="profile-activity-grid">
-                      {/* Created Lots Card */}
-                      <div className="profile-activity-card">
-                        <div className="profile-activity-head">
-                          <h4 className="profile-activity-title">
-                            {t("nav_my_lots")} ({myCreatedLots.length})
-                          </h4>
-                          <Link to="/add-lot" className="btn sm pri">
-                            + Լոտ
-                          </Link>
-                        </div>
-                        {myCreatedLots.length === 0 ? (
-                          <p className="profile-section-desc">
-                            Դուք դեռ չեք ստեղծել լոտեր:
-                          </p>
-                        ) : (
-                          myCreatedLots.slice(0, 3).map((lot) => (
-                            <Link
-                              key={lot.id}
-                              to={`/auction-detail?id=${lot.id}`}
-                              className="profile-mini-lot-row"
-                            >
-                              <img
-                                src={lot.image}
-                                alt={lot.title}
-                                className="profile-mini-lot-img"
-                              />
-                              <div className="profile-mini-lot-info">
-                                <span className="profile-mini-lot-name">{lot.title}</span>
-                                <span className="profile-mini-lot-price">
-                                  ${(lot.currentBid || lot.startingPrice || 0).toLocaleString()}
-                                </span>
-                              </div>
-                            </Link>
-                          ))
-                        )}
-                      </div>
-
-                      {/* Active Bids Card */}
-                      <div className="profile-activity-card">
-                        <div className="profile-activity-head">
-                          <h4 className="profile-activity-title">
-                            {t("nav_participations")} ({myActiveBids.length})
-                          </h4>
-                          <Link to="/auctions" className="btn sm">
-                            Աճուրդներ
-                          </Link>
-                        </div>
-                        {myActiveBids.length === 0 ? (
-                          <p className="profile-section-desc">
-                            Դուք դեռ ակտիվ հայտեր չունեք:
-                          </p>
-                        ) : (
-                          myActiveBids.slice(0, 3).map(({ lot, myBid }) => (
-                            <Link
-                              key={lot.id}
-                              to={`/auction-detail?id=${lot.id}`}
-                              className="profile-mini-lot-row"
-                            >
-                              <img
-                                src={lot.image}
-                                alt={lot.title}
-                                className="profile-mini-lot-img"
-                              />
-                              <div className="profile-mini-lot-info">
-                                <span className="profile-mini-lot-name">{lot.title}</span>
-                                <span className="profile-mini-lot-price">
-                                  Իմ հայտը՝ ${(myBid || 0).toLocaleString()}
-                                </span>
-                              </div>
-                            </Link>
-                          ))
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                )}
               </div>
 
               {/* PANE 2: HUMAN VERIFICATION (Matches uploaded reference image) */}
