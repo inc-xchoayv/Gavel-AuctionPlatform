@@ -1,8 +1,8 @@
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext";
 import { useI18n, SUPPORTED_LANGS } from "../i18n/I18nContext";
 
-// Դրոշների SVG-ները՝ փոքր կոմպոնենտներ (props-ով ընտրվում է լեզուն)
 function Flag({ code }) {
   return (
     <svg className="lang-flag-svg" viewBox="0 0 21 15" aria-hidden="true">
@@ -35,7 +35,6 @@ function Flag({ code }) {
 
 const LANG_NAMES = { hy: "Հայերեն", en: "English", ru: "Русский" };
 
-// Navbar-ի հղումները. need = ով կարող է տեսնել/օգտագործել
 const NAV_ITEMS = [
   { to: "/", key: "nav_home", need: null },
   { to: "/auctions", key: "nav_auctions", need: null },
@@ -49,11 +48,56 @@ export default function Header() {
   const { t, lang, setLang } = useI18n();
   const { session, role } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Close mobile sandwich menu whenever route changes
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname, location.search]);
 
   function handleSearch(event) {
     event.preventDefault();
     const q = new FormData(event.currentTarget).get("q").toString().trim();
+    setMobileMenuOpen(false);
     navigate(q ? `/auctions?q=${encodeURIComponent(q)}` : "/auctions");
+  }
+
+  function renderNavLinks(isMobile = false) {
+    return NAV_ITEMS.map((item) => {
+      if (role === "admin" && item.userOnly) return null;
+      if (item.need === "admin" && role !== "admin") return null;
+
+      if (item.need === "user" && role === "guest") {
+        return (
+          <a
+            key={item.to}
+            className={`nav-link is-locked ${isMobile ? "mobile-nav-link" : ""}`}
+            href={item.to}
+            aria-disabled="true"
+            tabIndex={-1}
+            title={t("nav_locked_tooltip")}
+            onClick={(e) => e.preventDefault()}
+          >
+            {t(item.key)}
+          </a>
+        );
+      }
+
+      return (
+        <NavLink
+          key={item.to}
+          to={item.to}
+          end={item.to === "/"}
+          className={({ isActive }) =>
+            `nav-link ${isMobile ? "mobile-nav-link" : ""}` + (isActive ? " active" : "")
+          }
+          onClick={() => isMobile && setMobileMenuOpen(false)}
+        >
+          {t(item.key)}
+        </NavLink>
+      );
+    });
   }
 
   return (
@@ -63,65 +107,43 @@ export default function Header() {
           <img src="/images/logo.png" alt="Gavel Logo" />
         </Link>
 
-        <form className="srch" onSubmit={handleSearch}>
+        <form className="srch desktop-srch" onSubmit={handleSearch}>
           <svg viewBox="0 0 24 24">
             <circle cx="11" cy="11" r="7" />
             <path d="M20 20l-4-4" />
           </svg>
-          <input type="search" name="q" placeholder={t("search_placeholder")} aria-label={t("search_aria")} />
+          <input
+            type="search"
+            name="q"
+            placeholder={t("search_placeholder")}
+            aria-label={t("search_aria")}
+          />
         </form>
 
-        <nav>
-          {NAV_ITEMS.map((item) => {
-            // Եթե մուտք է գործել ադմինը, «userOnly» հղումները (Իմ մասնակցությունները, Իմ լոտերը) թաքցվում են
-            if (role === "admin" && item.userOnly) return null;
-
-            // Ադմինի հղումը ոչ-ադմինից լրիվ թաքցվում է
-            if (item.need === "admin" && role !== "admin") return null;
-
-            // Հյուրի համար «user» հղումները երևում են, բայց կողպված են
-            if (item.need === "user" && role === "guest") {
-              return (
-                <a
-                  key={item.to}
-                  className="nav-link is-locked"
-                  href={item.to}
-                  aria-disabled="true"
-                  tabIndex={-1}
-                  title={t("nav_locked_tooltip")}
-                  onClick={(e) => e.preventDefault()}
-                >
-                  {t(item.key)}
-                </a>
-              );
-            }
-
-            // NavLink-ն ինքն է ավելացնում active դասը ընթացիկ էջի համար
-            return (
-              <NavLink
-                key={item.to}
-                to={item.to}
-                end={item.to === "/"}
-                className={({ isActive }) => "nav-link" + (isActive ? " active" : "")}
-              >
-                {t(item.key)}
-              </NavLink>
-            );
-          })}
-        </nav>
+        <nav className="desktop-nav">{renderNavLinks(false)}</nav>
 
         <div className="header-actions">
           {!session ? (
             <>
-              <Link to="/login" className="btn sm">{t("nav_login")}</Link>
-              <Link to="/register" className="btn sm pri">{t("nav_register")}</Link>
+              <Link to="/login" className="btn sm">
+                {t("nav_login")}
+              </Link>
+              <Link to="/register" className="btn sm pri">
+                {t("nav_register")}
+              </Link>
             </>
           ) : (
             <Link to="/profile" className="user-menu-btn">
               <span className="user-avatar">
-                {session.avatar ? <img src={session.avatar} alt={session.firstName} /> : session.firstName.charAt(0)}
+                {session.avatar ? (
+                  <img src={session.avatar} alt={session.firstName} />
+                ) : (
+                  session.firstName.charAt(0)
+                )}
               </span>
-              <span>{session.firstName} {session.lastName.charAt(0)}.</span>
+              <span className="user-menu-name">
+                {session.firstName} {session.lastName.charAt(0)}.
+              </span>
               {session.verification?.status === "verified" && (
                 <span className="user-verified-check" title="Վերիֆիկացված օգտատեր">
                   <svg className="ico ico-sm" viewBox="0 0 24 24" aria-hidden="true">
@@ -132,7 +154,7 @@ export default function Header() {
             </Link>
           )}
 
-          {/* Լեզվի ընտրիչ. նույն CSS-ը, բայց radio-ները կառավարվում են React state-ով */}
+          {/* Language Switcher */}
           <div className="lang-dropdown">
             {SUPPORTED_LANGS.map((code) => (
               <input
@@ -146,9 +168,17 @@ export default function Header() {
               />
             ))}
 
-            <button type="button" className="lang-btn" aria-label={t("lang_choose_aria")} title={t("lang_choose_title")}>
+            <button
+              type="button"
+              className="lang-btn"
+              aria-label={t("lang_choose_aria")}
+              title={t("lang_choose_title")}
+            >
               {SUPPORTED_LANGS.map((code) => (
-                <span key={code} className={`lang-flag flag-${code}${lang === code ? " is-active" : ""}`}>
+                <span
+                  key={code}
+                  className={`lang-flag flag-${code}${lang === code ? " is-active" : ""}`}
+                >
                   <Flag code={code} />
                 </span>
               ))}
@@ -175,6 +205,48 @@ export default function Header() {
               ))}
             </div>
           </div>
+
+          {/* Mobile Sandwich (3-Line Hamburger) Button */}
+          <button
+            type="button"
+            className={`mobile-menu-btn ${mobileMenuOpen ? "is-open" : ""}`}
+            onClick={() => setMobileMenuOpen((prev) => !prev)}
+            aria-label="Toggle navigation menu"
+            aria-expanded={mobileMenuOpen}
+          >
+            {mobileMenuOpen ? (
+              <svg className="ico" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M18 6 6 18" />
+                <path d="m6 6 12 12" />
+              </svg>
+            ) : (
+              <svg className="ico" viewBox="0 0 24 24" aria-hidden="true">
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <line x1="3" y1="12" x2="21" y2="12" />
+                <line x1="3" y1="18" x2="21" y2="18" />
+              </svg>
+            )}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Sandwich Navigation Drawer */}
+      <div className={`mobile-nav-drawer ${mobileMenuOpen ? "is-open" : ""}`}>
+        <div className="mobile-nav-inner">
+          <form className="srch mobile-srch" onSubmit={handleSearch}>
+            <svg viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="7" />
+              <path d="M20 20l-4-4" />
+            </svg>
+            <input
+              type="search"
+              name="q"
+              placeholder={t("search_placeholder")}
+              aria-label={t("search_aria")}
+            />
+          </form>
+
+          <nav className="mobile-nav-list">{renderNavLinks(true)}</nav>
         </div>
       </div>
     </header>

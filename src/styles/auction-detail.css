@@ -419,18 +419,46 @@
 }
 
 /* Responsive */
+.detail-layout > div {
+  min-width: 0;
+}
 @media (max-width: 850px) {
   .detail-layout {
     grid-template-columns: 1fr;
+    gap: 24px;
   }
   .bid-card {
     position: static;
+    padding: 18px 16px;
   }
   .gallery-main-viewport {
-    height: 320px;
+    height: 300px;
   }
   .shipping-info-grid {
     grid-template-columns: 1fr;
+  }
+  .quick-bids {
+    flex-wrap: wrap;
+  }
+  .quick-btn {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+  .bid-input-group {
+    flex-wrap: wrap;
+  }
+  .bid-input-field {
+    max-width: none;
+    flex: 1 1 120px;
+  }
+  .tab-nav {
+    overflow-x: auto;
+    gap: 4px;
+  }
+  .tab-btn {
+    white-space: nowrap;
+    padding: 10px 12px;
+    font-size: 13.5px;
   }
 }
 

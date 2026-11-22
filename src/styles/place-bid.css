@@ -544,6 +544,10 @@
 }
 
 /* Responsive */
+.arena-left-col,
+.arena-right-col {
+  min-width: 0;
+}
 @media (max-width: 992px) {
   .copart-arena {
     grid-template-columns: 1fr;
@@ -551,8 +555,23 @@
   .arena-left-col {
     border-right: none;
     border-bottom: 1px solid var(--line);
+    padding: 16px;
+  }
+  .arena-right-col {
+    padding: 16px;
+  }
+  .arena-live-banner {
+    padding: 10px 14px;
+    flex-wrap: wrap;
+    gap: 6px;
   }
   .vehicle-main-img-wrap {
-    height: 280px;
+    height: 260px;
+  }
+  .copart-specs-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .quick-bid-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }

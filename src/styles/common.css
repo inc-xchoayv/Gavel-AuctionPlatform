@@ -826,16 +826,131 @@ footer a:hover { color: #fff; }
   color: #8c7b6f;
 }
 
+/* Mobile Sandwich (3-Line) Button & Drawer */
+.mobile-menu-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: var(--soft);
+  color: var(--ink);
+  cursor: pointer;
+  transition: var(--trans);
+  flex-shrink: 0;
+  padding: 0;
+}
+.mobile-menu-btn:hover,
+.mobile-menu-btn.is-open {
+  background: var(--b-l, #f1e4d6);
+  border-color: var(--b);
+  color: var(--b-d, #5c3a1e);
+}
+.mobile-menu-btn .ico {
+  width: 20px;
+  height: 20px;
+}
+
+.mobile-nav-drawer {
+  display: none;
+  background: var(--bg);
+  border-top: 1px solid var(--line);
+  box-shadow: 0 12px 28px rgba(42, 29, 20, 0.12);
+}
+.mobile-nav-drawer.is-open {
+  display: block;
+}
+.mobile-nav-inner {
+  padding: 14px 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.mobile-srch {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+.mobile-nav-list {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 4px;
+  width: 100%;
+}
+.mobile-nav-link {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 11px 14px;
+  border-radius: 8px;
+  font-size: 14.5px;
+  font-weight: 600;
+}
+.mobile-nav-link.active {
+  background: var(--b-l, #f1e4d6);
+  color: var(--b-d, #5c3a1e);
+}
+
 /* Responsiveness */
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+@media (max-width: 960px) {
+  .desktop-nav,
+  .desktop-srch {
+    display: none;
+  }
+  .mobile-menu-btn {
+    display: inline-flex;
+  }
+  header .w {
+    height: 64px;
+    padding: 0 16px;
+    gap: 10px;
+  }
+}
+
 @media (max-width: 900px) {
   .grid-4 { grid-template-columns: repeat(2, 1fr); }
   .grid-3 { grid-template-columns: repeat(2, 1fr); }
   footer .w { grid-template-columns: 1fr 1fr; }
 }
+
 @media (max-width: 640px) {
+  .w {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 14px;
+  }
   .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; }
-  header .w { height: auto; padding: 12px 16px; flex-wrap: wrap; }
-  nav { order: 3; width: 100%; overflow-x: auto; padding-bottom: 4px; }
+  header .w {
+    height: 60px;
+    padding: 0 14px;
+    flex-wrap: nowrap;
+  }
+  .logo img {
+    height: 30px;
+  }
+  .header-actions {
+    gap: 6px;
+  }
+  .user-menu-btn {
+    padding: 4px 8px 4px 4px;
+    gap: 6px;
+    font-size: 12.5px;
+  }
+  .user-menu-name {
+    max-width: 82px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
   footer .w { grid-template-columns: 1fr; }
 }
 
